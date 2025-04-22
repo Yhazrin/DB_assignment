@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>注册 — MyInfo 系统</title>
+    <title>Register — Smart phone information system</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
