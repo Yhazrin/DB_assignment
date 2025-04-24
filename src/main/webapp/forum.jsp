@@ -1,23 +1,47 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
-<h2>产品论坛</h2>
-<form action="ForumServlet" method="post">
-  <label>选择产品：</label><br>
-  <select name="productId" required style="width:100%;margin:8px 0;">
-    <!-- 由 ForumServlet 或页面初始化时填充 -->
-    <option value="1">产品 A</option>
-    <option value="2">产品 B</option>
-  </select><br>
+<!-- forum.jsp -->
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%
+  // 登录校验
+  if (session == null || session.getAttribute("username") == null) {
+    response.sendRedirect("login.jsp");
+    return;
+  }
+  // 从 request 中取出 posts 列表
+  @SuppressWarnings("unchecked")
+  java.util.List<String[]> posts =
+          (java.util.List<String[]>) request.getAttribute("posts");
+%>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Forum - Database Information System</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div class="container">
+  <h1>Forum</h1>
 
-  <label>您的评价：</label><br>
-  <textarea name="review" rows="5" style="width:100%;margin:8px 0;" required></textarea><br>
+  <%  // 遍历并显示帖子的用户、时间、内容
+    if (posts != null) {
+      for (String[] p : posts) {
+  %>
+  <div class="post">
+    <strong><%= p[0] %></strong> at <em><%= p[2] %></em><br/>
+    <%= p[1] %>
+  </div>
+  <hr/>
+  <%      }
+  }
+  %>
 
-  <button type="submit">提交评价</button>
-</form>
+  <!-- 发帖表单 -->
+  <form action="forum" method="post">
+            <textarea name="content" rows="4" cols="50"
+                      placeholder="Write your post here..." required></textarea><br/>
+    <button type="submit">Post</button>
+  </form>
 
-<hr style="margin:24px 0;">
-
-<h3>历史评价</h3>
-<ul>
-  <!-- 由 ForumServlet 填充： -->
-  <!-- <li>产品A – 很好 👌 — 2025-05-02</li> -->
-</ul>
+  <p><a href="main">Back to Main</a></p>
+</div>
+</body>
+</html>

@@ -1,42 +1,27 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<!-- main.jsp -->
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%
-    // 取 tab 参数，默认 “overview”
-    String tab = request.getParameter("tab");
-    if (tab == null) tab = "overview";
+    // 如果未登录，跳回登录页
+    if (session == null || session.getAttribute("username") == null) {
+        response.sendRedirect("login.jsp");
+        return;
+    }
+    String user = (String) session.getAttribute("username");
 %>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>系统主页面</title>
+    <title>Main - Database Information System</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-<!-- 顶部导航 -->
-<div class="navbar">
-    <a href="index.jsp?tab=overview"
-       class="<%= tab.equals("overview")?"active":"" %>">
-        数据库总览
-    </a>
-    <a href="index.jsp?tab=forum"
-       class="<%= tab.equals("forum")?"active":"" %>">
-        论坛
-    </a>
-    <a href="index.jsp?tab=viz"
-       class="<%= tab.equals("viz")?"active":"" %>">
-        数据可视化
-    </a>
-</div>
-
-<!-- 子页面内容 -->
-<div class="tab-content">
-    <% if (tab.equals("overview")) { %>
-    <jsp:include page="overview.jsp"/>
-    <% } else if (tab.equals("forum")) { %>
-    <jsp:include page="forum.jsp"/>
-    <% } else { %>
-    <jsp:include page="viz.jsp"/>
-    <% } %>
+<div class="container">
+    <h1>Welcome, <%= user %>!</h1>
+    <nav>
+        <a class="button" href="overview">Overview</a>
+        <a class="button" href="forum">Forum</a>
+        <a class="button" href="logout">Logout</a>
+    </nav>
 </div>
 </body>
 </html>
