@@ -1,21 +1,19 @@
 package servlet;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/overview")
 public class OverviewServlet extends HttpServlet {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/infosys";
-    private static final String DB_USER = "root";
-    private static final String DB_PASS = "password";
+    private static final String DB_USER = "1";
+    private static final String DB_PASS = "1";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

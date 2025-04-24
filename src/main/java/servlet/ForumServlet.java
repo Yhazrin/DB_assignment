@@ -1,27 +1,25 @@
 package servlet;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/forum")
 public class ForumServlet extends HttpServlet {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/infosys";
-    private static final String DB_USER = "root";
-    private static final String DB_PASS = "password";
+    private static final String DB_USER = "1";
+    private static final String DB_PASS = "1";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("username") == null) {
-            response.sendRedirect("login.jsp");
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
             return;
         }
 
@@ -39,14 +37,14 @@ public class ForumServlet extends HttpServlet {
             e.printStackTrace();
         }
         request.setAttribute("posts", posts);
-        request.getRequestDispatcher("forum.jsp").forward(request, response);
+        request.getRequestDispatcher("/forum.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("username") == null) {
-            response.sendRedirect("login.jsp");
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
             return;
         }
         String username = (String) session.getAttribute("username");
@@ -62,6 +60,6 @@ public class ForumServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        response.sendRedirect("forum");
+        response.sendRedirect(request.getContextPath() + "/forum");
     }
 }

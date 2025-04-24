@@ -1,14 +1,12 @@
 package servlet;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
 
-@WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/infosys";
     private static final String DB_USER = "root";
@@ -43,7 +41,7 @@ public class RegisterServlet extends HttpServlet {
                  PreparedStatement checkStmt = conn.prepareStatement(
                          "SELECT id FROM users WHERE username = ?");
                  PreparedStatement insertStmt = conn.prepareStatement(
-                         "INSERT INTO users (username, password) VALUES (?, ?)");) {
+                         "INSERT INTO users (username, password) VALUES (?, ?)")) {
 
                 // Check if username exists
                 checkStmt.setString(1, username);
