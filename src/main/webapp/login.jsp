@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="<%= ctx %>/assets/css/style.css">
 </head>
 <body>
+<jsp:include page="/sub/themeToggle.jsp" />
 <div class="container">
     <form action="<%= ctx %>/login" method="post" class="form-card">
         <h2>Login</h2>

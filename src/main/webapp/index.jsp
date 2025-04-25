@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="<%= ctx %>/assets/css/style.css">
 </head>
 <body>
-<!-- 主题切换按钮：移除 onclick -->
-<div class="theme-toggle">🌓</div>
+<!-- 公共主题切换片段 -->
+<jsp:include page="/sub/themeToggle.jsp" />
 
 <div class="container">
     <h1>Welcome to the Database Information System</h1>
@@ -20,23 +20,5 @@
     <a class="button" href="<%= ctx %>/login.jsp">Login</a>
     <a class="button" href="<%= ctx %>/register.jsp">Register</a>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const toggle = document.querySelector('.theme-toggle');
-        const body   = document.body;
-
-        // 初始化：从 localStorage 读取
-        if (localStorage.getItem('theme') === 'dark') {
-            body.classList.add('dark-mode');
-        }
-
-        // 点击只执行一次切换和存储
-        toggle.addEventListener('click', () => {
-            const isDark = body.classList.toggle('dark-mode');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        });
-    });
-</script>
 </body>
 </html>
