@@ -1,28 +1,32 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String ctx = request.getContextPath();
-    // 如果已经登录，直接回主页
-    if (session != null && session.getAttribute("username") != null) {
-        response.sendRedirect(ctx + "/main");
-        return;
-    }
 %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login - Database Information System</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
     <link rel="stylesheet" href="<%= ctx %>/assets/css/style.css">
 </head>
 <body>
 <div class="container">
-    <h1>User Login</h1>
-    <form action="<%= ctx %>/login" method="post">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <button type="submit">Login</button>
+    <form action="<%= ctx %>/login" method="post" class="form-card">
+        <h2>Login</h2>
+
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input id="username" type="text" name="username" placeholder="Enter your username" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" placeholder="Enter your password" required>
+        </div>
+
+        <button type="submit" class="submit-btn">Login</button>
     </form>
-    <div class="error">${errorMessage}</div>
-    <p>Don't have an account? <a href="<%= ctx %>/register.jsp">Register</a></p>
 </div>
 </body>
 </html>

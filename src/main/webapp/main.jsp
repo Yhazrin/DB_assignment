@@ -9,7 +9,6 @@
     String user = (String) session.getAttribute("username");
 %>
 <!DOCTYPE html>
-<html>
 <head>
     <title>Main - Database Information System</title>
     <link rel="stylesheet" href="assets/css/style.css">

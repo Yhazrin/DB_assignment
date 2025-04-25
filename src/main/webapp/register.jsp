@@ -1,29 +1,42 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String ctx = request.getContextPath();
-    if (session != null && session.getAttribute("username") != null) {
-        response.sendRedirect(ctx + "/main");
-        return;
-    }
 %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Register - Database Information System</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register</title>
     <link rel="stylesheet" href="<%= ctx %>/assets/css/style.css">
 </head>
 <body>
 <div class="container">
-    <h1>User Registration</h1>
-    <form action="<%= ctx %>/register" method="post">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
-        <button type="submit">Register</button>
+    <form action="<%= ctx %>/register" method="post" class="form-card">
+        <h2>Register</h2>
+
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input id="username" type="text" name="username" placeholder="Choose a username" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" placeholder="Enter your email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" placeholder="Create a password" required>
+        </div>
+
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input id="confirmPassword" type="password" name="confirmPassword" placeholder="Repeat your password" required>
+        </div>
+
+        <button type="submit" class="submit-btn">Register</button>
     </form>
-    <div class="error">${errorMessage}</div>
-    <div class="success">${successMessage}</div>
-    <p>Already have an account? <a href="<%= ctx %>/login.jsp">Login</a></p>
 </div>
 </body>
 </html>
