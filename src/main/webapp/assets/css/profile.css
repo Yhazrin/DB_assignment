@@ -1,0 +1,96 @@
+@import 'common.css';
+
+/* 个人主页布局 */
+.profile-container {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: 100vh;
+}
+
+/* 侧边栏 */
+.profile-sidebar {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-right: 1px solid var(--divider);
+}
+.user-card {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.avatar-wrapper {
+    position: relative;
+    width: 120px;
+    margin: 0 auto 1.5rem;
+}
+.user-avatar {
+    width: 100%;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.avatar-upload {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px 12px;
+    background: var(--primary);
+    color: var(--on-primary);
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.avatar-upload:hover {
+    transform: translate(-50%, -2px);
+}
+
+/* 主内容区 */
+.profile-main {
+    padding: 2rem 3rem;
+}
+.section-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+/* 信息网格 */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+.info-item {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid var(--primary);
+}
+
+/* 设备网格 */
+.device-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+.device-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    transition: transform 0.2s;
+}
+.device-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .profile-container {
+        grid-template-columns: 1fr;
+    }
+    .profile-sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--divider);
+    }
+}

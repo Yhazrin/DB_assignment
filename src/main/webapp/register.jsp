@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Register</title>
-    <link rel="stylesheet" href="<%= ctx %>/assets/css/style.css">
+    <link rel="stylesheet" href="<%= ctx %>/assets/css/pre.css">
 </head>
 <body>
 <div class="container">

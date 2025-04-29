@@ -7,7 +7,7 @@
 
     <!-- 欢迎文件列表：优先使用 index.jsp -->
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>login.jsp</welcome-file>
         <!-- 如果需要也可以备选 login.jsp、register.jsp 等 -->
     </welcome-file-list>
 

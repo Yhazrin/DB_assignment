@@ -1,0 +1,91 @@
+/* common.css */
+:root {
+    /* ———————— 颜色变量 ———————— */
+    --primary: #4285F4;
+    --primary-dark: #3367D6;
+    --on-primary: #fff;
+
+    --bg-color: #f4f4f4;      /* 全局背景色（浅） */
+    --text-color: #222;       /* 全局文字色（浅） */
+    --card-bg: #fff;          /* 卡片背景色（浅） */
+    --divider: #e0e0e0;       /* 分割线颜色 */
+}
+
+/* 暗黑模式：只改变量 */
+html.dark-mode {
+    --bg-color: #121212;
+    --text-color: #ddd;
+    --card-bg: #2d2d2d;
+    --divider: #333;
+}
+
+/* ———————— 通用重置 & 基础 ———————— */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* 通用容器 */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* ———————— 按钮基类 ———————— */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    background: var(--primary);
+    color: var(--on-primary);
+    text-decoration: none;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+.btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* ———————— 卡片基类 ———————— */
+.card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+/* ———————— 表单控件 ———————— */
+input, select, textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--divider);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: var(--card-bg);
+    color: var(--text-color);
+    transition: border-color 0.3s;
+}
+input:focus, select:focus, textarea:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+/* ———————— 响应式断点 ———————— */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+}

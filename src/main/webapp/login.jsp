@@ -6,27 +6,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login</title>
-    <link rel="stylesheet" href="<%= ctx %>/assets/css/style.css">
+    <title>Login - Mobile Phone InfoHub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<%= ctx %>/assets/css/pre.css">
 </head>
 <body>
 <jsp:include page="/sub/themeToggle.jsp" />
+
 <div class="container">
     <form action="<%= ctx %>/login" method="post" class="form-card">
         <h2>Login</h2>
 
         <div class="form-group">
-            <label for="username">Username</label>
-            <input id="username" type="text" name="username" placeholder="Enter your username" required>
+            <input id="username" name="username" type="text" placeholder="Enter your username" class="form-input" required autofocus />
         </div>
 
         <div class="form-group">
-            <label for="password">Password</label>
-            <input id="password" type="password" name="password" placeholder="Enter your password" required>
+            <input id="password" name="password" type="password" placeholder="Enter your password" class="form-input" required />
         </div>
 
-        <button type="submit" class="submit-btn">Login</button>
+        <div class="form-actions">
+            <a href="<%= ctx %>/register.jsp" class="link-button">Register</a>
+            <button type="submit" class="submit-btn">Login</button>
+        </div>
     </form>
 </div>
 </body>

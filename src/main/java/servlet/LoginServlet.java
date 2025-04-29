@@ -2,7 +2,6 @@
 package servlet;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -39,7 +38,7 @@ public class LoginServlet extends HttpServlet {
                             if (password.equals(dbPass)) {
                                 HttpSession session = request.getSession();
                                 session.setAttribute("username", username);
-                                response.sendRedirect(request.getContextPath() + "/main.jsp");
+                                response.sendRedirect(request.getContextPath() + "/home.jsp");
                                 return;
                             } else {
                                 errorMsg = "Invalid username or password";

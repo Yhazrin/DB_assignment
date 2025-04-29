@@ -1,20 +1,21 @@
-<%-- WebContent/WEB-INF/jsp/common/themeToggle.jsp --%>
-<!-- 主题切换按钮 -->
-<div class="theme-toggle">🌓</div>
+<%-- themeToggle.jsp --%>
+<div class="theme-toggle-btn">
+    <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">...</svg>
+    <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">...</svg>
+</div>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const toggle = document.querySelector('.theme-toggle');
-        const body   = document.body;
+        const toggle = document.querySelector('.theme-toggle-btn');
+        const htmlEl = document.documentElement; // 改为操作html元素
 
-        // 1. 读取上次保存的主题
-        if (localStorage.getItem('theme') === 'dark') {
-            body.classList.add('dark-mode');
-        }
+        // 初始化主题
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        htmlEl.classList.toggle('dark-mode', savedTheme === 'dark');
 
-        // 2. 点击切换并持久化
+        // 切换事件
         toggle.addEventListener('click', () => {
-            const isDark = body.classList.toggle('dark-mode');
+            const isDark = htmlEl.classList.toggle('dark-mode');
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
         });
     });

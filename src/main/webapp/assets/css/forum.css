@@ -1,0 +1,106 @@
+@import 'common.css';
+
+/* 论坛页面特有布局 */
+.forum-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2rem;
+}
+
+/* 侧边栏 */
+.sidebar {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+.sidebar-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+}
+
+/* 模型列表项 */
+.model-list { list-style: none; }
+.model-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin: 0.75rem 0;
+    background: var(--card-bg);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.model-item:hover {
+    background: var(--divider);
+    transform: translateX(5px);
+}
+.model-item.selected {
+    background: var(--primary);
+    color: var(--on-primary);
+}
+
+/* 主讨论区 */
+.discussion-main {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 2rem;
+}
+.discussion-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--text);
+}
+
+/* 帖子卡片 */
+.post-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.post-header { margin-bottom: 1rem; }
+.post-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+}
+.post-meta {
+    display: flex;
+    gap: 1rem;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+/* 评论表单 */
+.comment-form {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-top: 3rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.form-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.form-group { margin-bottom: 1.5rem; }
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+/* 按钮使用 .btn 类，不再定义 .submit-btn */
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .forum-container { grid-template-columns: 1fr; padding: 1rem; }
+    .sidebar { margin-bottom: 2rem; }
+    .post-card, .comment-form { padding: 1rem; }
+}
