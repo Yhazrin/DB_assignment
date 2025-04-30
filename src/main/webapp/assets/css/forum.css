@@ -2,7 +2,6 @@
 
 /* 论坛页面特有布局 */
 .forum-container {
-    /* 全宽铺满屏幕 */
     width: 100%;
     padding: 2rem;
     display: grid;
@@ -13,6 +12,7 @@
 
 /* 侧边栏 */
 .sidebar {
+    margin-top: 70px;
     background: var(--card-bg);
     border-radius: 16px;
     padding: 1.5rem;
@@ -55,6 +55,7 @@
 
 /* 主讨论区 */
 .discussion-main {
+    margin-top: 70px;
     background: var(--card-bg);
     border-radius: 16px;
     padding: 2rem;

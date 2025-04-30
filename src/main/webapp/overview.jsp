@@ -13,9 +13,11 @@
 <html>
 <head>
     <title>Mobile Overview - Database Information System</title>
-    <link rel="stylesheet" href="assets/css/overview.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/header.css">
-    <jsp:include page="header.jsp"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/theme-toggle.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/overview.css">
+
+    <jsp:include page="sub/header.jsp"/>
 </head>
 <body>
 <div class="overview-container">

@@ -1,94 +1,60 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%
-  String ctx = request.getContextPath();
-%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Forum - Mobile Phone InfoHub</title>
-  <link rel="stylesheet" href="<%= ctx %>/assets/css/forum.css" />
+  <meta charset="UTF-8">
+  <title>Forum - Mobile Phone Query System</title>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/header.css">
-  <jsp:include page="header.jsp"/>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/theme-toggle.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/forum.css" />
 </head>
 <body>
+<!-- 导航栏（包含主题切换按钮） -->
+<jsp:include page="sub/header.jsp" />
 
-<div class="forum-container">
-  <!-- 侧边栏：机型列表 -->
+<main class="forum-container">
+  <!-- 侧边栏 -->
   <aside class="sidebar">
-    <h2 class="sidebar-title">Select Model</h2>
+    <h2 class="sidebar-title">Discussion Models</h2>
     <ul class="model-list">
       <c:forEach var="model" items="${models}">
-        <li data-id="${model.id}"
-            class="model-item ${model.id == selectedModel.id ? 'selected' : ''}">
-          <span class="model-name">${model.name}</span>
-          <span class="model-rating">★ ${model.avgRating}</span>
+        <li class="model-item ${model.selected ? 'selected' : ''}" data-id="${model.id}">
+            ${model.name}
         </li>
       </c:forEach>
     </ul>
   </aside>
 
   <!-- 主讨论区 -->
-  <main class="discussion-main">
-    <h2 class="discussion-title">${selectedModel.name} Discussion</h2>
-
-    <div class="posts-container">
-      <c:forEach var="post" items="${posts}">
-        <article class="post-card">
-          <div class="post-header">
-            <h3 class="post-title">${post.title}</h3>
-            <div class="post-meta">
-              <span class="author">${post.author}</span>
-              <span class="date">${post.date}</span>
-              <span class="rating">Rating: ${post.rating}/5</span>
-            </div>
-          </div>
-          <p class="post-content">${post.content}</p>
-        </article>
-      </c:forEach>
-      <c:if test="${empty posts}">
-        <div class="empty-prompt">
-          <p>No posts yet. Be the first to comment!</p>
+  <section class="discussion-main">
+    <h1 class="discussion-title">${currentTopic.title}</h1>
+    <c:forEach var="post" items="${posts}">
+      <div class="post-card">
+        <div class="post-header">
+          <h2 class="post-title">${post.title}</h2>
+          <div class="post-meta">By ${post.author} on ${post.date}</div>
         </div>
-      </c:if>
-    </div>
+        <div class="post-body">${post.content}</div>
+      </div>
+    </c:forEach>
 
     <!-- 评论表单 -->
-    <form class="comment-form" action="<%= ctx %>/forum/comment" method="post">
-      <h3 class="form-title">Leave a Comment</h3>
-      <input type="hidden" name="modelId" value="${selectedModel.id}" />
-
+    <form class="comment-form" action="${pageContext.request.contextPath}/forum/comment" method="post">
+      <h2 class="form-title">Add a Comment</h2>
       <div class="form-group">
-        <label for="rating" class="form-label">Rating</label>
-        <select id="rating" name="rating" class="form-select">
-          <c:forEach var="i" begin="1" end="5">
-            <option value="${i}">${i} Star</option>
-          </c:forEach>
-        </select>
+        <label class="form-label" for="author">Name</label>
+        <input type="text" id="author" name="author" class="form-input" required />
       </div>
-
       <div class="form-group">
-        <label for="content" class="form-label">Your Comment</label>
-        <textarea id="content" name="content" rows="5"
-                  class="form-textarea"
-                  placeholder="Share your experience..."></textarea>
+        <label class="form-label" for="content">Comment</label>
+        <textarea id="content" name="content" class="form-textarea" rows="5" required></textarea>
       </div>
-
-      <button type="submit" class="submit-btn">Post Comment</button>
+      <button type="submit" class="btn primary">Submit</button>
     </form>
-  </main>
-</div>
-
-<script>
-  // 机型选择交互
-  document.querySelectorAll('.model-item').forEach(item => {
-    item.addEventListener('click', () => {
-      const modelId = item.dataset.id;
-      window.location.href = `<%= ctx %>/forum?modelId=${modelId}`;
-    });
-  });
-</script>
+  </section>
+</main>
+<!-- 通用脚本（含主题切换逻辑） -->
+<jsp:include page="sub/scripts.jsp" />
 </body>
 </html>

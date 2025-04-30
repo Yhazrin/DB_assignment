@@ -31,7 +31,7 @@
 
     <servlet>
         <servlet-name>MainServlet</servlet-name>
-        <servlet-class>servlet.MainServlet</servlet-class>
+        <servlet-class>servlet.HomeServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
@@ -64,5 +64,8 @@
         <servlet-name>ForumServlet</servlet-name>
         <url-pattern>/forum</url-pattern>
     </servlet-mapping>
-
+    <mime-mapping>
+        <extension>svg</extension>
+        <mime-type>image/svg+xml</mime-type>
+    </mime-mapping>
 </web-app>

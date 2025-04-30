@@ -1,74 +1,59 @@
 /* 主题切换按钮容器 */
 .theme-toggle-btn {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     border: none;
     border-radius: 50%;
     cursor: pointer;
     position: relative;
-    background: var(--toggle-bg, #f0f0f0);
+    background: #f0f0f0;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    transition: transform 0.5s ease;
     overflow: hidden;
+    transition:
+            background 0.3s ease,
+            transform 0.2s ease; /* 按钮缩放和背景色过渡 */
 }
 
-/* SVG图标通用样式 */
-.theme-toggle-btn svg {
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    top: 50%;
-    left: 50%;
-    transition: transform 0.5s ease, opacity 0.3s ease;
-}
-
-/* 太阳图标 */
-#icon-sun {
-    transform: translate(-50%, -50%) rotate(0deg);
-    opacity: 1;
-    fill: #FFB800;
-}
-
-/* 月亮图标 */
-#icon-moon {
-    transform: translate(-50%, -50%) rotate(90deg);
-    opacity: 0;
-    fill: #3f51b5;
-}
-
-/* 暗黑模式样式 */
-html.dark-mode .theme-toggle-btn {
-    background: var(--toggle-bg-dark, #2d2d2d);
-}
-
-html.dark-mode #icon-sun {
-    transform: translate(-50%, -50%) rotate(-90deg);
-    opacity: 0;
-}
-
-html.dark-mode #icon-moon {
-    transform: translate(-50%, -50%) rotate(0deg);
-    opacity: 1;
-}
-
-/* 悬停效果 */
+/* 按钮悬停和点击效果 */
 .theme-toggle-btn:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
-/* 点击效果 */
 .theme-toggle-btn:active {
     transform: scale(0.95);
 }
 
-/* 媒体查询 */
+/* 图标样式（单个图标） */
+#icon-toggle {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: center center;
+    transition:
+            transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), /* 平滑旋转动画 */
+            opacity 0.3s ease;
+}
+
+/* 暗黑模式下的图标旋转和按钮背景色 */
+.dark-mode #icon-toggle {
+    transform: translate(-50%, -50%) rotate(180deg);
+}
+
+.dark-mode .theme-toggle-btn {
+    background: #2d2d2d;
+}
+
+/* 移动端适配 */
 @media (max-width: 768px) {
     .theme-toggle-btn {
-        width: 40px;
-        height: 40px;
+        width: 36px;
+        height: 36px;
     }
 
-    .theme-toggle-btn svg {
+    #icon-toggle {
         width: 20px;
         height: 20px;
     }

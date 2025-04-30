@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 
-public class MainServlet extends HttpServlet {
+public class HomeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request,

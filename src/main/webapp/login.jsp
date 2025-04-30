@@ -10,10 +10,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<%= ctx %>/assets/css/pre.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/header.css">
-    <jsp:include page="header.jsp"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/theme-toggle.css">
+
+    <jsp:include page="sub/header.jsp"/>
 </head>
 <body>
-<jsp:include page="/sub/themeToggle.jsp" />
 
 <div class="container">
     <form action="<%= ctx %>/login" method="post" class="form-card">
