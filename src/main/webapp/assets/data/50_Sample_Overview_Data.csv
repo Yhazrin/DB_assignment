@@ -1,0 +1,51 @@
+name,brand,releaseDate,processor,display,camera,material,price
+OnePlus Model 1,OnePlus,2022-12-11,Exynos 2100,"6.1"" OLED",12MP+64MP+12MP,陶瓷,$1479
+Huawei Model 2,Huawei,2021-11-03,Kirin 9000,"6.7"" AMOLED",32MP+8MP,陶瓷,$739
+Sony Model 3,Sony,2022-04-27,Snapdragon 870,"6.5"" OLED",12MP,塑料,$1319
+LG Model 4,LG,2019-10-04,Snapdragon 888,"6.1"" OLED",50MP+12MP,陶瓷,$719
+Sony Model 5,Sony,2020-12-04,MediaTek Dimensity 1200,"6.8"" LCD",108MP+8MP+8MP,铝合金+玻璃,$699
+Sony Model 6,Sony,2020-07-12,A15 Bionic,"6.8"" LCD",50MP+12MP,不锈钢+玻璃,$799
+Oppo Model 7,Oppo,2022-12-26,Kirin 9000E,"6.4"" AMOLED",64MP+12MP+5MP,塑料+金属,$939
+Oppo Model 8,Oppo,2022-07-10,Snapdragon 8 Gen 1,"6.5"" OLED",12MP,塑料+金属,$1099
+Huawei Model 9,Huawei,2020-07-18,Exynos 2100,"6.1"" OLED",50MP+12MP,铝合金,$799
+Apple Model 10,Apple,2023-10-13,A15 Bionic,"6.3"" OLED",50MP+12MP,陶瓷,$1499
+Xiaomi Model 11,Xiaomi,2019-09-10,Kirin 9000,"6.8"" LCD",50MP+50MP,铝合金,$1439
+Apple Model 12,Apple,2021-12-27,Kirin 9000E,"6.3"" OLED",48MP+48MP+8MP,铝合金,$939
+Xiaomi Model 13,Xiaomi,2020-06-07,Exynos 2100,"6.8"" LCD",12MP+12MP,不锈钢+玻璃,$1499
+LG Model 14,LG,2020-06-03,Kirin 9000E,"6.5"" OLED",12MP+64MP+12MP,碳纤维,$1439
+OnePlus Model 15,OnePlus,2019-01-26,Google Tensor,"6.5"" OLED",50MP,不锈钢+玻璃,$959
+Vivo Model 16,Vivo,2021-05-24,A15 Bionic,"6.8"" LCD",12MP,金属,$1259
+Xiaomi Model 17,Xiaomi,2023-09-19,Exynos 2100,"6.1"" OLED",12MP+12MP,碳纤维,$579
+OnePlus Model 18,OnePlus,2023-05-10,Snapdragon 870,"6.7"" AMOLED",50MP,陶瓷,$1159
+Oppo Model 19,Oppo,2020-10-17,Exynos 2100,"6.7"" AMOLED",108MP+8MP+8MP,塑料+金属,$1419
+Sony Model 20,Sony,2019-01-04,A15 Bionic,"6.2"" AMOLED",50MP,玻璃+金属,$1039
+Xiaomi Model 21,Xiaomi,2022-10-23,Exynos 2100,"6.8"" LCD",12MP+12MP,铝合金,$779
+Samsung Model 22,Samsung,2022-07-18,MediaTek Dimensity 1200,"6.3"" OLED",50MP,金属,$919
+OnePlus Model 23,OnePlus,2019-11-11,A15 Bionic,"6.7"" AMOLED",50MP+12MP,塑料+金属,$579
+OnePlus Model 24,OnePlus,2020-02-17,Exynos 2100,"6.5"" OLED",12MP+12MP,塑料,$539
+Google Model 25,Google,2023-06-08,A15 Bionic,"6.7"" AMOLED",50MP+50MP,铝合金+玻璃,$819
+Vivo Model 26,Vivo,2019-09-25,Exynos 2100,"6.5"" OLED",48MP+48MP+8MP,金属,$659
+Oppo Model 27,Oppo,2021-03-28,Kirin 9000E,"6.6"" AMOLED",50MP,玻璃,$639
+Samsung Model 28,Samsung,2021-02-20,Google Tensor,"6.4"" AMOLED",50MP+12MP,铝合金+玻璃,$659
+Sony Model 29,Sony,2020-06-16,A15 Bionic,"6.8"" LCD",108MP+8MP+8MP,金属,$539
+LG Model 30,LG,2019-10-14,Exynos 2100,"6.1"" OLED",50MP+12MP,不锈钢+玻璃,$639
+LG Model 31,LG,2020-03-24,Snapdragon 8 Gen 1,"6.2"" AMOLED",64MP+12MP+5MP,塑料+金属,$1359
+Vivo Model 32,Vivo,2022-07-16,Snapdragon 888,"6.8"" LCD",108MP+8MP+8MP,陶瓷,$1179
+OnePlus Model 33,OnePlus,2021-10-13,Exynos 2100,"6.2"" AMOLED",12MP+64MP+12MP,碳纤维,$1299
+Sony Model 34,Sony,2020-11-01,Snapdragon 870,"6.8"" LCD",50MP,塑料,$1359
+LG Model 35,LG,2020-07-09,Google Tensor,"6.7"" AMOLED",50MP+12MP,铝合金+玻璃,$839
+Xiaomi Model 36,Xiaomi,2019-01-18,Snapdragon 8 Gen 1,"6.8"" LCD",12MP,塑料+金属,$939
+Google Model 37,Google,2021-01-14,Google Tensor,"6.3"" OLED",50MP+50MP,塑料+金属,$639
+Sony Model 38,Sony,2022-04-12,MediaTek Dimensity 1200,"6.4"" AMOLED",12MP+12MP,陶瓷,$619
+OnePlus Model 39,OnePlus,2021-12-29,MediaTek Dimensity 1200,"6.8"" LCD",48MP+48MP+8MP,玻璃,$799
+Apple Model 40,Apple,2023-08-09,Snapdragon 888,"6.5"" OLED",50MP+12MP,玻璃,$1079
+Huawei Model 41,Huawei,2022-06-10,Snapdragon 888,"6.3"" OLED",50MP,铝合金+玻璃,$759
+LG Model 42,LG,2019-03-29,Kirin 9000E,"6.7"" AMOLED",64MP+12MP+5MP,金属,$1319
+Oppo Model 43,Oppo,2021-02-24,Kirin 9000E,"6.6"" AMOLED",108MP+8MP+8MP,陶瓷,$899
+Samsung Model 44,Samsung,2019-06-09,Exynos 2100,"6.4"" AMOLED",12MP+64MP+12MP,碳纤维,$1219
+Apple Model 45,Apple,2020-09-01,Exynos 2100,"6.4"" AMOLED",12MP+12MP,塑料,$1119
+OnePlus Model 46,OnePlus,2021-11-28,Snapdragon 870,"6.4"" AMOLED",64MP+12MP+5MP,金属,$659
+Oppo Model 47,Oppo,2019-02-27,Google Tensor,"6.6"" AMOLED",12MP+12MP,金属,$799
+Xiaomi Model 48,Xiaomi,2019-11-13,MediaTek Dimensity 1200,"6.8"" LCD",12MP,铝合金+玻璃,$699
+Apple Model 49,Apple,2019-04-02,MediaTek Dimensity 1200,"6.4"" AMOLED",50MP,金属,$659
+Oppo Model 50,Oppo,2021-03-15,Snapdragon 8 Gen 1,"6.2"" AMOLED",32MP+8MP,玻璃,$1259

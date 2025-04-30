@@ -42,6 +42,10 @@
     transform: translate(-50%, -50%) rotate(180deg);
 }
 
+#icon-toggle.rotate-clockwise {
+    transform: translate(-50%, -50%) rotate(360deg);
+}
+
 .dark-mode .theme-toggle-btn {
     background: #2d2d2d;
 }

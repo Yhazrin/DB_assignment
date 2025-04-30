@@ -6,10 +6,9 @@
   <meta charset="UTF-8">
   <title>Profile - Mobile InfoHub</title>
   <!-- 公共样式 -->
-
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/header.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/theme-toggle.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/profile.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/header.css">
 </head>
 <body>
 <!-- 导航栏（包含主题切换按钮） -->

@@ -50,6 +50,10 @@
     <servlet>
         <servlet-name>OverviewServlet</servlet-name>
         <servlet-class>servlet.OverviewServlet</servlet-class>
+        <init-param>
+            <param-name>csvPath</param-name>
+            <param-value>/assets/data/50_Sample_Overview_Data.csv</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>OverviewServlet</servlet-name>

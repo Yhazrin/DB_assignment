@@ -1,63 +1,68 @@
-<%-- overview.jsp --%>
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-    // 登录校验
-//    if (session == null || session.getAttribute("username") == null) {
-//        response.sendRedirect("login.jsp");
-//        return;
-//    }
-    java.util.List<String[]> phones = (java.util.List<String[]>) request.getAttribute("phones");
+    // 如果 dataList 不存在，说明没有经过 OverviewServlet
+    if (request.getAttribute("dataList") == null) {
+        // 重定向到 Servlet 映射路径，让它来初始化 dataList
+        response.sendRedirect(request.getContextPath() + "/overview");
+        return;
+    }
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Mobile Overview - Database Information System</title>
+    <meta charset="UTF-8">
+    <title>Overview - MobilePhoneSys</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/theme-toggle.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/overview.css">
-
-    <jsp:include page="sub/header.jsp"/>
 </head>
 <body>
+<jsp:include page="/sub/header.jsp"/>
+
 <div class="overview-container">
-    <!-- 搜索框 -->
+    <!-- 搜索栏 -->
     <div class="search-bar">
-        <input type="text"
-               class="search-input"
-               placeholder="Search by product name or manufacturer...">
+        <input type="text" class="search-input" placeholder="Search by product name or manufacturer..." />
     </div>
 
-    <!-- 数据展示区 -->
-    <div class="data-wrapper">
-        <!-- 表头 -->
-        <div class="data-header">
-            <div>产品名称</div>
-            <div>发布厂商</div>
-            <div>发布日期</div>
-            <div>处理器</div>
-            <div>屏幕</div>
-            <div>摄像头规格</div>
-            <div>机身材质</div>
-            <div>价格</div>
-        </div>
+    <!-- 调试：检查 dataList -->
+    <c:if test="${empty dataList}">
+        <p style="color:red; text-align:center;">错误：dataList 为空或未传递到页面</p>
+    </c:if>
 
-        <!-- 数据行 -->
-        <div class="data-content">
-            <c:forEach var="phone" items="${phones}">
-                <div class="data-row">
-                    <div>${phone[0]}</div>
-                    <div>${phone[1]}</div>
-                    <div>${phone[2]}</div>
-                    <div>${phone[3]}</div>
-                    <div>${phone[4]}</div>
-                    <div>${phone[5]}</div>
-                    <div>${phone[6]}</div>
-                    <div>${phone[7]}</div>
-                </div>
-            </c:forEach>
+    <!-- 表头组件 -->
+    <div class="table-header-wrapper">
+        <div class="data-header">
+            <div>Product Name</div>
+            <div>Manufacturer</div>
+            <div>Release Date</div>
+            <div>Processor</div>
+            <div>Display</div>
+            <div>Camera</div>
+            <div>Material</div>
+            <div>Price</div>
         </div>
+    </div>
+
+    <!-- 数据体组件 -->
+    <div class="table-body-wrapper">
+        <c:forEach var="item" items="${dataList}">
+            <div class="data-row">
+                <div>${item.name}</div>
+                <div>${item.brand}</div>
+                <div><fmt:formatDate value="${item.releaseDate}" pattern="yyyy-MM-dd"/></div>
+                <div>${item.processor}</div>
+                <div>${item.display}</div>
+                <div>${item.camera}</div>
+                <div>${item.material}</div>
+                <div>${item.price}</div>
+            </div>
+        </c:forEach>
     </div>
 </div>
+
+<jsp:include page="/sub/scripts.jsp"/>
 </body>
 </html>

@@ -34,7 +34,9 @@
     </datalist>
     <div id="specContainer"></div>
 </div>
-<footer>&copy; 2025 Mobile Phone InfoHub</footer>
+
+<jsp:include page="sub/scripts.jsp"/>
+
 <script>
     const specs = [
         { name: 'Display', key: 'display' },

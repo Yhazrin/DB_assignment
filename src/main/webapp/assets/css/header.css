@@ -20,6 +20,7 @@
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--text-color);
+    transition: color 0.3s;
 }
 
 /* 导航链接容器 */
@@ -33,6 +34,7 @@
 /* 导航链接样式 */
 .navbar .nav-links a {
     position: relative;
+    display: inline-block;
     padding: 0 8px;
     line-height: 60px;
     white-space: nowrap;
@@ -82,12 +84,23 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, color 0.3s ease;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    color: var(--text-color);
 }
 
 .theme-toggle-btn:hover {
     background: rgba(var(--card-bg-rgb,255,255,255), 0.9);
+}
+
+/* 夜间模式下 header 背景设为灰色，字体保持白色 */
+html.dark-mode .navbar {
+    background: rgba(100,100,100,0.6);
+}
+html.dark-mode .navbar .logo,
+html.dark-mode .navbar .nav-links a,
+html.dark-mode .theme-toggle-btn {
+    color: #f4f4f4 !important;
 }
 
 /* 移动端适配 */
