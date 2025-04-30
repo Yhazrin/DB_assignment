@@ -1,7 +1,6 @@
 package servlet;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -22,8 +21,8 @@ public class MainServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/login.jsp");
             return;
         }
-        // 已登录则转发到 main.jsp
-        request.getRequestDispatcher("/main.jsp")
+        // 已登录则转发到 home.jsp
+        request.getRequestDispatcher("/home.jsp")
                 .forward(request, response);
     }
 }

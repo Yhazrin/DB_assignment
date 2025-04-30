@@ -3,10 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     // 登录校验
-    if (session == null || session.getAttribute("username") == null) {
-        response.sendRedirect("login.jsp");
-        return;
-    }
+//    if (session == null || session.getAttribute("username") == null) {
+//        response.sendRedirect("login.jsp");
+//        return;
+//    }
     java.util.List<String[]> phones = (java.util.List<String[]>) request.getAttribute("phones");
 %>
 <!DOCTYPE html>
