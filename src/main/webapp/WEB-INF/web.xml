@@ -7,7 +7,7 @@
 
     <!-- 欢迎文件列表：优先使用 index.jsp -->
     <welcome-file-list>
-        <welcome-file>main.jsp</welcome-file>
+        <welcome-file>home.jsp</welcome-file>
         <!-- 如果需要也可以备选 login.jsp、register.jsp 等 -->
     </welcome-file-list>
 
@@ -22,7 +22,7 @@
 
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
-        <servlet-class>servlet.RegisterServlet</servlet-class>
+        <servlet-class>servlet.useRegisterServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>

@@ -8,7 +8,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mobile Phone InfoHub - Home</title>
-    <link rel="stylesheet" href="<%= ctx %>/assets/css/home.css" />
+    <link rel="stylesheet" href="<%= ctx %>/assets/css/header.css" />
     <style>
         /* 保证主题切换按钮悬浮在最顶层 */
         .theme-toggle-container {

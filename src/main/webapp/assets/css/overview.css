@@ -52,6 +52,21 @@
     border-bottom: 2px solid var(--divider);
     z-index: 50;
     min-width: fit-content;
+    /* 添加以下样式实现居中对齐 */
+    text-align: center;
+    font-weight: bold;
+    color: var(--text-color); /* 确保文字颜色响应主题变化 */
+    transition: color 0.3s ease, background-color 0.3s ease; /* 添加过渡效果 */
+}
+
+.data-header > div {
+    padding: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* 确保内容水平居中 */
 }
 
 /* 数据行 */

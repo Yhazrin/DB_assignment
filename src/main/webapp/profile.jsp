@@ -6,6 +6,8 @@
 <head>
   <title>用户中心 - Mobile InfoHub</title>
   <link rel="stylesheet" href="assets/css/profile.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/header.css">
+  <jsp:include page="header.jsp"/>
 </head>
 <body>
 <div class="profile-container">

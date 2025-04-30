@@ -9,8 +9,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Forum - Mobile Phone InfoHub</title>
-  <link rel="stylesheet" href="<%= ctx %>/assets/css/common.css" />
   <link rel="stylesheet" href="<%= ctx %>/assets/css/forum.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/header.css">
+  <jsp:include page="header.jsp"/>
 </head>
 <body>
 

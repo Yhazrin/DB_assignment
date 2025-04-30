@@ -1,46 +1,55 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Overview - Mobile Phone Query System</title>
+    <!-- 本页专属样式 -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/home.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/header.css">
+    <jsp:include page="header.jsp"/>
+    <jsp:include page="sub/themeToggle.jsp" />
+</head>
+<body>
+
 <main>
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Mobile Phone Information Query System</h1>
-        <p>Instantly search global phone models—brand, release date, dimensions, specs and more.</p>
-        <button class="btn primary">Get Started</button>
-    </section>
-
-    <!-- Core Features Overview -->
-    <section style="background-color: #FF6F61; color: #fff; padding: 200px 20px; text-align: center;">
+    <!-- 核心功能列表 -->
+    <section class="features">
         <h2>Core Features</h2>
-</section>
-
-    <!-- User Guide -->
-    <section style="background-color: #6B5B95; padding: 150px 20px; color: #fff;">
-    <h2 style="text-align: center;">User Guide</h2>
-</section>
-
-    <!-- Technical Architecture -->
-    <section style="background-color: #88B04B; padding: 150px 20px; color: #fff; text-align: center;">
-    <h2>Technical Architecture</h2>
-</section>
-
-    <!-- Code Example -->
-    <section class="code-snippet">
-<pre><code>
-// PhoneDAO.java — multi-criteria search example
-public List&lt;Phone&gt; findByCriteria(String brand, int year, String sizeRange) throws SQLException {
-    String sql = "SELECT * FROM phones WHERE brand = ? AND release_year >= ? AND size BETWEEN ?";
-    try (PreparedStatement ps = conn.prepareStatement(sql)) {
-        ps.setString(1, brand);
-        ps.setInt(2, year);
-        ps.setString(3, sizeRange);
-        ResultSet rs = ps.executeQuery();
-        // … map results …
-    }
-    return list;
-}
-</code></pre>
+        <ul>
+            <c:forEach var="feature" items="${features}">
+                <li>${feature}</li>
+            </c:forEach>
+        </ul>
     </section>
 
-    <!-- Footer -->
+    <!-- 用户指南 -->
+    <section class="user-guide">
+        <h2>User Guide</h2>
+        <ol>
+            <c:forEach var="step" items="${userGuideSteps}">
+                <li>${step}</li>
+            </c:forEach>
+        </ol>
+    </section>
+
+    <!-- 技术架构描述 -->
+    <section class="tech-arch">
+        <h2>Technical Architecture</h2>
+        <p>${techArchitecture}</p>
+    </section>
+
+    <!-- 代码示例 -->
+    <section class="code-snippet">
+        <pre><code>${codeSnippet}</code></pre>
+    </section>
+
+    <!-- 页脚 -->
     <section class="footer">
-        <p>© 2025 Mobile Phone Query System. Powered by Java &amp; MySQL — fast, reliable, and feature-rich.</p>
+        <p>&copy; 2025 Mobile Phone Query System. Powered by Java &amp; MySQL — fast, reliable, and feature-rich.</p>
     </section>
 </main>
+
+</body>
+</html>

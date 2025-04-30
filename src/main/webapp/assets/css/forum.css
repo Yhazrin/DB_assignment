@@ -8,6 +8,7 @@
     display: grid;
     grid-template-columns: 280px 1fr;
     gap: 2rem;
+    transition: background-color 0.4s ease-in-out, color 0.3s ease;
 }
 
 /* 侧边栏 */
@@ -16,11 +17,15 @@
     border-radius: 16px;
     padding: 1.5rem;
     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    transition: 
+        background-color 0.4s ease-in-out,
+        box-shadow 0.4s ease-in-out;
 }
 .sidebar-title {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
     color: var(--text-color);
+    transition: color 0.3s ease;
 }
 
 /* 模型列表项 */
@@ -34,7 +39,10 @@
     background: var(--card-bg);
     border-radius: 12px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: 
+        all 0.2s ease,
+        background-color 0.4s ease-in-out,
+        transform 0.3s cubic-bezier(0.4,0,0.2,1);
 }
 .model-item:hover {
     background: var(--divider);
@@ -50,11 +58,16 @@
     background: var(--card-bg);
     border-radius: 16px;
     padding: 2rem;
+    transition: 
+        background-color 0.4s ease-in-out,
+        box-shadow 0.4s ease-in-out;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
 }
 .discussion-title {
     font-size: 2rem;
     margin-bottom: 2rem;
     color: var(--text-color);
+    transition: color 0.3s ease;
 }
 
 /* 帖子卡片 */
@@ -64,18 +77,28 @@
     padding: 1.5rem;
     margin-bottom: 1.5rem;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: 
+        background-color 0.4s ease-in-out,
+        box-shadow 0.4s ease-in-out,
+        transform 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.post-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
 }
 .post-header { margin-bottom: 1rem; }
 .post-title {
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
     color: var(--text-color);
+    transition: color 0.3s ease;
 }
 .post-meta {
     display: flex;
     gap: 1rem;
     color: #6c757d;
     font-size: 0.9rem;
+    transition: color 0.3s ease;
 }
 
 /* 评论表单 */
@@ -85,11 +108,15 @@
     padding: 2rem;
     margin-top: 3rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: 
+        background-color 0.4s ease-in-out,
+        box-shadow 0.4s ease-in-out;
 }
 .form-title {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
     color: var(--text-color);
+    transition: color 0.3s ease;
 }
 .form-group { margin-bottom: 1.5rem; }
 .form-label {
@@ -97,9 +124,26 @@
     margin-bottom: 0.5rem;
     font-weight: 500;
     color: var(--text-color);
+    transition: color 0.3s ease;
 }
 
-/* 按钮使用 .btn 类 */
+/* 按钮样式 */
+.forum-btn {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    background: var(--primary);
+    color: var(--on-primary);
+    border: none;
+    cursor: pointer;
+    transition: 
+        background-color 0.3s ease,
+        transform 0.2s cubic-bezier(0.4,0,0.2,1);
+}
+.forum-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
 
 /* 响应式 */
 @media (max-width: 768px) {
@@ -109,4 +153,67 @@
     }
     .sidebar { margin-bottom: 2rem; }
     .post-card, .comment-form { padding: 1rem; }
+}
+
+/* 暗黑模式特定样式 */
+html.dark-mode .forum-container {
+    background: #1a1a1a;
+}
+
+html.dark-mode .sidebar,
+html.dark-mode .discussion-main,
+html.dark-mode .post-card,
+html.dark-mode .comment-form {
+    background: #333;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+html.dark-mode .sidebar-title,
+html.dark-mode .discussion-title,
+html.dark-mode .post-title,
+html.dark-mode .form-title,
+html.dark-mode .form-label {
+    color: #f8f9fa;
+}
+
+html.dark-mode .model-item {
+    border-color: #444;
+}
+
+html.dark-mode .model-item:hover {
+    background: #3a3a3a;
+}
+
+html.dark-mode .post-meta {
+    color: #adb5bd;
+}
+
+html.dark-mode textarea,
+html.dark-mode input {
+    background: #444;
+    border-color: #555;
+    color: #fff;
+}
+
+html.dark-mode textarea::placeholder,
+html.dark-mode input::placeholder {
+    color: #bbb;
+}
+
+html.dark-mode .forum-btn {
+    background: #0066cc;
+}
+
+html.dark-mode .forum-btn:hover {
+    background: #0052a3;
+}
+
+/* 为卡片添加暗黑模式下的边框 */
+html.dark-mode .post-card {
+    border: 1px solid #444;
+}
+
+/* 暗黑模式下的悬停效果增强 */
+html.dark-mode .post-card:hover {
+    box-shadow: 0 12px 28px rgba(0,0,0,0.4);
 }

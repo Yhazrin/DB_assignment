@@ -1,7 +1,6 @@
 package servlet;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -12,7 +11,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class RegisterServlet extends HttpServlet {
+public class useRegisterServlet extends HttpServlet {
     private static final String DB_URL  = "jdbc:mysql://localhost:3306/infosys";
     private static final String DB_USER = "root";
     private static final String DB_PASS = "password";
