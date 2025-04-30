@@ -24,13 +24,20 @@
 <div class="overview-container">
     <!-- 搜索栏 -->
     <div class="search-bar">
-        <input type="text" class="search-input" placeholder="Search by product name or manufacturer..." />
+        <input type="text" id="searchInput" class="search-input" placeholder="搜索..." />
+        
+        <!-- 搜索类型选择按钮 -->
+        <div class="search-type-buttons">
+            <button class="search-type-btn active" data-index="0">Product Name</button>
+            <button class="search-type-btn" data-index="1">Manufacturer</button>
+            <button class="search-type-btn" data-index="2">Release Date</button>
+            <button class="search-type-btn" data-index="3">Processor</button>
+            <button class="search-type-btn" data-index="4">Display</button>
+            <button class="search-type-btn" data-index="5">Camera</button>
+            <button class="search-type-btn" data-index="6">Material</button>
+            <button class="search-type-btn" data-index="7">Price</button>
+        </div>
     </div>
-
-    <!-- 调试：检查 dataList -->
-    <c:if test="${empty dataList}">
-        <p style="color:red; text-align:center;">错误：dataList 为空或未传递到页面</p>
-    </c:if>
 
     <!-- 表头组件 -->
     <div class="table-header-wrapper">
@@ -64,5 +71,90 @@
 </div>
 
 <jsp:include page="/sub/scripts.jsp"/>
-</body>
-</html>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const dataRows = document.querySelectorAll('.data-row');
+    const searchTypeButtons = document.querySelectorAll('.search-type-btn');
+    
+    // 当前搜索的列索引，默认为产品名称(0)
+    let currentSearchIndex = 0;
+    
+    // 为搜索类型按钮添加点击事件
+    searchTypeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // 移除所有按钮的active类
+            searchTypeButtons.forEach(btn => btn.classList.remove('active'));
+            // 为当前点击的按钮添加active类
+            this.classList.add('active');
+            // 更新当前搜索列索引
+            currentSearchIndex = parseInt(this.dataset.index);
+            // 重新执行搜索
+            performSearch();
+        });
+    });
+    
+    // 防抖函数定义
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+    
+    // 搜索逻辑函数
+    function performSearch() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        
+        let visibleCount = 0;
+        dataRows.forEach(row => {
+            // 获取当前选中列的文本
+            const cellText = row.children[currentSearchIndex].textContent.toLowerCase();
+            
+            // 如果搜索词在选中列中出现，则显示该行
+            if (cellText.includes(searchTerm)) {
+                row.style.display = '';
+                visibleCount++;
+            } else {
+                row.style.display = 'none';
+            }
+        });
+        
+        // 显示结果数量
+        const resultCountEl = document.querySelector('.search-results-count') || document.createElement('div');
+        resultCountEl.className = 'search-results-count';
+        resultCountEl.textContent = `找到 ${visibleCount} 条结果`;
+        
+        // 如果结果计数元素不在DOM中则添加它
+        if (!resultCountEl.parentNode) {
+            document.querySelector('.search-bar').appendChild(resultCountEl);
+        }
+    }
+    
+    // 使用防抖动应用搜索逻辑
+    searchInput.addEventListener('input', debounce(performSearch, 300));
+});
+</script>
+<script>
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// 使用防抖动
+searchInput.addEventListener('input', debounce(function() {
+    // 原有的搜索逻辑
+}, 300));
+</script>
