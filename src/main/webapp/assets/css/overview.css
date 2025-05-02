@@ -1,11 +1,82 @@
 @import url('common.css');
+/* 为概览页面添加毛玻璃按钮样式 */
+.btn,
+button,
+.search-type-btn {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  letter-spacing: 0.5px;
+  padding: 10px 20px;
+}
 
+.btn:hover,
+button:hover,
+.search-type-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.search-type-btn.active {
+  background-color: rgba(61, 124, 244, 0.6);
+  color: white;
+}
+
+.search-type-btn.active:hover {
+  background-color: rgba(61, 124, 244, 0.8);
+}
+
+.btn:active,
+button:active,
+.search-type-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* 暗色模式支持 */
+html.dark-mode .btn,
+html.dark-mode button,
+html.dark-mode .search-type-btn {
+  background-color: rgba(30, 30, 30, 0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+html.dark-mode .btn:hover,
+html.dark-mode button:hover,
+html.dark-mode .search-type-btn:hover {
+  background-color: rgba(40, 40, 40, 0.6);
+}
+
+html.dark-mode .search-type-btn.active {
+  background-color: rgba(88, 166, 255, 0.4);
+}
+
+html.dark-mode .search-type-btn.active:hover {
+  background-color: rgba(88, 166, 255, 0.6);
+}
 /* 整体容器 */
 .overview-container {
-    margin-top: 60px;
+    width: 95%;
+    margin: 80px auto 0;
+    padding: 0 var(--spacing-md);
     display: flex;
     flex-direction: column;
     background: var(--card-bg);
+    position: relative;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
 }
 
 /* 搜索栏 */
@@ -13,7 +84,7 @@
     position: sticky;
     top: 60px;
     z-index: 100;
-    margin: 10px 20px;
+    margin: 10px 0;
     padding: 0.75rem 1rem;
     background: var(--card-bg);
     border-radius: 8px;

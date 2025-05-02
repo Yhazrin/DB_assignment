@@ -1,0 +1,17 @@
+name,brand,releaseDate,processor,display,camera,material,price
+OnePlus Model 1,OnePlus,2022-12-11,Exynos 2100,"6.1"" OLED",12MP+64MP+12MP,陶瓷,$1479
+Huawei Model 2,Huawei,2021-11-03,Kirin 9000,"6.7"" AMOLED",32MP+8MP,陶瓷,$739
+Sony Model 3,Sony,2022-04-27,Snapdragon 870,"6.5"" OLED",12MP,塑料,$1319
+LG Model 4,LG,2019-10-04,Snapdragon 888,"6.1"" OLED",50MP+12MP,陶瓷,$719
+Sony Model 5,Sony,2020-12-04,MediaTek Dimensity 1200,"6.8"" LCD",108MP+8MP+8MP,铝合金+玻璃,$699
+Sony Model 6,Sony,2020-07-12,A15 Bionic,"6.8"" LCD",50MP+12MP,不锈钢+玻璃,$799
+Oppo Model 7,Oppo,2022-12-26,Kirin 9000E,"6.4"" AMOLED",64MP+12MP+5MP,塑料+金属,$939
+Oppo Model 8,Oppo,2022-07-10,Snapdragon 8 Gen 1,"6.5"" OLED",12MP,塑料+金属,$1099
+Huawei Model 9,Huawei,2020-07-18,Exynos 2100,"6.1"" OLED",50MP+12MP,铝合金,$799
+Apple Model 10,Apple,2023-10-13,A15 Bionic,"6.3"" OLED",50MP+12MP,陶瓷,$1499
+Xiaomi Model 11,Xiaomi,2019-09-10,Kirin 9000,"6.8"" LCD",50MP+50MP,铝合金,$1439
+Apple Model 12,Apple,2021-12-27,Kirin 9000E,"6.3"" OLED",48MP+48MP+8MP,铝合金,$939
+Xiaomi Model 13,Xiaomi,2020-06-07,Exynos 2100,"6.8"" LCD",12MP+12MP,不锈钢+玻璃,$1499
+LG Model 14,LG,2020-06-03,Kirin 9000E,"6.5"" OLED",12MP+64MP+12MP,碳纤维,$1439
+OnePlus Model 15,OnePlus,2019-01-26,Google Tensor,"6.5"" OLED",50MP,不锈钢+玻璃,$959
+Vivo Model 16,Vivo,2021-05-24,A15 Bionic,"6.8"" LCD",12MP,金属,$1259

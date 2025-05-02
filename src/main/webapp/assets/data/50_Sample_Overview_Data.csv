@@ -49,3 +49,51 @@ Oppo Model 47,Oppo,2019-02-27,Google Tensor,"6.6"" AMOLED",12MP+12MP,金属,$799
 Xiaomi Model 48,Xiaomi,2019-11-13,MediaTek Dimensity 1200,"6.8"" LCD",12MP,铝合金+玻璃,$699
 Apple Model 49,Apple,2019-04-02,MediaTek Dimensity 1200,"6.4"" AMOLED",50MP,金属,$659
 Oppo Model 50,Oppo,2021-03-15,Snapdragon 8 Gen 1,"6.2"" AMOLED",32MP+8MP,玻璃,$1259
+name,brand,releaseDate,processor,display,camera,material,price
+iPhone 13,Apple,2021-09-24,A15 Bionic,6.1寸 Super Retina XDR,1200万像素双摄,玻璃和铝合金,799
+iPhone 13 Pro,Apple,2021-09-24,A15 Bionic,6.1寸 Super Retina XDR ProMotion,1200万像素三摄,玻璃和不锈钢,999
+iPhone 13 Pro Max,Apple,2021-09-24,A15 Bionic,6.7寸 Super Retina XDR ProMotion,1200万像素三摄,玻璃和不锈钢,1099
+iPhone 13 mini,Apple,2021-09-24,A15 Bionic,5.4寸 Super Retina XDR,1200万像素双摄,玻璃和铝合金,699
+Galaxy S21,Samsung,2021-01-29,Exynos 2100,6.2寸 Dynamic AMOLED 2X,6400万像素三摄,塑料和金属框架,799
+Galaxy S21+,Samsung,2021-01-29,Exynos 2100,6.7寸 Dynamic AMOLED 2X,6400万像素三摄,玻璃和金属框架,999
+Galaxy S21 Ultra,Samsung,2021-01-29,Exynos 2100,6.8寸 Dynamic AMOLED 2X,1.08亿像素四摄,玻璃和金属框架,1199
+Pixel 6,Google,2021-10-28,Google Tensor,6.4寸 AMOLED,5000万像素主摄,玻璃和金属,599
+Pixel 6 Pro,Google,2021-10-28,Google Tensor,6.7寸 LTPO AMOLED,5000万像素三摄,玻璃和金属,899
+小米11,Xiaomi,2020-12-28,骁龙888,6.81寸 AMOLED,1.08亿像素三摄,玻璃和金属,749
+小米11 Ultra,Xiaomi,2021-03-29,骁龙888,6.81寸 AMOLED,5000万像素三摄,陶瓷和金属,1199
+Find X3 Pro,OPPO,2021-03-11,骁龙888,6.7寸 LTPO AMOLED,5000万像素四摄,玻璃和金属,969
+Mate 40 Pro,Huawei,2020-10-22,麒麟9000,6.76寸 OLED,5000万像素三摄,玻璃和金属,1199
+P50 Pro,Huawei,2021-07-29,骁龙888,6.6寸 OLED,5000万像素四摄,玻璃和金属,1099
+Reno6 Pro+,OPPO,2021-05-27,骁龙870,6.55寸 AMOLED,5000万像素四摄,玻璃和金属,579
+iQOO 8 Pro,vivo,2021-08-17,骁龙888+,6.78寸 LTPO AMOLED,5000万像素三摄,玻璃和金属,849
+ROG Phone 5,ASUS,2021-03-10,骁龙888,6.78寸 AMOLED,6400万像素三摄,玻璃和金属,999
+Red Magic 6 Pro,nubia,2021-03-04,骁龙888,6.8寸 AMOLED,6400万像素三摄,玻璃和金属,699
+Legion Phone Duel 2,Lenovo,2021-04-08,骁龙888,6.92寸 AMOLED,6400万像素双摄,玻璃和金属,899
+Xperia 1 III,Sony,2021-08-19,骁龙888,6.5寸 4K HDR OLED,1200万像素三摄,玻璃和金属,1299
+Xperia 5 III,Sony,2021-10-15,骁龙888,6.1寸 FHD+ HDR OLED,1200万像素三摄,玻璃和金属,949
+Xperia 10 III,Sony,2021-06-10,骁龙690,6寸 FHD+ OLED,1200万像素三摄,玻璃和塑料,429
+iPhone 12,Apple,2020-10-23,A14 Bionic,6.1寸 Super Retina XDR,1200万像素双摄,玻璃和铝合金,799
+iPhone 12 mini,Apple,2020-11-13,A14 Bionic,5.4寸 Super Retina XDR,1200万像素双摄,玻璃和铝合金,699
+iPhone 12 Pro,Apple,2020-10-23,A14 Bionic,6.1寸 Super Retina XDR,1200万像素三摄,玻璃和不锈钢,999
+iPhone 12 Pro Max,Apple,2020-11-13,A14 Bionic,6.7寸 Super Retina XDR,1200万像素三摄,玻璃和不锈钢,1099
+Galaxy S20 FE,Samsung,2020-10-02,骁龙865,6.5寸 Super AMOLED,1200万像素三摄,塑料和金属,699
+Galaxy S20,Samsung,2020-03-06,Exynos 990,6.2寸 Dynamic AMOLED 2X,6400万像素三摄,玻璃和金属,999
+Galaxy S20+,Samsung,2020-03-06,Exynos 990,6.7寸 Dynamic AMOLED 2X,6400万像素四摄,玻璃和金属,1199
+Galaxy S20 Ultra,Samsung,2020-03-06,Exynos 990,6.9寸 Dynamic AMOLED 2X,1.08亿像素四摄,玻璃和金属,1399
+Galaxy Note 20,Samsung,2020-08-21,Exynos 990,6.7寸 Super AMOLED Plus,6400万像素三摄,玻璃和金属,999
+Galaxy Note 20 Ultra,Samsung,2020-08-21,Exynos 990,6.9寸 Dynamic AMOLED 2X,1.08亿像素三摄,玻璃和金属,1299
+Pixel 5,Google,2020-10-15,骁龙765G,6寸 OLED,1220万像素双摄,铝和生物树脂,699
+Pixel 4a,Google,2020-08-20,骁龙730G,5.81寸 OLED,1220万像素单摄,塑料,349
+Pixel 4a 5G,Google,2020-11-05,骁龙765G,6.2寸 OLED,1220万像素双摄,塑料,499
+OnePlus 8T,OnePlus,2020-10-16,骁龙865,6.55寸 Fluid AMOLED,4800万像素四摄,玻璃和金属,749
+OnePlus 8,OnePlus,2020-04-21,骁龙865,6.55寸 Fluid AMOLED,4800万像素三摄,玻璃和金属,699
+OnePlus 8 Pro,OnePlus,2020-04-21,骁龙865,6.78寸 Fluid AMOLED,4800万像素四摄,玻璃和金属,899
+OnePlus 9,OnePlus,2021-03-26,骁龙888,6.55寸 Fluid AMOLED,4800万像素三摄,玻璃和金属,729
+OnePlus 9 Pro,OnePlus,2021-03-30,骁龙888,6.7寸 LTPO Fluid AMOLED,4800万像素四摄,玻璃和金属,969
+iPhone 11,Apple,2019-09-20,A13 Bionic,6.1寸 Liquid Retina HD,1200万像素双摄,玻璃和铝合金,699
+iPhone 11 Pro,Apple,2019-09-20,A13 Bionic,5.8寸 Super Retina XDR,1200万像素三摄,玻璃和不锈钢,999
+iPhone 11 Pro Max,Apple,2019-09-20,A13 Bionic,6.5寸 Super Retina XDR,1200万像素三摄,玻璃和不锈钢,1099
+iPhone SE (2020),Apple,2020-04-24,A13 Bionic,4.7寸 Retina HD,1200万像素单摄,玻璃和铝合金,399
+Galaxy Z Fold 3,Samsung,2021-08-27,骁龙888,7.6寸 Dynamic AMOLED 2X,1200万像素三摄,玻璃和金属,1799
+Galaxy Z Flip 3,Samsung,2021-08-27,骁龙888,6.7寸 Dynamic AMOLED 2X,1200万像素双摄,玻璃和金属,999
+Xiaomi MIX 4,Xiaomi,2021-08-16,骁龙888+,6.67寸 AMOLED,1.08亿像素三摄,陶瓷和金属,1099

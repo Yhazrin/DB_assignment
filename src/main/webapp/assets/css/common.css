@@ -9,6 +9,9 @@
     --text-color: #222;       /* 全局文字色（浅） */
     --card-bg: #ffffff;          /* 卡片背景色（浅） */
     --divider: #e0e0e0;       /* 分割线颜色 */
+    
+    /* ———————— 过渡动画时间 ———————— */
+    --theme-transition-time: 0.3s ease;  /* 主题切换过渡时间 */
 }
 
 /* 暗黑模式：只改变量 */
@@ -36,7 +39,6 @@ body {
 
 /* 通用容器 */
 .container {
-    max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
 }

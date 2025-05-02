@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
                             if (password.equals(dbPass)) {
                                 HttpSession session = request.getSession();
                                 session.setAttribute("username", username);
-                                response.sendRedirect(request.getContextPath() + "/main.jsp");
+                                response.sendRedirect(request.getContextPath() + "/home" + "..032*189/.jsp");
                                 return;
                             } else {
                                 errorMsg = "Invalid username or password";

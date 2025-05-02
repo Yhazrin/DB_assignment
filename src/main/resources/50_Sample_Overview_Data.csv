@@ -1,0 +1,121 @@
+name,brand,releaseDate,processor,display,camera,material,price
+OnePlus Model 1,OnePlus,2022-12-11,Exynos 2100,"6.1"" OLED",12MP+64MP+12MP,陶瓷,$1479
+Huawei Model 2,Huawei,2021-11-03,Kirin 9000,"6.7"" AMOLED",32MP+8MP,陶瓷,$739
+Sony Model 3,Sony,2022-04-27,Snapdragon 870,"6.5"" OLED",12MP,塑料,$1319
+LG Model 4,LG,2019-10-04,Snapdragon 888,"6.1"" OLED",50MP+12MP,陶瓷,$719
+Sony Model 5,Sony,2020-12-04,MediaTek Dimensity 1200,"6.8"" LCD",108MP+8MP+8MP,铝合金+玻璃,$699
+Sony Model 6,Sony,2020-07-12,A15 Bionic,"6.8"" LCD",50MP+12MP,不锈钢+玻璃,$799
+Oppo Model 7,Oppo,2022-12-26,Kirin 9000E,"6.4"" AMOLED",64MP+12MP+5MP,塑料+金属,$939
+Oppo Model 8,Oppo,2022-07-10,Snapdragon 8 Gen 1,"6.5"" OLED",12MP,塑料+金属,$1099
+Huawei Model 9,Huawei,2020-07-18,Exynos 2100,"6.1"" OLED",50MP+12MP,铝合金,$799
+Apple Model 10,Apple,2023-10-13,A15 Bionic,"6.3"" OLED",50MP+12MP,陶瓷,$1499
+Xiaomi Model 11,Xiaomi,2019-09-10,Kirin 9000,"6.8"" LCD",50MP+50MP,铝合金,$1439
+Apple Model 12,Apple,2021-12-27,Kirin 9000E,"6.3"" OLED",48MP+48MP+8MP,铝合金,$939
+Xiaomi Model 13,Xiaomi,2020-06-07,Exynos 2100,"6.8"" LCD",12MP+12MP,不锈钢+玻璃,$1499
+LG Model 14,LG,2020-06-03,Kirin 9000E,"6.5"" OLED",12MP+64MP+12MP,碳纤维,$1439
+OnePlus Model 15,OnePlus,2019-01-26,Google Tensor,"6.5"" OLED",50MP,不锈钢+玻璃,$959
+Vivo Model 16,Vivo,2021-05-24,A15 Bionic,"6.8"" LCD",12MP,金属,$1259
+Xiaomi Model 17,Xiaomi,2023-09-19,Exynos 2100,"6.1"" OLED",12MP+12MP,碳纤维,$579
+OnePlus Model 18,OnePlus,2023-05-10,Snapdragon 870,"6.7"" AMOLED",50MP,陶瓷,$1159
+Oppo Model 19,Oppo,2020-10-17,Exynos 2100,"6.7"" AMOLED",108MP+8MP+8MP,塑料+金属,$1419
+Sony Model 20,Sony,2019-01-04,A15 Bionic,"6.2"" AMOLED",50MP,玻璃+金属,$1039
+Xiaomi Model 21,Xiaomi,2022-10-23,Exynos 2100,"6.8"" LCD",12MP+12MP,铝合金,$779
+Samsung Model 22,Samsung,2022-07-18,MediaTek Dimensity 1200,"6.3"" OLED",50MP,金属,$919
+OnePlus Model 23,OnePlus,2019-11-11,A15 Bionic,"6.7"" AMOLED",50MP+12MP,塑料+金属,$579
+OnePlus Model 24,OnePlus,2020-02-17,Exynos 2100,"6.5"" OLED",12MP+12MP,塑料,$539
+Google Model 25,Google,2023-06-08,A15 Bionic,"6.7"" AMOLED",50MP+50MP,铝合金+玻璃,$819
+Vivo Model 26,Vivo,2019-09-25,Exynos 2100,"6.5"" OLED",48MP+48MP+8MP,金属,$659
+Oppo Model 27,Oppo,2021-03-28,Kirin 9000E,"6.6"" AMOLED",50MP,玻璃,$639
+Samsung Model 28,Samsung,2021-02-20,Google Tensor,"6.4"" AMOLED",50MP+12MP,铝合金+玻璃,$659
+Sony Model 29,Sony,2020-06-16,A15 Bionic,"6.8"" LCD",108MP+8MP+8MP,金属,$539
+LG Model 30,LG,2019-10-14,Exynos 2100,"6.1"" OLED",50MP+12MP,不锈钢+玻璃,$639
+LG Model 31,LG,2020-03-24,Snapdragon 8 Gen 1,"6.2"" AMOLED",64MP+12MP+5MP,塑料+金属,$1359
+Vivo Model 32,Vivo,2022-07-16,Snapdragon 888,"6.8"" LCD",108MP+8MP+8MP,陶瓷,$1179
+OnePlus Model 33,OnePlus,2021-10-13,Exynos 2100,"6.2"" AMOLED",12MP+64MP+12MP,碳纤维,$1299
+Sony Model 34,Sony,2020-11-01,Snapdragon 870,"6.8"" LCD",50MP,塑料,$1359
+LG Model 35,LG,2020-07-09,Google Tensor,"6.7"" AMOLED",50MP+12MP,铝合金+玻璃,$839
+Xiaomi Model 36,Xiaomi,2019-01-18,Snapdragon 8 Gen 1,"6.8"" LCD",12MP,塑料+金属,$939
+Google Model 37,Google,2021-01-14,Google Tensor,"6.3"" OLED",50MP+50MP,塑料+金属,$639
+Sony Model 38,Sony,2022-04-12,MediaTek Dimensity 1200,"6.4"" AMOLED",12MP+12MP,陶瓷,$619
+OnePlus Model 39,OnePlus,2021-12-29,MediaTek Dimensity 1200,"6.8"" LCD",48MP+48MP+8MP,玻璃,$799
+Apple Model 40,Apple,2023-08-09,Snapdragon 888,"6.5"" OLED",50MP+12MP,玻璃,$1079
+Huawei Model 41,Huawei,2022-06-10,Snapdragon 888,"6.3"" OLED",50MP,铝合金+玻璃,$759
+LG Model 42,LG,2019-03-29,Kirin 9000E,"6.7"" AMOLED",64MP+12MP+5MP,金属,$1319
+Oppo Model 43,Oppo,2021-02-24,Kirin 9000E,"6.6"" AMOLED",108MP+8MP+8MP,陶瓷,$899
+Samsung Model 44,Samsung,2019-06-09,Exynos 2100,"6.4"" AMOLED",12MP+64MP+12MP,碳纤维,$1219
+Apple Model 45,Apple,2020-09-01,Exynos 2100,"6.4"" AMOLED",12MP+12MP,塑料,$1119
+OnePlus Model 46,OnePlus,2021-11-28,Snapdragon 870,"6.4"" AMOLED",64MP+12MP+5MP,金属,$659
+Oppo Model 47,Oppo,2019-02-27,Google Tensor,"6.6"" AMOLED",12MP+12MP,金属,$799
+Xiaomi Model 48,Xiaomi,2019-11-13,MediaTek Dimensity 1200,"6.8"" LCD",12MP,铝合金+玻璃,$699
+Apple Model 49,Apple,2019-04-02,MediaTek Dimensity 1200,"6.4"" AMOLED",50MP,金属,$659
+Oppo Model 50,Oppo,2021-03-15,Snapdragon 8 Gen 1,"6.2"" AMOLED",32MP+8MP,玻璃,$1259
+iPhone 13,Apple,2021-09-24,A15 Bionic,"6.1"" Super Retina XDR",1200万像素双摄,玻璃和铝合金,$799
+iPhone 13 Pro,Apple,2021-09-24,A15 Bionic,"6.1"" Super Retina XDR ProMotion",1200万像素三摄,玻璃和不锈钢,$999
+iPhone 13 Pro Max,Apple,2021-09-24,A15 Bionic,"6.7"" Super Retina XDR ProMotion",1200万像素三摄,玻璃和不锈钢,$1099
+iPhone 13 mini,Apple,2021-09-24,A15 Bionic,"5.4"" Super Retina XDR",1200万像素双摄,玻璃和铝合金,$699
+Galaxy S21,Samsung,2021-01-29,Exynos 2100,"6.2"" Dynamic AMOLED 2X",6400万像素三摄,塑料和金属框架,$799
+Galaxy S21+,Samsung,2021-01-29,Exynos 2100,"6.7"" Dynamic AMOLED 2X",6400万像素三摄,玻璃和金属框架,$999
+Galaxy S21 Ultra,Samsung,2021-01-29,Exynos 2100,"6.8"" Dynamic AMOLED 2X",1.08亿像素四摄,玻璃和金属框架,$1199
+Pixel 6,Google,2021-10-28,Google Tensor,"6.4"" AMOLED",5000万像素主摄,玻璃和金属,$599
+Pixel 6 Pro,Google,2021-10-28,Google Tensor,"6.7"" LTPO AMOLED",5000万像素三摄,玻璃和金属,$899
+小米11,Xiaomi,2020-12-28,骁龙888,"6.81"" AMOLED",1.08亿像素三摄,玻璃和金属,$749
+小米11 Ultra,Xiaomi,2021-03-29,骁龙888,"6.81"" AMOLED",5000万像素三摄,陶瓷和金属,$1199
+Find X3 Pro,OPPO,2021-03-11,骁龙888,"6.7"" LTPO AMOLED",5000万像素四摄,玻璃和金属,$969
+Mate 40 Pro,Huawei,2020-10-22,麒麟9000,"6.76"" OLED",5000万像素三摄,玻璃和金属,$1199
+P50 Pro,Huawei,2021-07-29,骁龙888,"6.6"" OLED",5000万像素四摄,玻璃和金属,$1099
+Reno6 Pro+,OPPO,2021-05-27,骁龙870,"6.55"" AMOLED",5000万像素四摄,玻璃和金属,$579
+iQOO 8 Pro,vivo,2021-08-17,骁龙888+,"6.78"" LTPO AMOLED",5000万像素三摄,玻璃和金属,$849
+ROG Phone 5,ASUS,2021-03-10,骁龙888,"6.78"" AMOLED",6400万像素三摄,玻璃和金属,$999
+Red Magic 6 Pro,nubia,2021-03-04,骁龙888,"6.8"" AMOLED",6400万像素三摄,玻璃和金属,$699
+Legion Phone Duel 2,Lenovo,2021-04-08,骁龙888,"6.92"" AMOLED",6400万像素双摄,玻璃和金属,$899
+Xperia 1 III,Sony,2021-08-19,骁龙888,"6.5"" 4K HDR OLED",1200万像素三摄,玻璃和金属,$1299
+Xperia 5 III,Sony,2021-10-15,骁龙888,"6.1"" FHD+ HDR OLED",1200万像素三摄,玻璃和金属,$949
+Xperia 10 III,Sony,2021-06-10,骁龙690,"6.0"" FHD+ OLED",1200万像素三摄,玻璃和塑料,$429
+iPhone 12,Apple,2020-10-23,A14 Bionic,"6.1"" Super Retina XDR",1200万像素双摄,玻璃和铝合金,$799
+iPhone 12 mini,Apple,2020-11-13,A14 Bionic,"5.4"" Super Retina XDR",1200万像素双摄,玻璃和铝合金,$699
+iPhone 12 Pro,Apple,2020-10-23,A14 Bionic,"6.1"" Super Retina XDR",1200万像素三摄,玻璃和不锈钢,$999
+iPhone 12 Pro Max,Apple,2020-11-13,A14 Bionic,"6.7"" Super Retina XDR",1200万像素三摄,玻璃和不锈钢,$1099
+Galaxy S20 FE,Samsung,2020-10-02,骁龙865,"6.5"" Super AMOLED",1200万像素三摄,塑料和金属,$699
+Galaxy S20,Samsung,2020-03-06,Exynos 990,"6.2"" Dynamic AMOLED 2X",6400万像素三摄,玻璃和金属,$999
+Galaxy S20+,Samsung,2020-03-06,Exynos 990,"6.7"" Dynamic AMOLED 2X",6400万像素四摄,玻璃和金属,$1199
+Galaxy S20 Ultra,Samsung,2020-03-06,Exynos 990,"6.9"" Dynamic AMOLED 2X",1.08亿像素四摄,玻璃和金属,$1399
+Galaxy Note 20,Samsung,2020-08-21,Exynos 990,"6.7"" Super AMOLED Plus",6400万像素三摄,玻璃和金属,$999
+Galaxy Note 20 Ultra,Samsung,2020-08-21,Exynos 990,"6.9"" Dynamic AMOLED 2X",1.08亿像素三摄,玻璃和金属,$1299
+Pixel 5,Google,2020-10-15,骁龙765G,"6.0"" OLED",1220万像素双摄,铝和生物树脂,$699
+Pixel 4a,Google,2020-08-20,骁龙730G,"5.81"" OLED",1220万像素单摄,塑料,$349
+Pixel 4a 5G,Google,2020-11-05,骁龙765G,"6.2"" OLED",1220万像素双摄,塑料,$499
+OnePlus 8T,OnePlus,2020-10-16,骁龙865,"6.55"" Fluid AMOLED",4800万像素四摄,玻璃和金属,$749
+OnePlus 8,OnePlus,2020-04-21,骁龙865,"6.55"" Fluid AMOLED",4800万像素三摄,玻璃和金属,$699
+OnePlus 8 Pro,OnePlus,2020-04-21,骁龙865,"6.78"" Fluid AMOLED",4800万像素四摄,玻璃和金属,$899
+OnePlus 9,OnePlus,2021-03-26,骁龙888,"6.55"" Fluid AMOLED",4800万像素三摄,玻璃和金属,$729
+OnePlus 9 Pro,OnePlus,2021-03-30,骁龙888,"6.7"" LTPO Fluid AMOLED",4800万像素四摄,玻璃和金属,$969
+iPhone 11,Apple,2019-09-20,A13 Bionic,"6.1"" Liquid Retina HD",1200万像素双摄,玻璃和铝合金,$699
+iPhone 11 Pro,Apple,2019-09-20,A13 Bionic,"5.8"" Super Retina XDR",1200万像素三摄,玻璃和不锈钢,$999
+iPhone 11 Pro Max,Apple,2019-09-20,A13 Bionic,"6.5"" Super Retina XDR",1200万像素三摄,玻璃和不锈钢,$1099
+iPhone SE (2020),Apple,2020-04-24,A13 Bionic,"4.7"" Retina HD",1200万像素单摄,玻璃和铝合金,$399
+Galaxy Z Fold 3,Samsung,2021-08-27,骁龙888,"7.6"" Dynamic AMOLED 2X",1200万像素三摄,玻璃和金属,$1799
+Galaxy Z Flip 3,Samsung,2021-08-27,骁龙888,"6.7"" Dynamic AMOLED 2X",1200万像素双摄,玻璃和金属,$999
+Xiaomi MIX 4,Xiaomi,2021-08-16,骁龙888+,"6.67"" AMOLED",1.08亿像素三摄,陶瓷和金属,$1099
+iPhone 14,Apple,2022-09-16,A15 Bionic,"6.1"" Super Retina XDR",1200万像素双摄,玻璃和铝合金,$799
+iPhone 14 Plus,Apple,2022-10-07,A15 Bionic,"6.7"" Super Retina XDR",1200万像素双摄,玻璃和铝合金,$899
+iPhone 14 Pro,Apple,2022-09-16,A16 Bionic,"6.1"" Super Retina XDR ProMotion",4800万像素三摄,玻璃和不锈钢,$999
+iPhone 14 Pro Max,Apple,2022-09-16,A16 Bionic,"6.7"" Super Retina XDR ProMotion",4800万像素三摄,玻璃和不锈钢,$1099
+Galaxy S22,Samsung,2022-02-25,Exynos 2200,"6.1"" Dynamic AMOLED 2X",5000万像素三摄,玻璃和铝合金,$799
+Galaxy S22+,Samsung,2022-02-25,Exynos 2200,"6.6"" Dynamic AMOLED 2X",5000万像素三摄,玻璃和铝合金,$999
+Galaxy S22 Ultra,Samsung,2022-02-25,Exynos 2200,"6.8"" Dynamic AMOLED 2X",1.08亿像素四摄,玻璃和铝合金,$1199
+Pixel 7,Google,2022-10-13,Google Tensor G2,"6.3"" OLED",5000万像素双摄,玻璃和铝合金,$599
+Pixel 7 Pro,Google,2022-10-13,Google Tensor G2,"6.7"" LTPO OLED",5000万像素三摄,玻璃和铝合金,$899
+小米12,Xiaomi,2021-12-31,骁龙8 Gen 1,"6.28"" AMOLED",5000万像素三摄,玻璃和铝合金,$749
+小米12 Pro,Xiaomi,2021-12-31,骁龙8 Gen 1,"6.73"" LTPO AMOLED",5000万像素三摄,玻璃和铝合金,$999
+Mate 50 Pro,Huawei,2022-09-21,骁龙8+ Gen 1,"6.74"" OLED",5000万像素三摄,玻璃和金属,$1299
+P50 Pocket,Huawei,2021-12-23,骁龙888,"6.9"" OLED",4000万像素三摄,玻璃和金属,$1599
+Find X5 Pro,OPPO,2022-02-24,骁龙8 Gen 1,"6.7"" LTPO AMOLED",5000万像素三摄,陶瓷和铝合金,$999
+Vivo X80 Pro,vivo,2022-04-29,骁龙8 Gen 1,"6.78"" LTPO AMOLED",5000万像素四摄,玻璃和铝合金,$1099
+ROG Phone 6 Pro,ASUS,2022-07-05,骁龙8+ Gen 1,"6.78"" AMOLED",5000万像素三摄,玻璃和金属,$1299
+Xperia 1 IV,Sony,2022-05-11,骁龙8 Gen 1,"6.5"" 4K HDR OLED",1200万像素三摄,玻璃和铝合金,$1599
+Nothing Phone 1,Nothing,2022-07-16,骁龙778G+,"6.55"" OLED",5000万像素双摄,玻璃和铝合金,$499
+iPhone SE (2022),Apple,2022-03-18,A15 Bionic,"4.7"" Retina HD",1200万像素单摄,玻璃和铝合金,$429
+Galaxy Z Fold 4,Samsung,2022-08-25,骁龙8+ Gen 1,"7.6"" Dynamic AMOLED 2X",5000万像素三摄,玻璃和铝合金,$1799
+Galaxy Z Flip 4,Samsung,2022-08-25,骁龙8+ Gen 1,"6.7"" Dynamic AMOLED 2X",1200万像素双摄,玻璃和铝合金,$999
+Reno 8 Pro,OPPO,2022-07-18,联发科天玑8100MAX,"6.7"" AMOLED",5000万像素三摄,玻璃和铝合金,$599
+Redmi K50 Gaming,Xiaomi,2022-02-16,骁龙8 Gen 1,"6.67"" OLED",6400万像素三摄,玻璃和金属,$699

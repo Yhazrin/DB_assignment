@@ -1,0 +1,20 @@
+name,brand,releaseDate,processor,display,camera,material,price
+iPhone 13,Apple,2021-09-24,A15 Bionic,6.1寸 Super Retina XDR,1200万像素双摄,玻璃和铝合金,799
+iPhone 13 Pro,Apple,2021-09-24,A15 Bionic,6.1寸 Super Retina XDR ProMotion,1200万像素三摄,玻璃和不锈钢,999
+iPhone 13 Pro Max,Apple,2021-09-24,A15 Bionic,6.7寸 Super Retina XDR ProMotion,1200万像素三摄,玻璃和不锈钢,1099
+iPhone 13 mini,Apple,2021-09-24,A15 Bionic,5.4寸 Super Retina XDR,1200万像素双摄,玻璃和铝合金,699
+Galaxy S21,Samsung,2021-01-29,Exynos 2100,6.2寸 Dynamic AMOLED 2X,6400万像素三摄,塑料和金属框架,799
+Galaxy S21+,Samsung,2021-01-29,Exynos 2100,6.7寸 Dynamic AMOLED 2X,6400万像素三摄,玻璃和金属框架,999
+Galaxy S21 Ultra,Samsung,2021-01-29,Exynos 2100,6.8寸 Dynamic AMOLED 2X,1.08亿像素四摄,玻璃和金属框架,1199
+Pixel 6,Google,2021-10-28,Google Tensor,6.4寸 AMOLED,5000万像素主摄,玻璃和金属,599
+Pixel 6 Pro,Google,2021-10-28,Google Tensor,6.7寸 LTPO AMOLED,5000万像素三摄,玻璃和金属,899
+小米11,Xiaomi,2020-12-28,骁龙888,6.81寸 AMOLED,1.08亿像素三摄,玻璃和金属,749
+小米11 Ultra,Xiaomi,2021-03-29,骁龙888,6.81寸 AMOLED,5000万像素三摄,陶瓷和金属,1199
+Find X3 Pro,OPPO,2021-03-11,骁龙888,6.7寸 LTPO AMOLED,5000万像素四摄,玻璃和金属,969
+Mate 40 Pro,Huawei,2020-10-22,麒麟9000,6.76寸 OLED,5000万像素三摄,玻璃和金属,1199
+P50 Pro,Huawei,2021-07-29,骁龙888,6.6寸 OLED,5000万像素四摄,玻璃和金属,1099
+Reno6 Pro+,OPPO,2021-05-27,骁龙870,6.55寸 AMOLED,5000万像素四摄,玻璃和金属,579
+iQOO 8 Pro,vivo,2021-08-17,骁龙888+,6.78寸 LTPO AMOLED,5000万像素三摄,玻璃和金属,849
+ROG Phone 5,ASUS,2021-03-10,骁龙888,6.78寸 AMOLED,6400万像素三摄,玻璃和金属,999
+Red Magic 6 Pro,nubia,2021-03-04,骁龙888,6.8寸 AMOLED,6400万像素三摄,玻璃和金属,699
+Legion Phone Duel 2,Lenovo,2021-04-08,骁龙888,6.92寸 AMOLED,6400万像素双摄,玻璃和金属,899

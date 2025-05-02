@@ -1,50 +1,146 @@
 @import 'common.css';
 
+/* 全局变量 */
+:root {
+  /* 论坛特定颜色 */
+  --forum-primary: #3d7cf4;
+  --forum-primary-hover: #2a68e0;
+  --forum-gradient: linear-gradient(135deg, #3d7cf4, #2d59c3);
+  --forum-shadow: 0 4px 12px rgba(61, 124, 244, 0.15);
+}
+
 /*—————— 按钮统一样式 ——————*/
 .btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
     padding: 0.5rem 1rem;
     font-size: 1rem;
     border: none;
-    border-radius: 6px;
+    border-radius: 12px;
     cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
+    transition: all var(--theme-transition-time);
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    letter-spacing: 0.5px;
 }
+
+.btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+    opacity: 0;
+    transition: opacity var(--theme-transition-time);
+    z-index: 0;
+}
+
+.btn > * {
+    position: relative;
+    z-index: 1;
+}
+
 .btn:hover {
-    transform: translateY(-1px);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
 }
+
+.btn:hover::before {
+    opacity: 1;
+}
+
+.btn:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
 .btn.small {
     padding: 0.25rem 0.5rem;
     font-size: 0.875rem;
+    border-radius: 8px;
 }
+
 .btn.primary {
-    background: var(--primary);
-    color: var(--on-primary);
+    background-color: rgba(61, 124, 244, 0.8);
+    color: white;
+    border-color: rgba(61, 124, 244, 0.3);
 }
+
 .btn.primary:hover {
-    background: var(--primary-dark);
+    background-color: rgba(61, 124, 244, 0.9);
+    box-shadow: 0 12px 28px rgba(61, 124, 244, 0.25);
 }
+
 .btn.light {
-    background: var(--card-bg);
+    background-color: rgba(255, 255, 255, 0.1);
     color: var(--text-color);
-    border: 1px solid var(--divider);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 .btn.light:hover {
-    background: var(--divider);
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
+
 .btn.danger {
-    background: #e53e3e;
+    background-color: rgba(229, 62, 62, 0.8);
     color: #fff;
+    border-color: rgba(229, 62, 62, 0.3);
 }
+
 .btn.danger:hover {
-    background: #c53030;
+    background-color: rgba(229, 62, 62, 0.9);
+    box-shadow: 0 12px 28px rgba(229, 62, 62, 0.25);
+}
+
+/* 暗黑模式下按钮样式 */
+html.dark-mode .btn {
+    background-color: rgba(30, 30, 30, 0.6);
+    border-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+html.dark-mode .btn.primary {
+    background-color: rgba(77, 171, 247, 0.6);
+    border-color: rgba(77, 171, 247, 0.3);
+}
+
+html.dark-mode .btn.primary:hover {
+    background-color: rgba(77, 171, 247, 0.7);
+}
+
+html.dark-mode .btn.light {
+    background-color: rgba(45, 45, 45, 0.6);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+html.dark-mode .btn.danger {
+    background-color: rgba(229, 62, 62, 0.6);
+    border-color: rgba(229, 62, 62, 0.3);
 }
 
 /*—————— 个人主页整体布局 ——————*/
 .profile-container {
+    width: 95%;
+    margin: 80px auto 0;
+    padding: 0 var(--spacing-md);
     display: grid;
     grid-template-columns: 280px 1fr;
-    min-height: 100vh;
+    min-height: calc(100vh - 80px);
+    position: relative;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
 }
 
 /*—————— 侧边栏 ——————*/
@@ -74,15 +170,17 @@
     left: 50%;
     transform: translateX(-50%);
     padding: 4px 12px;
-    background: var(--primary);
-    color: var(--on-primary);
+    background: var(--forum-primary);
+    color: white;
     border: none;
     border-radius: 16px;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: all 0.3s ease;
 }
 .avatar-upload:hover {
     transform: translate(-50%, -2px);
+    background: var(--forum-primary-hover);
+    box-shadow: 0 4px 12px rgba(61, 124, 244, 0.25);
 }
 
 /*—————— 社交与成就 ——————*/
@@ -100,8 +198,8 @@
     margin-bottom: 2rem;
 }
 .badge {
-    background: var(--primary);
-    color: var(--on-primary);
+    background: var(--forum-primary);
+    color: white;
     padding: 0.25rem 0.5rem;
     border-radius: 12px;
     font-size: 0.75rem;
@@ -132,6 +230,18 @@
     background: var(--divider);
 }
 
+/* 添加分隔线样式 */
+.sidebar-divider {
+    height: 1px;
+    background-color: var(--divider);
+    margin: 1rem 0;
+}
+
+/* 修改退出按钮样式 */
+.sidebar-nav #logout {
+    color: #e53e3e; /* 使用与危险按钮一致的红色 */
+}
+
 /*—————— 主内容区 ——————*/
 .profile-main {
     margin-top: 70px;
@@ -154,24 +264,67 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
 }
+
 .info-item {
     background: var(--card-bg);
     padding: 1.5rem;
     border-radius: 12px;
-    border-left: 4px solid var(--primary);
+    border-left: 4px solid var(--forum-primary);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* 添加闪光效果 */
+.info-item::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity var(--transition-normal), transform var(--transition-normal);
+    transform: scale(0.8);
+    pointer-events: none;
+}
+
+.info-item:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid var(--forum-primary);
+}
+
+.info-item:hover::before {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* 暗黑模式优化 */
+html.dark-mode .info-item {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    background-color: rgba(45, 45, 45, 0.8);
+}
+
+html.dark-mode .info-item:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
 }
 
 /* 设备管理 */
 .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
+  display: flex;
+  justify-content: flex-end; /* 内容靠右对齐 */
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
 }
 .device-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
 }
 .device-card {
     background: var(--card-bg);
@@ -181,7 +334,8 @@
 }
 .device-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    border-color: var(--forum-primary);
 }
 
 /* 安全 & 数据统计 & 活动流 */
@@ -217,10 +371,197 @@
 /*—————— 响应式 ——————*/
 @media (max-width: 768px) {
     .profile-container {
+        width: 98%;
+        padding: 0 var(--spacing-sm);
+        margin-top: 70px;
         grid-template-columns: 1fr;
     }
     .profile-sidebar {
         border-right: none;
         border-bottom: 1px solid var(--divider);
     }
+}
+/* 添加到profile.css文件的底部 */
+
+/* —————— 暗黑模式样式 —————— */
+html.dark-mode .profile-sidebar {
+    background: var(--dark-card-bg);
+    border-right-color: var(--dark-divider);
+}
+
+html.dark-mode .user-card .user-nickname,
+html.dark-mode .user-card .user-level,
+html.dark-mode .sidebar-nav .nav-item {
+    color: var(--dark-text-color);
+}
+
+html.dark-mode .sidebar-nav .nav-item {
+    border-bottom-color: var(--dark-divider);
+}
+
+html.dark-mode .sidebar-nav .nav-item.active,
+html.dark-mode .sidebar-nav .nav-item:hover {
+    background: var(--dark-divider);
+}
+
+html.dark-mode .sidebar-divider {
+    background-color: var(--dark-divider);
+}
+
+/* 确保暗黑模式下按钮样式正确 */
+html.dark-mode .sidebar-nav #logout {
+    color: #e53e3e;
+}
+
+html.dark-mode .btn.primary {
+    background: #4dabf7;
+}
+
+html.dark-mode .btn.primary:hover {
+    background: #3a8fd8;
+    box-shadow: 0 4px 12px rgba(77, 171, 247, 0.25);
+}
+
+html.dark-mode .avatar-upload {
+    background: #4dabf7;
+}
+
+html.dark-mode .avatar-upload:hover {
+    background: #3a8fd8;
+    box-shadow: 0 4px 12px rgba(77, 171, 247, 0.25);
+}
+
+html.dark-mode .badge {
+    background: #4dabf7;
+}
+
+html.dark-mode .info-item {
+    border-left-color: #4dabf7;
+}
+
+html.dark-mode .device-card:hover {
+    border-color: #4dabf7;
+}
+/* 档案页面侧边栏文字放大并居中 */
+
+/* 侧边栏标题放大并居中 */
+.profile-sidebar .sidebar-title,
+.profile-sidebar h3 {
+  font-size: 1.4rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* 侧边栏导航项放大并居中 */
+.profile-sidebar .nav-item,
+.profile-sidebar .sidebar-nav a {
+  font-size: 1.1rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8rem 0;
+}
+
+/* 如果导航项有图标，则确保图标和文字在一行并居中 */
+.profile-sidebar .nav-item i,
+.profile-sidebar .sidebar-nav a i {
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+}
+
+/* 用户信息居中 */
+.profile-sidebar .user-info,
+.profile-sidebar .user-card {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 用户名放大 */
+.profile-sidebar .user-name,
+.profile-sidebar .user-nickname {
+  font-size: 1.3rem;
+  margin: 0.5rem 0;
+}
+
+/* 用户级别/角色放大 */
+.profile-sidebar .user-level,
+.profile-sidebar .user-role {
+  font-size: 1.1rem;
+}
+
+/* 确保暗黑模式下文字颜色正确 */
+html.dark-mode .profile-sidebar {
+  color: var(--dark-text-color);
+}
+
+html.dark-mode .profile-sidebar a,
+html.dark-mode .profile-sidebar .nav-item,
+html.dark-mode .profile-sidebar .user-name,
+html.dark-mode .profile-sidebar .user-nickname,
+html.dark-mode .profile-sidebar .sidebar-title,
+html.dark-mode .profile-sidebar h3 {
+  color: var(--dark-text-color);
+}
+/* 设备卡片容器 */
+.devices-card {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--divider);
+  margin-bottom: 2rem;
+  transition: background-color 0.3s ease;
+  position: relative;
+}
+
+/* 暗黑模式下的卡片背景 */
+html.dark-mode .devices-card {
+  background-color: var(--dark-card-bg);
+  border-color: var(--dark-divider);
+}
+
+/* 设备操作区域标题和按钮的布局 */
+.section-header {
+  display: flex;
+  justify-content: flex-end; /* 内容靠右对齐 */
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+/* 设备按钮容器 */
+.device-buttons {
+  display: flex;
+  flex-direction: column; /* 按钮垂直排列 */
+  gap: 0.75rem; /* 按钮之间的间距 */
+}
+
+/* 设备按钮样式 */
+.device-buttons .btn {
+  min-width: 120px; /* 确保按钮宽度一致 */
+  text-align: center;
+}
+
+/* 设备卡片网格 */
+.device-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+/* 在移动设备上的响应式调整 */
+@media (max-width: 768px) {
+  .section-header {
+    justify-content: center; /* 在小屏幕上居中显示 */
+  }
+  
+  .device-buttons {
+    width: 100%;
+    align-items: stretch; /* 让按钮填满容器宽度 */
+  }
+  
+  .device-buttons .btn {
+    min-width: auto;
+  }
 }

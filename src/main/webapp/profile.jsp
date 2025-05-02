@@ -41,6 +41,9 @@
       <button type="button" class="nav-item" data-section="security">账户安全</button>
       <button type="button" class="nav-item" data-section="analytics">数据统计</button>
       <button type="button" class="nav-item" data-section="activity">个人发布动态</button>
+      <div class="sidebar-divider"></div>
+      <button type="button" class="nav-item" id="switch-account">切换账号</button>
+      <button type="button" class="nav-item" id="logout">退出登录</button>
     </nav>
   </aside>
 
@@ -85,23 +88,27 @@
 
     <!-- 我的设备模块（支持移除和导出） -->
     <section id="devices" class="content-section">
-      <div class="section-header">
-        <h2 class="section-title">已关联设备</h2>
-        <div>
-          <input type="text" id="device-search" placeholder="搜索设备..." class="form-input small" />
-          <button id="export-devices-btn" class="btn small">导出 CSV</button>
-          <button class="add-device-btn btn small">+ 添加新设备</button>
-        </div>
-      </div>
-      <div class="device-grid">
-        <c:forEach items="${devices}" var="device">
-          <div class="device-card" data-model="${device.model}">
-            <img src="${device.image}" class="device-thumb" />
-            <h3>${device.model}</h3>
-            <p>最后使用：${device.lastUsed}</p>
-            <button class="btn small danger remove-device-btn" data-id="${device.id}">移除</button>
+      <h2 class="section-title">我的设备</h2>
+      
+      <!-- 设备卡片容器 -->
+      <div class="devices-card">
+        <div class="section-header">
+          <!-- 删除"已关联设备"副标题 -->
+          <div class="device-buttons">
+            <button id="export-devices-btn" class="btn small">导出 CSV</button>
+            <button class="add-device-btn btn small primary">+ 添加新设备</button>
           </div>
-        </c:forEach>
+        </div>
+        <div class="device-grid">
+          <c:forEach items="${devices}" var="device">
+            <div class="device-card" data-model="${device.model}">
+              <img src="${device.image}" class="device-thumb" />
+              <h3>${device.model}</h3>
+              <p>最后使用：${device.lastUsed}</p>
+              <button class="btn small danger remove-device-btn" data-id="${device.id}">移除</button>
+            </div>
+          </c:forEach>
+        </div>
       </div>
     </section>
 
@@ -158,7 +165,8 @@
   document.getElementById('export-devices-btn').addEventListener('click', () => {
     const devices = Array.from(document.querySelectorAll('.device-card')).map(card => ({ model: card.dataset.model, lastUsed: card.querySelector('p').textContent.replace('最后使用：','') }));
     let csv = '型号,最后使用日期\n';
-    devices.forEach(d => csv += `${d.model},${d.lastUsed}\n`);\n      const blob = new Blob([csv], { type: 'text/csv;charset=UTF-8' });
+    devices.forEach(d => csv += `${d.model},${d.lastUsed}\n`);
+    const blob = new Blob([csv], { type: 'text/csv;charset=UTF-8' });
     const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = 'devices.csv'; link.click();
   });
 
@@ -170,6 +178,18 @@
       }
     });
   });
+
+// 添加切换账号和退出登录的事件监听
+document.getElementById('switch-account').addEventListener('click', function() {
+  window.location.href = '${pageContext.request.contextPath}/account/switch';
+});
+
+document.getElementById('logout').addEventListener('click', function() {
+  if (confirm('确定要退出登录吗？')) {
+    // 连接到LogoutServlet
+    window.location.href = '${pageContext.request.contextPath}/LogoutServlet';
+  }
+});
 </script>
 </body>
 </html>

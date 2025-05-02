@@ -25,7 +25,7 @@
     <!-- 搜索栏 -->
     <div class="search-bar">
         <input type="text" id="searchInput" class="search-input" placeholder="搜索..." />
-        
+
         <!-- 搜索类型选择按钮 -->
         <div class="search-type-buttons">
             <button class="search-type-btn active" data-index="0">Product Name</button>
@@ -76,10 +76,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('searchInput');
     const dataRows = document.querySelectorAll('.data-row');
     const searchTypeButtons = document.querySelectorAll('.search-type-btn');
-    
+
     // 当前搜索的列索引，默认为产品名称(0)
     let currentSearchIndex = 0;
-    
+
     // 为搜索类型按钮添加点击事件
     searchTypeButtons.forEach(button => {
         button.addEventListener('click', function() {
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
             performSearch();
         });
     });
-    
+
     // 防抖函数定义
     function debounce(func, wait) {
         let timeout;
@@ -106,16 +106,16 @@ document.addEventListener('DOMContentLoaded', function() {
             timeout = setTimeout(later, wait);
         };
     }
-    
+
     // 搜索逻辑函数
     function performSearch() {
         const searchTerm = searchInput.value.toLowerCase().trim();
-        
+
         let visibleCount = 0;
         dataRows.forEach(row => {
             // 获取当前选中列的文本
             const cellText = row.children[currentSearchIndex].textContent.toLowerCase();
-            
+
             // 如果搜索词在选中列中出现，则显示该行
             if (cellText.includes(searchTerm)) {
                 row.style.display = '';
@@ -124,18 +124,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 row.style.display = 'none';
             }
         });
-        
+
         // 显示结果数量
         const resultCountEl = document.querySelector('.search-results-count') || document.createElement('div');
         resultCountEl.className = 'search-results-count';
         resultCountEl.textContent = `找到 ${visibleCount} 条结果`;
-        
+
         // 如果结果计数元素不在DOM中则添加它
         if (!resultCountEl.parentNode) {
             document.querySelector('.search-bar').appendChild(resultCountEl);
         }
     }
-    
+
     // 使用防抖动应用搜索逻辑
     searchInput.addEventListener('input', debounce(performSearch, 300));
 });
