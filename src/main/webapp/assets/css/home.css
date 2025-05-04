@@ -1,37 +1,46 @@
 @import 'common.css';
-
+/* 添加视频卡片和hero卡片之间的连接器 */
+.hero-card-connector {
+    width: 100%;
+    max-width: 600px;
+    height: 10px; /* 增加高度 */
+    background-color: #000; /* 使用与视频卡片相同的背景色 */
+    margin-top: -10px; /* 负边距使其与视频卡片重叠 */
+    position: relative;
+    z-index: 4; /* 确保层级关系 */
+}
 :root {
     /* 主题色彩 */
     --primary-color: #3d7cf4;
     --secondary-color: #2ecc71;
     --tertiary-color: #f39c12;
-    --warning-color: #e74c3c;
-    --info-color: #3498db;
     --dark-color: #2c3e50;
     --light-color: #ecf0f1;
-    
+
     /* 背景色 */
     --bg-primary: #ffffff;
     --bg-secondary: #f8f9fa;
     --bg-tertiary: #f1f2f6;
-    
+
     /* 文本色 */
     --text-primary: #333333;
     --text-secondary: #6c757d;
     --text-light: #f8f9fa;
-    
+
     /* 间距 */
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 2rem;
     --spacing-lg: 4rem;
     --spacing-xl: 8rem;
-    
-    /* 过渡 */
+
+    /* 动效体系 */
     --transition-slow: 0.5s ease;
     --transition-normal: 0.3s ease;
     --transition-fast: 0.15s ease;
-    
+    --gradient-speed: 8s;
+    --gradient-speed-mobile: 12s;
+
     /* 字体大小 */
     --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;
@@ -40,22 +49,30 @@
     --font-size-xl: 1.5rem;
     --font-size-xxl: 2rem;
     --font-size-hero: 3.5rem;
-    
-    /* 新增: 渐变背景色 - 更加和谐的配色方案 */
-    /*--gradient-hero: linear-gradient(135deg, #4568dc, #3a4bc3);*/
+
+    /* 标题专用字号 */
+    --font-size-h1: var(--font-size-hero);
+    --font-size-h2: var(--font-size-xxl);
+    --font-size-h3: var(--font-size-xl);
+
+    /* 渐变背景色 */
     --gradient-hero: #000000;
-    --gradient-features: linear-gradient(135deg, #2c7a7b, #29a3a3);
+    --gradient-features: linear-gradient(135deg, #52adad, #29a3a3);
     --gradient-overview: linear-gradient(135deg, #5f2c82, #5f5fae);
     --gradient-compare: linear-gradient(135deg, #4776ad, #5989bd);
     --gradient-forum: linear-gradient(135deg, #4b6cb7, #5374c3);
     --gradient-profile: linear-gradient(135deg, #1a2980, #394fa3);
     --gradient-tech: linear-gradient(135deg, #3f51b5, #5c6bc0);
     --gradient-cta: linear-gradient(135deg, #4568dc, #7986cb);
+
+    --gradient-duration: 8s;
+    --gradient-easing: ease;
+    --gradient-iteration: infinite;
 }
 
 body.dark-theme,
 html.dark-mode {
-    --primary-color: #58a6ff;
+    --primary-color: #000000;
     --secondary-color: #39dd81;
     --tertiary-color: #ffb74d;
     --bg-primary: #121212;
@@ -63,9 +80,8 @@ html.dark-mode {
     --bg-tertiary: #282828;
     --text-primary: #e0e0e0;
     --text-secondary: #a0a0a0;
-    
+
     /* 深色模式下的渐变背景 - 更统一且易于区分的暗色调 */
-    /*--gradient-hero: linear-gradient(135deg, #1c2842, #2a3c5a);*/
     --gradient-hero: #000000;
     --gradient-features: linear-gradient(135deg, #0a2e38, #1a4a4a);
     --gradient-overview: linear-gradient(135deg, #2f1640, #3a2c54);
@@ -76,7 +92,78 @@ html.dark-mode {
     --gradient-cta: linear-gradient(135deg, #200e40, #2e1e57);
 }
 
-/* 通用样式 */
+/* 定义渐变动画 */
+@-webkit-keyframes gradientFlow {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes gradientFlow {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.gradient-bg {
+    background-size: 200% 200%;
+    animation: gradientFlow var(--gradient-speed) ease infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+.gradient-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    filter: brightness(1.2);
+    opacity: 0.4;
+    z-index: -1;
+}
+
+
+[class*="-overview"],
+[class*="-compare"],
+[class*="-forum"],
+[class*="-profile"],
+[class*="-tech"],
+[class*="-cta"],
+.hero,
+.testimonials {
+    position: relative;
+    background-size: 200% 100%;
+    animation: gradientFlow var(--gradient-duration) var(--gradient-easing) var(--gradient-iteration);
+}
+
+/* 通过属性选择器简化背景定义 */
+[class*="-features"] { background: var(--gradient-features) }
+[class*="-overview"] { background: var(--gradient-overview) }
+[class*="-compare"]  { background: var(--gradient-compare) }
+[class*="-forum"]    { background: var(--gradient-forum) }
+[class*="-profile"]  { background: var(--gradient-profile) }
+[class*="-tech"]     { background: var(--gradient-tech) }
+[class*="-cta"]      { background: var(--gradient-cta) }
+
+/* 统一伪元素定义 */
+[class*="-overview"]::before,
+[class*="-compare"]::before,
+[class*="-forum"]::before,
+[class*="-profile"]::before,
+[class*="-tech"]::before,
+[class*="-cta"]::before,
+.hero::before,
+.testimonials::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.2);
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 1;
+}
+
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: var(--text-primary);
@@ -86,7 +173,10 @@ body {
     padding: 0;
     overflow-x: hidden;
     width: 100%;
-    transition: color var(--transition-normal), background-color var(--transition-normal);
+    transition:
+            color var(--transition-normal),
+            background-color var(--transition-normal),
+            border-color var(--transition-normal);
 }
 
 /* 确保所有文本元素的颜色能够正确切换 */
@@ -105,6 +195,11 @@ h1, h2, h3, h4, h5, h6, p, a, li, span {
     margin: 0 auto;
     padding: 0 var(--spacing-md);
     box-sizing: border-box;
+
+    /* 添加容器内标题通用样式 */
+    & h1, & h2, & h3, & h4, & h5, & h6 {
+        margin-bottom: var(--spacing-md);
+    }
 }
 
 /* 重要：确保所有section使用全宽 */
@@ -117,39 +212,30 @@ section {
     margin: 0 auto;
 }
 
-h1, h2, h3, h4, h5, h6 {
+.container h1,
+.container h2,
+.container h3,
+.container h4,
+.container h5,
+.container h6 {
     margin-top: 0;
     font-weight: 700;
     line-height: 1.2;
+    margin-bottom: var(--spacing-md);
 }
 
-h1 {
+.container h1 {
     font-size: var(--font-size-hero);
-    margin-bottom: var(--spacing-md);
 }
 
-h2 {
+.container h2 {
     font-size: var(--font-size-xxl);
-    margin-bottom: var(--spacing-md);
     position: relative;
     text-align: center;
     width: 100%;
 }
 
-h2:after {
-    content: "";
-    display: block;
-    width: 80px;
-    height: 4px;
-    background: var(--primary-color);
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 2px;
-}
-
-h3 {
+.container h3 {
     font-size: var(--font-size-xl);
     margin-bottom: var(--spacing-sm);
 }
@@ -170,76 +256,39 @@ a:hover {
     color: var(--secondary-color);
 }
 
-.btn {
-    display: inline-block;
-    padding: 12px 24px;
-    background-color: transparent;
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-size: var(--font-size-md);
-    font-weight: 600;
-    cursor: pointer;
-    transition: all var(--transition-normal);
-    text-align: center;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    position: relative;
-    overflow: hidden;
-    letter-spacing: 0.5px;
+
+/* 更新渐变标题样式，添加流动动画 */
+.gradient-title {
+    background: linear-gradient(90deg, #3d7cf4, #2ecc71, #3d7cf4);  /* 三个颜色点创建循环效果 */
+    background-size: 200% 100%;  /* 扩大背景尺寸以便有足够空间移动 */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    font-weight: 900;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    animation: gradientFlow 6s ease infinite;  /* 6秒循环动画，可以调整速度 */
 }
 
-.btn::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    z-index: -1;
-}
-
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-}
-
-.btn:hover::before {
-    background: rgba(255, 255, 255, 0.15);
-}
-
-.btn.primary {
-    color: white;
-    border-color: rgba(61, 124, 244, 0.3);
-}
-
-.btn.secondary {
-    color: white;
-    border-color: rgba(46, 204, 113, 0.3);
-}
-
-.btn.tertiary {
-    color: white;
-    border-color: rgba(243, 156, 18, 0.3);
-}
-
+/* 移除重复的样式定义，使用common.css中的定义 */
+/* 这些样式已在common.css中定义，避免重复 */
 /* 英雄区域 */
 .hero {
+    height: 100vh; /* 使用固定高度而不是最小高度 */
+    overflow: visible; /* 更改为visible允许内容溢出 */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 80vh;
-    padding: 0 5%;
+    padding: 0 5% 0 5%; /* 移除底部内边距 */
     background: var(--gradient-hero);
-    overflow: hidden;
     width: 100%;
     box-sizing: border-box;
-    margin-top: 0px; /* 适应顶部导航条 */
+    margin-top: 0;
+    margin-bottom: 0; /* 确保没有底部外边距 */
     color: var(--text-light);
+    position: relative; /* 为绝对定位子元素提供参考 */
+    background: var(--gradient-hero);
+    background-size: 200% 100%;
+    animation: gradientFlow 8s ease infinite;
 }
 
 .hero-content {
@@ -249,13 +298,31 @@ a:hover {
     padding: 0 var(--spacing-md);
 }
 
-.hero h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: var(--spacing-md);
-    color: white;
+/* Hero标题区块样式 */
+.hero-headings {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
 }
+
+/* home.css中的hero标题部分简化为 */
+.hero-title {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 0.5rem !important;
+}
+
+/* 使用通用渐变标题样式 - 样式已在common.css中定义 */
+/* 只保留特定的尺寸和间距设置，其他样式继承自common.css */
+.hero-title-1,
+.hero-title-2,
+.hero-title-3 {
+    /* 继承common.css中的gradient-title样式 */
+}
+
+/* 这些特定尺寸设置保留在home.css中，确保优先级 */
 
 .hero p {
     font-size: clamp(1.1rem, 2vw, 1.5rem);
@@ -272,16 +339,37 @@ a:hover {
     flex: 1;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end; /* 底部对齐 */
     z-index: 1;
+    height: 100%; /* 确保高度充满hero区域 */
+    position: relative;
+    margin-bottom: -2px; /* 创建负边距使元素向下移动 */
 }
 
-.hero-image img {
-    max-width: 50%;
-    height: auto;
-    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
-    animation: float 6s ease-in-out infinite;
+/* 添加hero视频卡片的基础样式 */
+.hero-video-card {
+    width: 100%;
+    max-width: 600px;        /* 根据需要调整最大宽度 */
+    border-radius: 16px 16px 0 0; /* 顶部圆角，底部平直 */
+    overflow: hidden;        /* 裁切内部溢出内容以保持圆角 */
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.15); /* 阴影方向向上 */
+    background: #000;        /* 在视频尚未加载前显示黑底 */
+    margin-bottom: -4px;     /* 进一步增大负边距 */
+    position: relative;      /* 设置相对定位 */
+    z-index: 5;              /* 增加z-index确保视频卡片在最上层 */
 }
+
+.hero-video-card video {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;       /* 保持宽高比，同时填满容器 */
+    vertical-align: bottom;  /* 消除可能的间隙 */
+    margin-bottom: -8px;     /* 进一步增大负边距 */
+    position: relative;
+    z-index: 5;
+}
+
 
 @keyframes float {
     0% {
@@ -295,22 +383,22 @@ a:hover {
     }
 }
 
-/* 功能概览 */
+
+
+
 .features-overview {
-    background: var(--gradient-features);
-    padding: var(--spacing-xl) 5%;
+    padding-top: 0; /* 移除顶部内边距 */
     text-align: center;
     width: 100%;
     box-sizing: border-box;
     color: var(--text-light);
+    position: relative;
+    z-index: 4; /* 确保层级正确 */
+    margin-top: -1px; /* 添加负边距与上方衔接 */
 }
 
 .features-overview h2 {
     color: white;
-}
-
-.features-overview h2:after {
-    background: white;
 }
 
 .features-grid {
@@ -367,6 +455,7 @@ a:hover {
 .section-compare,
 .section-forum,
 .section-profile {
+
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -376,16 +465,19 @@ a:hover {
     box-sizing: border-box;
     margin-left: auto;
     margin-right: auto;
-    
+    background: var(--gradient-hero);
+    background-size: 200% 100%;
+    animation: gradientFlow 8s ease infinite;
+
     /* 初始加载时显示 */
     opacity: 1;
     transform: translateY(0);
     transition: opacity 0.5s ease, transform 0.5s ease;
     color: var(--text-light);
-    
+
     /* 修改: 移除max-width限制，使背景色铺满屏幕 */
     max-width: none;
-    
+
     /* 修改: 采用position定位确保背景色铺满 */
     position: relative;
 }
@@ -404,11 +496,16 @@ a:hover {
     width: 100%;
 }
 
+.hero h1,
+.features-overview h2,
 .section-overview h2,
 .section-compare h2,
 .section-forum h2,
-.section-profile h2 {
-    color: white;
+.section-profile h2,
+.tech-section h2,
+.cta-section h2,
+.testimonials h2 {
+    color: var(--text-light);
 }
 
 .section-overview h2:after,
@@ -425,11 +522,6 @@ a:hover {
     color: rgba(255, 255, 255, 0.9);
 }
 
-/* 添加动画类 */
-.animate-on-scroll {
-    opacity: 0;
-    transform: translateY(30px);
-}
 
 .section-overview {
     background: var(--gradient-overview);
@@ -457,8 +549,24 @@ a:hover {
     flex: 1;
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 0 var(--spacing-md);
+    align-items: flex-start; /* 从顶部对齐 */
+    position: relative;      /* 设置相对定位 */
+        }
+
+        /* 如果下方有hero卡片，确保它与视频卡片连接良好 */
+.hero-image::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 600px;
+    height: 4px;             /* 增加高度加强连接 */
+    background-color: #000;  /* 与视频卡片底部颜色相同 */
+    z-index: 3;              /* 确保层级正确 */
+    padding: 0;
 }
 
 .section-image img {
@@ -503,7 +611,7 @@ a:hover {
     width: 100%;
     box-sizing: border-box;
     color: var(--text-light);
-    
+
     /* 初始加载时显示 */
     opacity: 1;
     transform: translateY(0);
@@ -511,10 +619,6 @@ a:hover {
 
 .tech-section h2 {
     color: white;
-}
-
-.tech-section h2:after {
-    background: white;
 }
 
 .tech-grid {
@@ -537,10 +641,6 @@ a:hover {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.tech-card:hover {
-    transform: translateY(-8px);
-    background-color: rgba(255, 255, 255, 0.15);
-}
 
 .tech-card i {
     font-size: 2.5rem;
@@ -557,96 +657,6 @@ a:hover {
 }
 
 /* 用户评价 */
-.testimonials {
-    background: linear-gradient(to right, #3498db, #2ecc71);
-    padding: var(--spacing-xl) 5%;
-    text-align: center;
-    width: 100%;
-    box-sizing: border-box;
-    color: var(--text-light);
-    
-    /* 初始加载时显示 */
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.testimonials-section {
-    background: linear-gradient(to right, #3498db, #2ecc71);
-}
-
-.testimonials h2 {
-    color: white;
-}
-
-.testimonials h2:after {
-    background: white;
-}
-
-.testimonial-carousel {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--spacing-lg);
-    margin-top: var(--spacing-lg);
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.testimonial-card {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: var(--spacing-lg);
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    max-width: 350px;
-    text-align: left;
-    position: relative;
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.testimonial-card:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-}
-
-.quote {
-    position: absolute;
-    top: -15px;
-    left: 15px;
-    font-size: 2rem;
-    color: white;
-    opacity: 0.2;
-}
-
-.testimonial-card p {
-    font-style: italic;
-    margin-bottom: var(--spacing-md);
-    color: rgba(255, 255, 255, 0.9);
-}
-
-.user {
-    display: flex;
-    align-items: center;
-}
-
-.user img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: var(--spacing-sm);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-}
-
-.user-info h4 {
-    margin: 0;
-    font-size: var(--font-size-md);
-    color: white;
-}
-
-.user-info span {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: var(--font-size-sm);
-}
 
 /* 行动号召 */
 .cta-section {
@@ -662,9 +672,6 @@ a:hover {
     color: white;
 }
 
-.cta-section h2:after {
-    background: white;
-}
 
 .cta-section p {
     color: rgba(255, 255, 255, 0.8);
@@ -688,80 +695,40 @@ a:hover {
     max-width: 200px; /* 限制最大宽度 */
 }
 
-/* 响应式设计 */
-@media (max-width: 992px) {
-    h1 {
-        font-size: var(--font-size-xxl);
-    }
-    
-    h2 {
-        font-size: var(--font-size-xl);
-    }
-    
-    .hero {
-        flex-direction: column;
-        text-align: center;
-        padding-top: var(--spacing-xl);
-    }
-    
-    .hero-content {
-        max-width: 100%;
-        margin-bottom: var(--spacing-lg);
-    }
-    
-    .hero h1:after {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    
-    .hero-buttons {
-        justify-content: center;
-    }
+/* 响应式设计 - 移至文件末尾统一的媒体查询中 */
 
-    /* —— Hero 视频卡片 —— */
-    .hero-video-card {
-        width: 100%;
-        max-width: 600px;        /* 根据需要调整最大宽度 */
-        border-radius: 16px;     /* 圆角半径 */
-        overflow: hidden;        /* 裁切内部溢出内容以保持圆角 */
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-        background: #000;        /* 在视频尚未加载前显示黑底 */
-    }
-
-    .hero-video-card video {
-        display: block;
-        width: 100%;
-        height: auto;
-        object-fit: cover;       /* 保持宽高比，同时填满容器 */
-    }
-
-    .section-overview,
-    .section-compare,
-    .section-forum,
-    .section-profile {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .section-compare .section-image,
-    .section-profile .section-image {
-        order: -1;
-    }
-    
-    .section-content {
-        max-width: 100%;
-    }
-    
-    .section-content h2:after {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    
-    .feature-list {
-        display: inline-block;
-        text-align: left;
-    }
+/* 修复缩进，确保这些样式不是媒体查询的一部分 */
+.section-overview,
+.section-compare,
+.section-forum,
+.section-profile {
+    flex-direction: column;
+    text-align: center;
 }
+
+.section-compare .section-image,
+.section-profile .section-image {
+    order: -1;
+}
+
+.section-content {
+    max-width: 100%;
+}
+
+.section-content h2:after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.feature-list {
+    display: inline-block;
+    text-align: left;
+}
+
+.hero-title-1 {
+    font-size: 5rem; /* 移动设备上稍微小一点 */
+}
+
 
 @media (max-width: 576px) {
     .hero-buttons,
@@ -769,16 +736,16 @@ a:hover {
         flex-direction: column;
         gap: var(--spacing-sm);
     }
-    
+
     .btn {
         width: 100%;
     }
-    
+
     .features-grid,
     .tech-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .testimonial-carousel {
         flex-direction: column;
         align-items: center;
@@ -797,43 +764,7 @@ html.dark-mode .cta-section {
     color: var(--text-light);
 }
 
-/* 暗色模式下的毛玻璃按钮效果 */
-html.dark-mode .btn {
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-html.dark-mode .btn::before {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-html.dark-mode .btn:hover::before {
-    background: rgba(30, 30, 30, 0.3);
-}
-
-html.dark-mode .btn.primary {
-    border-color: rgba(88, 166, 255, 0.3);
-}
-
-html.dark-mode .btn.secondary {
-    border-color: rgba(57, 221, 129, 0.3);
-}
-
-html.dark-mode .btn.tertiary {
-    border-color: rgba(255, 183, 77, 0.3);
-}
-
-html.dark-mode .btn.primary:hover::before {
-    background: rgba(88, 166, 255, 0.1);
-}
-
-html.dark-mode .btn.secondary:hover::before {
-    background: rgba(57, 221, 129, 0.1);
-}
-
-html.dark-mode .btn.tertiary:hover::before {
-    background: rgba(255, 183, 77, 0.1);
-}
+/* 暗色模式下的按钮样式已移至common.css */
 
 html.dark-mode .section-overview {
     background: var(--gradient-overview);
@@ -857,4 +788,117 @@ html.dark-mode .tech-section {
 
 html.dark-mode .cta-section {
     background: var(--gradient-cta);
+}
+/* 移除重复的媒体查询，统一到下方的媒体查询块中 */
+
+/* 确保所有hero标题都应用渐变效果 */
+
+/* 统一媒体查询，提高优先级 */
+@media (max-width: 992px) {
+    /* 基础标题尺寸调整 */
+    h1 {
+        font-size: var(--font-size-xxl);
+    }
+
+    h2 {
+        font-size: var(--font-size-xl);
+    }
+
+    /* 英雄区域响应式布局 */
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: var(--spacing-xl);
+        padding-bottom: 0; /* 在移动端移除底部内边距 */
+        overflow: visible; /* 确保内容可见 */
+    }
+
+    .hero-content {
+        max-width: 100%;
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .hero h1:after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-image {
+        width: 100%;
+        margin-top: var(--spacing-lg);
+        margin-bottom: -2px; /* 负边距确保在移动端也能与下方内容衔接 */
+    }
+
+    /* 移动端视频卡片调整 */
+    .hero-video-card {
+        /* 只保留移动端特有的调整 */
+        transform: translateY(10px); /* 向下平移一点距离 */
+    }
+
+    /* 移动端连接器调整 */
+    .hero-card-connector {
+        height: 15px; /* 在移动端增加高度 */
+        margin-top: -15px; /* 对应调整负边距 */
+    }
+
+    /* 英雄标题响应式尺寸 */
+    .hero-title-1 {
+        font-size: 5rem !important; /* 移动设备上较小 */
+    }
+
+    .hero-title-2 {
+        font-size: 3rem !important; 
+    }
+
+    .hero-title-3 {
+        font-size: 3.5rem !important;
+    }
+
+    /* 渐变动画速度调整 */
+    .features-overview,
+    .section-overview,
+    .section-compare,
+    .section-forum,
+    .section-profile,
+    .tech-section,
+    .cta-section {
+        animation-duration: var(--gradient-speed-mobile);
+    }
+}
+
+
+
+/* 响应式容器 */
+.responsive-container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    box-sizing: border-box;
+}
+
+/* 渐变分割线 */
+.gradient-divider {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 2px;
+    margin: 0 auto var(--spacing-md);
+}
+/* 修改按钮悬浮状态下的文字颜色 */
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+    color: white !important; /* 强制悬浮时文字保持白色 */
+}
+
+/* 确保即使是链接形式的按钮也保持白色文字 */
+a.btn:hover {
+    color: white !important; /* 覆盖普通链接的悬浮样式 */
 }

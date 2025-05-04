@@ -2,6 +2,7 @@ package servlet;
 
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -11,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -34,34 +36,28 @@ public class CompareServlet extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         csvPath = config.getInitParameter("csvPath");
-        log("CompareServlet 初始化, csvPath=" + csvPath);
+        log("CompareServlet initialized, csvPath=" + csvPath);
         loadAllPhones();
     }
 
     private void loadAllPhones() {
         allPhones.clear();
-        // 先尝试从CSV加载
         if (!loadFromCsv(allPhones)) {
-            // 再尝试从数据库加载
             loadFromDatabase(allPhones);
         }
-        // 最后fallback到默认测试数据
         if (allPhones.isEmpty()) {
             addDefaultTestData(allPhones);
         }
-        log("loadAllPhones 完成, 共加载 " + allPhones.size() + " 条数据");
+        log("loadAllPhones completed, loaded " + allPhones.size() + " records");
     }
 
-    /**
-     * 从 webapp assets/data 目录加载 CSV
-     */
     private boolean loadFromCsv(List<MobilePhone> list) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String realPath = getServletContext().getRealPath(csvPath);
-        log("尝试从CSV加载, realPath=" + realPath);
+        log("Attempting to load from CSV, realPath=" + realPath);
         File csvFile = new File(realPath);
         if (!csvFile.exists()) {
-            log("CSV文件不存在: " + realPath);
+            log("CSV file does not exist: " + realPath);
             return false;
         }
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
@@ -93,16 +89,13 @@ public class CompareServlet extends HttpServlet {
             }
             return !list.isEmpty();
         } catch (IOException e) {
-            log("读取CSV失败: " + e.getMessage(), e);
+            log("Failed to read CSV: " + e.getMessage(), e);
             return false;
         }
     }
 
-    /**
-     * 从数据库加载
-     */
     private void loadFromDatabase(List<MobilePhone> list) {
-        log("尝试从数据库加载数据");
+        log("Attempting to load data from database");
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
@@ -125,22 +118,22 @@ public class CompareServlet extends HttpServlet {
                 }
             }
         } catch (Exception e) {
-            log("数据库加载异常: " + e.getMessage(), e);
+            log("Database loading exception: " + e.getMessage(), e);
         }
     }
 
-    /**
-     * 添加默认测试数据
-     */
     private void addDefaultTestData(List<MobilePhone> list) {
-        log("使用默认测试数据");
+        log("Using default test data");
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            list.add(new MobilePhone("iPhone 13", "Apple", sdf.parse("2021-09-24"), "A15 Bionic", "6.1寸 OLED", "12MP双摄", "玻璃+铝合金", new BigDecimal("799")));
-            list.add(new MobilePhone("Galaxy S21", "Samsung", sdf.parse("2021-01-29"), "Exynos 2100", "6.2寸 AMOLED", "64MP三摄", "塑料", new BigDecimal("699")));
-            list.add(new MobilePhone("Pixel 6", "Google", sdf.parse("2021-10-28"), "Tensor", "6.4寸 OLED", "50MP主摄", "玻璃", new BigDecimal("599")));
+            list.add(new MobilePhone("iPhone 13", "Apple", sdf.parse("2021-09-24"),
+                    "A15 Bionic", "6.1\" OLED", "12MP dual camera", "Glass + Aluminum", new BigDecimal("799")));
+            list.add(new MobilePhone("Galaxy S21", "Samsung", sdf.parse("2021-01-29"),
+                    "Exynos 2100", "6.2\" AMOLED", "64MP triple camera", "Plastic", new BigDecimal("699")));
+            list.add(new MobilePhone("Pixel 6", "Google", sdf.parse("2021-10-28"),
+                    "Tensor G1", "6.4\" AMOLED", "50MP dual camera", "Glass", new BigDecimal("599")));
         } catch (Exception e) {
-            log("默认数据生成失败: " + e.getMessage(), e);
+            log("Default data generation failed: " + e.getMessage(), e);
         }
     }
 
@@ -148,28 +141,58 @@ public class CompareServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         if (allPhones.isEmpty()) loadAllPhones();
-        req.setAttribute("allPhones", allPhones);
 
-        List<MobilePhone> selectedPhones = new ArrayList<>();
+        // JSON 接口支持
+        if ("true".equals(req.getParameter("json"))) {
+            resp.setContentType("application/json; charset=UTF-8");
+            // 手动构建 JSON
+            PrintWriter out = resp.getWriter();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            StringBuilder sb = new StringBuilder();
+            sb.append("[");
+            for (int i = 0; i < allPhones.size(); i++) {
+                MobilePhone p = allPhones.get(i);
+                sb.append("{");
+                sb.append("\"name\":\"").append(escapeJson(p.getName())).append("\",");
+                sb.append("\"brand\":\"").append(escapeJson(p.getBrand())).append("\",");
+                sb.append("\"releaseDate\":\"").append(sdf.format(p.getReleaseDate())).append("\",");
+                sb.append("\"processor\":\"").append(escapeJson(p.getProcessor())).append("\",");
+                sb.append("\"display\":\"").append(escapeJson(p.getDisplay())).append("\",");
+                sb.append("\"camera\":\"").append(escapeJson(p.getCamera())).append("\",");
+                sb.append("\"material\":\"").append(escapeJson(p.getMaterial())).append("\",");
+                sb.append("\"price\":").append(p.getPrice());
+                sb.append("}");
+                if (i < allPhones.size() - 1) sb.append(",");
+            }
+            sb.append("]");
+            out.write(sb.toString());
+            return;
+        }
+
+        // 原有 JSP 渲染逻辑
+        req.setAttribute("allPhones", allPhones);
         String[] ids = req.getParameterValues("id");
+        List<MobilePhone> selectedPhones = new ArrayList<>();
         if (ids != null) {
             for (String s : ids) {
                 try {
                     int idx = Integer.parseInt(s);
-                    if (idx >= 0 && idx < allPhones.size()) selectedPhones.add(allPhones.get(idx));
+                    if (idx >= 0 && idx < allPhones.size()) {
+                        selectedPhones.add(allPhones.get(idx));
+                    }
                 } catch (NumberFormatException ignored) {}
             }
             req.setAttribute("selectedPhones", selectedPhones);
         }
 
         Map<String, Map<String, Object>> specs = new LinkedHashMap<>();
-        specs.put("brand", spec("品牌", false, null));
-        specs.put("releaseDate", spec("发布日期", true, "newer"));
-        specs.put("processor", spec("处理器", false, null));
-        specs.put("display", spec("屏幕", true, "larger"));
-        specs.put("camera", spec("摄像头", true, "higher"));
-        specs.put("material", spec("材质", false, null));
-        specs.put("price", spec("价格", true, "lower"));
+        specs.put("brand", spec("brand", false, null));
+        specs.put("releaseDate", spec("release date", true, "newer"));
+        specs.put("processor", spec("processor", false, null));
+        specs.put("display", spec("display", true, "larger"));
+        specs.put("camera", spec("camera", true, "higher"));
+        specs.put("material", spec("material", false, null));
+        specs.put("price", spec("price", true, "lower"));
         req.setAttribute("specs", specs);
 
         req.getRequestDispatcher("/compare.jsp").forward(req, resp);
@@ -181,5 +204,14 @@ public class CompareServlet extends HttpServlet {
         m.put("comparable", comparable);
         m.put("betterValue", better);
         return m;
+    }
+
+    /**
+     * 简单的 JSON 字符串转义
+     */
+    private String escapeJson(String s) {
+        if (s == null) return "";
+        return s.replace("\\", "\\\\")
+                .replace("\"", "\\\"");
     }
 }

@@ -4,192 +4,156 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile - Mobile InfoHub</title>
-  <!-- 公共样式 -->
+  <!-- Common Styles -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/header.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/theme-toggle.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/profile.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
 </head>
 <body>
-<!-- 导航栏（包含主题切换按钮） -->
+<!-- Navigation Bar -->
 <jsp:include page="sub/header.jsp" />
 
-<div class="profile-container">
-  <!-- 侧边导航 -->
-  <aside class="profile-sidebar">
-    <div class="user-card">
-      <div class="avatar-wrapper">
-        <img src="${user.avatar}" alt="用户头像" class="user-avatar" />
-        <button class="avatar-upload">更换头像</button>
-      </div>
-      <h2 class="user-nickname">${user.nickname}</h2>
-      <p class="user-level">VIP ${user.level}</p>
-      <!-- 社交与成就系统：关注信息与徽章 -->
-      <div class="social-stats">
-        <button class="btn">关注 ${user.followingCount}</button>
-        <button class="btn">粉丝 ${user.followersCount}</button>
-      </div>
-      <div class="badge-list">
-        <c:forEach items="${user.badges}" var="badge">
-          <span class="badge">${badge}</span>
-        </c:forEach>
-      </div>
-    </div>
-    <nav class="sidebar-nav">
-      <button type="button" class="nav-item active" data-section="profile">个人资料</button>
-      <button type="button" class="nav-item" data-section="devices">我的设备</button>
-      <button type="button" class="nav-item" data-section="security">账户安全</button>
-      <button type="button" class="nav-item" data-section="analytics">数据统计</button>
-      <button type="button" class="nav-item" data-section="activity">个人发布动态</button>
-      <div class="sidebar-divider"></div>
-      <button type="button" class="nav-item" id="switch-account">切换账号</button>
-      <button type="button" class="nav-item" id="logout">退出登录</button>
-    </nav>
-  </aside>
+<div class="main-container">
+  <!-- Top Banner -->
+  <header class="banner">
+    <h1>User Profile</h1>
+    <p>Manage your personal information, devices, and account security</p>
+  </header>
 
-  <!-- 主内容区 -->
-  <main class="profile-main">
-    <!-- 个人信息模块（可编辑） -->
-    <section id="profile" class="content-section active">
-      <h2 class="section-title">基本信息 <button id="edit-profile-btn" class="btn small">编辑</button></h2>
-      <div id="profile-view">
-        <div class="info-grid">
-          <div class="info-item">
-            <label>注册时间</label>
-            <p>${user.registerDate}</p>
-          </div>
-          <div class="info-item">
-            <label>电子邮箱</label>
-            <p>${user.email}</p>
-          </div>
-          <div class="info-item">
-            <label>手机号码</label>
-            <p>${user.phone}</p>
-          </div>
+  <!-- Main Two-Column Layout -->
+  <div class="profile-main">
+    <!-- Sidebar -->
+    <aside class="profile-sidebar">
+      <div class="user-card">
+        <div class="avatar-wrapper">
+          <img src="${user.avatar}" alt="User Avatar" class="user-avatar" />
+          <button class="avatar-upload btn glass">Change Avatar</button>
+        </div>
+        <h2 class="user-nickname">${user.nickname}</h2>
+        <p class="user-level">VIP Level ${user.level}</p>
+        <!-- Social Stats & Badges -->
+        <div class="social-stats">
+          <button class="btn glass">Following ${user.followingCount}</button>
+          <button class="btn glass">Followers ${user.followersCount}</button>
+        </div>
+        <div class="badge-list">
+          <c:forEach items="${user.badges}" var="badge">
+            <span class="badge">${badge}</span>
+          </c:forEach>
         </div>
       </div>
-      <div id="profile-edit" style="display:none;">
-        <form action="${pageContext.request.contextPath}/profile/update" method="post">
+
+      <nav class="sidebar-nav">
+        <button type="button" class="btn" data-section="profile">Profile</button>
+        <button type="button" class="btn" data-section="devices">My Devices</button>
+        <button type="button" class="btn" data-section="security">Account Security</button>
+        <button type="button" class="btn" data-section="analytics">Usage Analytics</button>
+        <button type="button" class="btn" data-section="activity">Activity Feed</button>
+        <div class="sidebar-divider"></div>
+        <button type="button" class="btn" id="switch-account">Switch Account</button>
+        <button type="button" class="btn btn-danger" id="logout">Log Out</button>
+      </nav>
+    </aside>
+
+    <!-- Content Area -->
+    <section class="profile-content">
+      <!-- Profile Information Section -->
+      <div id="profile" class="content-section active">
+        <h2 class="section-title">Basic Information <button id="edit-profile-btn" class="btn small">Edit</button></h2>
+        <div id="profile-view">
           <div class="info-grid">
             <div class="info-item">
-              <label for="email">电子邮箱</label>
-              <input type="email" id="email" name="email" value="${user.email}" required />
+              <label>Joined On</label>
+              <p>${user.registerDate}</p>
             </div>
             <div class="info-item">
-              <label for="phone">手机号码</label>
-              <input type="text" id="phone" name="phone" value="${user.phone}" required />
+              <label>Email Address</label>
+              <p>${user.email}</p>
+            </div>
+            <div class="info-item">
+              <label>Phone Number</label>
+              <p>${user.phone}</p>
             </div>
           </div>
-          <button type="submit" class="btn primary">保存</button>
-          <button type="button" id="cancel-edit-btn" class="btn light">取消</button>
-        </form>
+        </div>
+        <div id="profile-edit" style="display:none;">
+          <form action="${pageContext.request.contextPath}/profile/update" method="post">
+            <div class="info-grid">
+              <div class="info-item">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" value="${user.email}" required />
+              </div>
+              <div class="info-item">
+                <label for="phone">Phone Number</label>
+                <input type="text" id="phone" name="phone" value="${user.phone}" required />
+              </div>
+            </div>
+            <button type="submit" class="btn primary">Save</button>
+            <button type="button" id="cancel-edit-btn" class="btn light">Cancel</button>
+          </form>
+        </div>
       </div>
-    </section>
 
-    <!-- 我的设备模块（支持移除和导出） -->
-    <section id="devices" class="content-section">
-      <h2 class="section-title">我的设备</h2>
-      
-      <!-- 设备卡片容器 -->
-      <div class="devices-card">
-        <div class="section-header">
-          <!-- 删除"已关联设备"副标题 -->
-          <div class="device-buttons">
-            <button id="export-devices-btn" class="btn small">导出 CSV</button>
-            <button class="add-device-btn btn small primary">+ 添加新设备</button>
+      <!-- Devices Section -->
+      <div id="devices" class="content-section">
+        <h2 class="section-title">My Devices</h2>
+        <div class="devices-card">
+          <div class="section-header">
+            <div class="device-buttons">
+              <button id="export-devices-btn" class="btn small">Export CSV</button>
+              <button class="btn small primary">+ Add New Device</button>
+            </div>
+          </div>
+          <div class="device-grid">
+            <c:forEach items="${devices}" var="device">
+              <div class="device-card" data-model="${device.model}">
+                <img src="${device.image}" class="device-thumb" alt="${device.model}" />
+                <h3>${device.model}</h3>
+                <p>Last Used: ${device.lastUsed}</p>
+                <button class="btn small danger" data-id="${device.id}">Remove</button>
+              </div>
+            </c:forEach>
           </div>
         </div>
-        <div class="device-grid">
-          <c:forEach items="${devices}" var="device">
-            <div class="device-card" data-model="${device.model}">
-              <img src="${device.image}" class="device-thumb" />
-              <h3>${device.model}</h3>
-              <p>最后使用：${device.lastUsed}</p>
-              <button class="btn small danger remove-device-btn" data-id="${device.id}">移除</button>
+      </div>
+
+      <!-- Security Section -->
+      <div id="security" class="content-section">
+        <h2 class="section-title">Account Security</h2>
+        <p>Add security settings form here.</p>
+      </div>
+
+      <!-- Analytics Section -->
+      <div id="analytics" class="content-section">
+        <h2 class="section-title">Usage Analytics</h2>
+        <div class="chart-container">
+          <canvas id="usageChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Activity Feed Section -->
+      <div id="activity" class="content-section">
+        <h2 class="section-title">Activity Feed</h2>
+        <div class="activity-feed">
+          <c:forEach items="${activities}" var="act">
+            <div class="activity-item">
+              <p>${act.content}</p>
+              <span class="activity-date">${act.date}</span>
             </div>
           </c:forEach>
         </div>
       </div>
     </section>
-
-    <!-- 账户安全模块 -->
-    <section id="security" class="content-section">
-      <h2 class="section-title">账户安全</h2>
-      <p>在这里添加安全选项设置表单。</p>
-    </section>
-
-    <!-- 数据统计模块 -->
-    <section id="analytics" class="content-section">
-      <h2 class="section-title">使用数据统计</h2>
-      <div class="chart-container">
-        <canvas id="usageChart"></canvas>
-      </div>
-    </section>
-
-    <!-- 个人发布动态模块 -->
-    <section id="activity" class="content-section">
-      <h2 class="section-title">个人发布动态</h2>
-      <div class="activity-feed">
-        <c:forEach items="${activities}" var="act">
-          <div class="activity-item">
-            <p>${act.content}</p>
-            <span class="activity-date">${act.date}</span>
-          </div>
-        </c:forEach>
-      </div>
-    </section>
-  </main>
+  </div>
 </div>
 
-<!-- 通用脚本（含主题切换、图表等） -->
+<!-- Common Scripts (theme toggle, charts, etc.) -->
 <jsp:include page="/sub/scripts.jsp" />
 
-<!-- 本页脚本：处理编辑切换、搜索及导出 -->
-<script>
-  document.getElementById('edit-profile-btn').addEventListener('click', () => {
-    document.getElementById('profile-view').style.display = 'none';
-    document.getElementById('profile-edit').style.display = 'block';
-  });
-  document.getElementById('cancel-edit-btn').addEventListener('click', () => {
-    document.getElementById('profile-edit').style.display = 'none';
-    document.getElementById('profile-view').style.display = 'block';
-  });
-
-  document.getElementById('device-search').addEventListener('input', e => {
-    const query = e.target.value.toLowerCase();
-    document.querySelectorAll('.device-card').forEach(card => {
-      card.style.display = card.dataset.model.toLowerCase().includes(query) ? '' : 'none';
-    });
-  });
-
-  document.getElementById('export-devices-btn').addEventListener('click', () => {
-    const devices = Array.from(document.querySelectorAll('.device-card')).map(card => ({ model: card.dataset.model, lastUsed: card.querySelector('p').textContent.replace('最后使用：','') }));
-    let csv = '型号,最后使用日期\n';
-    devices.forEach(d => csv += `${d.model},${d.lastUsed}\n`);
-    const blob = new Blob([csv], { type: 'text/csv;charset=UTF-8' });
-    const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = 'devices.csv'; link.click();
-  });
-
-  document.querySelectorAll('.remove-device-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (confirm('确定要移除该设备吗？')) {
-        const id = btn.dataset.id;
-        fetch(`${pageContext.request.contextPath}/profile/device/remove?id=${id}`, { method: 'POST' }).then(() => btn.closest('.device-card').remove());
-      }
-    });
-  });
-
-// 添加切换账号和退出登录的事件监听
-document.getElementById('switch-account').addEventListener('click', function() {
-  window.location.href = '${pageContext.request.contextPath}/account/switch';
-});
-
-document.getElementById('logout').addEventListener('click', function() {
-  if (confirm('确定要退出登录吗？')) {
-    // 连接到LogoutServlet
-    window.location.href = '${pageContext.request.contextPath}/LogoutServlet';
-  }
-});
-</script>
+<!-- Profile Page Specific JS -->
+<script src="${pageContext.request.contextPath}/assets/js/profile.js"></script>
 </body>
 </html>

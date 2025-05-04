@@ -1,5 +1,7 @@
 /* 导入基本样式 */
 @import 'common.css';
+@import 'banner.css';
+@import 'main-container.css';
 
 /* 全局变量 */
 :root {
@@ -34,87 +36,6 @@
   --transition-slow: 0.4s ease-in-out;
 }
 
-/* 基本布局 */
-.forum-container {
-  width: 95%;
-  margin: 80px auto 0;
-  padding: 0 var(--spacing-md);
-  display: block;
-  position: relative;
-  left: 0;
-  right: 0;
-}
-
-/* 顶部横幅 */
-.forum-banner {
-  background: var(--forum-gradient);
-  color: white;
-  padding: var(--spacing-lg) var(--spacing-xl);
-  border-radius: var(--radius-lg);
-  margin-bottom: var(--spacing-lg);
-  box-shadow: var(--forum-shadow);
-  position: relative;
-  overflow: hidden;
-  transition: background-color var(--transition-normal), 
-              box-shadow var(--transition-normal),
-              transform var(--transition-normal);
-}
-
-/* 毛玻璃效果装饰 */
-.forum-banner::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  right: -50%;
-  width: 100%;
-  height: 200%;
-  background: rgba(255, 255, 255, 0.1);
-  transform: rotate(30deg);
-  pointer-events: none;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  transition: opacity var(--transition-normal);
-}
-
-/* 为横幅添加浮动效果 */
-.forum-banner:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 24px rgba(61, 124, 244, 0.3);
-}
-
-.forum-banner h1 {
-  margin: 0 0 var(--spacing-xs) 0;
-  font-size: 2.2rem;
-  font-weight: 700;
-  position: relative;
-  z-index: 1;
-}
-
-.forum-banner p {
-  margin: 0 0 var(--spacing-md) 0;
-  font-size: 1.1rem;
-  opacity: 0.9;
-  position: relative;
-  z-index: 1;
-}
-
-.forum-stats {
-  display: flex;
-  gap: var(--spacing-lg);
-  margin-top: var(--spacing-md);
-}
-
-.stat-item {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  font-size: 0.95rem;
-}
-
-.stat-item i {
-  font-size: 1.2rem;
-}
-
 /* 主内容布局 */
 .forum-main {
   display: grid;
@@ -127,6 +48,26 @@
   position: sticky;
   top: var(--spacing-lg);
   align-self: start;
+}
+
+/* 论坛页面特定的毛玻璃按钮增强样式 */
+.forum-sidebar .btn.glass {
+  border-width: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.forum-sidebar .btn.glass::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: inherit;
+  filter: blur(10px);
+  opacity: 0.3;
+  z-index: -1;
 }
 
 .sidebar-section {
@@ -193,100 +134,11 @@
   gap: var(--spacing-sm);
 }
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-xs);
-  padding: var(--spacing-xs) var(--spacing-md);
-  border-radius: var(--radius-md);
-  font-weight: 500;
-  cursor: pointer;
-  transition: all var(--transition-normal);
-  border: none;
-  text-decoration: none;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: white;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  letter-spacing: 0.5px;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-md);
-  z-index: -1;
-  transition: background var(--transition-normal);
-}
-
+/* 按钮样式从common.css继承 */
 .btn i {
   font-size: 1rem;
   position: relative;
   z-index: 1;
-}
-
-.btn.primary {
-  color: white;
-  border-color: rgba(61, 124, 244, 0.3);
-  background-color: rgba(61, 124, 244, 0.15);
-}
-
-.btn.primary:hover::before {
-  background: rgba(61, 124, 244, 0.15);
-}
-
-.btn.primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-}
-
-.btn.secondary {
-  color: white;
-  border-color: rgba(255, 255, 255, 0.1);
-  background-color: rgba(255, 255, 255, 0.08);
-}
-
-.btn.secondary:hover::before {
-  background: rgba(255, 255, 255, 0.12);
-}
-
-.btn.secondary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
-}
-
-.btn:active {
-  transform: translateY(1px) scale(0.98);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* 暗黑模式下按钮样式优化 */
-html.dark-mode .btn {
-  background-color: rgba(30, 30, 30, 0.6);
-  border-color: rgba(255, 255, 255, 0.05);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-html.dark-mode .btn.primary {
-  background-color: rgba(61, 124, 244, 0.2);
-}
-
-html.dark-mode .btn.secondary {
-  background-color: rgba(45, 45, 45, 0.6);
-}
-
-html.dark-mode .btn:hover {
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
 .guide-list {
@@ -346,6 +198,28 @@ html.dark-mode .btn:hover {
 
 .breadcrumb a:hover {
   color: var(--forum-primary);
+}
+
+.breadcrumb-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+}
+.breadcrumb a, .breadcrumb span {
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+.forum-stats {
+  display: flex;
+  gap: var(--spacing-lg);
+}
+.stat-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
 }
 
 .sort-filter {
@@ -435,7 +309,9 @@ html.dark-mode .btn:hover {
   transition: opacity var(--transition-normal);
 }
 
-.topic-item:hover {
+/* 只对添加了交互类的主题项应用悬停效果 */
+.topic-item.interactive:hover, 
+.topic-item.hover {
   transform: translateY(-3px) scale(1.01);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   border-color: var(--forum-primary);

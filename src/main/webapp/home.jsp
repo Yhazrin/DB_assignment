@@ -12,11 +12,15 @@
 </head>
 <body>
     <jsp:include page="sub/header.jsp"/>
-    
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Explore the World of Mobile Phones</h1>
+            <div class="hero-headings">
+                <div class="hero-title hero-title-1">Explore</div>
+                <div class="hero-title hero-title-2">the World of</div>
+                <div class="hero-title hero-title-3">Mobile Phones</div>
+            </div>
             <p>Comprehensive mobile data, in-depth comparisons, and informed choices at your fingertips</p>
             <div class="hero-buttons">
                 <a href="${pageContext.request.contextPath}/overview.jsp" class="btn primary">Browse Phones</a>
@@ -28,16 +32,18 @@
                 <video
                     autoplay
                     muted
+                    loop
                     playsinline
-                    preload="auto"
-                    onended="this.pause()">
+                    preload="auto">
                     <source src="assets/videos/hero.mp4" type="video/mp4">
-                    您的浏览器不支持 video 标签。
+                    Your browser does not support the video tag.
                 </video>
             </div>
         </div>
     </section>
-    
+    <!-- 专门用于连接的元素 -->
+    <div class="hero-card-connector"></div>
+
     <!-- Features Overview -->
     <section class="features-overview">
         <h2>Our Core Features</h2>
@@ -64,7 +70,7 @@
             </div>
         </div>
     </section>
-    
+
     <!-- Phone Browse Feature -->
     <section class="section-overview">
         <div class="section-container">
@@ -84,7 +90,7 @@
             </div>
         </div>
     </section>
-    
+
     <!-- Comparison Feature -->
     <section class="section-compare">
         <div class="section-container">
@@ -104,7 +110,7 @@
             </div>
         </div>
     </section>
-    
+
     <!-- Forum Community -->
     <section class="section-forum">
         <div class="section-container">
@@ -124,7 +130,7 @@
             </div>
         </div>
     </section>
-    
+
     <!-- User Profile -->
     <section class="section-profile">
         <div class="section-container">
@@ -144,7 +150,7 @@
             </div>
         </div>
     </section>
-    
+
     <!-- Data & Technology -->
     <section class="tech-section">
         <h2>Our Data & Technology</h2>
@@ -181,32 +187,8 @@
             <a href="${pageContext.request.contextPath}/forum.jsp" class="btn tertiary">Join Discussions</a>
         </div>
     </section>
-    
+
     <jsp:include page="sub/scripts.jsp"/>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Animation effects on scroll
-            const elements = document.querySelectorAll('.section-overview, .section-compare, .section-forum, .section-profile, .tech-section, .testimonials');
-            
-            // First make all elements visible initially
-            elements.forEach(el => {
-                el.classList.add('animate');
-            });
-            
-            // Then setup scroll animations for future scrolling
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate');
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            const scrollElements = document.querySelectorAll('.animate-on-scroll');
-            scrollElements.forEach(el => {
-                observer.observe(el);
-            });
-        });
-    </script>
+    <script src="${pageContext.request.contextPath}/assets/js/home.js"></script>
 </body>
 </html>

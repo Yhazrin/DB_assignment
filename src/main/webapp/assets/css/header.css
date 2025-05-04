@@ -44,10 +44,9 @@
     transition: color 0.2s, transform 0.2s;
 }
 
-/* 悬浮时文字下沉 */
+/* 悬浮时只改变颜色，不再下沉 */
 .navbar .nav-links a:hover {
     color: var(--primary);
-    transform: translateY(2px);
 }
 
 /* 活动状态文字高亮 */
@@ -97,6 +96,26 @@
 html.dark-mode .navbar {
     background: rgba(100,100,100,0.6);
 }
+
+/* 隐藏滚动条但保留滚动功能 */
+/* 适用于 Webkit 浏览器 (Chrome, Safari, 新版 Edge) */
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    background: transparent;
+}
+
+/* 适用于 Firefox */
+* {
+    scrollbar-width: none;
+}
+
+/* 确保仍允许滚动 */
+html, body {
+    overflow-y: auto;
+    -ms-overflow-style: none; /* IE 和 Edge 的旧版本 */
+}
+
 html.dark-mode .navbar .logo,
 html.dark-mode .navbar .nav-links a,
 html.dark-mode .theme-toggle-btn {

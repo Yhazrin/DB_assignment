@@ -36,7 +36,7 @@
             <input id="confirmPassword" type="password" name="confirmPassword" placeholder="Repeat your password" required>
         </div>
 
-        <button type="submit" class="submit-btn">Register</button>
+        <button type="submit" class="submit-btn glass">Register</button>
     </form>
 </div>
 </body>

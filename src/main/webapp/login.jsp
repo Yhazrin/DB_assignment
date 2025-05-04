@@ -29,8 +29,8 @@
         </div>
 
         <div class="form-actions">
-            <a href="<%= ctx %>/register.jsp" class="link-button">Register</a>
-            <button type="submit" class="submit-btn">Login</button>
+            <a href="<%= ctx %>/register.jsp" class="link-button glass">Register</a>
+            <button type="submit" class="submit-btn glass">Login</button>
         </div>
     </form>
 </div>

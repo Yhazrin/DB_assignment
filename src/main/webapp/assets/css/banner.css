@@ -1,0 +1,47 @@
+.banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  background: linear-gradient(135deg, #3d7cf4, #2d59c3);
+  color: white;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.banner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.15);
+  transform: rotate(30deg);
+  pointer-events: none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: opacity var(--transition-normal);
+}
+
+.banner h1 {
+  font-size: 2rem;
+  margin: 0;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}
+
+.banner p {
+  font-size: 1.1rem;
+  margin: 0;
+  opacity: 0.9;
+  position: relative;
+  z-index: 1;
+}

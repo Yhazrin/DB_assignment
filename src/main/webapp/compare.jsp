@@ -2,46 +2,55 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <title>对比 - 手机数据中心</title>
+    <title>Compare - Mobile Phone Data Center</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/theme-toggle.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/compare.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
 </head>
 <body>
 <jsp:include page="sub/header.jsp"/>
 
-<div class="container">
-    <h1>手机参数对比</h1>
+<div class="main-container">
+    <!-- Top banner -->
+    <div class="banner">
+        <h1>Mobile Phone Comparison</h1>
+        <p>Compare specifications between different mobile phone models side by side</p>
+        <div class="stats">
+            <div class="stat-item"><i class="fas fa-mobile-alt"></i> Available models: ${allPhones.size()}</div>
+            <div class="stat-item"><i class="fas fa-balance-scale"></i> Compare up to 5 models</div>
+        </div>
+    </div>
+    
     <div class="controls">
         <div class="control-group">
-            <label for="numModels">对比数量:</label>
+            <label for="numModels">Compare count:</label>
             <select id="numModels">
-                <option value="2">2款</option>
-                <option value="3" selected>3款</option>
-                <option value="4">4款</option>
-                <option value="5">5款</option>
+                <option value="2">2 models</option>
+                <option value="3" selected>3 models</option>
+                <option value="4">4 models</option>
+                <option value="5">5 models</option>
             </select>
         </div>
         <div class="control-group">
-            <button id="reset-btn" class="secondary">重置</button>
-            <button id="compare-btn" class="primary">开始对比</button>
+            <button id="reset-btn" class="secondary glass">Reset</button>
+            <button id="compare-btn" class="primary glass">Start Comparison</button>
         </div>
     </div>
 
     <div class="selectors" id="deviceSelectors">
-        <!-- 设备选择器将在页面加载时由JS动态生成 -->
     </div>
-
+    
     <div id="compareResults">
         <c:choose>
             <c:when test="${not empty selectedPhones}">
                 <table class="compare-table">
                     <tr>
-                        <th>规格</th>
+                        <th>Specification</th>
                         <c:forEach var="phone" items="${selectedPhones}">
                             <th>${phone.brand} ${phone.name}</th>
                         </c:forEach>
@@ -75,14 +84,16 @@
     </div>
 
     <div class="action-bar">
-        <button id="print-btn">打印对比结果</button>
-        <button id="share-btn">分享对比</button>
-        <button id="add-to-favorites">收藏对比</button>
+        <button id="print-btn" class="glass">Print Results</button>
+        <button id="share-btn" class="glass">Share Comparison</button>
+        <button id="add-to-favorites" class="glass">Save to Favorites</button>
     </div>
 </div>
 
 <jsp:include page="sub/scripts.jsp"/>
-<script>
+
+<!-- 动态生成手机数据 -->
+<script id="phoneDataScript">
     const allPhoneData = [
         <c:forEach var="phone" items="${allPhones}" varStatus="st">
         {
@@ -99,9 +110,9 @@
         </c:forEach>
     ];
 </script>
+
+<!-- 引入对比页面的脚本 -->
 <script src="${pageContext.request.contextPath}/assets/js/compare-init.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', () => updateSelectors?.());
-</script>
+<script src="${pageContext.request.contextPath}/assets/js/compare.js"></script>
 </body>
 </html>
