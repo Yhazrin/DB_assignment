@@ -1,7 +1,7 @@
 /* home.css */
 
 /* 全局变量 */
-@import "../variables.css";
+@import "../variables-light.css";
 /* 公共工具类（动画、布局助手等） */
 @import "../utilities.css";
 /* 布局规则（.container, .main-container, section 等） */

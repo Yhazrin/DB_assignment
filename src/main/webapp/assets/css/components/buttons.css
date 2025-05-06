@@ -2,7 +2,7 @@
  * Button component styles and variants
  */
 
-@import "../variables.css";
+@import "../variables-light.css";
 @import "../utilities.css";
 
 /* —— Button Base —— */

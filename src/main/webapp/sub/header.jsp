@@ -3,6 +3,7 @@
   公共导航栏片段，自动高亮当前页面
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/header.css">
 <%
     // 通过脚本片段获取当前 JSP 名称（不含扩展名）
     String uri = request.getRequestURI();
@@ -11,6 +12,7 @@
     String currentPage = (slash >= 0 && dot > slash) ? uri.substring(slash + 1, dot) : "";
     request.setAttribute("currentPage", currentPage);
 %>
+
 <nav class="navbar">
     <div class="logo">MobilePhoneSys</div>
     <div class="nav-links">

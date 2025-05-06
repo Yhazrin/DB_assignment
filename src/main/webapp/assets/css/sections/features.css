@@ -2,7 +2,7 @@
  * Features Overview 区块样式 - 横向磨砂玻璃卡片布局
  */
 
-@import "../variables.css";
+@import "../variables-light.css";
 @import "../utilities.css";
 @import "../layout.css";
 @import "../components/cards.css";

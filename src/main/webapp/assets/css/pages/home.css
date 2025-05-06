@@ -1,7 +1,8 @@
 /* sections/hero.css
  * Hero 区块样式
  */
-@import "../variables.css";
+@import "../variables-light.css";
+@import "../variables-night.css";
 @import "../utilities.css";
 @import "../layout.css";
 

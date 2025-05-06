@@ -18,14 +18,11 @@
     <div class="section-container">
         <div class="hero-content">
             <div class="hero-headings">
-                <div class="hero-title hero-title-1">Explore</div>
-                <div class="hero-title hero-title-2">the World of</div>
-                <div class="hero-title hero-title-3">Mobile Phones</div>
+                <div class="hero-title hero-title-1">Explore the World of</div>
+                <div class="hero-title hero-title-2">Mobile Phones</div>
             </div>
-            <p>Comprehensive mobile data, in-depth comparisons, and informed choices at your fingertips</p>
             <div class="hero-buttons">
-                <a href="${pageContext.request.contextPath}/overview.jsp" class="btn primary">Browse Phones</a>
-                <a href="${pageContext.request.contextPath}/compare.jsp" class="btn primary">Start Comparing</a>
+                <a href="${pageContext.request.contextPath}/overview.jsp" class="btn primary">START</a>
             </div>
         </div>
         <div class="hero-image">

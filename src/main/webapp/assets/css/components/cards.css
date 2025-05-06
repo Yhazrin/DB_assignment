@@ -2,7 +2,7 @@
  * Card component base styles and variants
  */
 
-@import "../variables.css";
+@import "../variables-light.css";
 @import "../utilities.css";
 
 /* —— Card Base —— */
@@ -97,15 +97,26 @@
     font-size: var(--font-size-md);
 }
 
-/* —— Video Card —— */
-.video-card {
-    position: relative;
-    overflow: hidden;
-    border-radius: var(--radius-md);
+.tech-card p {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
 }
 
-.video-card video {
-    width: 100%;
-    height: auto;
+/* —— Hero Video Card —— */
+/* 限制视频卡片的最大尺寸，并居中显示 */
+.hero-video-card {
+    display: inline-block;    /* 适应内容宽度 */
+    width: auto !important;   /* 取消任何强制宽度 */
+    height: auto !important;  /* 取消任何强制高度 */
+    overflow: hidden;
+    margin-left: auto;
+    /*border: 2px dashed #ffffff;  !* 或者 border: 2px solid #ffffff; *!*/
+}
+
+/* 用 contain 保持完整显示，并在容器内居中 */
+.hero-video-card video {
     display: block;
+    width: auto; /* 按视频原始比例宽度 */
+    height: 100vh;        /* 视频高度始终等于视口高度 */
+    object-fit: cover;
 }

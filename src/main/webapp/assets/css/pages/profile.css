@@ -1,7 +1,7 @@
 /* sections/profile.css
  * Home 页 Profile 模块样式
  */
-@import "../variables.css";
+@import "../variables-light.css";
 @import "../utilities.css";
 @import "../layout.css";
 @import "../components/cards.css";
