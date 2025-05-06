@@ -1,0 +1,74 @@
+/* sections/profile.css
+ * Home 页 Profile 模块样式
+ */
+@import "../variables.css";
+@import "../utilities.css";
+@import "../layout.css";
+@import "../components/cards.css";
+@import "../components/banner.css";
+@import "../components/buttons.css";
+
+.section-profile {
+    padding: var(--spacing-xl) 0;
+    background: var(--gradient-profile);
+    background-size: 200% 100%;
+    animation: gradientFlow var(--gradient-duration) var(--gradient-easing) var(--gradient-iteration);
+    position: relative;
+    overflow: hidden;
+    color: var(--text-light);
+}
+
+.section-profile::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.2);
+    pointer-events: none;
+    z-index: 1;
+    border-radius: var(--radius-md);
+}
+
+.section-profile h2 {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    font-size: var(--font-size-xxl);
+    margin-bottom: var(--spacing-lg);
+}
+
+.section-profile .profile-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--spacing-xl);
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    box-sizing: border-box;
+}
+
+/* 侧边栏：在 HTML 中给 <div class="profile-sidebar sidebar-base"> 应用 */
+.section-profile .profile-sidebar {
+    width: 280px;
+}
+
+/* 主体内容保留原有样式 */
+.section-profile .profile-content {
+    flex: 1;
+    background: var(--card-bg);
+    border: 1px solid var(--divider);
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .section-profile .profile-container {
+        flex-direction: column;
+    }
+    .section-profile .profile-sidebar,
+    .section-profile .profile-content {
+        width: 100%;
+    }
+}

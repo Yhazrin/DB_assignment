@@ -45,3 +45,22 @@
   position: relative;
   z-index: 1;
 }
+
+/* —— 暗黑模式下的横幅 —— */
+html.dark-mode .banner {
+  /* 深邃暗灰渐变，也可以换成你喜欢的暗紫／暗蓝配色 */
+  background: linear-gradient(135deg, #1a1a1a, #2d2d2d) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6) !important;
+}
+
+html.dark-mode .banner::before {
+  /* 略淡的光泽叠加，营造高端玻璃感 */
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+html.dark-mode .banner h1,
+html.dark-mode .banner p {
+  color: #e0e0e0 !important;
+  /* 加一点文字阴影，提升可读性和质感 */
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}

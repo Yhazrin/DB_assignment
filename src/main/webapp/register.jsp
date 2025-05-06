@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Register</title>
-    <link rel="stylesheet" href="<%= ctx %>/assets/css/pre.css">
+    <link rel="stylesheet" href="<%= ctx %>/assets/css/sections/pre.css">
     <jsp:include page="sub/themeToggle.jsp" />
 </head>
 <body>

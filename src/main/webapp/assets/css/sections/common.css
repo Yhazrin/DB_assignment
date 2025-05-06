@@ -71,7 +71,7 @@ button {
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-align: center;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
@@ -80,6 +80,7 @@ button {
     position: relative;
     overflow: hidden;
     letter-spacing: 0.5px;
+
 }
 
 .btn::before,
@@ -116,39 +117,59 @@ button:active {
 /* 按钮变体样式 - 确保文字在不同背景下可见 */
 .btn.primary,
 button.primary {
-    background-color: rgba(var(--gradient-start), 0.2);
-    color: white; /* 确保主按钮文字为白色，背景较深 */
-    border-color: rgba(var(--gradient-start), 0.3);
+    background-color: rgba(var(--gradient-start), 0.15);
+    color: rgba(255, 255, 255, 0.9); /* 初始90%透明度 */
+    border-color: rgba(var(--gradient-start), 0.4);
 }
 
 .btn.primary:hover,
 button.primary:hover {
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
-    background-color: var(--gradient-start);
+    color: rgba(255, 255, 255, 1); /* 完全不透明 */
+    box-shadow:
+            0 8px 32px rgba(var(--gradient-start), 0.25),
+            0 0 16px rgba(var(--gradient-start), 0.2) inset;
 }
 
+/* 次级按钮 - 绿光效果 */
 .btn.secondary,
 button.secondary {
-    background-color: rgba(var(--gradient-end), 0.2);
-    color: white;
-    border-color: rgba(var(--gradient-end), 0.3);
+    background-color: rgba(var(--gradient-end), 0.15);
+    color: rgba(255, 255, 255, 0.9);
+    border-color: rgba(var(--gradient-end), 0.4);
+    box-shadow: 0 4px 12px rgba(var(--gradient-end), 0.1);
 }
 
 .btn.secondary:hover,
 button.secondary:hover {
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
-    background-color: var(--gradient-end);
+    color: rgba(255, 255, 255, 1);
+    box-shadow:
+            0 8px 32px rgba(var(--gradient-end), 0.25),
+            0 0 16px rgba(var(--gradient-end), 0.2) inset;
 }
 
+/* 三级按钮 - 白光效果 */
 .btn.tertiary,
 button.tertiary {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.8);
+    border-color: rgba(255, 255, 255, 0.15);
 }
 
 .btn.tertiary:hover,
 button.tertiary:hover {
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+    color: rgba(255, 255, 255, 1);
+    box-shadow:
+            0 8px 32px rgba(255,255,255,0.15),
+            0 0 16px rgba(255,255,255,0.1) inset;
+}
+
+@keyframes buttonGlow {
+    0% {
+        transform: translate(-30%, -30%) rotate(45deg);
+    }
+    100% {
+        transform: translate(30%, 30%) rotate(45deg);
+    }
 }
 
 /* 暗色模式支持 - 确保文字在暗背景下清晰可见 */

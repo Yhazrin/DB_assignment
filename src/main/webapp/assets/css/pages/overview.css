@@ -1,6 +1,10 @@
-@import url('common.css');
-@import url('banner.css');
-@import url('main-container.css');
+
+@import "../variables.css";
+@import "../utilities.css";
+@import "../layout.css";
+@import "../components/banner.css";
+@import "../components/buttons.css";
+@import "../components/forms.css";
 
 :root {
   /* 论坛特定颜色 */

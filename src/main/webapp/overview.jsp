@@ -14,10 +14,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Overview - MobilePhoneSys</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/header.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/theme-toggle.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/overview.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/theme-toggle.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/banner.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/overview.css">
 </head>
 <body>
 <jsp:include page="/sub/header.jsp"/>

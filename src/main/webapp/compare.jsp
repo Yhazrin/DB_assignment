@@ -7,10 +7,10 @@
     <meta charset="UTF-8"/>
     <title>Compare - Mobile Phone Data Center</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/header.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/theme-toggle.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/compare.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/theme-toggle.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/banner.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/compare.css">
 </head>
 <body>
 <jsp:include page="sub/header.jsp"/>
@@ -20,10 +20,6 @@
     <div class="banner">
         <h1>Mobile Phone Comparison</h1>
         <p>Compare specifications between different mobile phone models side by side</p>
-        <div class="stats">
-            <div class="stat-item"><i class="fas fa-mobile-alt"></i> Available models: ${allPhones.size()}</div>
-            <div class="stat-item"><i class="fas fa-balance-scale"></i> Compare up to 5 models</div>
-        </div>
     </div>
     
     <div class="controls">

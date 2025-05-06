@@ -1,0 +1,16 @@
+/* sections/hero.css
+ * Hero 区块样式
+ */
+@import "../variables.css";
+@import "../utilities.css";
+@import "../layout.css";
+
+/* 然后再 import 组件和区块入口 */
+@import "../components/buttons.css";
+@import "../components/cards.css";
+@import "../components/forms.css";
+
+@import "../sections/hero.css";
+@import "../sections/features.css";
+@import "../sections/tech.css";
+@import "../sections/cta.css";

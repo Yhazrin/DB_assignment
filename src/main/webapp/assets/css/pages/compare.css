@@ -1,0 +1,93 @@
+/* home.css */
+
+/* 全局变量 */
+@import "../variables.css";
+/* 公共工具类（动画、布局助手等） */
+@import "../utilities.css";
+/* 布局规则（.container, .main-container, section 等） */
+@import "../layout.css";
+
+/* 下面再 import 组件或区块 */
+@import "../components/buttons.css";
+@import "../components/cards.css";
+@import "../components/forms.css";
+
+@import "../sections/hero.css";
+@import "../sections/features.css";
+/* … 其余区块 … */
+
+
+
+/* ===== Compare Specs Section ===== */
+.section-compare {
+    padding: var(--spacing-xl) 0;
+    background: var(--gradient-compare);
+    background-size: 200% 100%;
+    animation: gradientFlow var(--gradient-duration) var(--gradient-easing) var(--gradient-iteration);
+    position: relative;
+    overflow: hidden;
+    color: var(--text-light);
+}
+
+/* 半透明叠层 */
+.section-compare::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.2);
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 1;
+}
+
+/* 标题 */
+.section-compare h2 {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    font-size: var(--font-size-xxl);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* 对比表格网格 */
+.compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+.compare-table th,
+.compare-table td {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--divider);
+    text-align: center;
+}
+.compare-table th {
+    background: rgba(255,255,255,0.1);
+    color: var(--text-light);
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .compare-table,
+    .compare-table th,
+    .compare-table td {
+        display: block;
+        width: 100%;
+    }
+    .compare-table th {
+        text-align: left;
+    }
+    .compare-table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+    .compare-table td::before {
+        content: attr(data-label) ": ";
+        position: absolute;
+        left: var(--spacing-sm);
+        font-weight: 600;
+    }
+}

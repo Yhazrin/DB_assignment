@@ -1,0 +1,99 @@
+/* components/buttons.css
+ * Button component styles and variants
+ */
+
+@import "../variables.css";
+@import "../utilities.css";
+
+/* —— Button Base —— */
+.btn,
+button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: rgba(255, 255, 255, 0.15);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.5px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    transition:
+            transform var(--transition-fast),
+            box-shadow var(--transition-fast),
+            background var(--transition-fast),
+            border-color var(--transition-fast);
+}
+
+/* —— Pseudo-element Overlay —— */
+.btn::before,
+button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: inherit;
+    z-index: -1;
+    transition: background var(--transition-fast);
+}
+
+/* —— Hover & Active States —— */
+.btn:hover,
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+}
+.btn:hover::before,
+button:hover::before {
+    background: rgba(255, 255, 255, 0.25);
+}
+.btn:active,
+button:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* —— Variants —— */
+
+/* Primary Variant */
+.btn.primary,
+button.primary {
+    background-color: rgba(61, 124, 244, 0.2); /* rgb(61,124,244) = #3D7CF4 */
+    color: var(--text-light);
+    border-color: rgba(61, 124, 244, 0.3);
+}
+.btn.primary:hover,
+button.primary:hover {
+    background-color: #3D7CF4;
+}
+
+/* Secondary Variant */
+.btn.secondary,
+button.secondary {
+    background-color: rgba(41, 163, 163, 0.2); /* rgb(41,163,163) = #29A3A3 */
+    color: var(--text-light);
+    border-color: rgba(41, 163, 163, 0.3);
+}
+.btn.secondary:hover,
+button.secondary:hover {
+    background-color: #29A3A3;
+}
+
+/* Tertiary Variant */
+.btn.tertiary,
+button.tertiary {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+.btn.tertiary:hover,
+button.tertiary:hover {
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}

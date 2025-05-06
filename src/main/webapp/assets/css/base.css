@@ -1,0 +1,62 @@
+/* base.css
+ * 全局基础样式：基础排版和标签样式
+ */
+
+/* 全局字体设置 */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: var(--font-size-md);
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+}
+
+/* 标题 */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+h1 { font-size: var(--font-size-hero); }
+h2 { font-size: var(--font-size-xxl); }
+h3 { font-size: var(--font-size-xl); }
+h4 { font-size: var(--font-size-lg); }
+h5 { font-size: var(--font-size-md); }
+h6 { font-size: var(--font-size-sm); }
+
+/* 段落 */
+p {
+    margin-bottom: var(--spacing-sm);
+}
+
+/* 链接 */
+a {
+    color: var(--primary);
+    text-decoration: underline;
+    transition: color var(--transition-fast);
+}
+a:hover {
+    color: var(--primary-dark);
+}
+
+/* 列表 */
+ul, ol {
+    margin-left: var(--spacing-lg);
+    margin-bottom: var(--spacing-sm);
+}
+
+/* 图片、视频、SVG */
+img, video, svg {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* 分割线 */
+hr {
+    border: none;
+    border-top: 1px solid var(--divider);
+    margin: var(--spacing-lg) 0;
+}

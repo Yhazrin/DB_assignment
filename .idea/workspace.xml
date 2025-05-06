@@ -9,25 +9,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d02de210-1416-435c-ad06-f238c6357885" name="更改" comment="做了很帅的home.css文件,">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/banner.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/main-container.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/compare.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/forum.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/home.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/overview.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlet/CompareServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlet/CompareServlet.java" afterDir="false" />
+    <list default="true" id="d02de210-1416-435c-ad06-f238c6357885" name="更改" comment="毁了">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/base.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/components/buttons.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/components/cards.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/components/forms.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/components/sidebar.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/layout.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/compare.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/forum.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/home.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/overview.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/profile.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/reset.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/sections/cta.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/sections/features.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/sections/hero.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/sections/tech.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/utilities.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/variables.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/common.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/compare.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/compare.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/forum.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/forum.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/overview.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/overview.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/profile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/compare-init.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/compare-init.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/banner.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/components/banner.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/sections/common.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/compare.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/forum.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/components/header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/home.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/main-container.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/overview.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pre.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/pre.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/profile.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/theme-toggle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/components/theme-toggle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/compare.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/compare.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/forum.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/forum.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/home.jsp" afterDir="false" />
@@ -35,7 +48,6 @@
       <change beforePath="$PROJECT_DIR$/src/main/webapp/overview.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/overview.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/profile.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/sub/scripts.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/sub/scripts.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +127,7 @@
     "project.structure.last.edited": "模块",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.42847174",
-    "settings.editor.selected.configurable": "ml.llm.LLMConfigurable",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -126,11 +138,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\css\pages" />
+      <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\css\sections" />
+      <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\css\components" />
       <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\videos" />
       <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\images" />
-      <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\java\model" />
-      <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\java\servlet" />
-      <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\data" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -152,7 +164,7 @@
       <deployment />
       <server-settings>
         <data>
-          <option name="transportHostId" />
+          <option name="transportHostId" value="" />
           <host-id />
         </data>
       </server-settings>
@@ -419,7 +431,8 @@
       <workItem from="1746211232795" duration="8637000" />
       <workItem from="1746335210253" duration="12888000" />
       <workItem from="1746353225970" duration="1268000" />
-      <workItem from="1746354512464" duration="16311000" />
+      <workItem from="1746354512464" duration="27957000" />
+      <workItem from="1746435942670" duration="20753000" />
     </task>
     <task id="LOCAL-00001" summary="servlet可以正常工作了！">
       <option name="closed" value="true" />
@@ -493,7 +506,23 @@
       <option name="project" value="LOCAL" />
       <updated>1746179280563</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="home">
+      <option name="closed" value="true" />
+      <created>1746375933126</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1746375933126</updated>
+    </task>
+    <task id="LOCAL-00011" summary="home">
+      <option name="closed" value="true" />
+      <created>1746375955052</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1746375955052</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -508,7 +537,9 @@
     <MESSAGE value="先创建了一个csv，经过百折不挠的奋斗，他终于可以显示在overview里了" />
     <MESSAGE value="完成了伟大的搜索功能，虽然还不是太完备" />
     <MESSAGE value="做了很帅的home.css文件," />
-    <option name="LAST_COMMIT_MESSAGE" value="做了很帅的home.css文件," />
+    <MESSAGE value="home" />
+    <MESSAGE value="毁了" />
+    <option name="LAST_COMMIT_MESSAGE" value="毁了" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

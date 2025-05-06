@@ -7,12 +7,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Forum - Mobile Phone Info System</title>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/header.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/theme-toggle.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main-container.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/banner.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/forum.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/header.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/theme-toggle.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/banner.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/forum.css">
 </head>
 <body data-context-path="${pageContext.request.contextPath}" data-user-logged-in="${not empty sessionScope.user}">
 <!-- Navigation bar -->

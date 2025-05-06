@@ -8,9 +8,9 @@
     <meta charset="UTF-8">
     <title>Login - Mobile Phone InfoHub</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<%= ctx %>/assets/css/pre.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/header.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/theme-toggle.css">
+    <link rel="stylesheet" href="<%= ctx %>/assets/css/sections/pre.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/theme-toggle.css">
 
     <jsp:include page="sub/header.jsp"/>
 </head>
