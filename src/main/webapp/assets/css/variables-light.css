@@ -41,9 +41,10 @@
     --section-height-default: 60vh;
     --section-height-compact: auto;
 
-    /* —— Header 日夜模式色 —— */
-    --header-bg: #ffffff;  /* 夜间导航背景 */
-    --header-text: #000000;/* 夜间导航文字 */
+    --header-bg: rgb(42, 66, 100);  /* 夜间导航背景 */
+    --header-text: #ffe0e0;/* 夜间导航文字 */
+    --headerhome-bg: rgba(0, 0, 0, 0.6);  /* 夜间导航背景 */
+    --headerhome-text: #ffffff;/* 夜间导航文字 */
 
     /* Light theme colors */
     --bg-primary: #ffffff;
@@ -58,8 +59,11 @@
     --primary-color:   #3d7cf4;
     --secondary-color: #2d59c3;
 
+    --card-bg: #f0f0f0;
+    --divider: #e0e0e0;
+
     /* Gradient backgrounds */
-    --gradient-hero:       linear-gradient(135deg, #3D7CF4, #2D59C3);
+    --gradient-hero:       linear-gradient(135deg, #000000, #000000);
     --gradient-features:   linear-gradient(135deg, #2C7A7B, #29A3A3);
     --gradient-overview:   linear-gradient(135deg, #5F2C82, #5F5FAE);
     --gradient-compare:    linear-gradient(135deg, #4776AD, #5989BD);

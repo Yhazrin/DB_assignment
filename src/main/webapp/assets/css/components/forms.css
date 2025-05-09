@@ -2,7 +2,7 @@
  * Form component styles
  */
 
-@import "../variables-light.css";
+@import "../variables.css";
 @import "../utilities.css";
 
 /* —— Form Container —— */
@@ -48,7 +48,7 @@
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-    border-color: var(--primary);
+    border-color: var(--primary-color);
     box-shadow: 0 0 0 2px rgba(61, 124, 244, 0.2);
     outline: none;
 }

@@ -2,7 +2,7 @@
  * Card component base styles and variants
  */
 
-@import "../variables-light.css";
+@import "../variables.css";
 @import "../utilities.css";
 
 /* —— Card Base —— */
@@ -89,7 +89,7 @@
 .tech-card i {
     font-size: 2rem;
     margin-bottom: var(--spacing-sm);
-    color: var(--primary);
+    color: var(--primary-color);
 }
 
 .tech-card h3 {

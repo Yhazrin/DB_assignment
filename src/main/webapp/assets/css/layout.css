@@ -5,20 +5,20 @@
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
-    padding-left: var(--spacing-sm);
-    padding-right: var(--spacing-sm);
+    /*padding-left: var(--spacing-sm);*/
+    /*padding-right: var(--spacing-sm);*/
     box-sizing: border-box;
 }
 
 /* —— 主内容区 —— */
 .main-container {
-    width: 98%;
+    width: 100%;
     margin: 90px auto 0;
 }
 
 /* —— 模块区块通用样式 —— */
 section {
-    padding: var(--spacing-xl) 0;
+    /*padding: var(--spacing-xl) 0;*/
     width: 100%;
     box-sizing: border-box;
     margin: 0 auto;

@@ -1,6 +1,7 @@
-@import "../variables-light.css";
+@import "../variables.css";
 @import "../utilities.css";
 @import "../layout.css";
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+DK+Loopet&display=swap');
 
 /* ===== Hero Section Full-Width Background ===== */
 .hero.section-fullwidth {
@@ -18,7 +19,7 @@
 .hero.section-fullwidth .section-container {
     min-height: 100vh;
     display: flex;
-    padding: 0 var(--spacing-xl);
+    /*padding: 0 var(--spacing-xl);*/
     justify-content: space-between;
     align-items: center;
 }
@@ -56,6 +57,7 @@
     font-size: clamp(2rem, 5vw, 4rem);
 }
 .hero-title-2 {
+    font-family: 'Playwrite DK Loopet', sans-serif;
     font-size: clamp(3rem, 8vw, 5.1rem);
     margin-top: var(--spacing-sm);
 }

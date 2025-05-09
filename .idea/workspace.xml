@@ -9,10 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d02de210-1416-435c-ad06-f238c6357885" name="更改" comment="更新了项目结构树file">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/variables-night.css" afterDir="false" />
+    <list default="true" id="d02de210-1416-435c-ad06-f238c6357885" name="更改" comment="你们快来搞项目啊">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/variables.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/components/buttons.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/components/buttons.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/base.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/components/cards.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/components/cards.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/components/forms.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/components/forms.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/components/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/components/header.css" afterDir="false" />
@@ -22,16 +22,10 @@
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/home.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/overview.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/overview.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/profile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/sections/common.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/sections/cta.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/sections/cta.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/sections/features.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/sections/features.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/sections/hero.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/sections/hero.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/sections/tech.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/sections/tech.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/theme-toggle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/components/theme-toggle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/utilities.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/utilities.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/variables.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/variables-light.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/sub/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/sub/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/variables-light.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/variables-light.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/variables-night.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/variables-dark.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -385,8 +379,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.23774.435" />
-        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-IU-251.23774.435" />
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.109" />
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.109" />
       </set>
     </attachedChunks>
   </component>
@@ -419,7 +413,10 @@
       <workItem from="1746435942670" duration="30213000" />
       <workItem from="1746517374252" duration="7284000" />
       <workItem from="1746532585397" duration="2060000" />
-      <workItem from="1746534669358" duration="3737000" />
+      <workItem from="1746534669358" duration="9098000" />
+      <workItem from="1746548083668" duration="377000" />
+      <workItem from="1746799389202" duration="361000" />
+      <workItem from="1746799833808" duration="327000" />
     </task>
     <task id="LOCAL-00001" summary="servlet可以正常工作了！">
       <option name="closed" value="true" />
@@ -517,7 +514,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746501027450</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="你们快来搞项目啊">
+      <option name="closed" value="true" />
+      <created>1746538494014</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1746538494014</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -535,7 +540,8 @@
     <MESSAGE value="home" />
     <MESSAGE value="毁了" />
     <MESSAGE value="更新了项目结构树file" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新了项目结构树file" />
+    <MESSAGE value="你们快来搞项目啊" />
+    <option name="LAST_COMMIT_MESSAGE" value="你们快来搞项目啊" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

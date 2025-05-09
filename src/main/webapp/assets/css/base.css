@@ -33,12 +33,12 @@ p {
 
 /* 链接 */
 a {
-    color: var(--primary);
+    color: var(--primary-color);
     text-decoration: underline;
     transition: color var(--transition-fast);
 }
 a:hover {
-    color: var(--primary-dark);
+    color: var(--primary-color);
 }
 
 /* 列表 */

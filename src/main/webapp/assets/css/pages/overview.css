@@ -1,5 +1,5 @@
 
-@import "../variables-light.css";
+@import "../variables.css";
 @import "../utilities.css";
 @import "../layout.css";
 @import "../components/banner.css";
@@ -83,7 +83,7 @@ html.dark-mode button:hover {
 html.dark-mode .search-type-btn {
   background-color: rgba(50, 50, 50, 0.7);
   border: 2px solid rgba(70, 70, 70, 0.8);
-  color: var(--dark-text-color, #eee);
+  color: var(--text-primary, #eee);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
@@ -109,7 +109,7 @@ html.dark-mode .search-type-btn.active:hover {
 }
 /* 整体容器 */
 .overview-container {
-    width: 95%;
+    width: 100%;
     margin: 80px auto 0;
     padding: 0 var(--spacing-md);
     display: flex;
@@ -292,7 +292,7 @@ html.dark-mode .search-input:focus {
 
 html.dark-mode .search-results-count {
     background: rgba(60, 60, 60, 0.5);
-    color: var(--dark-text-secondary, #aaa);
+    color: var(--text-primary, #aaa);
     border-color: rgba(80, 80, 80, 0.8);
 }
 /* 表格容器 */
@@ -408,7 +408,7 @@ html.dark-mode .search-results-count {
     }
 
     .search-input:focus {
-        border-color: var(--primary);
+        border-color: var(--primary-color);
         box-shadow: 0 0 0 3px rgba(66,133,244,0.15);
         outline: none;
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234285f4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E");

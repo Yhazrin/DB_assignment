@@ -2,7 +2,7 @@
  * Hero 区块样式
  */
 @import "../variables-light.css";
-@import "../variables-night.css";
+@import "../variables-dark.css";
 @import "../utilities.css";
 @import "../layout.css";
 
