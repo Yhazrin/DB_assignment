@@ -1,0 +1,64 @@
+/* sections/cta.css
+ * CTA Section 样式
+ */
+
+@import "../../../variables-light.css";
+@import "../../../utilities.css";
+@import "../../../layout.css";
+@import "../../../components/buttons.css";
+
+/* ===== CTA Section ===== */
+.cta-section {
+    padding: var(--spacing-xl) 0;
+    background: var(--gradient-cta);
+    background-size: 200% 100%;
+    animation: gradientFlow var(--gradient-duration) var(--gradient-easing) var(--gradient-iteration);
+    position: relative;
+    overflow: hidden;
+    color: var(--text-light);
+}
+
+/* 半透明叠层 */
+.cta-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 1;
+}
+
+/* 标题 */
+.cta-section h2 {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    font-size: var(--font-size-xxl);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* 按钮组 */
+.cta-buttons {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    padding: 0 var(--spacing-sm);
+}
+
+.cta-buttons .btn {
+    min-width: 180px;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .cta-buttons {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    .cta-buttons .btn {
+        width: 100%;
+    }
+}

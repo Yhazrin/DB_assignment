@@ -1,16 +1,16 @@
-/* sections/cta.css
- * CTA Section 样式
+/* sections/tech.css
+ * Tech Section 样式
  */
 
-@import "../variables-light.css";
-@import "../utilities.css";
-@import "../layout.css";
-@import "../components/buttons.css";
+@import "../../../variables-light.css";
+@import "../../../utilities.css";
+@import "../../../layout.css";
+@import "../../../components/cards.css";
 
-/* ===== CTA Section ===== */
-.cta-section {
+/* ===== Tech Section ===== */
+.tech-section {
     padding: var(--spacing-xl) 0;
-    background: var(--gradient-cta);
+    background: var(--gradient-tech);
     background-size: 200% 100%;
     animation: gradientFlow var(--gradient-duration) var(--gradient-easing) var(--gradient-iteration);
     position: relative;
@@ -19,18 +19,18 @@
 }
 
 /* 半透明叠层 */
-.cta-section::before {
+.tech-section::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0,0,0,0.2);
     pointer-events: none;
     border-radius: inherit;
     z-index: 1;
 }
 
 /* 标题 */
-.cta-section h2 {
+.tech-section h2 {
     position: relative;
     z-index: 2;
     text-align: center;
@@ -38,27 +38,19 @@
     margin-bottom: var(--spacing-lg);
 }
 
-/* 按钮组 */
-.cta-buttons {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
+/* 技术卡片网格 */
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: var(--spacing-md);
     padding: 0 var(--spacing-sm);
-}
-
-.cta-buttons .btn {
-    min-width: 180px;
+    position: relative;
+    z-index: 2;
 }
 
 /* 响应式 */
 @media (max-width: 768px) {
-    .cta-buttons {
-        flex-direction: column;
-        gap: var(--spacing-sm);
-    }
-    .cta-buttons .btn {
-        width: 100%;
+    .tech-grid {
+        grid-template-columns: 1fr;
     }
 }

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mobile Phone Data Center - Explore, Compare, Share</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/header.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/home.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/home/home.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/theme-toggle.css">
 </head>
 <body>
@@ -20,9 +20,6 @@
             <div class="hero-headings">
                 <div class="hero-title hero-title-1">Explore the World of</div>
                 <div class="hero-title hero-title-2">Mobile Phones</div>
-            </div>
-            <div class="hero-buttons">
-                <a href="${pageContext.request.contextPath}/overview.jsp" class="btn primary">START</a>
             </div>
         </div>
         <div class="hero-image">
