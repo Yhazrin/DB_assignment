@@ -1,8 +1,8 @@
 /* sections/hero.css
  * Hero 区块样式
  */
-@import "../../variables-light.css";
-@import "../../variables-dark.css";
+@import "../../style/variables-light.css";
+@import "../../style/variables-dark.css";
 @import "../../utilities.css";
 @import "../../layout.css";
 
@@ -11,7 +11,8 @@
 @import "../../components/cards.css";
 @import "../../components/forms.css";
 
-@import "../../sections/hero.css";
-@import "../../sections/features.css";
-@import "../../sections/tech.css";
-@import "../../sections/cta.css";
+@import "sections/hero.css";
+@import "sections/features.css";
+@import "sections/cta.css";
+@import "sections/section-base.css";
+

@@ -44,7 +44,7 @@ body.dark-theme {
     --section-height-default: 60vh;
     --section-height-compact: auto;
 
-    --header-bg: rgb(60, 162, 146);  /* 夜间导航背景 */
+    --header-bg: rgb(255, 255, 255);  /* 夜间导航背景 */
     --header-text: #000000;/* 夜间导航文字 */
     --headerhome-bg: rgba(0, 0, 0, 0.6);  /* 夜间导航背景 */
     --headerhome-text: #ffffff;/* 夜间导航文字 */
@@ -56,9 +56,8 @@ body.dark-theme {
     --bg-tertiary: #282828;
 
     /* 文本色 */
-    --text-primary: #E0E0E0;
-    --text-secondary: #A0A0A0;
-    --text-light: #FFFFFF;
+    --text-primary: #000000;
+    --text-inverse: #ffffff;
     --text-color: var(--text-primary);
 
     /* 主色、次色 */
@@ -71,10 +70,9 @@ body.dark-theme {
     /* 区块渐变背景 */
     --gradient-hero:     linear-gradient(135deg, #000000, #000000);
     --gradient-features: linear-gradient(135deg, #0A2E38, #1A4A4A);
-    --gradient-overview: linear-gradient(135deg, #2F1640, #3A2C54);
-    --gradient-compare:  linear-gradient(135deg, #1F2D70, #2A3C5A);
-    --gradient-forum:    linear-gradient(135deg, #2D3345, #374057);
-    --gradient-profile:  linear-gradient(135deg, #0F0C29, #1F1D3C);
-    --gradient-tech:     linear-gradient(135deg, #0B1338, #1D2550);
-    --gradient-cta:      linear-gradient(135deg, #200E40, #2E1E57);
+    --gradient-overview: linear-gradient(135deg, #2F1640, #45306A);
+    --gradient-compare:  linear-gradient(135deg, #1F2D70, #243B7A);
+    --gradient-forum:    linear-gradient(135deg, #2D3345, #4A5A76);
+    --gradient-profile:  linear-gradient(135deg, #693D3D, #8E2828);
+    --gradient-cta:      linear-gradient(135deg, #200E40, #3A225B);
 }

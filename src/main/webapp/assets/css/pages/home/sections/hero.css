@@ -1,4 +1,4 @@
-@import "../../../variables.css";
+@import "../../../style/variables.css";
 @import "../../../utilities.css";
 @import "../../../layout.css";
 @import url('https://fonts.googleapis.com/css2?family=Playwrite+DK+Loopet&display=swap');
@@ -8,7 +8,7 @@
     background: var(--gradient-hero);
     background-size: 200% 100%;
     animation: gradientFlow var(--gradient-duration) var(--gradient-easing) var(--gradient-iteration);
-    color: var(--text-light);
+    color: var(--text-primary);
     position: relative;
     overflow: visible;
     box-sizing: border-box;
@@ -29,9 +29,10 @@
     flex: 0 50%;      /* 缩窄内容宽度至 40% */
     max-width: 50%;     /* 与 flex 保持一致 */
     padding: 0 var(--spacing-md);
-    z-index: 10;
+    z-index: 999;
     text-align: center;
     position: relative;
+    margin-top: 60px;
 }
 
 /* ===== Hero Headings ===== */
@@ -50,27 +51,22 @@
     white-space: nowrap;
     overflow: hidden;
     text-align: center;
-    line-height: 1.1;
+    line-height: 1;
     margin: 0;
+
 }
 .hero-title-1 {
     font-size: clamp(2rem, 5vw, 4rem);
+    color: var(--text-light);
 }
 .hero-title-2 {
     font-family: 'Playwrite DK Loopet', sans-serif;
-    font-size: clamp(3rem, 8vw, 5.1rem);
-    margin-top: var(--spacing-sm);
+    font-size: clamp(6rem, 12vw, 6rem);
+    margin-top: var(--spacing-xxl);
+    font-weight: 700;
 }
 
-/* ===== Hero Buttons ===== */
-.hero-buttons {
-    display: flex;
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-md);
-    z-index: 2;
-    position: relative;
 
-}
 
 /* ===== Hero Media ===== */
 .hero-image {

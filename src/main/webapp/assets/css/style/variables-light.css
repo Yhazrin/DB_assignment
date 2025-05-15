@@ -8,6 +8,7 @@
     --spacing-md: 1rem;
     --spacing-lg: 2rem;
     --spacing-xl: 4rem;
+    --spacing-xxl: 6rem;
 
     /* Font sizes */
     --font-size-sm: 0.875rem;
@@ -42,18 +43,17 @@
     --section-height-compact: auto;
 
     --header-bg: rgb(42, 66, 100);  /* 夜间导航背景 */
-    --header-text: #ffe0e0;/* 夜间导航文字 */
+    --header-text: #ffffff;/* 夜间导航文字 */
     --headerhome-bg: rgba(0, 0, 0, 0.6);  /* 夜间导航背景 */
     --headerhome-text: #ffffff;/* 夜间导航文字 */
 
     /* Light theme colors */
-    --bg-primary: #ffffff;
+    --bg-primary: #000000;
     --bg-secondary: #f0f0f0;
     --bg-tertiary: #e0e0e0;
 
-    --text-primary: #333333;
-    --text-secondary: #666666;
-    --text-light: #ffffff;
+    --text-primary: #000000;
+    --text-inverse: #ffffff;
     --text-color: var(--text-primary);
 
     --primary-color:   #3d7cf4;
@@ -62,13 +62,27 @@
     --card-bg: #f0f0f0;
     --divider: #e0e0e0;
 
-    /* Gradient backgrounds */
-    --gradient-hero:       linear-gradient(135deg, #000000, #000000);
-    --gradient-features:   linear-gradient(135deg, #2C7A7B, #29A3A3);
-    --gradient-overview:   linear-gradient(135deg, #5F2C82, #5F5FAE);
-    --gradient-compare:    linear-gradient(135deg, #4776AD, #5989BD);
-    --gradient-forum:      linear-gradient(135deg, #4B6CB7, #5374C3);
-    --gradient-profile:    linear-gradient(135deg, #1A2980, #394FA3);
-    --gradient-tech:       linear-gradient(135deg, #3F51B5, #5C6BC0);
-    --gradient-cta:        linear-gradient(135deg, #4568DC, #7986CB);
+    --color-morandi-coffee: #ceb19b;  /* 柔和咖啡色 */
+    --color-morandi-mint: #a4b3c9;  /* 柔和薄荷绿 */
+    --color-morandi-lavender:  #A399B6;  /* 柔和薰衣草紫 */
+    --color-morandi-slate:     #7D8CA3;  /* 柔和石板蓝 */
+    --color-morandi-peach: #2c4363;  /* 柔和桃粉色 */
+    --color-morandi-cream:     #E7E2D8;  /* 柔和奶油色 */
+    --color-morandi-stone:     #B0A8A1;  /* 柔和石灰灰 */
+
+    /* 渐变定义 */
+    --gradient-hero:     black;
+    --gradient-features: #768774;
+    --gradient-overview: linear-gradient(135deg, var(--color-morandi-mint), var(--color-morandi-stone));
+    --gradient-compare:  #A399B6;
+    --gradient-forum:    #42556d;
+    --gradient-profile:  #a4b3c9;
+    --gradient-cta:      #B0A8A1;
+
+    /* ——— 流光按钮专属变量 ——— */
+    --border-width: 0.25em;
+    --border-radius: 1em;
+    --border-color: #848aa5;
+    --border-blur: 0.75em;
+    --transition-speed: 0.5s;
 }

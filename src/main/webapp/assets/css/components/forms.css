@@ -2,7 +2,7 @@
  * Form component styles
  */
 
-@import "../variables.css";
+@import "../style/variables.css";
 @import "../utilities.css";
 
 /* —— Form Container —— */

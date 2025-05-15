@@ -1,0 +1,170 @@
+/* sections/section-base.css */
+@import "../../../style/variables.css";
+@import "../../../utilities.css";
+@import "../../../layout.css";
+@import "../../../components/cards.css";
+
+/* —— 通用 Section 基础样式 —— */
+.section-base.section-fullwidth {
+    padding: var(--spacing-xl) 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* —— 容器布局 —— */
+.section-base .section-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-xl);
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    box-sizing: border-box;
+}
+
+/* —— 内容区 —— */
+.section-base .section-content {
+    flex: 1;
+    max-width: 600px;
+    padding: var(--spacing-md);
+}
+
+/* —— 媒体区 —— */
+.section-base .section-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+}
+
+/* —— 标题下的通用下划线 —— */
+.section-base .section-content h2::after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 4px;
+    background: currentColor;
+    border-radius: 2px;
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+}
+
+
+
+@property --border-progress {
+    syntax: "<percentage>";
+    initial-value: 0%;
+    inherits: false;
+}
+
+.section-btn {
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 1.5em 1.5em;
+    border-radius: var(--border-radius);
+    background-color: #252525;
+    position: relative;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.25em;
+    display: inline-flex; /* 让元素表现为行内 flex 容器 */
+    justify-content: center; /* 水平居中内容 */
+    align-items: center; /* 垂直居中内容 */
+    text-decoration: none;
+    width: 50%;
+    margin: var(--spacing-md) auto 0;
+}
+
+.section-btn::before,
+.section-btn::after {
+    position: absolute;
+    content: "";
+    inset: calc(var(--border-width) * -1);
+    border-radius: inherit;
+    z-index: -1;
+    --border-progress: 0%;
+    transition: --border-progress var(--transition-speed) ease;
+    background-image: conic-gradient(
+            var(--border-color) var(--border-progress),
+            #ffffff00 var(--border-progress),
+            #ffffff00 100%
+    );
+}
+
+.section-btn::after {
+    filter: blur(var(--border-blur));
+}
+
+.section-btn:hover::before,
+.section-btn:hover::after {
+    --border-progress: 100%;
+}
+
+
+/* —— 响应式：在窄屏时垂直排列 —— */
+@media (max-width: 992px) {
+    .section-base .section-container {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-lg);
+    }
+    .section-base .section-image {
+        order: -1;
+        margin-bottom: var(--spacing-md);
+    }
+    .section-base .section-content h2::after {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* —— 各板块专属背景 & 文本颜色 —— */
+.features-overview.section-base {
+    background: var(--gradient-features);
+    color: var(--text-light);
+}
+.section-overview.section-base {
+    background: var(--gradient-overview);
+    color: var(--text-inverse);
+}
+.section-compare.section-base {
+    background: var(--gradient-compare);
+    color: var(--text-inverse);
+}
+.section-forum.section-base {
+    background: var(--gradient-forum);
+    color: var(--text-light);
+}
+.section-profile.section-base {
+    background: var(--gradient-profile);
+    color: var(--text-inverse);
+}
+.cta-section.section-base {
+    background: var(--gradient-cta);
+    color: var(--text-light);
+}
+
+/* —— 各板块专属下划线 —— */
+.features-overview.section-base .section-content h2::after {
+    background: var(--gradient-features);
+}
+.section-overview.section-base .section-content h2::after {
+    background: var(--gradient-overview);
+}
+.section-compare.section-base .section-content h2::after {
+    background: var(--gradient-compare);
+}
+.section-forum.section-base .section-content h2::after {
+    background: var(--gradient-forum);
+}
+.section-profile.section-base .section-content h2::after {
+    background: var(--gradient-profile);
+}
+.cta-section.section-base .section-content h2::after {
+    background: var(--gradient-cta);
+}
+

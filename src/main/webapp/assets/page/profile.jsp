@@ -150,7 +150,7 @@
 </div>
 
 <!-- Common Scripts (theme toggle, charts, etc.) -->
-<jsp:include page="/sub/scripts.jsp" />
+<jsp:include page="sub/scripts.jsp" />
 
 <!-- Profile Page Specific JS -->
 <script src="${pageContext.request.contextPath}/assets/js/profile.js"></script>

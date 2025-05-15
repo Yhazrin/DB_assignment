@@ -2,7 +2,7 @@
  * CTA Section 样式
  */
 
-@import "../../../variables-light.css";
+@import "../../../style/variables-light.css";
 @import "../../../utilities.css";
 @import "../../../layout.css";
 @import "../../../components/buttons.css";

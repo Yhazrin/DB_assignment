@@ -2,7 +2,7 @@
  * Card component base styles and variants
  */
 
-@import "../variables.css";
+@import "../style/variables.css";
 @import "../utilities.css";
 
 /* —— Card Base —— */
@@ -119,4 +119,18 @@
     width: auto; /* 按视频原始比例宽度 */
     height: 100vh;        /* 视频高度始终等于视口高度 */
     object-fit: cover;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: var(--radius-md);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    padding: var(--spacing-lg) var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }

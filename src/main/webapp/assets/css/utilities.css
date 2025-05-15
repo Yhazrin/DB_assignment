@@ -2,7 +2,7 @@
  * Global base typography and element styles
  */
 
-@import "variables-light.css"; /* Ensure CSS variables are available */
+@import "style/variables-light.css"; /* Ensure CSS variables are available */
 
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;

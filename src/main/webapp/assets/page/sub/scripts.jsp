@@ -11,8 +11,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!-- 通用脚本 - 包含在所有页面底部 -->
 
-<!-- 添加 Font Awesome 图标库 -->
-<script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/js/all.min.js" defer></script>
 
 <!-- 主题切换功能 -->
 <script>

@@ -1,13 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%
-    // 如果 dataList 不存在，说明没有经过 OverviewServlet
-    if (request.getAttribute("dataList") == null) {
-        // 重定向到 Servlet 映射路径，让它来初始化 dataList
-        response.sendRedirect(request.getContextPath() + "/overview");
-        return;
-    }
-%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +13,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/overview.css">
 </head>
 <body>
-<jsp:include page="/sub/header.jsp"/>
+<jsp:include page="sub/header.jsp"/>
 
 <div class="main-container">
     <!-- Top banner -->
@@ -77,5 +70,8 @@
     </div>
 </div>
 
-<jsp:include page="/sub/scripts.jsp"/>
+<jsp:include page="sub/scripts.jsp"/>
 <script src="${pageContext.request.contextPath}/assets/js/overview.js"></script>
+
+</body>
+</html>

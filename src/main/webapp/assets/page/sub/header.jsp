@@ -16,18 +16,18 @@
 <nav class="navbar">
     <div class="logo">MobilePhoneSys</div>
     <div class="nav-links">
-        <a href="${pageContext.request.contextPath}/home.jsp"
+        <a href="${pageContext.request.contextPath}/assets/page/home.jsp"
            class="${currentPage == 'home' ? 'active' : ''}">Home</a>
-        <a href="${pageContext.request.contextPath}/overview.jsp"
+        <a href="${pageContext.request.contextPath}/assets/page/overview.jsp"
            class="${currentPage == 'overview' ? 'active' : ''}">Overview</a>
-        <a href="${pageContext.request.contextPath}/compare.jsp"
+        <a href="${pageContext.request.contextPath}/assets/page/compare.jsp"
            class="${currentPage == 'compare' ? 'active' : ''}">Compare</a>
-        <a href="${pageContext.request.contextPath}/forum.jsp"
+        <a href="${pageContext.request.contextPath}/assets/page/forum.jsp"
            class="${currentPage == 'forum' ? 'active' : ''}">Forum</a>
-        <a href="${pageContext.request.contextPath}/profile.jsp"
+        <a href="${pageContext.request.contextPath}/assets/page/profile.jsp"
            class="${currentPage == 'profile' ? 'active' : ''}">Profile</a>
     </div>
     <div class="theme-toggle-container">
-        <jsp:include page="/sub/themeToggle.jsp" />
+        <jsp:include page="/assets/page/sub/themeToggle.jsp" />
     </div>
 </nav>

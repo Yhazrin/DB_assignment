@@ -2,7 +2,7 @@
  * Features Overview 区块样式 - 横向磨砂玻璃卡片布局
  */
 
-@import "../../../variables-light.css";
+@import "../../../style/variables-light.css";
 @import "../../../utilities.css";
 @import "../../../layout.css";
 @import "../../../components/cards.css";
@@ -90,7 +90,7 @@
 
 .feature-card p {
     font-size: var(--font-size-sm);
-    color: rgba(255, 255, 255, 0.9);
+    color: rgb(255, 255, 255);
     flex-grow: 1;
 }
 

@@ -26,9 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // 只对交互元素添加悬停效果类
-    document.querySelectorAll('a, button, .feature-card a, .tech-card a, .cta-buttons a').forEach(element => {
-        element.classList.add('interactive');
-    });
+
     
     // 平滑滚动到锚点链接
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
