@@ -34,7 +34,6 @@
     <!-- LogoutServlet配置 -->
     <servlet>
         <servlet-name>logoutServlet</servlet-name>
-        <servlet-class>servlet.LogoutServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>logoutServlet</servlet-name>
