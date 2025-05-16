@@ -1,7 +1,7 @@
 /* sections/section-base.css */
 @import "../../../style/variables.css";
 @import "../../../utilities.css";
-@import "../../../layout.css";
+@import "../../../components/layout.css";
 @import "../../../components/cards.css";
 
 /* —— 通用 Section 基础样式 —— */
@@ -9,6 +9,7 @@
     padding: var(--spacing-xl) 0;
     position: relative;
     overflow: hidden;
+
 }
 
 /* —— 容器布局 —— */
@@ -29,6 +30,11 @@
     flex: 1;
     max-width: 600px;
     padding: var(--spacing-md);
+    color: var(--text-primary);
+}
+
+h2 {
+    font-family: 'Playwrite DK Loopet', sans-serif;
 }
 
 /* —— 媒体区 —— */
@@ -125,27 +131,21 @@
 /* —— 各板块专属背景 & 文本颜色 —— */
 .features-overview.section-base {
     background: var(--gradient-features);
-    color: var(--text-light);
 }
 .section-overview.section-base {
     background: var(--gradient-overview);
-    color: var(--text-inverse);
 }
 .section-compare.section-base {
     background: var(--gradient-compare);
-    color: var(--text-inverse);
 }
 .section-forum.section-base {
     background: var(--gradient-forum);
-    color: var(--text-light);
 }
 .section-profile.section-base {
     background: var(--gradient-profile);
-    color: var(--text-inverse);
 }
 .cta-section.section-base {
     background: var(--gradient-cta);
-    color: var(--text-light);
 }
 
 /* —— 各板块专属下划线 —— */

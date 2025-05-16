@@ -67,23 +67,3 @@
     border-radius: 2px 2px 0 0;
 }
 
-/* —— 主题切换按钮 —— */
-.theme-toggle-container {
-    margin-left: var(--spacing-md);
-}
-.theme-toggle-btn {
-    width: 40px;
-    height: 40px;
-    background: var(--bg-secondary);
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    transition: background var(--transition-fast), color var(--transition-fast);
-    color: var(--header-text);
-}
-

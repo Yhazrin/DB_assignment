@@ -51,13 +51,13 @@ body.dark-theme {
 
     /* ——— 暗色主题配色 ——— */
     /* 背景色 */
-    --bg-primary: #121212;
-    --bg-secondary: #1E1E1E;
-    --bg-tertiary: #282828;
-
+    --bg-primary: #000000;
+    --bg-inverse: #ffffff;
+    --bg-banner: linear-gradient(135deg, #1a1a1a, #2d2d2d);
     /* 文本色 */
-    --text-primary: #000000;
-    --text-inverse: #ffffff;
+    --text-primary: #ffffff;
+    --text-inverse: #000000;
+    --text-hero: #ffffff;
     --text-color: var(--text-primary);
 
     /* 主色、次色 */
@@ -75,4 +75,11 @@ body.dark-theme {
     --gradient-forum:    linear-gradient(135deg, #2D3345, #4A5A76);
     --gradient-profile:  linear-gradient(135deg, #693D3D, #8E2828);
     --gradient-cta:      linear-gradient(135deg, #200E40, #3A225B);
+
+    /* ——— 流光按钮专属变量 ——— */
+    --border-width: 0.25em;
+    --border-radius: 1em;
+    --border-color: #ffd0d0;
+    --border-blur: 0.75em;
+    --transition-speed: 0.5s;
 }

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/theme-toggle.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/banner.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/overview.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/overview/overview.css">
 </head>
 <body>
 <jsp:include page="sub/header.jsp"/>

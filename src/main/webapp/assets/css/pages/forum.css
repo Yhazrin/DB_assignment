@@ -1,49 +1,198 @@
 
 @import "../style/variables.css";
 @import "../utilities.css";
-@import "../layout.css";
+@import "../components/layout.css";
+@import "../components/sidebar.css";
+@import "../components/cards.css";
 
-/* ===== Forum Section ===== */
-/* ===== 更新：Forms 模块 forms.css ===== */
-.form {
-  max-width: 600px;
-  margin: 0 auto var(--spacing-lg);
-  padding: var(--spacing-md);
-  background: var(--card-bg);
-  border: 1px solid var(--divider);
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.main-container {
+  display: flex;
+  position: absolute;
+  gap: 1rem;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+}
+
+/* —— 侧边栏 & 主内容 玻璃卡片样式 —— */
+.forum-sidebar,
+.forum-main {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: var(--radius-md);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  margin: 0;
+
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: var(--spacing-xs);
-  font-weight: 500;
-  color: var(--text-primary);
+
+/* —— 原有的分页、帖子列表等子结构保持不变 —— */
+.topic-list,
+.content-header,
+.no-topics,
+.pagination {
+  margin-top: var(--spacing-lg);
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%;
-  padding: var(--spacing-sm) var(--spacing-md);
-  border: 1px solid var(--divider);
-  border-radius: var(--radius-sm);
-  font-size: var(--font-size-md);
-  color: var(--text-primary);
-  background-color: var(--bg-primary);
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+/* 例如，让 .topic-list 也用内部分隔 */
+.topic-list > .forum-thread {
+  margin-bottom: var(--spacing-md);
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 2px rgba(66,133,244,0.2);
-  outline: none;
+
+.category-list,
+.guide-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-/* 表单侧边栏：在 HTML 中给 <div class="form-sidebar sidebar-base"> 应用 */
-.form-sidebar {
-  margin-bottom: var(--spacing-lg);
+.category-list li,
+.guide-list li {
+  margin-bottom: 0.5rem;
+}
+
+.nav-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Main area layout */
+.forum-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.forum-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header: breadcrumbs + sort */
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.sort-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Topic list */
+.topic-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.topic-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  box-sizing: border-box;
+  border-bottom: 1px solid;
+}
+
+.topic-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.topic-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.topic-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.topic-last-reply {
+  text-align: right;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.page-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.75rem;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+/* Back to top button */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: none; /* toggle via JS */
+  padding: 0.75rem;
+  box-sizing: border-box;
+}
+
+/* Responsive: collapse sidebar on small screens */
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+  }
+
+  .forum-sidebar {
+    display: none;
+  }
+
+  .forum-main {
+    padding: 0.5rem;
+  }
 }

@@ -1,64 +1,73 @@
 /* sections/cta.css
- * CTA Section 样式
+ * CTA Section 重构：模仿 Features 居中结构
  */
 
 @import "../../../style/variables-light.css";
-@import "../../../utilities.css";
-@import "../../../layout.css";
-@import "../../../components/buttons.css";
 
-/* ===== CTA Section ===== */
-.cta-section {
-    padding: var(--spacing-xl) 0;
+/* —— 通用 CTA 背景与动画 —— */
+.cta-section.section-fullwidth {
     background: var(--gradient-cta);
     background-size: 200% 100%;
-    animation: gradientFlow var(--gradient-duration) var(--gradient-easing) var(--gradient-iteration);
+    animation: gradientFlow var(--gradient-duration)
+    var(--gradient-easing)
+    var(--gradient-iteration);
     position: relative;
     overflow: hidden;
-    color: var(--text-light);
 }
 
-/* 半透明叠层 */
-.cta-section::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.2);
-    pointer-events: none;
-    border-radius: inherit;
-    z-index: 1;
+/* —— 容器：垂直列布局 + 水平居中 —— */
+.cta-section.section-fullwidth .section-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-xl) var(--spacing-md);
 }
 
-/* 标题 */
+/* —— 标题 —— */
 .cta-section h2 {
-    position: relative;
-    z-index: 2;
+    width: 100%;
     text-align: center;
     font-size: var(--font-size-xxl);
-    margin-bottom: var(--spacing-lg);
+    margin: 0;
 }
 
-/* 按钮组 */
+/* —— 说明文字 —— */
+.cta-section p {
+    max-width: 600px;
+    text-align: center;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* —— 按钮组：横向居中排列，等宽按钮 —— */
 .cta-buttons {
-    position: relative;
-    z-index: 2;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: var(--spacing-md);
-    padding: 0 var(--spacing-sm);
+    width: 100%;
+    flex-wrap: wrap;
+    white-space: nowrap;
 }
 
-.cta-buttons .btn {
-    min-width: 180px;
+.cta-buttons .section-btn {
+    flex: 1 1 180px;       /* 最小宽度 180px，自动拉伸 */
+    max-width: 200px;      /* 可选：限制最大宽度 */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* 响应式 */
+/* —— 响应式：窄屏时按钮垂直堆叠 —— */
 @media (max-width: 768px) {
     .cta-buttons {
         flex-direction: column;
         gap: var(--spacing-sm);
     }
-    .cta-buttons .btn {
+    .cta-buttons .section-btn {
         width: 100%;
+        max-width: none;
+        flex: none;
     }
 }

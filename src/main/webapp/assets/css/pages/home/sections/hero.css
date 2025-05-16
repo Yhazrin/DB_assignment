@@ -1,6 +1,6 @@
 @import "../../../style/variables.css";
 @import "../../../utilities.css";
-@import "../../../layout.css";
+@import "../../../components/layout.css";
 @import url('https://fonts.googleapis.com/css2?family=Playwrite+DK+Loopet&display=swap');
 
 /* ===== Hero Section Full-Width Background ===== */
@@ -46,6 +46,7 @@
 /* ===== Hero Titles ===== */
 .hero-title-1,
 .hero-title-2 {
+    color: var(--text-hero);
     display: block;
     width: 100%;
     white-space: nowrap;
@@ -57,7 +58,7 @@
 }
 .hero-title-1 {
     font-size: clamp(2rem, 5vw, 4rem);
-    color: var(--text-light);
+
 }
 .hero-title-2 {
     font-family: 'Playwrite DK Loopet', sans-serif;

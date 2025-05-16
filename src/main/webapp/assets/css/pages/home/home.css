@@ -3,16 +3,16 @@
  */
 @import "../../style/variables-light.css";
 @import "../../style/variables-dark.css";
-@import "../../utilities.css";
-@import "../../layout.css";
+@import "../../components/layout.css";
 
 /* 然后再 import 组件和区块入口 */
 @import "../../components/buttons.css";
 @import "../../components/cards.css";
 @import "../../components/forms.css";
 
+@import "sections/section-base.css";
 @import "sections/hero.css";
 @import "sections/features.css";
 @import "sections/cta.css";
-@import "sections/section-base.css";
+
 

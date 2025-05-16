@@ -3,7 +3,7 @@
  */
 @import "../style/variables.css";
 @import "../utilities.css";
-@import "../layout.css";
+@import "../components/layout.css";
 @import "../components/cards.css";
 @import "../components/banner.css";
 @import "../components/buttons.css";

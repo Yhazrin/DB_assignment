@@ -1,0 +1,23 @@
+.main-container {
+    /*width: 97%;*/
+    margin: 5rem 1rem 1rem 1rem;
+}
+
+/* —— 模块区块通用样式 —— */
+section {
+    /*padding: var(--spacing-xl) 0;*/
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+/* —— 响应式调整 —— */
+@media (max-width: 768px) {
+    .profile-main,
+    .forum-main,
+    .compare-main {
+        display: block;
+    }
+}

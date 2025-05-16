@@ -27,7 +27,5 @@
         <a href="${pageContext.request.contextPath}/assets/page/profile.jsp"
            class="${currentPage == 'profile' ? 'active' : ''}">Profile</a>
     </div>
-    <div class="theme-toggle-container">
-        <jsp:include page="/assets/page/sub/themeToggle.jsp" />
-    </div>
+    <jsp:include page="/assets/page/sub/themeToggle.jsp" />
 </nav>
