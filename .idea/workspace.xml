@@ -10,28 +10,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d02de210-1416-435c-ad06-f238c6357885" name="更改" comment="更新">
+      <change afterPath="$PROJECT_DIR$/src/main/java/MessageSenderTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/sql/Component.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/sql/Country.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/sql/FoldablePhone.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/sql/MobileBrand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/sql/MobilePhone.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/sql/NonFoldablePhone.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/sql/Supplier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/sql/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/layout.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/overview.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/components/banner.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/components/banner.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/components/cards.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/components/cards.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/components/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/components/header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/components/theme-toggle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/components/theme-toggle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/layout.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/components/layout.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/compare.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/compare.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/forum.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/forum.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/home/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/home/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/home/sections/cta.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/home/sections/cta.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/home/sections/features.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/home/sections/features.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/home/sections/hero.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/home/sections/hero.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/home/sections/section-base.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/home/sections/section-base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/overview.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/overview/overview.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/profile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/style/variables-dark.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/style/variables-dark.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/style/variables-light.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/style/variables-light.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/utilities.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/utilities.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/MobilePhone.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servlet/CompareServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servlet/OverviewServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/components/layout.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/overview/overview.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/forum.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/forum.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/overview.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/overview.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/header.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +62,9 @@
     &quot;accountId&quot;: &quot;6fa8cc7e-931f-416e-a8f9-5aa04614595e&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/MessageSenderTest.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -92,83 +95,60 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Maven.DB_assignment [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.DB_assignment [package].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;TomEE 服务器.TomcatDASHABI.executor&quot;: &quot;Run&quot;,
-    &quot;Tomcat 服务器.Tomcat 10.1.39.executor&quot;: &quot;Run&quot;,
-    &quot;Tomcat 服务器.TomcatSHABI.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/20544/Desktop/SE/SEP/Assignment/DB_assignment/src/main/java/view&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.42847174&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Maven.DB_assignment [clean].executor": "Run",
+    "Maven.DB_assignment [package].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "TomEE 服务器.TomcatDASHABI.executor": "Run",
+    "Tomcat 服务器.Tomcat 10.1.39.executor": "Run",
+    "Tomcat 服务器.TomcatSHABI.executor": "Run",
+    "git-widget-placeholder": "master",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/DB_assignment/src/main/java",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "模块",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.42847174",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true",
+    "应用程序.MessageSenderTest.executor": "Run"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\DB_assignment\src\main\java" />
       <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\java\view" />
       <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\java\view\pages" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\css\components" />
-      <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\css\pages\overview" />
       <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\page" />
       <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\css\style" />
       <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\css\pages\home" />
+      <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\css\pages" />
+      <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\css\sections" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="model.sql" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="hiddenConfigurations">
-      <map>
-        <entry key="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
-          <value>
-            <set>
-              <option value="TomcatSHABI" />
-            </set>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="RunManager" selected="Tomcat 服务器.Tomcat 10.1.39">
+  <component name="RunManager">
     <configuration default="true" type="TomeeConfiguration" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="LOCAL" value="false" />
-      <deployment />
-      <server-settings>
-        <data>
-          <option name="transportHostId" value="" />
-          <host-id />
-        </data>
-      </server-settings>
-      <predefined_log_file enabled="true" id="Tomcat" />
-      <predefined_log_file enabled="true" id="TOMCAT_LOCALHOST_LOG_ID" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
       <option name="LOCAL" value="false" />
       <deployment />
       <server-settings>
@@ -346,6 +326,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="LOCAL" value="false" />
+      <deployment />
+      <server-settings>
+        <data>
+          <option name="transportHostId" value="" />
+          <host-id />
+        </data>
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="TOMCAT_LOCALHOST_LOG_ID" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Tomcat 服务器.Tomcat 10.1.39" />
       <item itemvalue="Tomcat 服务器.TomcatSHABI" />
@@ -402,8 +397,7 @@
       <workItem from="1747237426074" duration="194000" />
       <workItem from="1747275727407" duration="18203000" />
       <workItem from="1747297105812" duration="5943000" />
-      <workItem from="1747316028820" duration="5221000" />
-      <workItem from="1747334672713" duration="22409000" />
+      <workItem from="1747316028820" duration="1206000" />
     </task>
     <task id="LOCAL-00001" summary="servlet可以正常工作了！">
       <option name="closed" value="true" />
@@ -525,15 +519,7 @@
       <option name="project" value="LOCAL" />
       <updated>1747226243263</updated>
     </task>
-    <task id="LOCAL-00016" summary="更新">
-      <option name="closed" value="true" />
-      <created>1747317407779</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1747317407779</updated>
-    </task>
-    <option name="localTasksCounter" value="17" />
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
