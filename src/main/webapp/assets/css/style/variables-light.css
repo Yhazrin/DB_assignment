@@ -21,6 +21,7 @@
     /* Border radius */
     --radius-sm: 4px;
     --radius-md: 8px;
+    --radius-xl: 12px;
     --radius-lg: 16px;
 
     /* Z-index tiers */
@@ -58,9 +59,10 @@
     --text-color: var(--text-primary);
 
     --primary-color:   #3d7cf4;
-    --secondary-color: #2d59c3;
+    --secondary-color: #31d3c0;
 
-    --card-bg: #f0f0f0;
+    --card-bg: #ffffff;
+    --card-profile: #97efca;
     --divider: #e0e0e0;
 
     /* 渐变定义 */

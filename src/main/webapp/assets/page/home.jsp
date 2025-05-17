@@ -9,7 +9,6 @@
     <script src="${pageContext.request.contextPath}/assets/js/lottie.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/home/home.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/theme-toggle.css">
 </head>
 <body>
 <jsp:include page="sub/header.jsp"/>

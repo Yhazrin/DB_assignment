@@ -64,8 +64,8 @@ body.dark-theme {
     --primary-color:   #3a3a60;
     --secondary-color: #4b4b80;
 
-        --card-bg: #282828;
-        --divider: #444444;
+    --card-bg: #000000;
+    --divider: #444444;
 
     /* 区块渐变背景 */
     --gradient-hero:     linear-gradient(135deg, #000000, #000000);
@@ -73,7 +73,7 @@ body.dark-theme {
     --gradient-overview: linear-gradient(135deg, #2F1640, #45306A);
     --gradient-compare:  linear-gradient(135deg, #1F2D70, #243B7A);
     --gradient-forum:    linear-gradient(135deg, #2D3345, #4A5A76);
-    --gradient-profile:  linear-gradient(135deg, #693D3D, #8E2828);
+    --gradient-profile:  linear-gradient(135deg, #7b5956, #451e6f);
     --gradient-cta:      linear-gradient(135deg, #200E40, #3A225B);
 
     /* ——— 流光按钮专属变量 ——— */

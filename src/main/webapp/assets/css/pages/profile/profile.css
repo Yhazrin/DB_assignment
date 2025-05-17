@@ -1,0 +1,259 @@
+@import "../../style/variables.css";
+@import "../../utilities.css";
+@import "../../components/header.css";
+@import "../../components/layout.css";
+@import "../../components/cards.css";
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.main-container {
+    display: flex;
+    position: absolute;
+    gap: 1rem;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-sizing: border-box;
+}
+/* ========== Sidebar ========== */
+.profile-sidebar {
+    background: white;
+    width: 17.5rem;                     /* ≈280px */
+    padding: var(--font-size-md);         /* 2rem */
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: var(--radius-md);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.profile-sidebar .sidebar-section {
+    /* 原有样式保持不变 */
+    margin-bottom: var(--spacing-md);
+    background: var(--gradient-profile);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    border-color var(--transition-fast); /* 新增边框过渡 */
+}
+
+/* User Card */
+.profile-sidebar .user-card {
+    text-align: center;
+}
+
+.profile-sidebar .avatar-wrapper {
+    width: var(--spacing-xxl);          /* 6rem (96px) */
+    height: var(--spacing-xxl);
+    margin: 0 auto var(--spacing-md);
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-sidebar .avatar-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Name, Role, Level */
+.profile-sidebar .user-nickname {
+    font-size: var(--font-size-lg);     /* 1.25rem */
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-color);
+}
+
+.profile-sidebar .user-role,
+.profile-sidebar .user-level {
+    font-size: var(--font-size-md);     /* 1rem */
+    color: var(--text-color);
+}
+
+/* Social Stats */
+.profile-sidebar .social-stats {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.profile-sidebar .social-stats .stat-item {
+    font-size: var(--font-size-md);
+    color: var(--text-color);
+}
+
+/* Navigation Links */
+.profile-sidebar .sidebar-nav .nav-item {
+    display: block;
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-size-md);
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: background var(--transition-fast);
+}
+
+.profile-sidebar .sidebar-nav .nav-item:hover,
+.profile-sidebar .sidebar-nav .nav-item.active {
+    background: var(--primary-color);
+    color: var(--text-inverse);
+}
+
+.profile-sidebar .sidebar-nav .danger {
+    color: var(--primary-color);
+}
+
+/* ========== Main Content ========== */
+.profile-main {
+    width: 80%;
+}
+.profile-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-lg);
+    background: var(--divider);
+    border: 1px solid var(--divider);
+    border-radius: var(--radius-md);
+    box-sizing: border-box;
+
+    height: 100%;
+}
+
+/* Breadcrumb area (inherited from forum.css) */
+/* .content-header { … } */
+
+/* ========== Sections ========== */
+.content-section {
+    display: none;
+}
+
+.content-section.active {
+    display: block;
+}
+
+/* Section Title */
+.section-title {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-md);
+    border-bottom: 2px solid var(--divider);
+    padding-bottom: var(--spacing-sm);
+    color: var(--text-color);
+}
+
+/* Basic Info Grid */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+    gap: var(--spacing-md);
+}
+
+.info-item {
+    font-size: var(--font-size-md);
+    color: var(--text-color);
+}
+
+/* Device Management Grid */
+.device-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+    gap: var(--spacing-md);
+}
+
+.device-card {
+    background: var(--card-bg);
+    border: 1px solid var(--divider);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-md);
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.device-card img {
+    width: 60%;
+    height: auto;
+    margin-bottom: var(--spacing-sm);
+}
+
+.device-card h3 {
+    font-size: var(--font-size-md);
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-color);
+}
+
+.device-card p {
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-color);
+}
+
+.device-card .device-btn {
+    display: inline-block;
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: var(--primary-color);
+    color: var(--text-inverse);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: background var(--transition-fast);
+}
+
+.device-card .device-btn:hover {
+    background: var(--secondary-color);
+}
+
+/* Activity Feed */
+.activity-feed {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.activity-item {
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--divider);
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-date {
+    font-size: var(--font-size-sm);
+    color: var(--text-color);
+    margin-top: var(--spacing-xs);
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+    }
+    .profile-sidebar,
+    .profile-content {
+        width: 100%;
+    }
+    .profile-sidebar {
+        margin-bottom: var(--spacing-lg);
+    }
+}

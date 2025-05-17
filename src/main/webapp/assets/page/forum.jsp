@@ -8,10 +8,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Forum - Mobile Phone Info System</title>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/header.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/theme-toggle.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/layout.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/banner.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/forum.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/forum/forum.css">
 </head>
 <body data-context-path="${pageContext.request.contextPath}" data-user-logged-in="${not empty sessionScope.user}">
 <!-- Navigation bar -->
@@ -21,38 +20,19 @@
 <div class="main-container">
   <!-- Sidebar -->
   <aside class="forum-sidebar glass-card">
-    <!-- Category navigation -->
     <section class="sidebar-section">
-      <h2 class="sidebar-title">Categories</h2>
-      <ul class="category-list">
-        <li><a href="#" class="active">All Topics <span class="count">(128)</span></a></li>
-        <li><a href="#">Announcements <span class="count">(5)</span></a></li>
-        <li><a href="#">Technical Discussion <span class="count">(47)</span></a></li>
-        <li><a href="#">Project Sharing <span class="count">(32)</span></a></li>
-        <li><a href="#">Idle Chat <span class="count">(44)</span></a></li>
-      </ul>
-    </section>
-
-    <!-- Quick actions -->
-    <section class="sidebar-section">
-      <h2 class="sidebar-title">Quick Actions</h2>
+      <div class="search-container">
+        <form class="sidebar-search">
+          <input type="text" placeholder="Search topics...">
+        </form>
+      </div>
       <div class="nav-buttons">
-        <button class="btn glass"><i class="fas fa-plus"></i> New Topic</button>
-        <button class="btn glass"><i class="fas fa-user"></i> My Topics</button>
-        <button class="btn glass"><i class="fas fa-bell"></i> Received Replies</button>
+        <button class="search-type-btn"><i class="fas fa-plus"></i> New Topic</button>
+        <button class="search-type-btn"><i class="fas fa-user"></i> My Topics</button>
+        <button class="search-type-btn"><i class="fas fa-bell"></i> Received Replies</button>
       </div>
     </section>
 
-    <!-- Usage guide -->
-    <section class="sidebar-section">
-      <h2 class="sidebar-title">Usage Guide</h2>
-      <ul class="guide-list">
-        <li><a href="#"><i class="fas fa-book"></i> New User Guide</a></li>
-        <li><a href="#"><i class="fas fa-shield-alt"></i> Community Rules</a></li>
-        <li><a href="#"><i class="fas fa-search"></i> Search Topics</a></li>
-        <li><a href="#"><i class="fas fa-question-circle"></i> FAQ</a></li>
-      </ul>
-    </section>
   </aside>
 
   <!-- Main content area -->

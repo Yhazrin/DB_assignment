@@ -6,11 +6,11 @@
   text-align: center;
   background: var(--bg-banner);
   color: white;
-  padding: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   border-radius: 12px;
   overflow: hidden;
   position: relative;
+  height: 20%;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 

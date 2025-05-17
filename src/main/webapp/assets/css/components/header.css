@@ -3,7 +3,7 @@
  */
 
 @import "../style/variables.css";
-
+@import "theme-toggle.css";
 
 /* —— Navbar 核心样式 —— */
 .navbar {
@@ -33,11 +33,20 @@
 
 /* —— 导航链接 —— */
 .navbar .nav-links {
+    position: absolute;      /* 脱离文档流 */
+    top: 50%;                /* 垂直居中 */
+    left: 50%;               /* 水平居中 */
+    transform: translate(-50%, -50%);
+
+    /* 下面这两行可以删掉，原来的 margin/left 会冲突 */
+    margin: 0;
+    /* left: 50%; */         /* 已用绝对定位，不需要再留着 */
+
+    /* 其余样式保持不变 */
     display: flex;
     justify-content: center;
     align-items: center;
     gap: var(--spacing-md);
-    margin: 0 auto;
 }
 
 .navbar .nav-links a {

@@ -1,9 +1,9 @@
-
-@import "../style/variables.css";
-@import "../utilities.css";
-@import "../components/layout.css";
-@import "../components/sidebar.css";
-@import "../components/cards.css";
+@import "../../style/variables.css";
+@import "../../utilities.css";
+@import "../../components/layout.css";
+@import "../../components/sidebar.css";
+@import "../../components/cards.css";
+@import "search-btn.css";
 
 html, body {
   height: 100%;
@@ -11,6 +11,7 @@ html, body {
   padding: 0;
   overflow: hidden;
 }
+
 .main-container {
   display: flex;
   position: absolute;
@@ -36,21 +37,82 @@ html, body {
   justify-content: flex-start;
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
   margin: 0;
-
 }
 
-
-/* —— 原有的分页、帖子列表等子结构保持不变 —— */
-.topic-list,
-.content-header,
-.no-topics,
-.pagination {
-  margin-top: var(--spacing-lg);
+.forum-sidebar {
+  width: 10%;
+  padding: 1rem;
+  position: relative;
 }
 
-/* 例如，让 .topic-list 也用内部分隔 */
-.topic-list > .forum-thread {
-  margin-bottom: var(--spacing-md);
+/* search-btn.css
+ * 简单的搜索框样式
+ * 请把 <form> 元素加上 class="sidebar-search" 后引入此文件
+ */
+
+
+.forum-main {
+  flex: 1;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* —— 融合自 Overview 的侧边栏按钮样式 —— */
+.forum-sidebar .search-type-btn {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  background-color: var(--bg-primary);
+  border: 2px solid rgba(220, 220, 220, 0.8);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  height: 10%;
+  font-weight: 1000;
+  text-align: center;
+  white-space: nowrap;
+  color: var(--text-primary);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  margin-bottom: var(--spacing-sm);
+}
+
+.forum-sidebar .search-type-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color, #2ecc71));
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+  border-radius: 3px 3px 0 0;
+}
+
+.forum-sidebar .search-type-btn:hover {
+  background-color: rgba(230, 230, 230, 0.9);
+  border-color: rgba(200, 200, 200, 0.9);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.forum-sidebar .search-type-btn:hover::after {
+  width: 50%;
+}
+
+.forum-sidebar .search-type-btn.active {
+  background-color: var(--primary-color, #007bff);
+  color: white;
+  border-color: var(--primary-color, #007bff);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.25);
+}
+
+.forum-sidebar .search-type-btn.active::after {
+  width: 90%;
+  background: rgba(255, 255, 255, 0.3);
 }
 
 
@@ -70,21 +132,6 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-}
-
-/* Main area layout */
-.forum-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  box-sizing: border-box;
-}
-
-.forum-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
 }
 
 /* Header: breadcrumbs + sort */
@@ -107,7 +154,7 @@ html, body {
   gap: 0.5rem;
 }
 
-/* Topic list */
+/* 主题列表 */
 .topic-list {
   list-style: none;
   margin: 0;
@@ -123,14 +170,13 @@ html, body {
   gap: 1rem;
   padding: 0.75rem 0;
   box-sizing: border-box;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid var(--divider);
 }
 
 .topic-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
 }
 
 .topic-main {
@@ -147,7 +193,6 @@ html, body {
 
 .topic-last-reply {
   text-align: right;
-  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -177,7 +222,7 @@ html, body {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  display: none; /* toggle via JS */
+  display: none;
   padding: 0.75rem;
   box-sizing: border-box;
 }
@@ -196,3 +241,6 @@ html, body {
     padding: 0.5rem;
   }
 }
+
+
+

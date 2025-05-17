@@ -39,21 +39,6 @@
         </div>
     </div>
 
-    <!-- Table header component -->
-    <div class="table-header-wrapper">
-        <div class="data-header">
-            <div>Product Name</div>
-            <div>Manufacturer</div>
-            <div>Release Date</div>
-            <div>Processor</div>
-            <div>Display</div>
-            <div>Camera</div>
-            <div>Material</div>
-            <div>Price</div>
-        </div>
-    </div>
-
-    <!-- Table body component -->
     <div class="table-body-wrapper">
         <c:forEach var="item" items="${dataList}">
             <div class="data-row">
