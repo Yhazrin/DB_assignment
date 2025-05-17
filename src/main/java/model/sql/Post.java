@@ -13,7 +13,7 @@ public class Post {
     private String content;             // 帖子内容
     private User author;                // 发帖用户
     private LocalDateTime createTime;   // 创建时间
-    private List<Comment> comments;     // 评论
+
 
     public Post() {
         this.createTime = LocalDateTime.now();
@@ -25,7 +25,7 @@ public class Post {
         this.content = content;
         this.author = author;
         this.createTime = LocalDateTime.now();
-        this.comments = new ArrayList<>();
+
     }
 
     // Getter & Setter
@@ -64,11 +64,7 @@ public class Post {
         this.createTime = createTime;
     }
 
-    public List<Comment> getComments() {
-        return comments;
-    }
 
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
+
+
 }
