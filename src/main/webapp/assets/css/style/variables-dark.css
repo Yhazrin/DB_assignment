@@ -65,7 +65,12 @@ body.dark-theme {
     --secondary-color: #4b4b80;
 
     --card-bg: #000000;
-    --divider: #444444;
+    --divider: #c2574d;
+    --card-border : rgba(255, 255, 255, 0.55);
+
+    --btn-primary: #3c3c3c;
+    --btn-border: #ffc5c2;
+    --btn-border-hover: #7089ff;
 
     /* 区块渐变背景 */
     --gradient-hero:     linear-gradient(135deg, #000000, #000000);

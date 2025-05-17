@@ -18,6 +18,11 @@
     --font-size-xxl: 3rem;
     --font-size-hero: 5rem;
 
+    /* Font weights */
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-bold: 700;
+
     /* Border radius */
     --radius-sm: 4px;
     --radius-md: 8px;
@@ -63,15 +68,22 @@
 
     --card-bg: #ffffff;
     --card-profile: #97efca;
-    --divider: #e0e0e0;
+    --card-border: rgba(0, 0, 0, 0.48);
+    --list-bg: #73a4a5;
+    --divider: #ffffff;
+
+    --btn-primary: #ffffff;
+    --btn-activer: #9f9faa;
+    --btn-border: #3d7cf4;
+    --btn-border-hover: #5a1cef;
 
     /* 渐变定义 */
     --gradient-hero:     black;
-    --gradient-features: #768774;
+    --gradient-features: #74806f;
     --gradient-overview: linear-gradient(135deg,#a4b3c9,#B0A8A1);
     --gradient-compare:  #A399B6;
-    --gradient-forum: #bc9094;
-    --gradient-profile:  #a4b3c9;
+    --gradient-forum:  #bc9094;
+    --gradient-profile: #ffffff;
     --gradient-cta:      #B0A8A1;
 
     /* ——— 流光按钮专属变量 ——— */

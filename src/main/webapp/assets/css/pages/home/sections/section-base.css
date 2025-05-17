@@ -60,56 +60,6 @@ h2 {
 
 
 
-@property --border-progress {
-    syntax: "<percentage>";
-    initial-value: 0%;
-    inherits: false;
-}
-
-.section-btn {
-    color: white;
-    font-weight: bold;
-    text-transform: uppercase;
-    padding: 1.5em 1.5em;
-    border-radius: var(--border-radius);
-    background-color: #252525;
-    position: relative;
-    border: none;
-    cursor: pointer;
-    letter-spacing: 0.25em;
-    display: inline-flex; /* 让元素表现为行内 flex 容器 */
-    justify-content: center; /* 水平居中内容 */
-    align-items: center; /* 垂直居中内容 */
-    text-decoration: none;
-    width: 50%;
-    margin: var(--spacing-md) auto 0;
-}
-
-.section-btn::before,
-.section-btn::after {
-    position: absolute;
-    content: "";
-    inset: calc(var(--border-width) * -1);
-    border-radius: inherit;
-    z-index: -1;
-    --border-progress: 0%;
-    transition: --border-progress var(--transition-speed) ease;
-    background-image: conic-gradient(
-            var(--border-color) var(--border-progress),
-            #ffffff00 var(--border-progress),
-            #ffffff00 100%
-    );
-}
-
-.section-btn::after {
-    filter: blur(var(--border-blur));
-}
-
-.section-btn:hover::before,
-.section-btn:hover::after {
-    --border-progress: 100%;
-}
-
 
 /* —— 响应式：在窄屏时垂直排列 —— */
 @media (max-width: 992px) {

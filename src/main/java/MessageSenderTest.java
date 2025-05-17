@@ -9,7 +9,6 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,58 +16,22 @@ public class MessageSenderTest {
 
     public static void main(String[] args) throws IOException {
         String type = "sql";
-        String num = "7";  // 这里可以改成"2", "3", ...测试不同解析
+        String num = "5";  // 这里可以改成"2", "3", ...测试不同解析
 
         String backendUrl = "http://localhost:8080/ServerletFinal_war_exploded/data?type=" + type + "&page=" + num;
-
         String backendUrl1 = "http://localhost:8080/ServerletFinal_war_exploded/data?type=forum&subType=get";
-        String backendUrl2 = "http://localhost:8080/ServerletFinal_war_exploded/data?type=post&subType=get";
+        System.out.println("== Running MessageSenderTest ==");
 
-        /**
         try {
             String json = fetchJsonFromBackend(backendUrl1);
-            System.out.println("Raw JSON Response: ");
-            System.out.println(json);
-            List<Forum> components = parseJsonToForums(json);
+            System.out.println("Raw JSON from backend: " + json);
+            List<Forum> forums = parseJsonToForums(json);
             System.out.println("\n== Parsed Components ==");
-            components.forEach(System.out::println);
-        } catch (Exception e) {
+            forums.forEach(System.out::println);
+        }catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
             e.printStackTrace();
         }
-
-        try {
-            String json = fetchJsonFromBackend(backendUrl2);
-            System.out.println("Raw JSON Response: ");
-            System.out.println(json);
-            List<Post> components = parseJsonToPosts(json);
-            System.out.println("\n== Parsed Components ==");
-            components.forEach(System.out::println);
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
-            e.printStackTrace();
-        }*/
-        String backendUrl3Create = "http://localhost:8080/ServerletFinal_war_exploded/data?type=commit&subType=create";
-        String backendUrl3Get = "http://localhost:8080/ServerletFinal_war_exploded/data?type=commit&subType=get";
-/**
-        try {
-            // Step 1: 创建评论
-
-
-            // Step 2: 获取评论列表
-            String json = fetchJsonFromBackend(backendUrl3Get);
-            System.out.println("Raw JSON Response: ");
-            System.out.println(json);
-            List<Comment> components = parseJsonToComments(json);
-            System.out.println("\n== Parsed Components ==");
-            components.forEach(System.out::println);
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
-            e.printStackTrace();
-        }**/
-
-
-
 
 
         try {
@@ -108,10 +71,9 @@ public class MessageSenderTest {
                     System.out.println("\n== Parsed Suppliers ==");
                     suppliers.forEach(System.out::println);
                     break;
-
-                case 7:
+                    case 7:
                     List<MobilePhone> phones = parseJsonToPhones(json);
-                    System.out.println("\n== Parsed MobilePhone ==");
+                    System.out.println("\n== Parsed Mobile Phones ==");
                     phones.forEach(System.out::println);
                     break;
                 default:
@@ -257,7 +219,7 @@ public class MessageSenderTest {
                 phone.setCore(obj.optString("Core"));
                 phone.setFrequency(obj.optString("frequency"));
                 phone.setRam(obj.optString("ram"));
-                phone.setBatteryCapacity(obj.optString("Battery_Capacity"));
+                phone.setBatteryCapacity(obj.optString("battery_Capacity"));
                 phone.setChargingInfo(obj.optString("Charging_Info"));
                 phone.setRearCamera(obj.optString("Rear_Camera"));
                 phone.setFrontCamera(obj.optString("Front_Camera"));
@@ -337,7 +299,7 @@ public class MessageSenderTest {
         return userList;
     }
 
-
+/**
     private static List<Comment> parseJsonToComments(String json) {
         List<Comment> list = new ArrayList<>();
         try {
@@ -348,11 +310,28 @@ public class MessageSenderTest {
                 String id = obj.optString("id");
                 String content = obj.optString("content");
                 boolean isSub = obj.optBoolean("isSub");
-                String postID = obj.optString("postId");
-                String author = obj.optString("author");
 
+                // 解析作者 User 对象（假设 JSON 有一个嵌套对象 author）
+                JSONObject authorObj = obj.optJSONObject("author");
+                User author = null;
+                if (authorObj != null) {
+                    String userId = authorObj.optString("id");
+                    String username = authorObj.optString("username");
+                    String password = authorObj.optString("password");
+                    String email = authorObj.optString("email");
+                    author = new User(userId, username, password, email);
+                }
 
-
+                // 解析帖子 Post 对象（只用 ID 简化处理）
+                JSONObject postObj = obj.optJSONObject("post");
+                Post post = null;
+                if (postObj != null) {
+                    String postId = postObj.optString("id");
+                    String title = postObj.optString("title");
+                    String contentPost = postObj.optString("content");
+                    // 注意这里如果要更详细，需要解析 Post 的作者等，先简单构造
+                    post = new Post(postId, title, contentPost, null);
+                }
 
                 // 解析父评论（parent），只取 id 来构造一个简单 Comment 对象
                 Comment parent = null;
@@ -363,25 +342,14 @@ public class MessageSenderTest {
                     parent.setId(parentId);
                 }
 
-                // 解析创建时间
-                String createTimeStr = obj.optString("createTime");
-                LocalDateTime createTime = null;
-                if (createTimeStr != null && !createTimeStr.isEmpty()) {
-                    createTime = LocalDateTime.parse(createTimeStr);
-                }
-
-                Comment comment = new Comment(id, content, author, postID, parent, isSub);
-                if (createTime != null) {
-                    comment.setCreateTime(createTime);
-                }
-
+                Comment comment = new Comment(id, content, author, post, parent, isSub);
                 list.add(comment);
             }
         } catch (Exception e) {
             System.err.println("Error parsing Comment JSON: " + e.getMessage());
         }
         return list;
-    }
+    }*/
 
 
 
@@ -424,8 +392,8 @@ public class MessageSenderTest {
     }
 
 
-
-    /**private static List<Post> parseJsonToPosts(String json) {
+/**
+    private static List<Post> parseJsonToPosts(String json) {
         List<Post> list = new ArrayList<>();
         try {
             JSONArray arr = new JSONArray(json);
@@ -474,9 +442,10 @@ public class MessageSenderTest {
                         // 父评论不解析对象，暂设null（可递归实现）
                         Comment parent = null;
 
-                        Comment comment = new Comment(commentId, commentContent, commentAuthor,id, parent, isSub);
+                        Comment comment = new Comment(commentId, commentContent, commentAuthor, post, parent, isSub);
                         comments.add(comment);
                     }
+                    post.setComments(comments);
                 }
 
                 list.add(post);

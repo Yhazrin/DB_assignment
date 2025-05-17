@@ -23,14 +23,13 @@
 <div class="main-container">
 
   <!-- Sidebar -->
-  <aside class="profile-sidebar">
+  <aside class="profile-sidebar glass-card">
     <!-- User Card -->
     <div class="sidebar-section user-card">
       <div class="avatar-wrapper">
         <img src="${user.avatarUrl}" alt="Avatar">
       </div>
-      <h3 class="user-nickname">${user.nickname}</h3>
-      <p class="user-role">Role: ${user.role}</p>
+      <p class="user-nickname">name: ${user.nickname}</p>
       <p class="user-level">Level: ${user.level}</p>
     </div>
 
@@ -43,7 +42,7 @@
 
     <!-- Navigation -->
     <div class="sidebar-section sidebar-nav">
-      <a href="?section=info" class="nav-item ${currentSection == 'info' ? 'active' : ''}">Basic Information</a>
+      <a href="?section=info" class="nav-item ${currentSection == 'info' ? 'active' : ''}">Information</a>
       <a href="?section=devices" class="nav-item ${currentSection == 'devices' ? 'active' : ''}">Devices</a>
       <a href="?section=activity" class="nav-item ${currentSection == 'activity' ? 'active' : ''}">Activity</a>
     </div>
@@ -55,8 +54,7 @@
 
   <!-- Main Content -->
   <main class="profile-main">
-    <div class="profile-content profile-content">
-      <!-- Breadcrumb -->
+    <div class="profile-content glass-card ">
       <div class="content-header">
         <div class="breadcrumb">
           <a href="${pageContext.request.contextPath}/">Home</a> &gt; <span>Profile</span>

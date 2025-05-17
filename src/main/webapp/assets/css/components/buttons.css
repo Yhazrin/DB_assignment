@@ -32,30 +32,110 @@ button {
             border-color var(--transition-fast);
 }
 
-/* —— Pseudo-element Overlay —— */
-.btn::before,
-button::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: inherit;
-    z-index: -1;
-    transition: background var(--transition-fast);
+/* —— Variant: Color Button —— */
+.color-btn {
+
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    white-space: nowrap;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    color: var(--text-primary);
+    background-color: var(--btn-primary);
+    border: 3px solid var(--btn-border);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
 }
 
-/* —— Hover & Active States —— */
-.btn:hover,
-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+/* 按钮底部彩色条 */
+.color-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color, #2ecc71));
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+    border-radius: 3px 3px 0 0;
 }
-.btn:hover::before,
-button:hover::before {
-    background: rgba(255, 255, 255, 0.25);
+
+/* 悬停效果 */
+.color-btn:hover {
+    border-color: var(--btn-border-hover);
+    box-shadow: 0 4px 8px rgba(246, 246, 246, 0.1);
 }
-.btn:active,
-button:active {
-    transform: translateY(1px) scale(0.98);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+.color-btn:hover::after {
+    width: 50%;
+}
+
+/* 激活状态 */
+.color-btn:active {
+    background-color: var(--btn-activer);
+
+    border-color: var(--btn-border);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.25);
+    transform: scale(0.95);
+}
+
+.color-btn.active::after {
+
+    background: rgba(255, 255, 255, 0.3);
+}
+
+
+
+@property --border-progress {
+    syntax: "<percentage>";
+    initial-value: 0%;
+    inherits: false;
+}
+
+.section-btn {
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 1.5em 1.5em;
+    border-radius: var(--border-radius);
+    background-color: #252525;
+    position: relative;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.25em;
+    display: inline-flex; /* 让元素表现为行内 flex 容器 */
+    justify-content: center; /* 水平居中内容 */
+    align-items: center; /* 垂直居中内容 */
+    text-decoration: none;
+    width: 50%;
+    margin: var(--spacing-md) auto 0;
+}
+
+.section-btn::before,
+.section-btn::after {
+    position: absolute;
+    content: "";
+    inset: calc(var(--border-width) * -1);
+    border-radius: inherit;
+    z-index: -1;
+    --border-progress: 0%;
+    transition: --border-progress var(--transition-speed) ease;
+    background-image: conic-gradient(
+            var(--border-color) var(--border-progress),
+            #ffffff00 var(--border-progress),
+            #ffffff00 100%
+    );
+}
+
+.section-btn::after {
+    filter: blur(var(--border-blur));
+}
+
+.section-btn:hover::before,
+.section-btn:hover::after {
+    --border-progress: 100%;
 }

@@ -148,7 +148,7 @@
         <h2>Start Exploring and Find Your Ideal Phone</h2>
         <p>Whether you want to learn about the latest phone specifications or need a detailed comparison of different models, we're here to help you make the most informed choice.</p>
         <div class="cta-buttons">
-            <a href="${pageContext.request.contextPath}assets/page/overview.jsp" class="section-btn">Browse Phones</a>
+            <a href="${pageContext.request.contextPath}/assets/page/overview.jsp" class="section-btn">Browse Phones</a>
             <a href="${pageContext.request.contextPath}/assets/page/compare.jsp" class="section-btn">Compare Specs</a>
             <a href="${pageContext.request.contextPath}/assets/page/forum.jsp" class="section-btn">Join Discussions</a>
         </div>

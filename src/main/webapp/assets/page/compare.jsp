@@ -33,8 +33,8 @@
             </select>
         </div>
         <div class="control-group">
-            <button id="reset-btn" class="secondary glass">Reset</button>
-            <button id="compare-btn" class="primary glass">Start Comparison</button>
+            <button id="reset-btn" class="btn color-btn">Reset</button>
+            <button id="compare-btn" class="btn color-btn">Start Comparison</button>
         </div>
     </div>
 
@@ -80,9 +80,9 @@
     </div>
 
     <div class="action-bar">
-        <button id="print-btn" class="glass">Print Results</button>
-        <button id="share-btn" class="glass">Share Comparison</button>
-        <button id="add-to-favorites" class="glass">Save to Favorites</button>
+        <button id="print-btn" class="btn color-btn">Print Results</button>
+        <button id="share-btn" class="btn color-btn">Share Comparison</button>
+        <button id="add-to-favorites" class="btn color-btn">Save to Favorites</button>
     </div>
 </div>
 

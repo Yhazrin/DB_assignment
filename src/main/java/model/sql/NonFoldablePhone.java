@@ -35,5 +35,14 @@ public class NonFoldablePhone {
     public void setScreen(String screen) {
         this.screen = screen;
     }
+
+    @Override
+    public String toString() {
+        return "NonFoldablePhone{" +
+                "no=" + no +
+                ", model='" + model + '\'' +
+                ", screen='" + screen + '\'' +
+                '}';
+    }
 }
 

@@ -1,157 +1,41 @@
-
-.sidebar-section .sidebar-search {
-  position: sticky;
+/* —— 修复后的搜索框容器 —— */
+.sidebar-search {
+  position: relative;
   z-index: 100;
-  margin-bottom: 1rem;
   width: 100%;
   box-sizing: border-box;
-  height: 10%;
-  background: var(--card-bg);
-  border-radius:var(--radius-xl);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 5px solid rgb(49, 74, 132);
 }
 
-
-/* 输入框样式 */
-.sidebar-section .sidebar-search input {
+/* —— 输入框样式 —— */
+.sidebar-search input {
   width: 100%;
-  padding: 1rem 1.25rem;
-  border: 2px solid var(--divider, #e0e0e0);
-  border-radius: var(--radius-xl);
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--secondary-color);
+  border-radius: var(--radius-md);
   background: var(--card-bg);
   color: var(--text-color);
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 500;
-  transition: all 0.3s ease;
-  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
 }
 
-/* 焦点态 */
-.sidebar-section .sidebar-search input:focus {
+/* —— 焦点态 —— */
+.sidebar-search input:focus {
   border-color: var(--primary-color, #3d7cf4);
   outline: none;
   box-shadow: 0 0 0 3px rgba(61, 124, 244, 0.15);
 }
 
-/* Placeholder 过渡 */
-.sidebar-section .sidebar-search input::placeholder {
+/* —— Placeholder —— */
+.sidebar-search input::placeholder {
   color: #aaa;
   font-weight: 400;
   opacity: 0.8;
   transition: opacity 0.3s ease;
 }
-.sidebar-section .sidebar-search input:focus::placeholder {
+
+.sidebar-search input:focus::placeholder {
   opacity: 0.5;
-}
-
-
-
-/* ============================= */
-/* 放大镜图标容器 —— 方形包裹 */
-/* ============================= */
-.search-icon-container {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 80px;      /* 容器宽度 */
-  height: 80px;     /* 容器高度 */
-  position: relative;
-}
-
-/* ============================= */
-/* 放大镜主体 —— 圆圈 + 手柄 */
-/* ============================= */
-.search-icon {
-  position: relative;
-  width: 43px;
-  height: 43px;
-  color: #fff;      /* 图标颜色，currentColor 可继承父元素 color */
-}
-
-/* —— 圆圈部分 —— */
-.search-icon .circle {
-  width: 100%;
-  height: 100%;
-  border: 15px solid currentColor;
-  border-radius: 50%;
-  background: transparent;
-  transition: all 0.5s ease;
-  box-sizing: border-box;
-}
-
-/* —— 手柄部分 —— */
-.search-icon .handle,
-.search-icon .handle::before,
-.search-icon .handle::after {
-  content: "";
-  position: absolute;
-  background: currentColor;
-  border-radius: 10px;
-  transition: all 0.5s ease;
-  box-sizing: border-box;
-}
-
-/* 主干 */
-.search-icon .handle {
-  width: 45px;
-  height: 15px;
-  top: 68px;
-  left: 43px;
-  transform: rotate(52deg);
-}
-
-/* 伪元素：前/后端效果 */
-.search-icon .handle::before {
-  width: 45px;
-  height: 15px;
-  bottom: 0;
-  right: 0;
-  transform: rotate(0);
-}
-
-.search-icon .handle::after {
-  width: 45px;
-  height: 15px;
-  bottom: 0;
-  right: 0;
-  transform: rotate(0);
-}
-
-/* ============================= */
-/* Hover 效果 —— 动画扩展 */
-/* ============================= */
-.search-icon-container:hover .circle {
-  top: -1px;
-  width: 67px;
-  height: 15px;
-  border-width: 0;
-  border-radius: 20px;
-}
-
-.search-icon-container:hover .handle {
-  top: 50%;
-  left: 56px;
-  width: 25px;
-  height: 15px;
-  margin-top: -7.5px;
-  transform: rotate(0);
-}
-
-.search-icon-container:hover .handle::before {
-  bottom: 11px;
-  transform: rotate(52deg);
-}
-
-.search-icon-container:hover .handle::after {
-  bottom: -11px;
-  transform: rotate(-52deg);
-}
-
-.search-icon-container:hover .handle::before,
-.search-icon-container:hover .handle::after {
-  right: -6px;
-  width: 40px;
 }
