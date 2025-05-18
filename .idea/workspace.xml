@@ -10,26 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d02de210-1416-435c-ad06-f238c6357885" name="更改" comment="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/webapp/assets/css/pages/overview/overview.css&#10;#&#9;src/main/webapp/assets/page/forum.jsp">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/components/layout.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/tool.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MessageSenderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MessageSenderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/layout.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/overview.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/overview.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/profile/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/profile/profile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/style/variables-dark.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/style/variables-dark.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/style/variables-light.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/style/variables-light.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/utilities.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/utilities.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/overview.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/overview.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/theme-toggle.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/theme-toggle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/compare.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/compare.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/forum.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/forum.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/overview.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/overview.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/profile.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/scripts.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/scripts.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/themeToggle.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/themeToggle.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -552,7 +534,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747492461223</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/webapp/assets/css/pages/overview/overview.css&#10;#&#9;src/main/webapp/assets/page/forum.jsp">
+      <option name="closed" value="true" />
+      <created>1747579262203</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1747579262203</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function loadData(page) {
         tbody.innerHTML = "<tr><td colspan='15'>LOADING...</td></tr>";
-        const endpoint = `http://localhost:8080/ServerletFinal_war_exploded/data?type=sql&page=${page}`;
+        const endpoint = `http://localhost:8080/ServerletFinal_war_exploded/data?type=sql&table=smartphones`;
 
         fetch(endpoint)
             .then(function(response) {
