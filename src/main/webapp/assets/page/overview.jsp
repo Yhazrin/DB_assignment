@@ -17,11 +17,13 @@
     <section class="search-bar">
         <input type="text" id="searchInput" class="search-input" placeholder="Enter keywords to filter data..." />
         <section class="filter-toolbar">
-            <button id="btnBrand" class="color-btn">Brand</button>
-            <button id="btnModel" class="color-btn">Model</button>
-            <button id="btnProcessor" class="color-btn">Processor</button>
-            <button id="btnSales" class="color-btn">Sales</button>
-            <button id="btnVendor" class="color-btn">Supplier</button>
+            <button id="btnBrand" class="color-btn" data-page="brands">Brand</button>
+            <button id="btnModel" class="color-btn" data-page="smartphones">Model</button>
+            <button id="btnComponent" class="color-btn" data-page="component">Component</button>
+            <button id="btnSales" class="color-btn" data-page="sales">Sales</button>
+            <button id="btnVendor" class="color-btn" data-page="supplier">Supplier</button>
+
+
             <div class="range-filter" data-field="price">
                 <label>Price:</label>
                 <input type="number" class="min" placeholder="min USD">
