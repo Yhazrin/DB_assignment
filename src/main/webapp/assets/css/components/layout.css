@@ -1,0 +1,36 @@
+@import "../style/variables.css"; /* Ensure CSS variables are available */
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: var(--font-size-md);
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    overflow-x: hidden;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    height: 100%;
+}
+
+.main-container {
+    margin-top: 60px;
+    padding: var(--spacing-md);
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+@media (max-width: 768px) {
+    .profile-main,
+    .forum-main,
+    .compare-main {
+        display: block;
+    }
+}

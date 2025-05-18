@@ -16,12 +16,6 @@
 <jsp:include page="sub/header.jsp"/>
 
 <div class="main-container">
-    <!-- Top banner -->
-    <div class="banner">
-        <h1>Mobile Phone Comparison</h1>
-        <p>Compare specifications between different mobile phone models side by side</p>
-    </div>
-    
     <div class="controls">
         <div class="control-group">
             <label for="numModels">Compare count:</label>

@@ -16,7 +16,7 @@ public class MessageSenderTest {
 
     public static void main(String[] args) throws IOException {
         String type = "sql";
-        String num = "5";  // 这里可以改成"2", "3", ...测试不同解析
+        String num = "7";  // 这里可以改成"2", "3", ...测试不同解析
 
         String backendUrl = "http://localhost:8080/ServerletFinal_war_exploded/data?type=" + type + "&page=" + num;
         String backendUrl1 = "http://localhost:8080/ServerletFinal_war_exploded/data?type=forum&subType=get";
@@ -219,7 +219,7 @@ public class MessageSenderTest {
                 phone.setCore(obj.optString("Core"));
                 phone.setFrequency(obj.optString("frequency"));
                 phone.setRam(obj.optString("ram"));
-                phone.setBatteryCapacity(obj.optString("battery_Capacity"));
+                phone.setBatteryCapacity(obj.optString("Battery_Capacity"));
                 phone.setChargingInfo(obj.optString("Charging_Info"));
                 phone.setRearCamera(obj.optString("Rear_Camera"));
                 phone.setFrontCamera(obj.optString("Front_Camera"));

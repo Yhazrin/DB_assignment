@@ -53,9 +53,10 @@ body.dark-theme {
     /* 背景色 */
     --bg-primary: #000000;
     --bg-inverse: #ffffff;
+    --bg-grey: rgba(93, 93, 93, 0.91);
     --bg-banner: linear-gradient(135deg, #1a1a1a, #2d2d2d);
     /* 文本色 */
-    --text-primary: #ffffff;
+    --text-primary: #ececec;
     --text-inverse: #000000;
     --text-hero: #ffffff;
     --text-color: var(--text-primary);
@@ -65,8 +66,8 @@ body.dark-theme {
     --secondary-color: #4b4b80;
 
     --card-bg: #000000;
-    --divider: #c2574d;
-    --card-border : rgba(255, 255, 255, 0.55);
+    --divider: #515151;
+    --card-border : rgba(255, 255, 255, 0.04);
 
     --btn-primary: #3c3c3c;
     --btn-border: #ffc5c2;

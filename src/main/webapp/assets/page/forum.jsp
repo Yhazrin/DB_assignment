@@ -20,19 +20,15 @@
 <div class="main-container">
   <!-- Sidebar -->
   <aside class="forum-sidebar glass-card">
-    <section class="sidebar-section">
-      <div class="search-container">
-        <form class="sidebar-search">
-          <input type="text" placeholder="Search topics...">
-        </form>
-      </div>
-      <div class="nav-buttons">
-        <button class="search-type-btn"><i class="fas fa-plus"></i> New Topic</button>
-        <button class="search-type-btn"><i class="fas fa-user"></i> My Topics</button>
-        <button class="search-type-btn"><i class="fas fa-bell"></i> Received Replies</button>
-      </div>
-    </section>
-
+    <div class="search-container">
+      <form class="sidebar-search">
+        <input type="text" placeholder="Search topics...">
+      </form>
+    </div>
+    <button class="color-btn">New Topic</button>
+    <button class="color-btn">My Topics</button>
+    <button class="color-btn">Received Replies</button>
+    <div> class="phone-list glass-card"</div>
   </aside>
 
   <!-- Main content area -->

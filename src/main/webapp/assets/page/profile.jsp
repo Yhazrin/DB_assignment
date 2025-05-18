@@ -22,9 +22,7 @@
 <!-- Main layout container: sidebar + content -->
 <div class="main-container">
 
-  <!-- Sidebar -->
   <aside class="profile-sidebar glass-card">
-    <!-- User Card -->
     <div class="sidebar-section user-card">
       <div class="avatar-wrapper">
         <img src="${user.avatarUrl}" alt="Avatar">

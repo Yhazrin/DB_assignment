@@ -2,27 +2,4 @@
  * Global base typography and element styles
  */
 
-@import "style/variables-light.css"; /* Ensure CSS variables are available */
-
-body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    font-size: var(--font-size-md);
-    line-height: 1.6;
-    color: var(--text-primary);
-    background-color: var(--bg-primary);
-    overflow-x: hidden;
-}
-
-/* 全局隐藏滚动条，但保留滚动功能 */
-html, body {
-    margin: 0;
-    padding: 0;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-/* WebKit 浏览器（Chrome/Safari/Edge Chromium）*/
-::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-}
 

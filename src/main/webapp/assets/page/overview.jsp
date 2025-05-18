@@ -8,55 +8,59 @@
     <meta charset="UTF-8">
     <title>Overview - MobilePhoneSys</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/header.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/theme-toggle.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/banner.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/overview/overview.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/overview.css">
 </head>
 <body>
 <jsp:include page="sub/header.jsp"/>
-
-<div class="main-container">
-    <!-- Top banner -->
-    <div class="banner">
-        <h1>Mobile Phone Overview</h1>
-        <p>Browse all mobile phones in our database with detailed specifications</p>
-    </div>
-    
-    <!-- Search bar -->
-    <div class="search-bar">
-        <input type="text" id="searchInput" class="search-input" placeholder="Enter keywords to filter data..." />
-    
-        <!-- Search type selection buttons -->
-        <div class="search-type-buttons">
-            <button class="search-type-btn active" data-index="0">name</button>
-            <button class="search-type-btn" data-index="1">brand</button>
-            <button class="search-type-btn" data-index="2">releaseDate</button>
-            <button class="search-type-btn" data-index="3">processor</button>
-            <button class="search-type-btn" data-index="4">display</button>
-            <button class="search-type-btn" data-index="5">camera</button>
-            <button class="search-type-btn" data-index="6">material</button>
-            <button class="search-type-btn" data-index="7">price</button>
-        </div>
-    </div>
-
-    <div class="table-body-wrapper">
-        <c:forEach var="item" items="${dataList}">
-            <div class="data-row">
-                <div>${item.name}</div>
-                <div>${item.brand}</div>
-                <div><fmt:formatDate value="${item.releaseDate}" pattern="yyyy-MM-dd"/></div>
-                <div>${item.processor}</div>
-                <div>${item.display}</div>
-                <div>${item.camera}</div>
-                <div>${item.material}</div>
-                <div>${item.price}</div>
-            </div>
-        </c:forEach>
-    </div>
-</div>
-
 <jsp:include page="sub/scripts.jsp"/>
-<script src="${pageContext.request.contextPath}/assets/js/overview.js"></script>
+<main class="main-container">
+    <section class="search-bar">
+        <input type="text" id="searchInput" class="search-input" placeholder="Enter keywords to filter data..." />
+        <section class="filter-toolbar">
+            <button id="btnBrand" class="color-btn">Brand</button>
+            <button id="btnModel" class="color-btn">Model</button>
+            <button id="btnProcessor" class="color-btn">Processor</button>
+            <button id="btnSales" class="color-btn">Sales</button>
+            <button id="btnVendor" class="color-btn">Supplier</button>
+            <div class="range-filter" data-field="price">
+                <label>Price:</label>
+                <input type="number" class="min" placeholder="min USD">
+                <span>—</span>
+                <input type="number" class="max" placeholder="max USD">
+                <button class="apply color-btn">OK</button>
+            </div>
+            <div class="range-filter" data-field="battery">
+                <label>Battery:</label>
+                <input type="number" class="min" placeholder="min mAh">
+                <span>—</span>
+                <input type="number" class="max" placeholder="max mAh">
+                <button class="apply color-btn">OK</button>
+            </div>
+        </section>
+    </section>
+   <table id="overview-table" class="overview-table">
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>Model</th>
+            <th>Brand</th>
+            <th>Price (USD)</th>
+            <th>SIM</th>
+            <th>Processor</th>
+            <th>RAM</th>
+            <th>Battery</th>
+            <th>Charging</th>
+            <th>Rear Camera</th>
+            <th>Front Camera</th>
+            <th>Card Slot</th>
+            <th>OS</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- JS 动态插入行 -->
+        </tbody>
+    </table>
+</main>
 
 </body>
 </html>
