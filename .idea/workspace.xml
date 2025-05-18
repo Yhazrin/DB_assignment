@@ -9,17 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d02de210-1416-435c-ad06-f238c6357885" name="更改" comment="你们快来搞项目啊">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/mysql.osA4Bg.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/sys.zb4BAA.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="d02de210-1416-435c-ad06-f238c6357885" name="更改" comment="来吧">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/overview.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/overview.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/overview.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/overview.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -382,7 +374,7 @@
       <workItem from="1746810505643" duration="1880000" />
       <workItem from="1746985199299" duration="76000" />
       <workItem from="1747218531781" duration="4754000" />
-      <workItem from="1747580233060" duration="6713000" />
+      <workItem from="1747580233060" duration="7914000" />
     </task>
     <task id="LOCAL-00001" summary="servlet可以正常工作了！">
       <option name="closed" value="true" />
@@ -496,7 +488,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746800362289</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="来吧">
+      <option name="closed" value="true" />
+      <created>1747587149456</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1747587149456</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -515,7 +515,8 @@
     <MESSAGE value="毁了" />
     <MESSAGE value="更新了项目结构树file" />
     <MESSAGE value="你们快来搞项目啊" />
-    <option name="LAST_COMMIT_MESSAGE" value="你们快来搞项目啊" />
+    <MESSAGE value="来吧" />
+    <option name="LAST_COMMIT_MESSAGE" value="来吧" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

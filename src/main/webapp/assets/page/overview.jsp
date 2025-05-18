@@ -17,10 +17,10 @@
     <section class="search-bar">
         <input type="text" id="searchInput" class="search-input" placeholder="Enter keywords to filter data..." />
         <section class="filter-toolbar">
-            <button id="btnBrand" class="color-btn" data-page="brands">Brand</button>
+            <button id="btnBrand" class="color-btn" data-page="mobile_brands">Brand</button>
             <button id="btnModel" class="color-btn" data-page="smartphones">Model</button>
             <button id="btnComponent" class="color-btn" data-page="component">Component</button>
-            <button id="btnSales" class="color-btn" data-page="sales">Sales</button>
+            <button id="btnSales" class="color-btn" data-page="smartphone_sales_all_countries_1">Sales</button>
             <button id="btnVendor" class="color-btn" data-page="supplier">Supplier</button>
 
 
