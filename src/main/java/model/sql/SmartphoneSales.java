@@ -1,4 +1,4 @@
-package Model;
+package model.sql;
 
 public class SmartphoneSales {
     private String country;
