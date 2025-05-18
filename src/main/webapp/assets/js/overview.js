@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 定义不同表对应的表头字段和列名（按顺序）
     const tableHeaders = {
-        "brands": [
+        "mobile_brands": [
             { key: "Name", label: "Name" },
             { key: "Website", label: "Website" },
             { key: "Country", label: "Country" }
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
             { key: "web", label: "Website" },
             { key: "country", label: "Country" }
         ],
-        "sales": [
+        "smartphone_sales_all_countries_1": [
             { key: "Country", label: "Country" },
             { key: "Brand", label: "Brand" },
             { key: "Column_2015", label: "2015" },
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // 先渲染表头
         renderTableHeader(tableName);
 
-        const endpoint = `http://localhost:8080/ServerletFinal_war_exploded/data?type=sql&page=${tableName}`;
+        const endpoint = `http://localhost:8080/ServerletFinal_war_exploded/data?type=readSQL&table=${tableName}`;
 
 
         fetch(endpoint)
