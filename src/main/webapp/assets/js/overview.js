@@ -52,14 +52,18 @@ document.addEventListener("DOMContentLoaded", function () {
             { key: "Column_2023", label: "2023" },
             { key: "Column_2024", label: "2024" }
         ]
-
-
-
-        // 你可以继续为 processors, sales, suppliers 等表添加定义
-        // "processors": [...],
-        // "sales": [...],
-        // "suppliers": [...]
     };
+
+    const infoText = document.getElementById("infoText");
+
+    const tableDescriptions = {
+        "mobile_brands": "Brand table: showing the name of the mobile phone brand, the official website address and the country it belongs to.",
+        "smartphones": "Mobilephone information table: including parameters such as model, brand, price, configuration and battery.",
+        "component": "Component table: showing the core, frequency and supplier information of various hardware components.",
+        "supplier": "Supplier table: including supplier names, official websites and countries.",
+        "smartphone_sales_all_countries_1": "Sales table (unit: million): presenting the annual sales situation from 2015 to 2024 by country and brand."
+    };
+
 
     function renderTableHeader(tableName) {
         const headers = tableHeaders[tableName];
@@ -81,11 +85,9 @@ document.addEventListener("DOMContentLoaded", function () {
     function loadData(tableName) {
         tbody.innerHTML = "<tr><td colspan='15'>LOADING...</td></tr>";
 
-        // 先渲染表头
         renderTableHeader(tableName);
 
         const endpoint = `http://localhost:8080/ServerletFinal_war_exploded/data?type=readSQL&table=${tableName}`;
-
 
         fetch(endpoint)
             .then(response => {
@@ -111,12 +113,17 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
                     tbody.appendChild(tr);
                 });
+
+                // ✅ 更新信息提示区域
+                infoText.textContent = tableDescriptions[tableName] || "当前显示：未知表格内容。";
             })
             .catch(error => {
                 console.error("加载失败：", error);
                 tbody.innerHTML = `<tr><td colspan='15' style='color:red;'>加载失败：${error.message}</td></tr>`;
+                infoText.textContent = "加载失败，请检查网络连接或表名。";
             });
     }
+
 
     buttons.forEach(button => {
         button.addEventListener("click", () => {

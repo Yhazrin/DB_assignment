@@ -24,6 +24,8 @@
             <button id="btnVendor" class="color-btn" data-page="supplier">Supplier</button>
 
 
+
+
             <div class="range-filter" data-field="price">
                 <label>Price:</label>
                 <input type="number" class="min" placeholder="min USD">
@@ -38,9 +40,19 @@
                 <input type="number" class="max" placeholder="max mAh">
                 <button class="apply color-btn">OK</button>
             </div>
+            <section class="info-display">
+                <div class="scroll-container">
+                    <p id="infoText">这里是滚动提示内容</p>
+                </div>
+            </section>
+
         </section>
+
     </section>
-   <table id="overview-table" class="overview-table">
+
+
+
+    <table id="overview-table" class="overview-table">
         <thead>
         <tr>
             <th>No</th>

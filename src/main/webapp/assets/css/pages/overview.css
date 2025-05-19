@@ -19,12 +19,11 @@
 
 .filter-toolbar {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.7rem;
     align-items: center;
-    margin-top: var(--spacing-md);
-    background: var(--card-bg);
-    border-radius: 12px;
+    flex-wrap: wrap; /* 如果你希望在屏幕小的时候自动换行 */
+    gap: 10px;
+    justify-content: flex-start; /* 所有子项默认左对齐 */
+    position: relative;
 }
 
 /* ...（按钮和range-filter的样式同前）... */
@@ -219,3 +218,48 @@
     font-size: 1.1rem;
     color: #888;
 }
+
+.info-display {
+    display: flex;
+    align-items: center;
+    min-height: 38px;
+    max-width: 250px;
+    padding: 0.3rem 1rem;
+    margin-left: auto;
+    background: var(--btn-primary, #f4f6fb);
+    border: 2px solid var(--btn-border, #c1d3fa);
+    border-radius: var(--radius-xl, 18px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    position: relative;
+    font-size: 0.95rem;
+}
+
+.scroll-container {
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+
+#infoText {
+    display: inline-block;
+    padding-left: 100%; /* 起始位置在最右边 */
+    animation: scrollText 12s linear infinite;
+    white-space: nowrap;
+}
+
+#infoText:hover {
+    animation-play-state: paused;
+    cursor: pointer;
+}
+
+@keyframes scrollText {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
