@@ -41,7 +41,6 @@
     transition: box-shadow 0.3s ease, transform 0.3s ease;
     background: var(--card-bg);
     margin-bottom: 0.5rem;
-    gap:var(--spacing-md);
 }
 
 
@@ -221,18 +220,17 @@
 
 .info-display {
     display: flex;
-    align-items: center;
-    min-height: 38px;
-    max-width: 250px;
-    padding: 0.3rem 1rem;
-    margin-left: auto;
+    flex: 1;                           /* 剩余空间全部占满 */
+    height: 100%;
+    padding: var(--spacing-sm);
     background: var(--btn-primary, #f4f6fb);
     border: 2px solid var(--btn-border, #c1d3fa);
     border-radius: var(--radius-xl, 18px);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
     overflow: hidden;
     position: relative;
-    font-size: 0.95rem;
+    font-size: var(--font-size-lg);
+    line-height: 0;
 }
 
 .scroll-container {
@@ -240,6 +238,8 @@
     overflow: hidden;
     width: 100%;
     position: relative;
+    display: flex;
+    align-items: center;
 }
 
 #infoText {
@@ -263,3 +263,14 @@
     }
 }
 
+.filter-toolbar {
+    margin-top: var(--spacing-md);
+    display: flex;
+    align-items: stretch;              /* 子项高度跟随最高的那一个 */
+    gap: var(--spacing-md, 1rem);      /* 基础间隔，按你的变量或固定值调整 */
+}
+
+.filter-toolbar > * {
+    display: flex;
+    align-items: center;
+}

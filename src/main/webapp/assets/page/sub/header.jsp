@@ -13,6 +13,8 @@
     request.setAttribute("currentPage", currentPage);
 %>
 
+<script>window.CONTEXT_PATH = "${pageContext.request.contextPath}";</script>
+
 <nav class="navbar">
     <div class="logo">MobilePhoneSys</div>
     <div class="nav-links">
@@ -26,12 +28,30 @@
            class="${currentPage == 'forum' ? 'active' : ''}">Forum</a>
         <a href="${pageContext.request.contextPath}/assets/page/profile.jsp"
            class="${currentPage == 'profile' ? 'active' : ''}">Profile</a>
-        <a href="${pageContext.request.contextPath}/assets/page/add_smartphone.jsp"
-           class="${currentPage == 'addsmartphone' ? 'active' : ''}">Add</a>
+
+        <!-- 把登录/欢迎也当成 nav-link -->
+        <c:choose>
+            <c:when test="${empty sessionScope.username}">
+                <a href="${pageContext.request.contextPath}/assets/page/login.jsp"
+                   class="${currentPage == 'login' ? 'active' : ''}">
+                    Log In
+                </a>
+            </c:when>
+            <c:otherwise>
+                <a href="${pageContext.request.contextPath}/assets/page/profile.jsp"
+                   class="${currentPage == 'profile' ? 'active' : ''}">
+                    Welcome, ${sessionScope.username}
+                </a>
+            </c:otherwise>
+        </c:choose>
     </div>
+
     <button class="theme-toggle-btn" type="button">
         <img id="icon-toggle"
              src="${pageContext.request.contextPath}/assets/icons/sn.svg"
              alt="Toggle Theme">
     </button>
+
+    <script src="${pageContext.request.contextPath}/assets/js/header.js"></script>
 </nav>
+
