@@ -31,15 +31,18 @@
                 <input type="number" class="min" placeholder="min USD">
                 <span>—</span>
                 <input type="number" class="max" placeholder="max USD">
-                <button class="apply color-btn">OK</button>
+                <button type="button" class="apply color-btn">OK</button>
+
             </div>
             <div class="range-filter" data-field="battery">
                 <label>Battery:</label>
                 <input type="number" class="min" placeholder="min mAh">
                 <span>—</span>
                 <input type="number" class="max" placeholder="max mAh">
-                <button class="apply color-btn">OK</button>
+                <button type="button" class="apply color-btn">OK</button>
+
             </div>
+
             <section class="info-display">
                 <div class="scroll-container">
                     <p id="infoText">这里是滚动提示内容</p>
@@ -53,29 +56,13 @@
 
 
     <table id="overview-table" class="overview-table">
-        <thead>
-        <tr>
-            <th>No</th>
-            <th>Model</th>
-            <th>Brand</th>
-            <th>Price (USD)</th>
-            <th>SIM</th>
-            <th>Processor</th>
-            <th>RAM</th>
-            <th>Battery</th>
-            <th>Charging</th>
-            <th>Rear Camera</th>
-            <th>Front Camera</th>
-            <th>Card Slot</th>
-            <th>OS</th>
-        </tr>
-        </thead>
+        <thead></thead>
+
         <tbody>
         <!-- JS 动态插入行 -->
         </tbody>
     </table>
 </main>
-<script src="${pageContext.request.contextPath}/assets/js/filter.js"></script>
 
 
 

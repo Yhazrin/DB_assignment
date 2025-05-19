@@ -2,8 +2,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const tbody = document.querySelector("#overview-table tbody");
     const thead = document.querySelector("#overview-table thead");
     const buttons = document.querySelectorAll(".color-btn");
+    const infoText = document.getElementById("infoText");
 
-    // 定义不同表对应的表头字段和列名（按顺序）
+    // 表头定义
     const tableHeaders = {
         "mobile_brands": [
             { key: "Name", label: "Name" },
@@ -54,8 +55,6 @@ document.addEventListener("DOMContentLoaded", function () {
         ]
     };
 
-    const infoText = document.getElementById("infoText");
-
     const tableDescriptions = {
         "mobile_brands": "Brand table: showing the name of the mobile phone brand, the official website address and the country it belongs to.",
         "smartphones": "Mobilephone information table: including parameters such as model, brand, price, configuration and battery.",
@@ -64,12 +63,12 @@ document.addEventListener("DOMContentLoaded", function () {
         "smartphone_sales_all_countries_1": "Sales table (unit: million): presenting the annual sales situation from 2015 to 2024 by country and brand."
     };
 
+    let currentTable = "smartphones"; // 当前表格名
 
     function renderTableHeader(tableName) {
         const headers = tableHeaders[tableName];
         if (!headers) return;
 
-        // 清空原有表头
         thead.innerHTML = "";
         const tr = document.createElement("tr");
 
@@ -82,58 +81,110 @@ document.addEventListener("DOMContentLoaded", function () {
         thead.appendChild(tr);
     }
 
-    function loadData(tableName) {
-        tbody.innerHTML = "<tr><td colspan='15'>LOADING...</td></tr>";
+    function renderResults(data, tableName) {
+        const headers = tableHeaders[tableName];
+        if (!headers) return;
 
-        renderTableHeader(tableName);
-
-        const endpoint = `http://localhost:8080/ServerletFinal_war_exploded/data?type=readSQL&table=${tableName}`;
-
-        fetch(endpoint)
-            .then(response => {
-                if (!response.ok) throw new Error("请求失败：" + response.status);
-                return response.json();
-            })
-            .then(data => {
-                if (!Array.isArray(data)) throw new Error("数据格式错误");
-                tbody.innerHTML = "";
-
-                const headers = tableHeaders[tableName];
-                if (!headers) {
-                    tbody.innerHTML = "<tr><td colspan='15'>无表头定义</td></tr>";
-                    return;
-                }
-
-                data.forEach(row => {
-                    const tr = document.createElement("tr");
-                    headers.forEach(h => {
-                        const td = document.createElement("td");
-                        td.textContent = row[h.key] !== undefined ? row[h.key] : "-";
-                        tr.appendChild(td);
-                    });
-                    tbody.appendChild(tr);
-                });
-
-                // ✅ 更新信息提示区域
-                infoText.textContent = tableDescriptions[tableName] || "当前显示：未知表格内容。";
-            })
-            .catch(error => {
-                console.error("加载失败：", error);
-                tbody.innerHTML = `<tr><td colspan='15' style='color:red;'>加载失败：${error.message}</td></tr>`;
-                infoText.textContent = "加载失败，请检查网络连接或表名。";
+        tbody.innerHTML = "";
+        data.forEach((row, index) => {
+            const tr = document.createElement("tr");
+            headers.forEach(h => {
+                const td = document.createElement("td");
+                // 若字段是 No 且缺失，则补 index+1
+                td.textContent = h.key === "No" && row[h.key] == null ? index + 1 : (row[h.key] ?? "-");
+                tr.appendChild(td);
             });
+            tbody.appendChild(tr);
+        });
     }
 
+    async function fetchData(params, tableName) {
+        tbody.innerHTML = "<tr><td colspan='15'>LOADING...</td></tr>";
+        renderTableHeader(tableName);
+        infoText.textContent = "Loading data for " + tableName + "...";
 
+        try {
+            const url = `http://localhost:8080/ServerletFinal_war_exploded/data?${params.toString()}`;
+            const resp = await fetch(url);
+            const data = await resp.json();
+
+            if (Array.isArray(data)) {
+                renderResults(data, tableName);
+                infoText.textContent = tableDescriptions[tableName] || "Data loaded.";
+            } else {
+                throw new Error("数据格式错误");
+            }
+        } catch (err) {
+            console.error("加载失败：", err);
+            tbody.innerHTML = `<tr><td colspan='15' style='color:red;'>加载失败：${err.message}</td></tr>`;
+            infoText.textContent = "加载失败，请检查网络连接或表名。";
+        }
+    }
+
+    // 按钮切换表格
     buttons.forEach(button => {
         button.addEventListener("click", () => {
             buttons.forEach(btn => btn.classList.remove("active"));
             button.classList.add("active");
 
-            const tableName = button.getAttribute("data-page");
-            loadData(tableName);
+            currentTable = button.getAttribute("data-page");
+            const params = new URLSearchParams();
+            params.append("type", "readSQL");
+            params.append("table", currentTable);
+            fetchData(params, currentTable);
         });
     });
 
-    loadData("smartphones"); // 默认加载智能手机数据
+    // 区间过滤器（只作用于 smartphones 表）
+    document.querySelectorAll(".range-filter .apply").forEach(button => {
+        button.addEventListener("click", (event) => {
+            event.preventDefault();
+
+            const params = new URLSearchParams();
+            params.append("type", "readSQL");
+            params.append("table", "smartphones");
+
+            const filterDiv = button.closest(".range-filter");
+            const field = filterDiv.dataset.field;
+            const min = filterDiv.querySelector(".min").value;
+            const max = filterDiv.querySelector(".max").value;
+
+            if (field === "price") {
+                if (min) {
+                    params.append("key", "price_USD>=");
+                    params.append("value", min);
+                }
+                if (max) {
+                    params.append("key", "price_USD<=");
+                    params.append("value", max);
+                }
+            } else if (field === "battery") {
+                if (min) {
+                    params.append("key", "Battery_Capacity>=");
+                    params.append("value", min);
+                }
+                if (max) {
+                    params.append("key", "Battery_Capacity<=");
+                    params.append("value", max);
+                }
+            }
+
+            const modelValue = document.querySelector("#search-model")?.value;
+            if (modelValue) {
+                params.append("key", "model");
+                params.append("value", modelValue);
+            }
+
+            currentTable = "smartphones"; // 强制切回手机表
+            buttons.forEach(btn => btn.classList.remove("active"));
+            document.querySelector('[data-page="smartphones"]')?.classList.add("active");
+            fetchData(params, currentTable);
+        });
+    });
+
+    // 默认加载
+    const initParams = new URLSearchParams();
+    initParams.append("type", "readSQL");
+    initParams.append("table", currentTable);
+    fetchData(initParams, currentTable);
 });
