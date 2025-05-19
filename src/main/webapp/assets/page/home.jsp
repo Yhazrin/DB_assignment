@@ -75,7 +75,7 @@
                 <li><i class="fas fa-check-circle"></i> High-quality images</li>
                 <li><i class="fas fa-check-circle"></i> Multi-dimensional filtering</li>
             </ul>
-            <a href="${pageContext.request.contextPath}assets/page/overview.jsp" class="section-btn">Explore Database</a>
+            <a href="${pageContext.request.contextPath}/assets/page/overview.jsp" class="section-btn">Explore Database</a>
         </div>
         <div class="section-image">
             <img src="${pageContext.request.contextPath}/assets/images/overview-demo.svg" alt="Phone Database Browsing">
@@ -138,7 +138,7 @@
                 <li><i class="fas fa-check-circle"></i> Save comparison results</li>
                 <li><i class="fas fa-check-circle"></i> Personalized recommendations</li>
             </ul>
-            <a href="${pageContext.request.contextPath}assets/page/profile.jsp" class="section-btn">My Profile</a>
+            <a href="${pageContext.request.contextPath}/assets/page/profile.jsp" class="section-btn">My Profile</a>
         </div>
     </div>
 </section>

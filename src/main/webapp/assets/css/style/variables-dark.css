@@ -66,6 +66,7 @@ body.dark-theme {
     --secondary-color: #4b4b80;
 
     --card-bg: #000000;
+    --card-bg2: rgba(49, 49, 49, 0.85);
     --divider: #515151;
     --card-border : rgba(255, 255, 255, 0.04);
 

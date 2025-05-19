@@ -6,7 +6,7 @@
     <title>Login – Mobile Phone InfoHub</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- 通用样式 -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/theme-toggle.css">
 
@@ -15,19 +15,13 @@
 </head>
 <body>
 <jsp:include page="sub/header.jsp"/>
-
+<jsp:include page="sub/scripts.jsp"/>
 <div class="container">
     <div class="login-card">
-        <!-- 可选：项目 Logo -->
-        <div class="logo">
-            <img src="${pageContext.request.contextPath}/assets/images/logo.svg" alt="Site Logo">
-        </div>
 
-        <!-- 标题 -->
-        <h2>Login</h2>
+        <h2>WELCOME.</h2>
 
-        <!-- 表单 -->
-        <form action="${pageContext.request.contextPath}/login" method="post" class="login-form">
+        <form id="loginForm" class="login-form" autocomplete="off">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input id="username"
@@ -45,18 +39,19 @@
                        placeholder="Enter your password"
                        required>
             </div>
-
-            <!-- 主按钮 -->
-            <button type="submit" class="btn-primary">Login</button>
+            <button type="submit" class="login-btn">LOGIN</button>
         </form>
+        <div id="loginError" style="color: #d32f2f; text-align:center; margin-top:10px;"></div>
+
 
         <!-- 底部链接 -->
         <div class="footer">
-            <p>Don’t have an account?
-                <a href="${pageContext.request.contextPath}/assets/page/register.jsp">Register</a>
+            <p>Don't have an account?
+                <a href="${pageContext.request.contextPath}/assets/page/register.jsp">REGISTER</a>
             </p>
         </div>
     </div>
 </div>
+
 </body>
 </html>

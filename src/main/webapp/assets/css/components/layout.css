@@ -1,5 +1,6 @@
 @import "../style/variables.css"; /* Ensure CSS variables are available */
 
+
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     font-size: var(--font-size-md);

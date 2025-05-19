@@ -1,8 +1,8 @@
-@import "../../style/variables.css";
-@import "../../utilities.css";
-@import "../../components/header.css";
-@import "../../components/layout.css";
-@import "../../components/cards.css";
+@import "../style/variables.css";
+@import "../utilities.css";
+@import "../components/header.css";
+@import "../components/layout.css";
+@import "../components/cards.css";
 
 html, body {
     height: 100%;

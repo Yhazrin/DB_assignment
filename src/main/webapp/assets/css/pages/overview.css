@@ -80,7 +80,7 @@
 .search-results-count {
     margin-top: 15px;
     text-align: right;
-    color: var(--text-secondary, #666);
+    color: var(--text-primary);
     font-size: 14px;
     font-weight: 500;
     background: rgba(240, 240, 240, 0.5);

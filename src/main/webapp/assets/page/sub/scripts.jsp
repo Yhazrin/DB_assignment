@@ -10,6 +10,8 @@
 <script src="${pageContext.request.contextPath}/assets/js/theme-toggle.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/overview.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/tool.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/background.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/login.js"></script>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!-- 通用脚本 - 包含在所有页面底部 -->
 

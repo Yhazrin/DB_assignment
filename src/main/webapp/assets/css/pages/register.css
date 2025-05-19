@@ -7,29 +7,14 @@
     margin: 0;
     padding: 0;
 }
-/*html, body {*/
-/*    width: 100%;*/
-/*    height: 100%;*/
-/*    font-family: 'Montserrat', sans-serif;*/
-/*    font-size: 1rem;*/
-/*    font-weight: 800;*/
-/*    background: #f9f9f9;*/
-/*    color: var(--text-primary);*/
-/*}*/
-
-body {
-    height: 100vh;
-    margin: 0;
-    background-image:
-            linear-gradient(115deg, rgb(211 255 215), rgb(42, 66, 116)),
-            radial-gradient(90% 100% at calc(50% + var(--posX)) calc(0% + var(--posY)), rgb(200 200 200), rgb(84, 33, 139)),
-            radial-gradient(100% 100% at calc(80% - var(--posX)) calc(0% - var(--posY)), rgb(82, 181, 153), rgb(164, 31, 31)),
-            radial-gradient(150% 210% at calc(100% + var(--posX)) calc(0% + var(--posY)), rgb(255, 197, 194), rgb(67, 71, 160)),
-            radial-gradient(100% 100% at calc(100% - var(--posX)) calc(30% - var(--posY)), rgb(255 77 0), rgb(0 200 255)),
-            linear-gradient(50deg, rgb(255 0 0), rgb(120 86 255));
-    background-blend-mode: overlay, overlay, difference, difference, difference, normal;
+html, body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--text-primary);
 }
-
 
 /*—— 容器 ——*/
 .container {
@@ -37,10 +22,11 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    /*background: var(--bg-primary);*/
 }
 
-/*—— 登录卡片 ——*/
-.login-card {
+/*—— 注册卡片 ——*/
+.register-card {
     width: 20%;
     max-width: 90%;
     background: var(--card-bg2);
@@ -52,7 +38,7 @@ body {
     text-align: center;
 }
 
-.login-card h2 {
+.register-card h2 {
     font-size: var(--font-size-xl);
     margin-bottom: 1rem;
     font-weight: 600;
@@ -106,17 +92,17 @@ body {
 }
 
 /*—— 表单 ——*/
-.login-form .form-group {
+.register-form .form-group {
     margin-bottom: 1rem;
     text-align: left;
 }
-.login-form label {
+.register-form label {
     display: block;
     font-size: 0.9rem;
     margin-bottom: 0.25rem;
     color: var(--text-primary);
 }
-.login-form input {
+.register-form input {
     width: 100%;
     padding: 0.75rem;
     font-size: 1rem;
@@ -124,11 +110,11 @@ body {
     border-radius: var(--radius-md);
     transition: border-color 0.2s;
 }
-.login-form input:focus {
+.register-form input:focus {
     border-color: #888;
     outline: none;
 }
-.login-form input::placeholder {
+.register-form input::placeholder {
     color: #aaa;
 }
 
@@ -144,7 +130,7 @@ body {
 }
 
 /*—— 主按钮 ——*/
-.login-btn {
+.register-btn {
     display: block;
     width: 100%;
     padding: 0.75rem;
@@ -158,19 +144,20 @@ body {
     cursor: pointer;
     transition: background 0.2s ease;
 }
-.login-btn:hover {
+.register-btn:hover {
     background: var(--secondary-color);
 }
 
 /*—— 底部链接 ——*/
-.login-card .footer {
+.register-card .footer {
     margin-top: 1rem;
     font-size: 0.9rem;
 }
-.login-card .footer a {
+.register-card .footer a {
     color: #007bff;
     text-decoration: none;
 }
-.login-card .footer a:hover {
+.register-card .footer a:hover {
     text-decoration: underline;
 }
+

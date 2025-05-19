@@ -13,7 +13,7 @@
   <meta charset="UTF-8">
   <title>User Profile</title>
   <!-- Theme variables -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/profile/profile.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/profile.css">
 </head>
 <body>
 <!-- Global header -->
@@ -46,7 +46,8 @@
     </div>
 
     <div class="sidebar-section">
-      <a href="${pageContext.request.contextPath}/logout" class="nav-item danger">Logout</a>
+      <a href="${pageContext.request.contextPath}/assets/page/login.jsp" class="nav-item danger">Logout</a>
+
     </div>
   </aside>
 
@@ -100,5 +101,6 @@
 
 </div>
 <jsp:include page="sub/scripts.jsp"/>
+<script src="${pageContext.request.contextPath}/assets/js/background.js"></script>
 </body>
 </html>
