@@ -1,0 +1,201 @@
+# ��ĿĿ¼�ṹ���ļ�����˵��
+
+**C:\USERS\20544\DESKTOP\SE\SEP\ASSIGNMENT\DB\_ASSIGNMENT**
+
+```text
+��  .gitignore�����ܣ�ָ�� Git ���Թ���
+��  list.txt�����ܣ���Ų�������ĿĿ¼�ṹ��
+��  mvnw�����ܣ�UNIX �����µ� Maven Wrapper �����ű���
+��  mvnw.cmd�����ܣ�Windows �����µ� Maven Wrapper �����ű���
+��  pom.xml�����ܣ�Maven �������ã�������Ŀ����������
+����.idea ��IntelliJ IDEA ��Ŀ����Ŀ¼��
+��  ��  compiler.xml�����ܣ�IDEA ���������ã�
+��  ��  dataSources.local.xml�����ܣ��������ݿ��������ã�
+��  ��  dataSources.xml�����ܣ��������ݿ��������ã�
+��  ��  encodings.xml�����ܣ��ļ�����淶��
+��  ��  jarRepositories.xml�����ܣ�Maven �ֿ�Դ���ã�
+��  ��  misc.xml�����ܣ�������Ŀ���ã�
+��  ��  vcs.xml�����ܣ��汾����ϵͳӳ�䣩
+��  ��  webContexts.xml�����ܣ�Web Ӧ�����������ã�
+��  ��  workspace.xml�����ܣ�IDE ������״̬���棩
+����.junie
+��      guidelines.md�����ܣ���Ŀ����ָ���ĵ���
+����.mvn
+��  ����wrapper
+��          maven-wrapper.jar�����ܣ�Maven Wrapper ���ĳ���
+��          maven-wrapper.properties�����ܣ�Wrapper ���ã�
+����src
+��  ����main
+��  ��  ����java
+��  ��  ��  ����model
+��  ��  ��  ��      ForumCategory.java�����ܣ�������̳����ʵ�壩
+��  ��  ��  ��      ForumPost.java�����ܣ���װ��̳�������ݣ�
+��  ��  ��  ��      ForumTopic.java�����ܣ���ʾ��̳����ʵ�壩
+��  ��  ��  ��      MobilePhone.java�����ܣ������ֻ��ͺţ����ڶԱȣ�
+��  ��  ��  ����servlet
+��  ��  ��          CompareServlet.java�����ܣ������ֻ��Ա�����
+��  ��  ��          ForumServlet.java�����ܣ�������̳��ҳ�����ݣ�
+��  ��  ��          HomeServlet.java�����ܣ�������ҳչʾ���ݣ�
+��  ��  ��          LoginServlet.java�����ܣ������û���¼�߼���
+��  ��  ��          LogoutServlet.java�����ܣ�ִ���û��ǳ����̣�
+��  ��  ��          OverviewServlet.java�����ܣ��������ݿ������Ϣ��
+��  ��  ��          useRegisterServlet.java�����ܣ������û�ע������
+��  ��  ����resources
+��  ��  ��      50_Sample_Overview_Data.csv�����ܣ�����ҳ��ʾ������Դ��
+��  ��  ��      db.properties�����ܣ����ݿ����Ӳ������ã�
+��  ��  ����webapp
+��  ��      ��  compare.jsp�����ܣ��ֻ��Ա�ҳ��ģ�壩
+��  ��      ��  forum.jsp�����ܣ���̳��ҳ��ģ�壩
+��  ��      ��  home.jsp�����ܣ���ҳչʾģ�壩
+��  ��      ��  login.jsp�����ܣ��û���¼��ҳ�棩
+��  ��      ��  overview.jsp�����ܣ����ݿ����ҳ��ģ�壩
+��  ��      ��  profile.jsp�����ܣ��û�������Ϣҳģ�壩
+��  ��      ��  register.jsp�����ܣ��û�ע���ҳ�棩
+��  ��      ����assets
+��  ��      ��  ����css
+��  ��      ��  ��      base.css�����ܣ�ȫ�ֻ�����ʽ��
+��  ��      ��  ��      layout.css�����ܣ�ҳ�沼����ʽ��
+��  ��      ��  ��      model.css�����ܣ�ģ��չʾ��ʽ��
+��  ��      ��  ��      reset.css�����ܣ��������ʽ���ã�
+��  ��      ��  ��      utilities.css�����ܣ����ù�������ʽ��
+��  ��      ��  ��      variables.css�����ܣ�CSS �Զ��������
+��  ��      ��  ��  ����components
+��  ��      ��  ��  ��      banner.css�����ܣ�Banner �����ʽ��
+��  ��      ��  ��  ��      buttons.css�����ܣ���ť�����ʽ��
+��  ��      ��  ��  ��      cards.css�����ܣ���Ƭ�����ʽ��
+��  ��      ��  ��  ��      forms.css�����ܣ��������ʽ��
+��  ��      ��  ��  ��      header.css�����ܣ�ҳ��ͷ����ʽ��
+��  ��      ��  ��  ��      sidebar.css�����ܣ��������ʽ��
+��  ��      ��  ��  ��      theme-toggle.css�����ܣ������л���ť��ʽ��
+��  ��      ��  ��  ����pages
+��  ��      ��  ��  ��      compare.css�����ܣ��Ա�ҳר����ʽ��
+��  ��      ��  ��  ��      forum.css�����ܣ���̳ҳ����ʽ��
+��  ��      ��  ��  ��      home.css�����ܣ���ҳ��ʽ��
+��  ��      ��  ��  ��      overview.css�����ܣ�����ҳ��ʽ��
+��  ��      ��  ��  ��      pre.css�����ܣ�Ԥ��ҳ����ʽ��
+��  ��      ��  ��  ��      profile.css�����ܣ���������ҳ��ʽ��
+��  ��      ��  ��  ����sections
+��  ��      ��  ��          common.css�����ܣ�ͨ��������ʽ��
+��  ��      ��  ��          cta.css�����ܣ��ж���������ʽ��
+��  ��      ��  ��          features.css�����ܣ�����������ʽ��
+��  ��      ��  ��          hero.css�����ܣ�Ӣ������ʽ��
+��  ��      ��  ��          tech.css�����ܣ���������ʽ��
+��  ��      ��  ����data
+��  ��      ��  ��      50_Sample_Overview_Data.csv�����ܣ�����ʾ�����ݣ�
+��  ��      ��  ����icons
+��  ��      ��  ��      sn.svg�����ܣ�վ��ͼ�꣩
+��  ��      ��  ����images
+��  ��      ��  ��      hero-phones.svg�����ܣ�Ӣ����ʸ��ͼ��
+��  ��      ��  ��      hero-phones1.svg�����ܣ�����Ӣ��ͼ��
+��  ��      ��  ��      hero.png�����ܣ�Ӣ����λͼ��
+��  ��      ��  ��      mi9.png�����ܣ��ֻ��ͺ�ʾ��ͼ��
+��  ��      ��  ��      MIX3.png�����ܣ��ֻ��ͺ�ʾ��ͼ��
+��  ��      ��  ����js
+��  ��      ��  ��      compare-init.js�����ܣ��Ա�ҳ��ʼ���ű���
+��  ��      ��  ��      compare.js�����ܣ��Ա�ҳ���߼�ʵ�֣�
+��  ��      ��  ��      forum.js�����ܣ���̳ҳ�潻���߼���
+��  ��      ��  ��      home.js�����ܣ���ҳ�ű���
+��  ��      ��  ��      overview.js�����ܣ�����ҳ�ű���
+��  ��      ��  ��      profile.js�����ܣ�����ҳ�ű���
+��  ��      ��  ��      theme-toggle.js�����ܣ������л��߼���
+��  ��      ��  ����videos
+��  ��      ��          hero.mp4�����ܣ�Ӣ����������Ƶ��
+��  ��      ����sub
+��  ��      ��      header.jsp�����ܣ�ͨ��ҳüƬ�Σ�
+��  ��      ��      scripts.jsp�����ܣ�ͨ�ýű�Ƭ�Σ�
+��  ��      ��      themeToggle.jsp�����ܣ������л�Ƭ�Σ�
+��  ��      ����WEB-INF
+��  ��          ��  web.xml�����ܣ�Servlet ӳ�估��ȫ���ã�
+��  ��          ����data
+��  ��          ��      50_Sample_Overview_Data.csv�����ܣ�����ʱ������ʾ����
+��  ��          ��      phones.csv�����ܣ��ֻ��ͺ�����Դ��
+��  ��          ����lib
+��  ��                  mysql-connector-j-8.0.33.jar�����ܣ�MySQL JDBC ������
+��  ����test
+��      ����java�����ܣ�JUnit ��Ԫ���Դ���Ŀ¼��
+��      ����resources�����ܣ�������Դ�ļ�Ŀ¼��
+����target
+    ��  DB_assignment.war�����ܣ���Ŀ�������� WAR �ļ���
+    ����classes
+    ��  ��  50_Sample_Overview_Data.csv�����ܣ��������Դ��
+    ��  ��  db.properties�����ܣ���������ݿ����ã�
+    ��  ����model�����ܣ�������ʵ���ࣩ
+    ��  ��      ForumCategory.class
+    ��  ��      ForumPost.class
+    ��  ��      ForumTopic.class
+    ��  ��      MobilePhone.class
+    ��  ����servlet�����ܣ������� Servlet �ࣩ
+    ��          CompareServlet.class
+    ��          ForumServlet.class
+    ��          HomeServlet.class
+    ��          LoginServlet.class
+    ��          LogoutServlet.class
+    ��          OverviewServlet.class
+    ��          useRegisterServlet.class
+    ����DB_assignment�����ܣ�չ���� Web Ӧ��Ŀ¼��
+    ����generated-sources�����ܣ�Maven ע�⴦��������Դ�ļ���
+    ����maven-archiver�����ܣ�Maven ���Ԫ���ݣ�
+    ����maven-status�����ܣ�Maven ����״̬��¼��
+    ����test-classes�����ܣ������Ĳ���������Դ��
+```
+
+```jsp
+<%@ include file="sub/header.jsp" %>    // [组件] 头部导航栏：包含网站Logo、主菜单和登录/注册按钮
+
+<main>
+  <!-- Hero 区块 -->
+  <section class="hero section-fullwidth">
+    <div class="section-container">
+      <div class="hero-content">  // [组件] Hero 文本区：展示主标题、简介和行动按钮
+        <div class="hero-headings">
+          <h1 class="hero-title-1 gradient-title">品牌名</h1>        // 主标题
+          <h2 class="hero-title-2 gradient-title">宣传语</h2>        // 副标题
+        </div>
+        <p>网站简介，用一两句话突出核心卖点。</p>               // 介绍文本
+        <div class="hero-buttons">
+          <a href="#features" class="btn btn-primary">了解更多</a> // 行动按钮
+          <a href="#compare" class="btn btn-secondary">立即对比</a>
+        </div>
+      </div>
+      <div class="hero-image">                // [组件] Hero 媒体区：展示背景视频或图片
+        <div class="hero-video-card">       // 视频卡片组件
+          <video src="videos/hero.mp4" autoplay muted loop></video>  // 背景视频
+        </div>
+        <div class="hero-card-connector"></div> // 连接器：视觉过渡元素
+      </div>
+    </div>
+  </section>
+
+  <!-- Features 区块 -->
+  <section id="features" class="features section-container">
+    <h3>产品特点</h3>                 // 功能区标题
+    <div class="feature-list">      // 特点列表组件
+      <div class="feature-item">  // 单个特点卡片
+        <img src="icons/fast.svg" alt="快速">  // 图标
+        <h4>高速性能</h4>               // 特点标题
+        <p>描述性能优势的简短文本。</p> // 特点说明
+      </div>
+      <!-- 可复制多组 feature-item -->
+    </div>
+  </section>
+
+  <!-- Compare 卡片区 -->
+  <section id="compare" class="cards section-container">
+    <h3>手机对比</h3>               // 对比模块标题
+    <div class="card-list">        // 卡片列表容器
+      <div class="compare-card">  // 单个对比卡片组件
+        <img src="images/mi9.png" alt="Mi 9">    // 手机图片
+        <h4>Mi 9</h4>                              // 机型名称
+        <ul class="spec-list">                  // 规格列表组件
+          <li>处理器：Snapdragon 855</li>
+          <li>内存：6GB</li>
+          <li>价格：¥2999</li>
+        </ul>
+      </div>
+      <!-- 继续添加 compare-card -->
+    </div>
+  </section>
+</main>
+
+<%@ include file="sub/scripts.jsp" %>  // [组件] 公共脚本：引入全局JS逻辑，包括主题切换、交互监听等
+```

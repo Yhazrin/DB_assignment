@@ -1,0 +1,1187 @@
+Index: src/main/webapp/assets/js/overview.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/**\r\n * overview.js - 处理手机概览页面的搜索和筛选功能\r\n */\r\ndocument.addEventListener('DOMContentLoaded', function() {\r\n    const searchInput = document.getElementById('searchInput');\r\n    const dataRows = document.querySelectorAll('.data-row');\r\n    const searchTypeButtons = document.querySelectorAll('.search-type-btn');\r\n\r\n    // 当前搜索列索引，默认为产品名称(0)\r\n    let currentSearchIndex = 0;\r\n    \r\n    // 为搜索类型按钮添加点击事件\r\n    searchTypeButtons.forEach(button => {\r\n        button.addEventListener('click', function() {\r\n            // 移除所有按钮的活动类\r\n            searchTypeButtons.forEach(btn => btn.classList.remove('active'));\r\n            // 给点击的按钮添加活动类\r\n            this.classList.add('active');\r\n            // 更新当前搜索列索引\r\n            currentSearchIndex = parseInt(this.dataset.index);\r\n            // 重新执行搜索\r\n            performSearch();\r\n        });\r\n    });\r\n\r\n    // 防抖函数定义\r\n    function debounce(func, wait) {\r\n        let timeout;\r\n        return function executedFunction(...args) {\r\n            const later = () => {\r\n                clearTimeout(timeout);\r\n                func(...args);\r\n            };\r\n            clearTimeout(timeout);\r\n            timeout = setTimeout(later, wait);\r\n        };\r\n    }\r\n    \r\n    // 搜索逻辑函数\r\n    function performSearch() {\r\n        const searchTerm = searchInput.value.toLowerCase().trim();\r\n\r\n        let visibleCount = 0;\r\n        dataRows.forEach(row => {\r\n            // 获取当前选择列的文本\r\n            const cellText = row.children[currentSearchIndex].textContent.toLowerCase();\r\n            \r\n            // 如果搜索词出现在选定的列中，则显示行\r\n            if (cellText.includes(searchTerm)) {\r\n                row.style.display = '';\r\n                visibleCount++;\r\n            } else {\r\n                row.style.display = 'none';\r\n            }\r\n        });\r\n\r\n        // 显示结果数量\r\n        const resultCountEl = document.querySelector('.search-results-count') || document.createElement('div');\r\n        resultCountEl.className = 'search-results-count';\r\n        resultCountEl.textContent = `找到 ${visibleCount} 条结果`;\r\n        \r\n        // 如果结果计数元素不在DOM中，则添加它\r\n        if (!resultCountEl.parentNode) {\r\n            document.querySelector('.search-bar').appendChild(resultCountEl);\r\n        }\r\n    }\r\n\r\n    // 应用带防抖的搜索逻辑\r\n    searchInput.addEventListener('input', debounce(performSearch, 300));\r\n});\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/assets/js/overview.js b/src/main/webapp/assets/js/overview.js
+--- a/src/main/webapp/assets/js/overview.js	(revision 6607e907c1273314449e70321ff7f1182e8e3cb3)
++++ b/src/main/webapp/assets/js/overview.js	(date 1747572450516)
+@@ -1,70 +1,54 @@
+-/**
+- * overview.js - 处理手机概览页面的搜索和筛选功能
+- */
+-document.addEventListener('DOMContentLoaded', function() {
+-    const searchInput = document.getElementById('searchInput');
+-    const dataRows = document.querySelectorAll('.data-row');
+-    const searchTypeButtons = document.querySelectorAll('.search-type-btn');
+-
+-    // 当前搜索列索引，默认为产品名称(0)
+-    let currentSearchIndex = 0;
+-    
+-    // 为搜索类型按钮添加点击事件
+-    searchTypeButtons.forEach(button => {
+-        button.addEventListener('click', function() {
+-            // 移除所有按钮的活动类
+-            searchTypeButtons.forEach(btn => btn.classList.remove('active'));
+-            // 给点击的按钮添加活动类
+-            this.classList.add('active');
+-            // 更新当前搜索列索引
+-            currentSearchIndex = parseInt(this.dataset.index);
+-            // 重新执行搜索
+-            performSearch();
+-        });
+-    });
++document.addEventListener("DOMContentLoaded", function () {
++    const tbody = document.querySelector("#overview-table tbody");
++    const buttons = document.querySelectorAll(".color-btn");
+ 
+-    // 防抖函数定义
+-    function debounce(func, wait) {
+-        let timeout;
+-        return function executedFunction(...args) {
+-            const later = () => {
+-                clearTimeout(timeout);
+-                func(...args);
+-            };
+-            clearTimeout(timeout);
+-            timeout = setTimeout(later, wait);
+-        };
+-    }
+-    
+-    // 搜索逻辑函数
+-    function performSearch() {
+-        const searchTerm = searchInput.value.toLowerCase().trim();
++    function loadData(page) {
++        tbody.innerHTML = "<tr><td colspan='15'>LOADING...</td></tr>";
++        const endpoint = `http://localhost:8080/ServerletFinal_war_exploded/data?type=sql&page=${page}`;
++
++        fetch(endpoint)
++            .then(function(response) {
++                if (!response.ok) throw new Error("请求失败：" + response.status);
++                return response.json();
++            })
++            .then(function(data) {
++                if (!Array.isArray(data)) throw new Error("数据格式错误");
++                tbody.innerHTML = "";
++                data.forEach(function(phone) {
++                    const tr = document.createElement("tr");
++                    tr.innerHTML =
++                        "<td>" + (phone.No || "") + "</td>" +
++                        "<td>" + (phone.model || "-") + "</td>" +
++                        "<td>" + (phone.brand || "-") + "</td>" +
++                        "<td>" + (phone.price_USD || "-") + "</td>" +           // ✅ 注意此处
++                        "<td>" + (phone.sim || "-") + "</td>" +
++                        "<td>" + (phone.processor_name || "-") + "</td>" +      // ✅ 注意此处// ✅ 注意大小写
++                        "<td>" + (phone.ram || "-") + "</td>" +
++                        "<td>" + (phone.Battery_Capacity || "-") + "</td>" +    // ✅ 注意下划线
++                        "<td>" + (phone.Charging_Info || "-") + "</td>" +
++                        "<td>" + (phone.Rear_Camera || "-") + "</td>" +
++                        "<td>" + (phone.Front_Camera || "-") + "</td>" +
++                        "<td>" + (phone.card || "-") + "</td>" +
++                        "<td>" + (phone.os || "-") + "</td>";
+ 
+-        let visibleCount = 0;
+-        dataRows.forEach(row => {
+-            // 获取当前选择列的文本
+-            const cellText = row.children[currentSearchIndex].textContent.toLowerCase();
+-            
+-            // 如果搜索词出现在选定的列中，则显示行
+-            if (cellText.includes(searchTerm)) {
+-                row.style.display = '';
+-                visibleCount++;
+-            } else {
+-                row.style.display = 'none';
+-            }
+-        });
+-
+-        // 显示结果数量
+-        const resultCountEl = document.querySelector('.search-results-count') || document.createElement('div');
+-        resultCountEl.className = 'search-results-count';
+-        resultCountEl.textContent = `找到 ${visibleCount} 条结果`;
+-        
+-        // 如果结果计数元素不在DOM中，则添加它
+-        if (!resultCountEl.parentNode) {
+-            document.querySelector('.search-bar').appendChild(resultCountEl);
+-        }
++
++                    tbody.appendChild(tr);
++                });
++            })
++            .catch(function(error) {
++                console.error("加载失败：", error);
++                tbody.innerHTML = "<tr><td colspan='15' style='color:red;'>加载失败：" + error.message + "</td></tr>";
++            });
+     }
+ 
+-    // 应用带防抖的搜索逻辑
+-    searchInput.addEventListener('input', debounce(performSearch, 300));
+-});
++    buttons.forEach(button => {
++        button.addEventListener("click", () => {
++            buttons.forEach(btn => btn.classList.remove("active"));
++            button.classList.add("active");
++            const page = button.getAttribute("data-page");
++            loadData(page);
++        });
++    });
++
++    loadData(7); // 默认加载
++});
+\ No newline at end of file
+Index: src/main/webapp/assets/page/sub/themeToggle.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><%@ taglib prefix=\"c\" uri=\"http://java.sun.com/jsp/jstl/core\" %>\r\n<button class=\"theme-toggle-btn\" type=\"button\">\r\n    <img id=\"icon-toggle\"\r\n         src=\"${pageContext.request.contextPath}/assets/icons/sn.svg\"\r\n         alt=\"Toggle Theme\">\r\n</button>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/assets/page/sub/themeToggle.jsp b/src/main/webapp/assets/page/sub/themeToggle.jsp
+--- a/src/main/webapp/assets/page/sub/themeToggle.jsp	(revision 6607e907c1273314449e70321ff7f1182e8e3cb3)
++++ b/src/main/webapp/assets/page/sub/themeToggle.jsp	(date 1747557306765)
+@@ -1,6 +1,2 @@
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+-<button class="theme-toggle-btn" type="button">
+-    <img id="icon-toggle"
+-         src="${pageContext.request.contextPath}/assets/icons/sn.svg"
+-         alt="Toggle Theme">
+-</button>
++
+Index: src/main/webapp/assets/page/sub/header.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><%--\r\n  header.jsp\r\n  公共导航栏片段，自动高亮当前页面\r\n--%>\r\n<%@ taglib prefix=\"c\" uri=\"http://java.sun.com/jsp/jstl/core\" %>\r\n<link rel=\"stylesheet\" href=\"${pageContext.request.contextPath}/assets/css/components/header.css\">\r\n<%\r\n    // 通过脚本片段获取当前 JSP 名称（不含扩展名）\r\n    String uri = request.getRequestURI();\r\n    int slash = uri.lastIndexOf('/');\r\n    int dot = uri.lastIndexOf('.');\r\n    String currentPage = (slash >= 0 && dot > slash) ? uri.substring(slash + 1, dot) : \"\";\r\n    request.setAttribute(\"currentPage\", currentPage);\r\n%>\r\n\r\n<nav class=\"navbar\">\r\n    <div class=\"logo\">MobilePhoneSys</div>\r\n    <div class=\"nav-links\">\r\n        <a href=\"${pageContext.request.contextPath}/assets/page/home.jsp\"\r\n           class=\"${currentPage == 'home' ? 'active' : ''}\">Home</a>\r\n        <a href=\"${pageContext.request.contextPath}/assets/page/overview.jsp\"\r\n           class=\"${currentPage == 'overview' ? 'active' : ''}\">Overview</a>\r\n        <a href=\"${pageContext.request.contextPath}/assets/page/compare.jsp\"\r\n           class=\"${currentPage == 'compare' ? 'active' : ''}\">Compare</a>\r\n        <a href=\"${pageContext.request.contextPath}/assets/page/forum.jsp\"\r\n           class=\"${currentPage == 'forum' ? 'active' : ''}\">Forum</a>\r\n        <a href=\"${pageContext.request.contextPath}/assets/page/profile.jsp\"\r\n           class=\"${currentPage == 'profile' ? 'active' : ''}\">Profile</a>\r\n    </div>\r\n    <jsp:include page=\"/assets/page/sub/themeToggle.jsp\" />\r\n</nav>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/assets/page/sub/header.jsp b/src/main/webapp/assets/page/sub/header.jsp
+--- a/src/main/webapp/assets/page/sub/header.jsp	(revision 6607e907c1273314449e70321ff7f1182e8e3cb3)
++++ b/src/main/webapp/assets/page/sub/header.jsp	(date 1747557306771)
+@@ -27,5 +27,9 @@
+         <a href="${pageContext.request.contextPath}/assets/page/profile.jsp"
+            class="${currentPage == 'profile' ? 'active' : ''}">Profile</a>
+     </div>
+-    <jsp:include page="/assets/page/sub/themeToggle.jsp" />
++    <button class="theme-toggle-btn" type="button">
++        <img id="icon-toggle"
++             src="${pageContext.request.contextPath}/assets/icons/sn.svg"
++             alt="Toggle Theme">
++    </button>
+ </nav>
+Index: src/main/webapp/assets/page/sub/scripts.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><%--\r\n  Created by IntelliJ IDEA.\r\n  User: 20544\r\n  Date: 2025/4/30\r\n  Time: 22:08\r\n  To change this template use File | Settings | File Templates.\r\n--%>\r\n<%@ taglib prefix=\"c\" uri=\"http://java.sun.com/jsp/jstl/core\" %>\r\n<!-- scripts.jsp — 全站通用脚本 -->\r\n<script src=\"${pageContext.request.contextPath}/assets/js/theme-toggle.js\"></script>\r\n<%@ page language=\"java\" contentType=\"text/html; charset=UTF-8\" pageEncoding=\"UTF-8\"%>\r\n<!-- 通用脚本 - 包含在所有页面底部 -->\r\n\r\n\r\n<!-- 主题切换功能 -->\r\n<script>\r\n// 检测系统主题偏好并设置相应的主题\r\nfunction detectTheme() {\r\n    const storedTheme = localStorage.getItem('preferred-theme');\r\n    \r\n    if (storedTheme) {\r\n        document.documentElement.setAttribute('data-theme', storedTheme);\r\n        updateThemeToggleState(storedTheme === 'dark');\r\n    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {\r\n        document.documentElement.setAttribute('data-theme', 'dark');\r\n        updateThemeToggleState(true);\r\n    } else {\r\n        document.documentElement.setAttribute('data-theme', 'light');\r\n        updateThemeToggleState(false);\r\n    }\r\n}\r\n\r\n// 更新主题切换按钮状态\r\nfunction updateThemeToggleState(isDark) {\r\n    const toggle = document.querySelector('.theme-toggle');\r\n    if (toggle) {\r\n        toggle.checked = isDark;\r\n    }\r\n}\r\n\r\n// 切换主题\r\nfunction toggleTheme() {\r\n    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';\r\n    const newTheme = currentTheme === 'light' ? 'dark' : 'light';\r\n    \r\n    document.documentElement.setAttribute('data-theme', newTheme);\r\n    localStorage.setItem('preferred-theme', newTheme);\r\n}\r\n\r\n// 添加主题切换事件监听\r\ndocument.addEventListener('DOMContentLoaded', function() {\r\n    detectTheme();\r\n    \r\n    const toggle = document.querySelector('.theme-toggle');\r\n    if (toggle) {\r\n        toggle.addEventListener('change', toggleTheme);\r\n    }\r\n});\r\n</script>\r\n\r\n<!-- 通用工具函数 -->\r\n<script>\r\n// 防抖函数\r\nfunction debounce(func, wait) {\r\n    let timeout;\r\n    return function executedFunction(...args) {\r\n        const later = () => {\r\n            clearTimeout(timeout);\r\n            func(...args);\r\n        };\r\n        clearTimeout(timeout);\r\n        timeout = setTimeout(later, wait);\r\n    };\r\n}\r\n\r\n// 限流函数\r\nfunction throttle(func, limit) {\r\n    let inThrottle;\r\n    return function(...args) {\r\n        if (!inThrottle) {\r\n            func.apply(this, args);\r\n            inThrottle = true;\r\n            setTimeout(() => inThrottle = false, limit);\r\n        }\r\n    };\r\n}\r\n\r\n// 格式化日期\r\nfunction formatDate(date, format = 'yyyy-MM-dd') {\r\n    if (!(date instanceof Date)) {\r\n        date = new Date(date);\r\n    }\r\n    \r\n    const year = date.getFullYear();\r\n    const month = String(date.getMonth() + 1).padStart(2, '0');\r\n    const day = String(date.getDate()).padStart(2, '0');\r\n    const hours = String(date.getHours()).padStart(2, '0');\r\n    const minutes = String(date.getMinutes()).padStart(2, '0');\r\n    \r\n    return format\r\n        .replace('yyyy', year)\r\n        .replace('MM', month)\r\n        .replace('dd', day)\r\n        .replace('HH', hours)\r\n        .replace('mm', minutes);\r\n}\r\n</script>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/assets/page/sub/scripts.jsp b/src/main/webapp/assets/page/sub/scripts.jsp
+--- a/src/main/webapp/assets/page/sub/scripts.jsp	(revision 6607e907c1273314449e70321ff7f1182e8e3cb3)
++++ b/src/main/webapp/assets/page/sub/scripts.jsp	(date 1747558106901)
+@@ -8,100 +8,9 @@
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <!-- scripts.jsp — 全站通用脚本 -->
+ <script src="${pageContext.request.contextPath}/assets/js/theme-toggle.js"></script>
++<script src="${pageContext.request.contextPath}/assets/js/overview.js"></script>
++<script src="${pageContext.request.contextPath}/assets/js/tool.js"></script>
+ <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+ <!-- 通用脚本 - 包含在所有页面底部 -->
+ 
+ 
+-<!-- 主题切换功能 -->
+-<script>
+-// 检测系统主题偏好并设置相应的主题
+-function detectTheme() {
+-    const storedTheme = localStorage.getItem('preferred-theme');
+-    
+-    if (storedTheme) {
+-        document.documentElement.setAttribute('data-theme', storedTheme);
+-        updateThemeToggleState(storedTheme === 'dark');
+-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+-        document.documentElement.setAttribute('data-theme', 'dark');
+-        updateThemeToggleState(true);
+-    } else {
+-        document.documentElement.setAttribute('data-theme', 'light');
+-        updateThemeToggleState(false);
+-    }
+-}
+-
+-// 更新主题切换按钮状态
+-function updateThemeToggleState(isDark) {
+-    const toggle = document.querySelector('.theme-toggle');
+-    if (toggle) {
+-        toggle.checked = isDark;
+-    }
+-}
+-
+-// 切换主题
+-function toggleTheme() {
+-    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+-    
+-    document.documentElement.setAttribute('data-theme', newTheme);
+-    localStorage.setItem('preferred-theme', newTheme);
+-}
+-
+-// 添加主题切换事件监听
+-document.addEventListener('DOMContentLoaded', function() {
+-    detectTheme();
+-    
+-    const toggle = document.querySelector('.theme-toggle');
+-    if (toggle) {
+-        toggle.addEventListener('change', toggleTheme);
+-    }
+-});
+-</script>
+-
+-<!-- 通用工具函数 -->
+-<script>
+-// 防抖函数
+-function debounce(func, wait) {
+-    let timeout;
+-    return function executedFunction(...args) {
+-        const later = () => {
+-            clearTimeout(timeout);
+-            func(...args);
+-        };
+-        clearTimeout(timeout);
+-        timeout = setTimeout(later, wait);
+-    };
+-}
+-
+-// 限流函数
+-function throttle(func, limit) {
+-    let inThrottle;
+-    return function(...args) {
+-        if (!inThrottle) {
+-            func.apply(this, args);
+-            inThrottle = true;
+-            setTimeout(() => inThrottle = false, limit);
+-        }
+-    };
+-}
+-
+-// 格式化日期
+-function formatDate(date, format = 'yyyy-MM-dd') {
+-    if (!(date instanceof Date)) {
+-        date = new Date(date);
+-    }
+-    
+-    const year = date.getFullYear();
+-    const month = String(date.getMonth() + 1).padStart(2, '0');
+-    const day = String(date.getDate()).padStart(2, '0');
+-    const hours = String(date.getHours()).padStart(2, '0');
+-    const minutes = String(date.getMinutes()).padStart(2, '0');
+-    
+-    return format
+-        .replace('yyyy', year)
+-        .replace('MM', month)
+-        .replace('dd', day)
+-        .replace('HH', hours)
+-        .replace('mm', minutes);
+-}
+-</script>
+Index: src/main/webapp/assets/css/pages/overview.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/assets/css/pages/overview.css b/src/main/webapp/assets/css/pages/overview.css
+--- a/src/main/webapp/assets/css/pages/overview.css	(revision 6607e907c1273314449e70321ff7f1182e8e3cb3)
++++ b/src/main/webapp/assets/css/pages/overview.css	(date 1747572407052)
+@@ -1,0 +1,221 @@
++@import "../components/buttons.css";
++@import "../style/variables.css";
++@import "../utilities.css";
++@import "../components/layout.css";
++@import "../components/banner.css";
++@import "../components/buttons.css";
++
++.search-type-buttons {
++    display: flex;
++    justify-content: center; /* 子元素之间、两端和容器边缘之间间距都相等 */
++    align-items: center;           /* 垂直居中 */
++    /* 如果你还想要响应式换行： */
++    flex-wrap: wrap;
++    margin-top: 1rem;/* 可选：在旧版浏览器下也有间隙支持 */
++    gap: var(--spacing-md);
++}
++
++
++
++.filter-toolbar {
++    display: flex;
++    flex-wrap: wrap;
++    gap: 0.7rem;
++    align-items: center;
++    margin-top: var(--spacing-md);
++    background: var(--card-bg);
++    border-radius: 12px;
++}
++
++/* ...（按钮和range-filter的样式同前）... */
++
++
++/* 搜索栏 */
++.search-bar {
++    position: relative;
++    z-index: 100;
++    height: 50%;
++    padding: 1rem;
++    background: var(--card-bg);
++    border-radius: 16px;
++    border: 2px solid rgba(209, 209, 209, 0.8);
++    transition: box-shadow 0.3s ease, transform 0.3s ease;
++    background: var(--card-bg);
++    margin-bottom: 0.5rem;
++    gap:var(--spacing-md);
++}
++
++
++.search-input {
++    width: 100%;
++    height: 50px;
++    background: var(--bg-grey);
++    border: none;                /* 由 .search-bar 统一边框 */
++    border-radius: 12px;
++    padding: 0 1rem;
++    color: var(--text-color);
++    font-size: var(--spacing-md);
++    font-weight: 500;
++    box-shadow:
++            inset 2px 2px 4px rgba(0, 0, 0, 0.08),
++            inset -2px -2px 4px rgba(255, 255, 255, 0.5);
++    transition: box-shadow 0.3s ease, border-color 0.3s ease;
++    outline: none;
++    box-sizing: border-box;
++}
++
++
++.search-input::placeholder {
++    color: #aaa;
++    opacity: 0.8;
++    transition: opacity 0.3s ease;
++}
++
++.search-input:focus::placeholder {
++    opacity: 0.5;
++}
++
++
++/* 搜索结果计数 */
++.search-results-count {
++    margin-top: 15px;
++    text-align: right;
++    color: var(--text-secondary, #666);
++    font-size: 14px;
++    font-weight: 500;
++    background: rgba(240, 240, 240, 0.5);
++    display: inline-block;
++    padding: 8px 15px;
++    border-radius: 20px;
++    float: right;
++    transition: all 0.3s ease;
++    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
++    border: 1px solid rgba(230, 230, 230, 0.8);
++}
++
++.search-results-count:empty {
++    display: none;
++}
++
++
++
++/* 响应式优化 */
++@media (max-width: 768px) {
++    .search-bar {
++        position: sticky;
++        top: 60px;
++        z-index: 100;
++        margin: 15px 20px;
++        padding: 1rem 1.25rem;
++        background: var(--card-bg);
++        border-radius: 10px;
++        box-shadow: 0 3px 12px rgba(0,0,0,0.15);
++        transition: all 0.3s ease;
++    }
++
++    .search-input {
++        width: 100%;
++        padding: 0.75rem 1rem 0.75rem 2.5rem; /* 为图标留出空间 */
++        border: 1.5px solid var(--divider);
++        border-radius: 8px;
++        background: var(--card-bg);
++        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E");
++        background-repeat: no-repeat;
++        background-position: 0.75rem center;
++        background-size: 1.25rem;
++        color: var(--text-color);
++        font-size: 1rem;
++        transition: all 0.3s ease;
++    }
++
++    .search-input:focus {
++        border-color: var(--primary-color);
++        box-shadow: 0 0 0 3px rgba(66,133,244,0.15);
++        outline: none;
++        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234285f4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E");
++    }
++
++    .search-input::placeholder {
++        color: #a0a0a0;
++        transition: opacity 0.3s ease;
++    }
++
++    .search-input:focus::placeholder {
++        opacity: 0.7;
++    }
++
++    .search-bar:hover .search-input:not(:focus) {
++        border-color: #bdbdbd;
++    }
++
++    .search-type-buttons {
++        display: grid;
++        grid-template-columns: repeat(4, 1fr);
++    }
++
++}
++
++.overview-table {
++    width: 100%;
++    border-collapse: collapse;
++    margin-top: var(--spacing-md);
++}
++.overview-table th,
++.overview-table td {
++    padding: var(--spacing-sm) var(--spacing-md);
++    border: 1px solid var(--divider);
++    text-align: left;
++}
++.overview-table tbody tr:hover {
++    background: rgba(0,0,0,0.03);
++}
++
++.range-filter {
++    display: flex;
++    align-items: center;
++    gap: 0.25rem;
++    background: var(--btn-primary, #f4f6fb);     /* 和按钮背景一致 */
++    border: 2.5px solid var(--btn-border, #c1d3fa);
++    border-radius: var(--radius-xl, 18px);       /* 保持圆角一致 */
++    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
++    padding: 0.3rem 1.2rem 0.3rem 0.8rem;
++    margin-left: 0.7rem;
++    margin-right: 0;
++    min-width: 210px;
++    transition: border-color 0.3s, box-shadow 0.3s;
++}
++.range-filter label {
++    font-size: 1rem;
++    font-weight: 500;
++    color: var(--text-primary);
++    margin-right: 0.28rem;
++    letter-spacing: 0.2px;
++}
++.range-filter input[type="number"] {
++    background: transparent;
++    width: 4rem;
++    min-width: 2.5em;
++    padding: 0.18rem 0.45rem;
++    border-radius: 8px;
++    border: 2px solid var(--btn-border, #c1d3fa);
++    font-size: 0.97rem;
++    margin: 0 0.12rem;
++    box-shadow: none;
++    transition: border 0.2s;
++}
++.range-filter input[type="number"]:focus {
++    outline: none;
++    border-color: var(--primary-color, #3d7cf4);
++}
++.range-filter .apply.color-btn {
++    /* 不用特化，直接复用 color-btn 即可 */
++    margin-left: 0.5rem;
++    padding: 0.3rem 1.1rem;
++    font-size: 0.99rem;
++}
++
++.range-filter .split {
++    margin: 0 0.15rem;
++    font-size: 1.1rem;
++    color: #888;
++}
+Index: src/main/webapp/assets/js/theme-toggle.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// assets/js/theme-toggle.js\r\ndocument.addEventListener('DOMContentLoaded', () => {\r\n    const btn = document.querySelector('.theme-toggle-btn');\r\n    const iconToggle = document.getElementById('icon-toggle');\r\n    if (!btn || !iconToggle) return;\r\n\r\n    // 跟踪当前旋转角度\r\n    let rotationDegrees = 0;\r\n\r\n    // 读取本地主题，初始化状态\r\n    if (localStorage.getItem('theme') === 'dark') {\r\n        document.documentElement.classList.add('dark-mode');\r\n        // 如果初始状态是深色模式，设置初始旋转为180度\r\n        rotationDegrees = 180;\r\n        iconToggle.style.transform = `translate(-50%, -50%) rotate(${rotationDegrees}deg)`;\r\n    }\r\n\r\n    // 点击切换\r\n    btn.addEventListener('click', () => {\r\n        const isDark = document.documentElement.classList.toggle('dark-mode');\r\n        localStorage.setItem('theme', isDark ? 'dark' : 'light');\r\n\r\n        // 每次旋转增加180度\r\n        rotationDegrees += 180;\r\n\r\n        // 应用新的旋转角度\r\n        iconToggle.style.transform = `translate(-50%, -50%) rotate(${rotationDegrees}deg)`;\r\n    });\r\n});
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/assets/js/theme-toggle.js b/src/main/webapp/assets/js/theme-toggle.js
+--- a/src/main/webapp/assets/js/theme-toggle.js	(revision 6607e907c1273314449e70321ff7f1182e8e3cb3)
++++ b/src/main/webapp/assets/js/theme-toggle.js	(date 1747557838601)
+@@ -1,29 +1,44 @@
+ // assets/js/theme-toggle.js
+ document.addEventListener('DOMContentLoaded', () => {
+-    const btn = document.querySelector('.theme-toggle-btn');
+-    const iconToggle = document.getElementById('icon-toggle');
+-    if (!btn || !iconToggle) return;
+-
+-    // 跟踪当前旋转角度
+-    let rotationDegrees = 0;
++    const toggleBtn = document.querySelector('.theme-toggle-btn');
++    const icon = document.getElementById('icon-toggle');
++    if (!toggleBtn || !icon) return;
+ 
+-    // 读取本地主题，初始化状态
+-    if (localStorage.getItem('theme') === 'dark') {
+-        document.documentElement.classList.add('dark-mode');
+-        // 如果初始状态是深色模式，设置初始旋转为180度
+-        rotationDegrees = 180;
+-        iconToggle.style.transform = `translate(-50%, -50%) rotate(${rotationDegrees}deg)`;
++    // 1. 读取并应用初始主题
++    let rotation = 0;
++    const stored = localStorage.getItem('preferred-theme');
++    let theme;
++    if (stored === 'dark') {
++        theme = 'dark';
++        rotation = 180;
++    } else if (stored === 'light') {
++        theme = 'light';
++    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
++        theme = 'dark';
++        rotation = 180;
++    } else {
++        theme = 'light';
+     }
++    applyTheme(theme, rotation);
+ 
+-    // 点击切换
+-    btn.addEventListener('click', () => {
+-        const isDark = document.documentElement.classList.toggle('dark-mode');
+-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
++    // 2. 点击切换主题 + 图标旋转
++    toggleBtn.addEventListener('click', () => {
++        theme = (theme === 'light' ? 'dark' : 'light');
++        rotation += 180;
++        localStorage.setItem('preferred-theme', theme);
++        applyTheme(theme, rotation);
++    });
+ 
+-        // 每次旋转增加180度
+-        rotationDegrees += 180;
+-
+-        // 应用新的旋转角度
+-        iconToggle.style.transform = `translate(-50%, -50%) rotate(${rotationDegrees}deg)`;
+-    });
+-});
+\ No newline at end of file
++    // 工具函数：应用主题状态到 document & 按钮
++    function applyTheme(theme, rotationDeg) {
++        // ① data-theme 属性（部分 CSS 可能基于它）
++        document.documentElement.setAttribute('data-theme', theme);
++        // ② 可选 class 切换（如果你有 .dark-mode 相关样式）
++        document.documentElement.classList.toggle('dark-mode', theme === 'dark');
++        // ③ 切换开关状态（checkbox 形式）
++        const checkbox = document.querySelector('.theme-toggle');
++        if (checkbox) checkbox.checked = (theme === 'dark');
++        // ④ 图标旋转
++        icon.style.transform = `translate(-50%, -50%) rotate(${rotationDeg}deg)`;
++    }
++});
+Index: src/main/java/MessageSenderTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\r\n\r\nimport model.sql.*;\r\nimport org.json.JSONArray;\r\nimport org.json.JSONObject;\r\n\r\nimport java.io.BufferedReader;\r\nimport java.io.InputStreamReader;\r\nimport java.io.IOException;\r\nimport java.net.HttpURLConnection;\r\nimport java.net.URL;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class MessageSenderTest {\r\n\r\n    public static void main(String[] args) throws IOException {\r\n        String type = \"sql\";\r\n        String num = \"5\";  // 这里可以改成\"2\", \"3\", ...测试不同解析\r\n\r\n        String backendUrl = \"http://localhost:8080/ServerletFinal_war_exploded/data?type=\" + type + \"&page=\" + num;\r\n        String backendUrl1 = \"http://localhost:8080/ServerletFinal_war_exploded/data?type=forum&subType=get\";\r\n        System.out.println(\"== Running MessageSenderTest ==\");\r\n\r\n        try {\r\n            String json = fetchJsonFromBackend(backendUrl1);\r\n            System.out.println(\"Raw JSON from backend: \" + json);\r\n            List<Forum> forums = parseJsonToForums(json);\r\n            System.out.println(\"\\n== Parsed Components ==\");\r\n            forums.forEach(System.out::println);\r\n        }catch (Exception e) {\r\n            System.err.println(\"Error: \" + e.getMessage());\r\n            e.printStackTrace();\r\n        }\r\n\r\n\r\n        try {\r\n            String json = fetchJsonFromBackend(backendUrl);\r\n            System.out.println(\"Raw JSON Response: \");\r\n\r\n            int page = Integer.parseInt(num);\r\n\r\n            switch (page) {\r\n                case 1:\r\n                    List<Component> components = parseJsonToComponents(json);\r\n                    System.out.println(\"\\n== Parsed Components ==\");\r\n                    components.forEach(System.out::println);\r\n                    break;\r\n                case 2:\r\n                    List<Country> countries = parseJsonToCountries(json);\r\n                    System.out.println(\"\\n== Parsed Countries ==\");\r\n                    countries.forEach(System.out::println);\r\n                    break;\r\n                case 3:\r\n                    List<MobileBrand> brands = parseJsonToMobileBrands(json);\r\n                    System.out.println(\"\\n== Parsed Mobile Brands ==\");\r\n                    brands.forEach(System.out::println);\r\n                    break;\r\n                case 4:\r\n                    List<FoldablePhone> foldables = parseJsonToFoldablePhones(json);\r\n                    System.out.println(\"\\n== Parsed Foldable Phones ==\");\r\n                    foldables.forEach(System.out::println);\r\n                    break;\r\n                case 5:\r\n                    List<NonFoldablePhone> nonFoldables = parseJsonToNonFoldablePhones(json);\r\n                    System.out.println(\"\\n== Parsed Non-Foldable Phones ==\");\r\n                    nonFoldables.forEach(System.out::println);\r\n                    break;\r\n                case 6:\r\n                    List<Supplier> suppliers = parseJsonToSuppliers(json);\r\n                    System.out.println(\"\\n== Parsed Suppliers ==\");\r\n                    suppliers.forEach(System.out::println);\r\n                    break;\r\n                    case 7:\r\n                    List<MobilePhone> phones = parseJsonToPhones(json);\r\n                    System.out.println(\"\\n== Parsed Mobile Phones ==\");\r\n                    phones.forEach(System.out::println);\r\n                    break;\r\n                default:\r\n                    System.err.println(\"Unsupported page number: \" + page);\r\n                    break;\r\n            }\r\n\r\n        } catch (Exception e) {\r\n            System.err.println(\"Error: \" + e.getMessage());\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n    // 从后端获取 JSON 数据\r\n    private static String fetchJsonFromBackend(String backendUrl) throws IOException {\r\n        URL url = new URL(backendUrl);\r\n        HttpURLConnection conn = (HttpURLConnection) url.openConnection();\r\n        conn.setRequestMethod(\"GET\");\r\n        conn.setConnectTimeout(3000);\r\n        conn.setReadTimeout(3000);\r\n\r\n        int responseCode = conn.getResponseCode();\r\n        if (responseCode == 200) {\r\n            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), \"UTF-8\"));\r\n            StringBuilder response = new StringBuilder();\r\n            String line;\r\n            while ((line = in.readLine()) != null) {\r\n                response.append(line);\r\n            }\r\n            in.close();\r\n            return response.toString();\r\n        } else {\r\n            throw new IOException(\"Failed to connect. HTTP response code: \" + responseCode);\r\n        }\r\n    }\r\n\r\n\r\n\r\n\r\n\r\n\r\n    private static List<Component> parseJsonToComponents(String json) {\r\n        List<Component> list = new ArrayList<>();\r\n        try {\r\n            JSONArray arr = new JSONArray(json);\r\n            for (int i = 0; i < arr.length(); i++) {\r\n                JSONObject obj = arr.getJSONObject(i);\r\n                int no = obj.optInt(\"no\");\r\n                String name = obj.optString(\"name\");\r\n                String core = obj.optString(\"core\");\r\n                String frequency = obj.optString(\"frequency\");\r\n                String supplier = obj.optString(\"supplier\");\r\n\r\n                Component component = new Component(no, name, core, frequency, supplier);\r\n                list.add(component);\r\n            }\r\n        } catch (Exception e) {\r\n            System.err.println(\"Error parsing JSON: \" + e.getMessage());\r\n        }\r\n        return list;\r\n    }\r\n\r\n\r\n\r\n    private static List<Country> parseJsonToCountries(String json) {\r\n        List<Country> list = new ArrayList<>();\r\n        try {\r\n            JSONArray arr = new JSONArray(json);\r\n            for (int i = 0; i < arr.length(); i++) {\r\n                JSONObject obj = arr.getJSONObject(i);\r\n                String countryName = obj.optString(\"countryName\");\r\n                String continent = obj.optString(\"continent\");\r\n\r\n                Country country = new Country(countryName, continent);\r\n                list.add(country);\r\n            }\r\n        } catch (Exception e) {\r\n            System.err.println(\"Error parsing JSON: \" + e.getMessage());\r\n        }\r\n        return list;\r\n    }\r\n\r\n\r\n\r\n\r\n    private static List<FoldablePhone> parseJsonToFoldablePhones(String json) {\r\n        List<FoldablePhone> list = new ArrayList<>();\r\n        try {\r\n            JSONArray arr = new JSONArray(json);\r\n            for (int i = 0; i < arr.length(); i++) {\r\n                JSONObject obj = arr.getJSONObject(i);\r\n                int no = obj.optInt(\"no\");\r\n                String model = obj.optString(\"model\");\r\n                String style = obj.optString(\"style\");\r\n\r\n                FoldablePhone phone = new FoldablePhone(no, model, style);\r\n                list.add(phone);\r\n            }\r\n        } catch (Exception e) {\r\n            System.err.println(\"Error parsing JSON: \" + e.getMessage());\r\n        }\r\n        return list;\r\n    }\r\n\r\n\r\n\r\n    private static List<MobileBrand> parseJsonToMobileBrands(String json) {\r\n        List<MobileBrand> list = new ArrayList<>();\r\n        try {\r\n            JSONArray arr = new JSONArray(json);\r\n            for (int i = 0; i < arr.length(); i++) {\r\n                JSONObject obj = arr.getJSONObject(i);\r\n                String name = obj.optString(\"name\");\r\n                String website = obj.optString(\"website\");\r\n                String country = obj.optString(\"country\");\r\n\r\n                MobileBrand brand = new MobileBrand(name, website, country);\r\n                list.add(brand);\r\n            }\r\n        } catch (Exception e) {\r\n            System.err.println(\"Error parsing JSON: \" + e.getMessage());\r\n        }\r\n        return list;\r\n    }\r\n\r\n\r\n\r\n\r\n    private static List<MobilePhone> parseJsonToPhones(String json) {\r\n        List<MobilePhone> list = new ArrayList<>();\r\n        try {\r\n            JSONArray arr = new JSONArray(json);\r\n            for (int i = 0; i < arr.length(); i++) {\r\n                JSONObject obj = arr.getJSONObject(i);\r\n                MobilePhone phone = new MobilePhone();\r\n\r\n                phone.setNo(obj.optInt(\"No\"));\r\n                phone.setModel(obj.optString(\"model\"));\r\n                phone.setBrand(obj.optString(\"brand\"));\r\n                phone.setPriceUSD(obj.optString(\"price_USD\"));\r\n                phone.setSim(obj.optString(\"sim\"));\r\n                phone.setProcessorName(obj.optString(\"processor_name\"));\r\n                phone.setCore(obj.optString(\"Core\"));\r\n                phone.setFrequency(obj.optString(\"frequency\"));\r\n                phone.setRam(obj.optString(\"ram\"));\r\n                phone.setBatteryCapacity(obj.optString(\"battery_Capacity\"));\r\n                phone.setChargingInfo(obj.optString(\"Charging_Info\"));\r\n                phone.setRearCamera(obj.optString(\"Rear_Camera\"));\r\n                phone.setFrontCamera(obj.optString(\"Front_Camera\"));\r\n                phone.setCard(obj.optString(\"card\"));\r\n                phone.setOs(obj.optString(\"os\"));\r\n\r\n                list.add(phone);\r\n            }\r\n        } catch (Exception e) {\r\n            System.err.println(\"Error parsing JSON: \" + e.getMessage());\r\n        }\r\n        return list;\r\n    }\r\n\r\n\r\n\r\n    private static List<NonFoldablePhone> parseJsonToNonFoldablePhones(String json) {\r\n        List<NonFoldablePhone> list = new ArrayList<>();\r\n        try {\r\n            JSONArray arr = new JSONArray(json);\r\n            for (int i = 0; i < arr.length(); i++) {\r\n                JSONObject obj = arr.getJSONObject(i);\r\n                int no = obj.optInt(\"no\");\r\n                String model = obj.optString(\"model\");\r\n                String screen = obj.optString(\"screen\");\r\n\r\n                NonFoldablePhone phone = new NonFoldablePhone(no, model, screen);\r\n                list.add(phone);\r\n            }\r\n        } catch (Exception e) {\r\n            System.err.println(\"Error parsing JSON: \" + e.getMessage());\r\n        }\r\n        return list;\r\n    }\r\n\r\n\r\n\r\n    private static List<Supplier> parseJsonToSuppliers(String json) {\r\n        List<Supplier> list = new ArrayList<>();\r\n        try {\r\n            JSONArray arr = new JSONArray(json);\r\n            for (int i = 0; i < arr.length(); i++) {\r\n                JSONObject obj = arr.getJSONObject(i);\r\n                int no = obj.optInt(\"no\");\r\n                String name = obj.optString(\"name\");\r\n                String web = obj.optString(\"web\");\r\n                String country = obj.optString(\"country\");\r\n\r\n                Supplier supplier = new Supplier(no, name, web, country);\r\n                list.add(supplier);\r\n            }\r\n        } catch (Exception e) {\r\n            System.err.println(\"Error parsing JSON: \" + e.getMessage());\r\n        }\r\n        return list;\r\n    }\r\n\r\n\r\n\r\n\r\n    private static List<User> parseJsonToUsers(String json) {\r\n        List<User> userList = new ArrayList<>();\r\n        try {\r\n            JSONArray arr = new JSONArray(json);\r\n            for (int i = 0; i < arr.length(); i++) {\r\n                JSONObject obj = arr.getJSONObject(i);\r\n                User user = new User();\r\n                user.setId(obj.optString(\"id\"));\r\n                user.setUsername(obj.optString(\"username\"));\r\n                user.setPassword(obj.optString(\"password\"));\r\n                user.setEmail(obj.optString(\"email\"));\r\n                userList.add(user);\r\n            }\r\n        } catch (Exception e) {\r\n            System.err.println(\"Error parsing JSON: \" + e.getMessage());\r\n        }\r\n        return userList;\r\n    }\r\n\r\n/**\r\n    private static List<Comment> parseJsonToComments(String json) {\r\n        List<Comment> list = new ArrayList<>();\r\n        try {\r\n            JSONArray arr = new JSONArray(json);\r\n            for (int i = 0; i < arr.length(); i++) {\r\n                JSONObject obj = arr.getJSONObject(i);\r\n\r\n                String id = obj.optString(\"id\");\r\n                String content = obj.optString(\"content\");\r\n                boolean isSub = obj.optBoolean(\"isSub\");\r\n\r\n                // 解析作者 User 对象（假设 JSON 有一个嵌套对象 author）\r\n                JSONObject authorObj = obj.optJSONObject(\"author\");\r\n                User author = null;\r\n                if (authorObj != null) {\r\n                    String userId = authorObj.optString(\"id\");\r\n                    String username = authorObj.optString(\"username\");\r\n                    String password = authorObj.optString(\"password\");\r\n                    String email = authorObj.optString(\"email\");\r\n                    author = new User(userId, username, password, email);\r\n                }\r\n\r\n                // 解析帖子 Post 对象（只用 ID 简化处理）\r\n                JSONObject postObj = obj.optJSONObject(\"post\");\r\n                Post post = null;\r\n                if (postObj != null) {\r\n                    String postId = postObj.optString(\"id\");\r\n                    String title = postObj.optString(\"title\");\r\n                    String contentPost = postObj.optString(\"content\");\r\n                    // 注意这里如果要更详细，需要解析 Post 的作者等，先简单构造\r\n                    post = new Post(postId, title, contentPost, null);\r\n                }\r\n\r\n                // 解析父评论（parent），只取 id 来构造一个简单 Comment 对象\r\n                Comment parent = null;\r\n                JSONObject parentObj = obj.optJSONObject(\"parent\");\r\n                if (parentObj != null) {\r\n                    String parentId = parentObj.optString(\"id\");\r\n                    parent = new Comment();\r\n                    parent.setId(parentId);\r\n                }\r\n\r\n                Comment comment = new Comment(id, content, author, post, parent, isSub);\r\n                list.add(comment);\r\n            }\r\n        } catch (Exception e) {\r\n            System.err.println(\"Error parsing Comment JSON: \" + e.getMessage());\r\n        }\r\n        return list;\r\n    }*/\r\n\r\n\r\n\r\n    private static List<Forum> parseJsonToForums(String json) {\r\n        List<Forum> list = new ArrayList<>();\r\n        try {\r\n            JSONArray arr = new JSONArray(json);\r\n            for (int i = 0; i < arr.length(); i++) {\r\n                JSONObject obj = arr.getJSONObject(i);\r\n\r\n                String title = obj.optString(\"title\");\r\n                String description = obj.optString(\"description\");\r\n\r\n                Forum forum = new Forum(title, description);\r\n\r\n                // 解析posts数组\r\n                JSONArray postsArr = obj.optJSONArray(\"posts\");\r\n                if (postsArr != null) {\r\n                    List<Post> posts = new ArrayList<>();\r\n                    for (int j = 0; j < postsArr.length(); j++) {\r\n                        JSONObject postObj = postsArr.getJSONObject(j);\r\n\r\n                        String postId = postObj.optString(\"id\");\r\n                        String postTitle = postObj.optString(\"title\");\r\n                        String postContent = postObj.optString(\"content\");\r\n\r\n                        // 这里暂时用null做作者，复杂可继续解析User\r\n                        Post post = new Post(postId, postTitle, postContent, null);\r\n\r\n                        posts.add(post);\r\n                    }\r\n                    forum.setPosts(posts);\r\n                }\r\n                list.add(forum);\r\n            }\r\n        } catch (Exception e) {\r\n            System.err.println(\"Error parsing Forum JSON: \" + e.getMessage());\r\n        }\r\n        return list;\r\n    }\r\n\r\n\r\n/**\r\n    private static List<Post> parseJsonToPosts(String json) {\r\n        List<Post> list = new ArrayList<>();\r\n        try {\r\n            JSONArray arr = new JSONArray(json);\r\n            for (int i = 0; i < arr.length(); i++) {\r\n                JSONObject obj = arr.getJSONObject(i);\r\n\r\n                String id = obj.optString(\"id\");\r\n                String title = obj.optString(\"title\");\r\n                String content = obj.optString(\"content\");\r\n\r\n                // 解析author对象\r\n                JSONObject authorObj = obj.optJSONObject(\"author\");\r\n                User author = null;\r\n                if (authorObj != null) {\r\n                    String userId = authorObj.optString(\"id\");\r\n                    String username = authorObj.optString(\"username\");\r\n                    String password = authorObj.optString(\"password\");\r\n                    String email = authorObj.optString(\"email\");\r\n                    author = new User(userId, username, password, email);\r\n                }\r\n\r\n                Post post = new Post(id, title, content, author);\r\n\r\n                // 解析评论列表\r\n                JSONArray commentsArr = obj.optJSONArray(\"comments\");\r\n                if (commentsArr != null) {\r\n                    List<Comment> comments = new ArrayList<>();\r\n                    for (int j = 0; j < commentsArr.length(); j++) {\r\n                        JSONObject commentObj = commentsArr.getJSONObject(j);\r\n                        String commentId = commentObj.optString(\"id\");\r\n                        String commentContent = commentObj.optString(\"content\");\r\n                        boolean isSub = commentObj.optBoolean(\"isSub\", false);\r\n\r\n                        // 评论作者解析\r\n                        JSONObject commentAuthorObj = commentObj.optJSONObject(\"author\");\r\n                        User commentAuthor = null;\r\n                        if (commentAuthorObj != null) {\r\n                            commentAuthor = new User(\r\n                                    commentAuthorObj.optString(\"id\"),\r\n                                    commentAuthorObj.optString(\"username\"),\r\n                                    commentAuthorObj.optString(\"password\"),\r\n                                    commentAuthorObj.optString(\"email\")\r\n                            );\r\n                        }\r\n\r\n                        // 父评论不解析对象，暂设null（可递归实现）\r\n                        Comment parent = null;\r\n\r\n                        Comment comment = new Comment(commentId, commentContent, commentAuthor, post, parent, isSub);\r\n                        comments.add(comment);\r\n                    }\r\n                    post.setComments(comments);\r\n                }\r\n\r\n                list.add(post);\r\n            }\r\n        } catch (Exception e) {\r\n            System.err.println(\"Error parsing Posts JSON: \" + e.getMessage());\r\n        }\r\n        return list;\r\n    }*/\r\n\r\n\r\n\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/MessageSenderTest.java b/src/main/java/MessageSenderTest.java
+--- a/src/main/java/MessageSenderTest.java	(revision 6607e907c1273314449e70321ff7f1182e8e3cb3)
++++ b/src/main/java/MessageSenderTest.java	(date 1747546513005)
+@@ -16,7 +16,7 @@
+ 
+     public static void main(String[] args) throws IOException {
+         String type = "sql";
+-        String num = "5";  // 这里可以改成"2", "3", ...测试不同解析
++        String num = "7";  // 这里可以改成"2", "3", ...测试不同解析
+ 
+         String backendUrl = "http://localhost:8080/ServerletFinal_war_exploded/data?type=" + type + "&page=" + num;
+         String backendUrl1 = "http://localhost:8080/ServerletFinal_war_exploded/data?type=forum&subType=get";
+@@ -219,7 +219,7 @@
+                 phone.setCore(obj.optString("Core"));
+                 phone.setFrequency(obj.optString("frequency"));
+                 phone.setRam(obj.optString("ram"));
+-                phone.setBatteryCapacity(obj.optString("battery_Capacity"));
++                phone.setBatteryCapacity(obj.optString("Battery_Capacity"));
+                 phone.setChargingInfo(obj.optString("Charging_Info"));
+                 phone.setRearCamera(obj.optString("Rear_Camera"));
+                 phone.setFrontCamera(obj.optString("Front_Camera"));
+Index: src/main/webapp/assets/page/overview.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><%@ taglib prefix=\"c\" uri=\"http://java.sun.com/jsp/jstl/core\" %>\r\n<%@ page contentType=\"text/html; charset=UTF-8\" pageEncoding=\"UTF-8\"%>\r\n\r\n<%@ taglib prefix=\"fmt\" uri=\"http://java.sun.com/jsp/jstl/fmt\"%>\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <title>Overview - MobilePhoneSys</title>\r\n    <link rel=\"stylesheet\" href=\"${pageContext.request.contextPath}/assets/css/components/header.css\">\r\n    <link rel=\"stylesheet\" href=\"${pageContext.request.contextPath}/assets/css/components/theme-toggle.css\">\r\n    <link rel=\"stylesheet\" href=\"${pageContext.request.contextPath}/assets/css/components/banner.css\">\r\n    <link rel=\"stylesheet\" href=\"${pageContext.request.contextPath}/assets/css/pages/overview/overview.css\">\r\n</head>\r\n<body>\r\n<jsp:include page=\"sub/header.jsp\"/>\r\n\r\n<div class=\"main-container\">\r\n    <!-- Top banner -->\r\n    <div class=\"banner\">\r\n        <h1>Mobile Phone Overview</h1>\r\n        <p>Browse all mobile phones in our database with detailed specifications</p>\r\n    </div>\r\n    \r\n    <!-- Search bar -->\r\n    <div class=\"search-bar\">\r\n        <input type=\"text\" id=\"searchInput\" class=\"search-input\" placeholder=\"Enter keywords to filter data...\" />\r\n    \r\n        <!-- Search type selection buttons -->\r\n        <div class=\"search-type-buttons\">\r\n            <button class=\"search-type-btn active\" data-index=\"0\">name</button>\r\n            <button class=\"search-type-btn\" data-index=\"1\">brand</button>\r\n            <button class=\"search-type-btn\" data-index=\"2\">releaseDate</button>\r\n            <button class=\"search-type-btn\" data-index=\"3\">processor</button>\r\n            <button class=\"search-type-btn\" data-index=\"4\">display</button>\r\n            <button class=\"search-type-btn\" data-index=\"5\">camera</button>\r\n            <button class=\"search-type-btn\" data-index=\"6\">material</button>\r\n            <button class=\"search-type-btn\" data-index=\"7\">price</button>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"table-body-wrapper\">\r\n        <c:forEach var=\"item\" items=\"${dataList}\">\r\n            <div class=\"data-row\">\r\n                <div>${item.name}</div>\r\n                <div>${item.brand}</div>\r\n                <div><fmt:formatDate value=\"${item.releaseDate}\" pattern=\"yyyy-MM-dd\"/></div>\r\n                <div>${item.processor}</div>\r\n                <div>${item.display}</div>\r\n                <div>${item.camera}</div>\r\n                <div>${item.material}</div>\r\n                <div>${item.price}</div>\r\n            </div>\r\n        </c:forEach>\r\n    </div>\r\n</div>\r\n\r\n<jsp:include page=\"sub/scripts.jsp\"/>\r\n<script src=\"${pageContext.request.contextPath}/assets/js/overview.js\"></script>\r\n\r\n</body>\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/assets/page/overview.jsp b/src/main/webapp/assets/page/overview.jsp
+--- a/src/main/webapp/assets/page/overview.jsp	(revision 6607e907c1273314449e70321ff7f1182e8e3cb3)
++++ b/src/main/webapp/assets/page/overview.jsp	(date 1747572164108)
+@@ -8,55 +8,59 @@
+     <meta charset="UTF-8">
+     <title>Overview - MobilePhoneSys</title>
+     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/header.css">
+-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/theme-toggle.css">
+-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/banner.css">
+-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/overview/overview.css">
++    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/overview.css">
+ </head>
+ <body>
+ <jsp:include page="sub/header.jsp"/>
+-
+-<div class="main-container">
+-    <!-- Top banner -->
+-    <div class="banner">
+-        <h1>Mobile Phone Overview</h1>
+-        <p>Browse all mobile phones in our database with detailed specifications</p>
+-    </div>
+-    
+-    <!-- Search bar -->
+-    <div class="search-bar">
++<jsp:include page="sub/scripts.jsp"/>
++<main class="main-container">
++    <section class="search-bar">
+         <input type="text" id="searchInput" class="search-input" placeholder="Enter keywords to filter data..." />
+-    
+-        <!-- Search type selection buttons -->
+-        <div class="search-type-buttons">
+-            <button class="search-type-btn active" data-index="0">name</button>
+-            <button class="search-type-btn" data-index="1">brand</button>
+-            <button class="search-type-btn" data-index="2">releaseDate</button>
+-            <button class="search-type-btn" data-index="3">processor</button>
+-            <button class="search-type-btn" data-index="4">display</button>
+-            <button class="search-type-btn" data-index="5">camera</button>
+-            <button class="search-type-btn" data-index="6">material</button>
+-            <button class="search-type-btn" data-index="7">price</button>
+-        </div>
+-    </div>
+-
+-    <div class="table-body-wrapper">
+-        <c:forEach var="item" items="${dataList}">
+-            <div class="data-row">
+-                <div>${item.name}</div>
+-                <div>${item.brand}</div>
+-                <div><fmt:formatDate value="${item.releaseDate}" pattern="yyyy-MM-dd"/></div>
+-                <div>${item.processor}</div>
+-                <div>${item.display}</div>
+-                <div>${item.camera}</div>
+-                <div>${item.material}</div>
+-                <div>${item.price}</div>
++        <section class="filter-toolbar">
++            <button id="btnBrand" class="color-btn">Brand</button>
++            <button id="btnModel" class="color-btn">Model</button>
++            <button id="btnProcessor" class="color-btn">Processor</button>
++            <button id="btnSales" class="color-btn">Sales</button>
++            <button id="btnVendor" class="color-btn">Supplier</button>
++            <div class="range-filter" data-field="price">
++                <label>Price:</label>
++                <input type="number" class="min" placeholder="min USD">
++                <span>—</span>
++                <input type="number" class="max" placeholder="max USD">
++                <button class="apply color-btn">OK</button>
+             </div>
+-        </c:forEach>
+-    </div>
+-</div>
+-
+-<jsp:include page="sub/scripts.jsp"/>
+-<script src="${pageContext.request.contextPath}/assets/js/overview.js"></script>
++            <div class="range-filter" data-field="battery">
++                <label>Battery:</label>
++                <input type="number" class="min" placeholder="min mAh">
++                <span>—</span>
++                <input type="number" class="max" placeholder="max mAh">
++                <button class="apply color-btn">OK</button>
++            </div>
++        </section>
++    </section>
++   <table id="overview-table" class="overview-table">
++        <thead>
++        <tr>
++            <th>No</th>
++            <th>Model</th>
++            <th>Brand</th>
++            <th>Price (USD)</th>
++            <th>SIM</th>
++            <th>Processor</th>
++            <th>RAM</th>
++            <th>Battery</th>
++            <th>Charging</th>
++            <th>Rear Camera</th>
++            <th>Front Camera</th>
++            <th>Card Slot</th>
++            <th>OS</th>
++        </tr>
++        </thead>
++        <tbody>
++        <!-- JS 动态插入行 -->
++        </tbody>
++    </table>
++</main>
+ 
+ </body>
+-</html>
+\ No newline at end of file
++</html>
+Index: src/main/webapp/assets/page/compare.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><%@ page contentType=\"text/html;charset=UTF-8\" language=\"java\" %>\r\n<%@ taglib prefix=\"c\" uri=\"http://java.sun.com/jsp/jstl/core\"%>\r\n<%@ taglib prefix=\"fmt\" uri=\"http://java.sun.com/jsp/jstl/fmt\"%>\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n    <meta charset=\"UTF-8\"/>\r\n    <title>Compare - Mobile Phone Data Center</title>\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\r\n    <link rel=\"stylesheet\" href=\"${pageContext.request.contextPath}/assets/css/components/header.css\">\r\n    <link rel=\"stylesheet\" href=\"${pageContext.request.contextPath}/assets/css/components/theme-toggle.css\">\r\n    <link rel=\"stylesheet\" href=\"${pageContext.request.contextPath}/assets/css/components/banner.css\">\r\n    <link rel=\"stylesheet\" href=\"${pageContext.request.contextPath}/assets/css/pages/compare.css\">\r\n</head>\r\n<body>\r\n<jsp:include page=\"sub/header.jsp\"/>\r\n\r\n<div class=\"main-container\">\r\n    <!-- Top banner -->\r\n    <div class=\"banner\">\r\n        <h1>Mobile Phone Comparison</h1>\r\n        <p>Compare specifications between different mobile phone models side by side</p>\r\n    </div>\r\n    \r\n    <div class=\"controls\">\r\n        <div class=\"control-group\">\r\n            <label for=\"numModels\">Compare count:</label>\r\n            <select id=\"numModels\">\r\n                <option value=\"2\">2 models</option>\r\n                <option value=\"3\" selected>3 models</option>\r\n                <option value=\"4\">4 models</option>\r\n                <option value=\"5\">5 models</option>\r\n            </select>\r\n        </div>\r\n        <div class=\"control-group\">\r\n            <button id=\"reset-btn\" class=\"btn color-btn\">Reset</button>\r\n            <button id=\"compare-btn\" class=\"btn color-btn\">Start Comparison</button>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"selectors\" id=\"deviceSelectors\">\r\n    </div>\r\n    \r\n    <div id=\"compareResults\">\r\n        <c:choose>\r\n            <c:when test=\"${not empty selectedPhones}\">\r\n                <table class=\"compare-table\">\r\n                    <tr>\r\n                        <th>Specification</th>\r\n                        <c:forEach var=\"phone\" items=\"${selectedPhones}\">\r\n                            <th>${phone.brand} ${phone.name}</th>\r\n                        </c:forEach>\r\n                    </tr>\r\n                    <c:forEach var=\"specEntry\" items=\"${specs}\">\r\n                        <tr>\r\n                            <td class=\"spec-label\">${specEntry.value.name}</td>\r\n                            <c:forEach var=\"phone\" items=\"${selectedPhones}\">\r\n                                <td>\r\n                                    <c:choose>\r\n                                        <c:when test=\"${specEntry.key == 'releaseDate'}\">\r\n                                            <fmt:formatDate value=\"${phone.releaseDate}\" pattern=\"yyyy-MM-dd\"/>\r\n                                        </c:when>\r\n                                        <c:when test=\"${specEntry.key == 'price'}\">\r\n                                            $${phone.price}\r\n                                        </c:when>\r\n                                        <c:otherwise>\r\n                                            ${phone[specEntry.key]}\r\n                                        </c:otherwise>\r\n                                    </c:choose>\r\n                                </td>\r\n                            </c:forEach>\r\n                        </tr>\r\n                    </c:forEach>\r\n                </table>\r\n            </c:when>\r\n            <c:otherwise>\r\n                <div class=\"message\">请选择要对比的手机型号后点击“开始对比”</div>\r\n            </c:otherwise>\r\n        </c:choose>\r\n    </div>\r\n\r\n    <div class=\"action-bar\">\r\n        <button id=\"print-btn\" class=\"btn color-btn\">Print Results</button>\r\n        <button id=\"share-btn\" class=\"btn color-btn\">Share Comparison</button>\r\n        <button id=\"add-to-favorites\" class=\"btn color-btn\">Save to Favorites</button>\r\n    </div>\r\n</div>\r\n\r\n<jsp:include page=\"sub/scripts.jsp\"/>\r\n\r\n<!-- 动态生成手机数据 -->\r\n<script id=\"phoneDataScript\">\r\n    const allPhoneData = [\r\n        <c:forEach var=\"phone\" items=\"${allPhones}\" varStatus=\"st\">\r\n        {\r\n            id: ${st.index},\r\n            name: \"${phone.name}\",\r\n            brand: \"${phone.brand}\",\r\n            releaseDate: \"<fmt:formatDate value='${phone.releaseDate}' pattern='yyyy-MM-dd' />\",\r\n            processor: \"${phone.processor}\",\r\n            display: \"${phone.display}\",\r\n            camera: \"${phone.camera}\",\r\n            material: \"${phone.material}\",\r\n            price: ${phone.price}\r\n        }<c:if test=\"${!st.last}\">,</c:if>\r\n        </c:forEach>\r\n    ];\r\n</script>\r\n\r\n<!-- 引入对比页面的脚本 -->\r\n<script src=\"${pageContext.request.contextPath}/assets/js/compare-init.js\"></script>\r\n<script src=\"${pageContext.request.contextPath}/assets/js/compare.js\"></script>\r\n</body>\r\n</html>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/assets/page/compare.jsp b/src/main/webapp/assets/page/compare.jsp
+--- a/src/main/webapp/assets/page/compare.jsp	(revision 6607e907c1273314449e70321ff7f1182e8e3cb3)
++++ b/src/main/webapp/assets/page/compare.jsp	(date 1747499298824)
+@@ -16,12 +16,6 @@
+ <jsp:include page="sub/header.jsp"/>
+ 
+ <div class="main-container">
+-    <!-- Top banner -->
+-    <div class="banner">
+-        <h1>Mobile Phone Comparison</h1>
+-        <p>Compare specifications between different mobile phone models side by side</p>
+-    </div>
+-    
+     <div class="controls">
+         <div class="control-group">
+             <label for="numModels">Compare count:</label>
+Index: src/main/webapp/assets/page/forum.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><%@ page language=\"java\" contentType=\"text/html; charset=UTF-8\" pageEncoding=\"UTF-8\"%>\r\n<%@ taglib prefix=\"c\" uri=\"http://java.sun.com/jsp/jstl/core\" %>\r\n<%@ taglib prefix=\"fmt\" uri=\"http://java.sun.com/jsp/jstl/fmt\" %>\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n  <meta charset=\"UTF-8\">\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n  <title>Forum - Mobile Phone Info System</title>\r\n  <link rel=\"stylesheet\" href=\"${pageContext.request.contextPath}/assets/css/components/header.css\">\r\n  <link rel=\"stylesheet\" href=\"${pageContext.request.contextPath}/assets/css/components/layout.css\">\r\n  <link rel=\"stylesheet\" href=\"${pageContext.request.contextPath}/assets/css/components/banner.css\">\r\n  <link rel=\"stylesheet\" href=\"${pageContext.request.contextPath}/assets/css/pages/forum/forum.css\">\r\n</head>\r\n<body data-context-path=\"${pageContext.request.contextPath}\" data-user-logged-in=\"${not empty sessionScope.user}\">\r\n<!-- Navigation bar -->\r\n<jsp:include page=\"sub/header.jsp\" />\r\n\r\n<!-- Main container -->\r\n<div class=\"main-container\">\r\n  <!-- Sidebar -->\r\n  <aside class=\"forum-sidebar glass-card\">\r\n    <section class=\"sidebar-section\">\r\n      <div class=\"search-container\">\r\n        <form class=\"sidebar-search\">\r\n          <input type=\"text\" placeholder=\"Search topics...\">\r\n        </form>\r\n      </div>\r\n      <div class=\"nav-buttons\">\r\n        <button class=\"search-type-btn\"><i class=\"fas fa-plus\"></i> New Topic</button>\r\n        <button class=\"search-type-btn\"><i class=\"fas fa-user\"></i> My Topics</button>\r\n        <button class=\"search-type-btn\"><i class=\"fas fa-bell\"></i> Received Replies</button>\r\n      </div>\r\n    </section>\r\n\r\n  </aside>\r\n\r\n  <!-- Main content area -->\r\n  <main class=\"forum-main\">\r\n    <div class=\"forum-content\">\r\n      <!-- Title and sorting -->\r\n      <div class=\"content-header\">\r\n        <div class=\"breadcrumb\">\r\n          <a href=\"#\">Home</a> &gt; <span>Forum</span>\r\n        </div>\r\n        <div class=\"sort-filter\">\r\n          <label for=\"sort-select\">Sort by:</label>\r\n          <select id=\"sort-select\">\r\n            <option>Newest First</option>\r\n            <option>Most Replies</option>\r\n            <option>Most Views</option>\r\n          </select>\r\n        </div>\r\n      </div>\r\n\r\n      <!-- Topic list -->\r\n      <ul class=\"topic-list\">\r\n        <!-- Single topic item -->\r\n        <li class=\"topic-item interactive\">\r\n          <div class=\"topic-icon\"><i class=\"fas fa-comments\"></i></div>\r\n          <div class=\"topic-main\">\r\n            <h3 class=\"topic-title\">\r\n              <a href=\"#\">Forum Interface Setup Example and Best Practices</a>\r\n            </h3>\r\n            <div class=\"topic-meta\">\r\n              <span class=\"stat views\"><i class=\"fas fa-eye\"></i> 342</span>\r\n              <span class=\"stat replies\"><i class=\"fas fa-reply\"></i> 27</span>\r\n              <span class=\"stat likes\"><i class=\"fas fa-thumbs-up\"></i> 58</span>\r\n            </div>\r\n          </div>\r\n          <div class=\"topic-last-reply\">\r\n            <span class=\"reply-author\">John</span><br>\r\n            <span class=\"reply-time\">1 hour ago</span>\r\n          </div>\r\n        </li>\r\n        <!-- More topic items... -->\r\n      </ul>\r\n\r\n      <!-- Pagination -->\r\n      <div class=\"pagination\">\r\n        <a href=\"#\" class=\"page-link prev\"><i class=\"fas fa-chevron-left\"></i> Previous</a>\r\n        <a href=\"#\" class=\"page-link current\">1</a>\r\n        <a href=\"#\" class=\"page-link\">2</a>\r\n        <a href=\"#\" class=\"page-link next\">Next <i class=\"fas fa-chevron-right\"></i></a>\r\n      </div>\r\n    </div>\r\n\r\n    <!-- Back to top -->\r\n    <button class=\"back-to-top\"><i class=\"fas fa-arrow-up\"></i></button>\r\n  </main>\r\n</div>\r\n\r\n<!-- Scripts -->\r\n<jsp:include page=\"sub/scripts.jsp\" />\r\n<script src=\"${pageContext.request.contextPath}/assets/js/forum.js\"></script>\r\n</body>\r\n</html>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/assets/page/forum.jsp b/src/main/webapp/assets/page/forum.jsp
+--- a/src/main/webapp/assets/page/forum.jsp	(revision 6607e907c1273314449e70321ff7f1182e8e3cb3)
++++ b/src/main/webapp/assets/page/forum.jsp	(date 1747502234223)
+@@ -20,19 +20,15 @@
+ <div class="main-container">
+   <!-- Sidebar -->
+   <aside class="forum-sidebar glass-card">
+-    <section class="sidebar-section">
+-      <div class="search-container">
+-        <form class="sidebar-search">
+-          <input type="text" placeholder="Search topics...">
+-        </form>
+-      </div>
+-      <div class="nav-buttons">
+-        <button class="search-type-btn"><i class="fas fa-plus"></i> New Topic</button>
+-        <button class="search-type-btn"><i class="fas fa-user"></i> My Topics</button>
+-        <button class="search-type-btn"><i class="fas fa-bell"></i> Received Replies</button>
+-      </div>
+-    </section>
+-
++    <div class="search-container">
++      <form class="sidebar-search">
++        <input type="text" placeholder="Search topics...">
++      </form>
++    </div>
++    <button class="color-btn">New Topic</button>
++    <button class="color-btn">My Topics</button>
++    <button class="color-btn">Received Replies</button>
++    <div> class="phone-list glass-card"</div>
+   </aside>
+ 
+   <!-- Main content area -->
+Index: src/main/webapp/assets/page/profile.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><%@ page language=\"java\" contentType=\"text/html; charset=UTF-8\" pageEncoding=\"UTF-8\"%>\r\n<%@ taglib prefix=\"c\" uri=\"http://java.sun.com/jsp/jstl/core\" %>\r\n<%\r\n  // Determine which section to show: info, devices, or activity\r\n  String currentSection = request.getParameter(\"section\");\r\n  if (currentSection == null || !(currentSection.equals(\"devices\") || currentSection.equals(\"activity\"))) {\r\n    currentSection = \"info\";\r\n  }\r\n%>\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n  <meta charset=\"UTF-8\">\r\n  <title>User Profile</title>\r\n  <!-- Theme variables -->\r\n  <link rel=\"stylesheet\" href=\"${pageContext.request.contextPath}/assets/css/pages/profile/profile.css\">\r\n</head>\r\n<body>\r\n<!-- Global header -->\r\n<jsp:include page=\"sub/header.jsp\" />\r\n\r\n<!-- Main layout container: sidebar + content -->\r\n<div class=\"main-container\">\r\n\r\n  <!-- Sidebar -->\r\n  <aside class=\"profile-sidebar glass-card\">\r\n    <!-- User Card -->\r\n    <div class=\"sidebar-section user-card\">\r\n      <div class=\"avatar-wrapper\">\r\n        <img src=\"${user.avatarUrl}\" alt=\"Avatar\">\r\n      </div>\r\n      <p class=\"user-nickname\">name: ${user.nickname}</p>\r\n      <p class=\"user-level\">Level: ${user.level}</p>\r\n    </div>\r\n\r\n    <!-- Social Stats -->\r\n    <div class=\"sidebar-section social-stats\">\r\n      <div class=\"stat-item\">Posts: <strong>${user.postCount}</strong></div>\r\n      <div class=\"stat-item\">Likes: <strong>${user.likes}</strong></div>\r\n      <div class=\"stat-item\">Followers: <strong>${user.followers}</strong></div>\r\n    </div>\r\n\r\n    <!-- Navigation -->\r\n    <div class=\"sidebar-section sidebar-nav\">\r\n      <a href=\"?section=info\" class=\"nav-item ${currentSection == 'info' ? 'active' : ''}\">Information</a>\r\n      <a href=\"?section=devices\" class=\"nav-item ${currentSection == 'devices' ? 'active' : ''}\">Devices</a>\r\n      <a href=\"?section=activity\" class=\"nav-item ${currentSection == 'activity' ? 'active' : ''}\">Activity</a>\r\n    </div>\r\n\r\n    <div class=\"sidebar-section\">\r\n      <a href=\"${pageContext.request.contextPath}/logout\" class=\"nav-item danger\">Logout</a>\r\n    </div>\r\n  </aside>\r\n\r\n  <!-- Main Content -->\r\n  <main class=\"profile-main\">\r\n    <div class=\"profile-content glass-card \">\r\n      <div class=\"content-header\">\r\n        <div class=\"breadcrumb\">\r\n          <a href=\"${pageContext.request.contextPath}/\">Home</a> &gt; <span>Profile</span>\r\n        </div>\r\n      </div>\r\n\r\n      <!-- Sections -->\r\n      <section id=\"info\" class=\"content-section ${currentSection == 'info' ? 'active' : ''}\">\r\n        <h2 class=\"section-title\">Basic Information</h2>\r\n        <div class=\"info-grid\">\r\n          <div class=\"info-item\">Name: ${user.realName}</div>\r\n          <div class=\"info-item\">Email: ${user.email}</div>\r\n          <div class=\"info-item\">Member Since: ${user.registerDate}</div>\r\n        </div>\r\n      </section>\r\n\r\n      <section id=\"devices\" class=\"content-section ${currentSection == 'devices' ? 'active' : ''}\">\r\n        <h2 class=\"section-title\">Device Management</h2>\r\n        <div class=\"device-grid\">\r\n          <c:forEach var=\"dev\" items=\"${user.devices}\">\r\n            <div class=\"device-card\">\r\n              <img src=\"${dev.icon}\" alt=\"${dev.name}\">\r\n              <h3>${dev.name}</h3>\r\n              <p>${dev.description}</p>\r\n              <a href=\"editDevice?id=${dev.id}\" class=\"device-btn\">Edit</a>\r\n            </div>\r\n          </c:forEach>\r\n        </div>\r\n      </section>\r\n\r\n      <section id=\"activity\" class=\"content-section ${currentSection == 'activity' ? 'active' : ''}\">\r\n        <h2 class=\"section-title\">Activity Log</h2>\r\n        <div class=\"activity-feed\">\r\n          <c:forEach var=\"act\" items=\"${user.activities}\">\r\n            <div class=\"activity-item\">\r\n              <p>${act.message}</p>\r\n              <div class=\"activity-date\">${act.time}</div>\r\n            </div>\r\n          </c:forEach>\r\n        </div>\r\n      </section>\r\n\r\n    </div>\r\n  </main>\r\n\r\n</div>\r\n<jsp:include page=\"sub/scripts.jsp\"/>\r\n</body>\r\n</html>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/assets/page/profile.jsp b/src/main/webapp/assets/page/profile.jsp
+--- a/src/main/webapp/assets/page/profile.jsp	(revision 6607e907c1273314449e70321ff7f1182e8e3cb3)
++++ b/src/main/webapp/assets/page/profile.jsp	(date 1747498615990)
+@@ -22,9 +22,7 @@
+ <!-- Main layout container: sidebar + content -->
+ <div class="main-container">
+ 
+-  <!-- Sidebar -->
+   <aside class="profile-sidebar glass-card">
+-    <!-- User Card -->
+     <div class="sidebar-section user-card">
+       <div class="avatar-wrapper">
+         <img src="${user.avatarUrl}" alt="Avatar">
+Index: src/main/webapp/assets/css/utilities.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/* base.css\r\n * Global base typography and element styles\r\n */\r\n\r\n@import \"style/variables-light.css\"; /* Ensure CSS variables are available */\r\n\r\nbody {\r\n    font-family: 'Helvetica Neue', Arial, sans-serif;\r\n    font-size: var(--font-size-md);\r\n    line-height: 1.6;\r\n    color: var(--text-primary);\r\n    background-color: var(--bg-primary);\r\n    overflow-x: hidden;\r\n}\r\n\r\n/* 全局隐藏滚动条，但保留滚动功能 */\r\nhtml, body {\r\n    margin: 0;\r\n    padding: 0;\r\n    scrollbar-width: none;\r\n    -ms-overflow-style: none;\r\n}\r\n/* WebKit 浏览器（Chrome/Safari/Edge Chromium）*/\r\n::-webkit-scrollbar {\r\n    width: 0;\r\n    height: 0;\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/assets/css/utilities.css b/src/main/webapp/assets/css/utilities.css
+--- a/src/main/webapp/assets/css/utilities.css	(revision 6607e907c1273314449e70321ff7f1182e8e3cb3)
++++ b/src/main/webapp/assets/css/utilities.css	(date 1747558860289)
+@@ -2,27 +2,4 @@
+  * Global base typography and element styles
+  */
+ 
+-@import "style/variables-light.css"; /* Ensure CSS variables are available */
+-
+-body {
+-    font-family: 'Helvetica Neue', Arial, sans-serif;
+-    font-size: var(--font-size-md);
+-    line-height: 1.6;
+-    color: var(--text-primary);
+-    background-color: var(--bg-primary);
+-    overflow-x: hidden;
+-}
+-
+-/* 全局隐藏滚动条，但保留滚动功能 */
+-html, body {
+-    margin: 0;
+-    padding: 0;
+-    scrollbar-width: none;
+-    -ms-overflow-style: none;
+-}
+-/* WebKit 浏览器（Chrome/Safari/Edge Chromium）*/
+-::-webkit-scrollbar {
+-    width: 0;
+-    height: 0;
+-}
+ 
+Index: src/main/webapp/assets/css/style/variables-light.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/* variables-light.css */\r\n\r\n/* ———————————— Light Theme Variables ———————————— */\r\n:root {\r\n    /* Spacing */\r\n    --spacing-xs: 0.25rem;\r\n    --spacing-sm: 0.5rem;\r\n    --spacing-md: 1rem;\r\n    --spacing-lg: 2rem;\r\n    --spacing-xl: 4rem;\r\n    --spacing-xxl: 6rem;\r\n\r\n    /* Font sizes */\r\n    --font-size-sm: 0.5rem;\r\n    --font-size-md: 1rem;\r\n    --font-size-lg: 1.25rem;\r\n    --font-size-xl: 2rem;\r\n    --font-size-xxl: 3rem;\r\n    --font-size-hero: 5rem;\r\n\r\n    /* Font weights */\r\n    --font-weight-light: 300;\r\n    --font-weight-regular: 400;\r\n    --font-weight-bold: 700;\r\n\r\n    /* Border radius */\r\n    --radius-sm: 4px;\r\n    --radius-md: 8px;\r\n    --radius-xl: 12px;\r\n    --radius-lg: 16px;\r\n\r\n    /* Z-index tiers */\r\n    --z-header: 1000;\r\n    --z-modal: 2000;\r\n\r\n    /* Transition durations */\r\n    --transition-fast: 0.2s;\r\n    --transition-normal: 0.5s;\r\n    --transition-slow: 1s;\r\n\r\n    /* Gradient animation settings */\r\n    --gradient-duration: 8s;\r\n    --gradient-easing: ease-in-out;\r\n    --gradient-iteration: infinite;\r\n\r\n    /* Section minimum heights */\r\n    --section-height-hero: 100vh;\r\n    --section-height-default: 60vh;\r\n    --section-height-compact: auto;\r\n\r\n    --header-bg: rgb(0, 0, 0);  /* 夜间导航背景 */\r\n    --header-text: #ffffff;/* 夜间导航文字 */\r\n    --headerhome-bg: rgba(0, 0, 0, 0.6);  /* 夜间导航背景 */\r\n    --headerhome-text: #ffffff;/* 夜间导航文字 */\r\n\r\n    /* Light theme colors */\r\n    --bg-primary: #ffffff;\r\n    --bg-inverse: #000000;\r\n    --bg-banner: linear-gradient(135deg, #3d7cf4, #2d59c3);\r\n\r\n    --text-primary: #000000;\r\n    --text-inverse: #ffffff;\r\n    --text-hero: #ffffff;\r\n    --text-color: var(--text-primary);\r\n\r\n    --primary-color:   #3d7cf4;\r\n    --secondary-color: #31d3c0;\r\n\r\n    --card-bg: #ffffff;\r\n    --card-profile: #97efca;\r\n    --card-border: rgba(0, 0, 0, 0.48);\r\n    --list-bg: #73a4a5;\r\n    --divider: #ffffff;\r\n\r\n    --btn-primary: #ffffff;\r\n    --btn-activer: #9f9faa;\r\n    --btn-border: #3d7cf4;\r\n    --btn-border-hover: #5a1cef;\r\n\r\n    /* 渐变定义 */\r\n    --gradient-hero:     black;\r\n    --gradient-features: #74806f;\r\n    --gradient-overview: linear-gradient(135deg,#a4b3c9,#B0A8A1);\r\n    --gradient-compare:  #A399B6;\r\n    --gradient-forum:  #bc9094;\r\n    --gradient-profile: #ffffff;\r\n    --gradient-cta:      #B0A8A1;\r\n\r\n    /* ——— 流光按钮专属变量 ——— */\r\n    --border-width: 0.25em;\r\n    --border-radius: 1em;\r\n    --border-color: #3d5ae8;\r\n    --border-blur: 0.75em;\r\n    --transition-speed: 0.5s;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/assets/css/style/variables-light.css b/src/main/webapp/assets/css/style/variables-light.css
+--- a/src/main/webapp/assets/css/style/variables-light.css	(revision 6607e907c1273314449e70321ff7f1182e8e3cb3)
++++ b/src/main/webapp/assets/css/style/variables-light.css	(date 1747559215881)
+@@ -56,6 +56,7 @@
+     /* Light theme colors */
+     --bg-primary: #ffffff;
+     --bg-inverse: #000000;
++    --bg-grey: rgba(225, 225, 225, 0.91);
+     --bg-banner: linear-gradient(135deg, #3d7cf4, #2d59c3);
+ 
+     --text-primary: #000000;
+@@ -68,9 +69,10 @@
+ 
+     --card-bg: #ffffff;
+     --card-profile: #97efca;
+-    --card-border: rgba(0, 0, 0, 0.48);
++    --card-border: rgba(0, 0, 0, 0.08);
+     --list-bg: #73a4a5;
+-    --divider: #ffffff;
++    --divider: #f5f5f5;
++
+ 
+     --btn-primary: #ffffff;
+     --btn-activer: #9f9faa;
+@@ -83,7 +85,7 @@
+     --gradient-overview: linear-gradient(135deg,#a4b3c9,#B0A8A1);
+     --gradient-compare:  #A399B6;
+     --gradient-forum:  #bc9094;
+-    --gradient-profile: #ffffff;
++    --gradient-profile: #e6e6e6;
+     --gradient-cta:      #B0A8A1;
+ 
+     /* ——— 流光按钮专属变量 ——— */
+Index: src/main/webapp/assets/css/layout.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/assets/css/layout.css b/src/main/webapp/assets/js/tool.js
+rename from src/main/webapp/assets/css/layout.css
+rename to src/main/webapp/assets/js/tool.js
+--- a/src/main/webapp/assets/css/layout.css	(revision 6607e907c1273314449e70321ff7f1182e8e3cb3)
++++ b/src/main/webapp/assets/js/tool.js	(date 1747558106894)
+@@ -1,0 +1,43 @@
++function debounce(func, wait) {
++    let timeout;
++    return function executedFunction(...args) {
++        const later = () => {
++            clearTimeout(timeout);
++            func(...args);
++        };
++        clearTimeout(timeout);
++        timeout = setTimeout(later, wait);
++    };
++}
++
++// 限流函数
++function throttle(func, limit) {
++    let inThrottle;
++    return function(...args) {
++        if (!inThrottle) {
++            func.apply(this, args);
++            inThrottle = true;
++            setTimeout(() => inThrottle = false, limit);
++        }
++    };
++}
++
++// 格式化日期
++function formatDate(date, format = 'yyyy-MM-dd') {
++    if (!(date instanceof Date)) {
++        date = new Date(date);
++    }
++
++    const year = date.getFullYear();
++    const month = String(date.getMonth() + 1).padStart(2, '0');
++    const day = String(date.getDate()).padStart(2, '0');
++    const hours = String(date.getHours()).padStart(2, '0');
++    const minutes = String(date.getMinutes()).padStart(2, '0');
++
++    return format
++        .replace('yyyy', year)
++        .replace('MM', month)
++        .replace('dd', day)
++        .replace('HH', hours)
++        .replace('mm', minutes);
++}
+\ No newline at end of file
+Index: src/main/webapp/assets/css/style/variables-dark.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/* variables-dark.css\r\n * 完整暗色主题变量定义\r\n * 单文件覆盖所有配色与渐变至暗色风格\r\n */\r\nhtml.dark-mode,\r\nbody.dark-theme {\r\n    /* ——— 通用变量 (与 light 一致) ——— */\r\n    /* Spacing */\r\n    --spacing-xs: 0.25rem;\r\n    --spacing-sm: 0.5rem;\r\n    --spacing-md: 1rem;\r\n    --spacing-lg: 2rem;\r\n    --spacing-xl: 4rem;\r\n\r\n    /* Font sizes */\r\n    --font-size-sm: 0.875rem;\r\n    --font-size-md: 1rem;\r\n    --font-size-lg: 1.25rem;\r\n    --font-size-xl: 2rem;\r\n    --font-size-xxl: 3rem;\r\n    --font-size-hero: 5rem;\r\n\r\n    /* Border radius */\r\n    --radius-sm: 4px;\r\n    --radius-md: 8px;\r\n    --radius-lg: 16px;\r\n\r\n    /* Z-index tiers */\r\n    --z-header: 1000;\r\n    --z-modal: 2000;\r\n\r\n    /* Transition durations */\r\n    --transition-fast: 0.2s;\r\n    --transition-normal: 0.5s;\r\n    --transition-slow: 1s;\r\n\r\n    /* Gradient animation settings */\r\n    --gradient-duration: 8s;\r\n    --gradient-easing: ease-in-out;\r\n    --gradient-iteration: infinite;\r\n\r\n    /* Section minimum heights */\r\n    --section-height-hero: 100vh;\r\n    --section-height-default: 60vh;\r\n    --section-height-compact: auto;\r\n\r\n    --header-bg: rgb(255, 255, 255);  /* 夜间导航背景 */\r\n    --header-text: #000000;/* 夜间导航文字 */\r\n    --headerhome-bg: rgba(0, 0, 0, 0.6);  /* 夜间导航背景 */\r\n    --headerhome-text: #ffffff;/* 夜间导航文字 */\r\n\r\n    /* ——— 暗色主题配色 ——— */\r\n    /* 背景色 */\r\n    --bg-primary: #000000;\r\n    --bg-inverse: #ffffff;\r\n    --bg-banner: linear-gradient(135deg, #1a1a1a, #2d2d2d);\r\n    /* 文本色 */\r\n    --text-primary: #ffffff;\r\n    --text-inverse: #000000;\r\n    --text-hero: #ffffff;\r\n    --text-color: var(--text-primary);\r\n\r\n    /* 主色、次色 */\r\n    --primary-color:   #3a3a60;\r\n    --secondary-color: #4b4b80;\r\n\r\n    --card-bg: #000000;\r\n    --divider: #c2574d;\r\n    --card-border : rgba(255, 255, 255, 0.55);\r\n\r\n    --btn-primary: #3c3c3c;\r\n    --btn-border: #ffc5c2;\r\n    --btn-border-hover: #7089ff;\r\n\r\n    /* 区块渐变背景 */\r\n    --gradient-hero:     linear-gradient(135deg, #000000, #000000);\r\n    --gradient-features: linear-gradient(135deg, #0A2E38, #1A4A4A);\r\n    --gradient-overview: linear-gradient(135deg, #2F1640, #45306A);\r\n    --gradient-compare:  linear-gradient(135deg, #1F2D70, #243B7A);\r\n    --gradient-forum:    linear-gradient(135deg, #2D3345, #4A5A76);\r\n    --gradient-profile:  linear-gradient(135deg, #7b5956, #451e6f);\r\n    --gradient-cta:      linear-gradient(135deg, #200E40, #3A225B);\r\n\r\n    /* ——— 流光按钮专属变量 ——— */\r\n    --border-width: 0.25em;\r\n    --border-radius: 1em;\r\n    --border-color: #ffd0d0;\r\n    --border-blur: 0.75em;\r\n    --transition-speed: 0.5s;\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/assets/css/style/variables-dark.css b/src/main/webapp/assets/css/style/variables-dark.css
+--- a/src/main/webapp/assets/css/style/variables-dark.css	(revision 6607e907c1273314449e70321ff7f1182e8e3cb3)
++++ b/src/main/webapp/assets/css/style/variables-dark.css	(date 1747559256414)
+@@ -53,9 +53,10 @@
+     /* 背景色 */
+     --bg-primary: #000000;
+     --bg-inverse: #ffffff;
++    --bg-grey: rgba(93, 93, 93, 0.91);
+     --bg-banner: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+     /* 文本色 */
+-    --text-primary: #ffffff;
++    --text-primary: #ececec;
+     --text-inverse: #000000;
+     --text-hero: #ffffff;
+     --text-color: var(--text-primary);
+@@ -65,8 +66,8 @@
+     --secondary-color: #4b4b80;
+ 
+     --card-bg: #000000;
+-    --divider: #c2574d;
+-    --card-border : rgba(255, 255, 255, 0.55);
++    --divider: #515151;
++    --card-border : rgba(255, 255, 255, 0.04);
+ 
+     --btn-primary: #3c3c3c;
+     --btn-border: #ffc5c2;
+Index: src/main/webapp/assets/css/pages/profile/profile.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>@import \"../../style/variables.css\";\r\n@import \"../../utilities.css\";\r\n@import \"../../components/header.css\";\r\n@import \"../../components/layout.css\";\r\n@import \"../../components/cards.css\";\r\n\r\nhtml, body {\r\n    height: 100%;\r\n    margin: 0;\r\n    padding: 0;\r\n    overflow: hidden;\r\n}\r\n\r\n.main-container {\r\n    display: flex;\r\n    position: absolute;\r\n    gap: 1rem;\r\n    top: 0;\r\n    left: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    box-sizing: border-box;\r\n}\r\n/* ========== Sidebar ========== */\r\n.profile-sidebar {\r\n    width: 10%;\r\n    padding: var(--font-size-md);\r\n\r\n}\r\n\r\n.profile-sidebar,\r\n.profile-main {\r\n    background: var(--card-bg);\r\n    backdrop-filter: blur(8px);\r\n    -webkit-backdrop-filter: blur(8px);\r\n    border-radius: var(--radius-md);\r\n    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);\r\n    display: flex;\r\n    border: 3px solid var(--card-border);\r\n    flex-direction: column;\r\n    justify-content: flex-start;\r\n    transition: transform var(--transition-fast), box-shadow var(--transition-fast);\r\n}\r\n\r\n.profile-sidebar .sidebar-section {\r\n    background: var(--gradient-profile);\r\n    backdrop-filter: blur(20px);\r\n    -webkit-backdrop-filter: blur(8px);\r\n    border-radius: var(--radius-md);\r\n    padding: var(--spacing-sm) 0 ;\r\n    margin-bottom: var(--spacing-md);\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: flex-start;\r\n    transition: transform var(--transition-fast),\r\n    border-color var(--transition-fast); /* 新增边框过渡 */\r\n    background: rgba(255, 255, 255, 0.12);\r\n    border: 4px solid var(--secondary-color);\r\n    font-weight: 800;\r\n    text-align: center;\r\n    white-space: nowrap;\r\n    overflow: hidden;\r\n}\r\n\r\n\r\n/* User Card */\r\n.profile-sidebar .user-card {\r\n    text-align: center;\r\n}\r\n\r\n.profile-sidebar .avatar-wrapper {\r\n    width: var(--spacing-xxl);          /* 6rem (96px) */\r\n    height: var(--spacing-xxl);\r\n    border-radius: 50%;\r\n    overflow: hidden;\r\n}\r\n\r\n.profile-sidebar .avatar-wrapper img {\r\n    width: 100%;\r\n    height: 100%;\r\n    object-fit: cover;\r\n    display: block;\r\n}\r\n\r\n\r\n/* Social Stats */\r\n.profile-sidebar .social-stats {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: var(--spacing-md);\r\n}\r\n\r\n.profile-sidebar .social-stats .stat-item {\r\n    font-size: var(--font-size-md);\r\n    color: var(--text-color);\r\n}\r\n\r\n/* Navigation Links */\r\n.profile-sidebar .sidebar-nav .nav-item {\r\n    display: block;\r\n    padding: var(--spacing-sm) var(--spacing-md);\r\n    margin-bottom: var(--spacing-sm);\r\n    font-size: var(--font-size-md);\r\n    color: var(--text-color);\r\n    text-decoration: none;\r\n    border-radius: var(--radius-sm);\r\n    transition: background var(--transition-fast);\r\n}\r\n\r\n.profile-sidebar .sidebar-nav .nav-item:hover,\r\n.profile-sidebar .sidebar-nav .nav-item.active {\r\n    background: var(--primary-color);\r\n    color: var(--text-inverse);\r\n}\r\n\r\n.profile-sidebar .sidebar-nav .danger {\r\n    color: var(--primary-color);\r\n}\r\n\r\n/* ========== Main Content ========== */\r\n.profile-main {\r\n    width: 100%;\r\n}\r\n\r\n.profile-content {\r\n    flex: 1;\r\n    display: flex;\r\n    flex-direction: column;\r\n    padding: var(--spacing-lg);\r\n    box-sizing: border-box;\r\n\r\n    height: 100%;\r\n}\r\n\r\n/* Breadcrumb area (inherited from forum.css) */\r\n/* .content-header { … } */\r\n\r\n/* ========== Sections ========== */\r\n.content-section {\r\n    display: none;\r\n}\r\n\r\n.content-section.active {\r\n    display: block;\r\n}\r\n\r\n/* Section Title */\r\n.section-title {\r\n    font-size: var(--font-size-xl);\r\n    margin-bottom: var(--spacing-md);\r\n    border-bottom: 2px solid var(--divider);\r\n    padding-bottom: var(--spacing-sm);\r\n    color: var(--text-color);\r\n}\r\n\r\n/* Basic Info Grid */\r\n.info-grid {\r\n    display: grid;\r\n    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));\r\n    gap: var(--spacing-md);\r\n}\r\n\r\n.info-item {\r\n    font-size: var(--font-size-md);\r\n    color: var(--text-color);\r\n}\r\n\r\n/* Device Management Grid */\r\n.device-grid {\r\n    display: grid;\r\n    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));\r\n    gap: var(--spacing-md);\r\n}\r\n\r\n.device-card {\r\n    background: var(--card-bg);\r\n    border: 1px solid var(--divider);\r\n    border-radius: var(--radius-sm);\r\n    padding: var(--spacing-md);\r\n    text-align: center;\r\n    box-shadow: 0 2px 4px rgba(0,0,0,0.1);\r\n}\r\n\r\n.device-card img {\r\n    width: 60%;\r\n    height: auto;\r\n    margin-bottom: var(--spacing-sm);\r\n}\r\n\r\n.device-card h3 {\r\n    font-size: var(--font-size-md);\r\n    margin-bottom: var(--spacing-xs);\r\n    color: var(--text-color);\r\n}\r\n\r\n.device-card p {\r\n    font-size: var(--font-size-sm);\r\n    margin-bottom: var(--spacing-sm);\r\n    color: var(--text-color);\r\n}\r\n\r\n.device-card .device-btn {\r\n    display: inline-block;\r\n    font-size: var(--font-size-sm);\r\n    padding: var(--spacing-xs) var(--spacing-sm);\r\n    background: var(--primary-color);\r\n    color: var(--text-inverse);\r\n    text-decoration: none;\r\n    border-radius: var(--radius-sm);\r\n    transition: background var(--transition-fast);\r\n}\r\n\r\n.device-card .device-btn:hover {\r\n    background: var(--secondary-color);\r\n}\r\n\r\n/* Activity Feed */\r\n.activity-feed {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: var(--spacing-md);\r\n}\r\n\r\n.activity-item {\r\n    padding-bottom: var(--spacing-sm);\r\n    border-bottom: 1px solid var(--divider);\r\n}\r\n\r\n.activity-item:last-child {\r\n    border-bottom: none;\r\n}\r\n\r\n.activity-date {\r\n    font-size: var(--font-size-sm);\r\n    color: var(--text-color);\r\n    margin-top: var(--spacing-xs);\r\n}\r\n\r\n/* ========== Responsive ========== */\r\n@media (max-width: 768px) {\r\n    .main-container {\r\n        flex-direction: column;\r\n    }\r\n    .profile-sidebar,\r\n    .profile-content {\r\n        width: 100%;\r\n    }\r\n    .profile-sidebar {\r\n        margin-bottom: var(--spacing-lg);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/assets/css/pages/profile/profile.css b/src/main/webapp/assets/css/pages/profile/profile.css
+--- a/src/main/webapp/assets/css/pages/profile/profile.css	(revision 6607e907c1273314449e70321ff7f1182e8e3cb3)
++++ b/src/main/webapp/assets/css/pages/profile/profile.css	(date 1747499544170)
+@@ -36,7 +36,7 @@
+     border-radius: var(--radius-md);
+     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+     display: flex;
+-    border: 3px solid var(--card-border);
++    border: 1px solid var(--card-border);
+     flex-direction: column;
+     justify-content: flex-start;
+     transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+Index: .idea/webContexts.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"WebContextManager\">\r\n    <option name=\"state\">\r\n      <map>\r\n        <entry key=\"file://$PROJECT_DIR$/src/main/webapp/assets/page/forum.jsp\" value=\"file://$PROJECT_DIR$/src/main/webapp/assets/page\" />\r\n        <entry key=\"file://$PROJECT_DIR$/src/main/webapp/assets/page/home.jsp\" value=\"file://$PROJECT_DIR$/src/main/webapp/assets/page\" />\r\n        <entry key=\"file://$PROJECT_DIR$/src/main/webapp/assets/page/profile.jsp\" value=\"file://$PROJECT_DIR$/src/main/webapp/assets/page\" />\r\n        <entry key=\"file://$PROJECT_DIR$/src/main/webapp/compare.jsp\" value=\"file://$PROJECT_DIR$/src/main/webapp\" />\r\n        <entry key=\"file://$PROJECT_DIR$/src/main/webapp/home.jsp\" value=\"file://$PROJECT_DIR$/src/main/webapp\" />\r\n        <entry key=\"file://$PROJECT_DIR$/src/main/webapp/login.jsp\" value=\"file://$PROJECT_DIR$/src/main/webapp\" />\r\n        <entry key=\"file://$PROJECT_DIR$/src/main/webapp/main.jsp\" value=\"file://$PROJECT_DIR$/src/main/webapp\" />\r\n        <entry key=\"file://$PROJECT_DIR$/src/main/webapp/overview.jsp\" value=\"file://$PROJECT_DIR$/src/main/webapp\" />\r\n        <entry key=\"file://$PROJECT_DIR$/src/main/webapp/profile.jsp\" value=\"file://$PROJECT_DIR$/src/main/webapp\" />\r\n        <entry key=\"file://$PROJECT_DIR$/src/main/webapp/sub/themeToggle.jsp\" value=\"file://$PROJECT_DIR$/src/main/webapp/sub\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/webContexts.xml b/.idea/webContexts.xml
+--- a/.idea/webContexts.xml	(revision 6607e907c1273314449e70321ff7f1182e8e3cb3)
++++ b/.idea/webContexts.xml	(date 1747508635357)
+@@ -5,6 +5,7 @@
+       <map>
+         <entry key="file://$PROJECT_DIR$/src/main/webapp/assets/page/forum.jsp" value="file://$PROJECT_DIR$/src/main/webapp/assets/page" />
+         <entry key="file://$PROJECT_DIR$/src/main/webapp/assets/page/home.jsp" value="file://$PROJECT_DIR$/src/main/webapp/assets/page" />
++        <entry key="file://$PROJECT_DIR$/src/main/webapp/assets/page/overview.jsp" value="file://$PROJECT_DIR$/src/main/webapp/assets/page" />
+         <entry key="file://$PROJECT_DIR$/src/main/webapp/assets/page/profile.jsp" value="file://$PROJECT_DIR$/src/main/webapp/assets/page" />
+         <entry key="file://$PROJECT_DIR$/src/main/webapp/compare.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+         <entry key="file://$PROJECT_DIR$/src/main/webapp/home.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+Index: src/main/webapp/assets/css/components/layout.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/assets/css/components/layout.css b/src/main/webapp/assets/css/components/layout.css
+new file mode 100644
+--- /dev/null	(date 1747558860285)
++++ b/src/main/webapp/assets/css/components/layout.css	(date 1747558860285)
+@@ -0,0 +1,36 @@
++@import "../style/variables.css"; /* Ensure CSS variables are available */
++
++body {
++    font-family: 'Helvetica Neue', Arial, sans-serif;
++    font-size: var(--font-size-md);
++    line-height: 1.6;
++    color: var(--text-primary);
++    background-color: var(--bg-primary);
++    overflow-x: hidden;
++}
++
++html, body {
++    margin: 0;
++    padding: 0;
++    scrollbar-width: none;
++    -ms-overflow-style: none;
++    height: 100%;
++}
++
++.main-container {
++    margin-top: 60px;
++    padding: var(--spacing-md);
++}
++
++::-webkit-scrollbar {
++    width: 0;
++    height: 0;
++}
++
++@media (max-width: 768px) {
++    .profile-main,
++    .forum-main,
++    .compare-main {
++        display: block;
++    }
++}
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ArtifactsWorkspaceSettings\">\r\n    <artifacts-to-build>\r\n      <artifact name=\"DB_assignment:war exploded\" />\r\n    </artifacts-to-build>\r\n  </component>\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"d02de210-1416-435c-ad06-f238c6357885\" name=\"更改\" comment=\"马哥坏\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/dataSources.local.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/dataSources.local.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/misc.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/webContexts.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/webContexts.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/MessageSenderTest.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/MessageSenderTest.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/model/sql/NonFoldablePhone.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/model/sql/NonFoldablePhone.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/css/components/buttons.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/css/components/buttons.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/css/components/cards.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/css/components/cards.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/css/pages/forum/forum.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/css/pages/forum/forum.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/css/pages/forum/search-btn.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/css/pages/forum/search-btn.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/css/pages/home/sections/cta.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/css/pages/home/sections/cta.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/css/pages/home/sections/section-base.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/css/pages/home/sections/section-base.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/css/pages/profile/profile.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/css/pages/profile/profile.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/css/style/variables-dark.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/css/style/variables-dark.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/css/style/variables-light.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/css/style/variables-light.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/page/compare.jsp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/page/compare.jsp\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/page/forum.jsp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/page/forum.jsp\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/page/home.jsp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/page/home.jsp\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/page/profile.jsp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/page/profile.jsp\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Jsp File\" />\r\n        <option value=\"Class\" />\r\n        <option value=\"HTML File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;Yhazrin&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/Yhazrin/DB_assignment.git&quot;,\r\n    &quot;accountId&quot;: &quot;32029469-983b-45ac-b446-36588808c724&quot;\r\n  }\r\n}</component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"file://$PROJECT_DIR$/src/main/java/MessageSenderTest.java\" root0=\"FORCE_HIGHLIGHTING\" />\r\n  </component>\r\n  <component name=\"KubernetesApiPersistence\">{}</component>\r\n  <component name=\"KubernetesApiProvider\">{\r\n  &quot;isMigrated&quot;: true\r\n}</component>\r\n  <component name=\"LogFilters\">\r\n    <option name=\"FILTER_ERRORS\" value=\"false\" />\r\n    <option name=\"FILTER_WARNINGS\" value=\"false\" />\r\n    <option name=\"FILTER_INFO\" value=\"true\" />\r\n    <option name=\"FILTER_DEBUG\" value=\"true\" />\r\n    <option name=\"CUSTOM_FILTER\" />\r\n  </component>\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"mavenHomeTypeForPersistence\" value=\"WRAPPER\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 3\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2wEMqlUb4sKktor846VuiCpSJbu\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <OptionsSetting value=\"false\" id=\"Update\" />\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,\r\n    &quot;Maven.DB_assignment [clean].executor&quot;: &quot;Run&quot;,\r\n    &quot;Maven.DB_assignment [package].executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,\r\n    &quot;TomEE 服务器.TomcatDASHABI.executor&quot;: &quot;Run&quot;,\r\n    &quot;Tomcat 服务器.Tomcat 10.1.39.executor&quot;: &quot;Run&quot;,\r\n    &quot;Tomcat 服务器.TomcatSHABI.executor&quot;: &quot;Run&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;master&quot;,\r\n    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;D:/DB_assignment/src/main/java&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.42847174&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,\r\n    &quot;应用程序.MessageSenderTest.executor&quot;: &quot;Run&quot;\r\n  },\r\n  &quot;keyToStringList&quot;: {\r\n    &quot;DatabaseDriversLRU&quot;: [\r\n      &quot;mysql&quot;\r\n    ]\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\DB_assignment\\src\\main\\java\" />\r\n      <recent name=\"C:\\Users\\20544\\Desktop\\SE\\SEP\\Assignment\\DB_assignment\\src\\main\\java\\view\" />\r\n      <recent name=\"C:\\Users\\20544\\Desktop\\SE\\SEP\\Assignment\\DB_assignment\\src\\main\\java\\view\\pages\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\20544\\Desktop\\SE\\SEP\\Assignment\\DB_assignment\\src\\main\\webapp\\assets\\page\" />\r\n      <recent name=\"C:\\Users\\20544\\Desktop\\SE\\SEP\\Assignment\\DB_assignment\\src\\main\\webapp\\assets\\css\\style\" />\r\n      <recent name=\"C:\\Users\\20544\\Desktop\\SE\\SEP\\Assignment\\DB_assignment\\src\\main\\webapp\\assets\\css\\pages\\home\" />\r\n      <recent name=\"C:\\Users\\20544\\Desktop\\SE\\SEP\\Assignment\\DB_assignment\\src\\main\\webapp\\assets\\css\\pages\" />\r\n      <recent name=\"C:\\Users\\20544\\Desktop\\SE\\SEP\\Assignment\\DB_assignment\\src\\main\\webapp\\assets\\css\\sections\" />\r\n    </key>\r\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\r\n      <recent name=\"model.sql\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration default=\"true\" type=\"TomeeConfiguration\" factoryName=\"Remote\" ALTERNATIVE_JRE_ENABLED=\"false\">\r\n      <option name=\"LOCAL\" value=\"false\" />\r\n      <deployment />\r\n      <server-settings>\r\n        <data>\r\n          <option name=\"transportHostId\" value=\"\" />\r\n          <host-id />\r\n        </data>\r\n      </server-settings>\r\n      <predefined_log_file enabled=\"true\" id=\"Tomcat\" />\r\n      <predefined_log_file enabled=\"true\" id=\"TOMCAT_LOCALHOST_LOG_ID\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory\" factoryName=\"Remote\" ALTERNATIVE_JRE_ENABLED=\"false\">\r\n      <option name=\"LOCAL\" value=\"false\" />\r\n      <deployment />\r\n      <server-settings>\r\n        <data>\r\n          <option name=\"transportHostId\" value=\"\" />\r\n          <host-id />\r\n        </data>\r\n      </server-settings>\r\n      <predefined_log_file enabled=\"true\" id=\"Tomcat\" />\r\n      <predefined_log_file enabled=\"true\" id=\"TOMCAT_LOCALHOST_LOG_ID\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Tomcat 10.1.39\" type=\"#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory\" factoryName=\"Local\" APPLICATION_SERVER_NAME=\"Tomcat 10.1.39\" ALTERNATIVE_JRE_ENABLED=\"false\" nameIsGenerated=\"true\">\r\n      <option name=\"UPDATING_POLICY\" value=\"restart-server\" />\r\n      <deployment>\r\n        <artifact name=\"DB_assignment:war exploded\">\r\n          <settings>\r\n            <option name=\"CONTEXT_PATH\" value=\"/DB_assignment_war_exploded\" />\r\n          </settings>\r\n        </artifact>\r\n      </deployment>\r\n      <server-settings>\r\n        <option name=\"BASE_DIRECTORY_NAME\" value=\"5b83f360-1658-48c0-beb6-2a01bc70bc9e\" />\r\n        <option name=\"HTTP_PORT\" value=\"8081\" />\r\n      </server-settings>\r\n      <predefined_log_file enabled=\"true\" id=\"Tomcat\" />\r\n      <predefined_log_file enabled=\"true\" id=\"Tomcat Catalina\" />\r\n      <predefined_log_file id=\"Tomcat Manager\" />\r\n      <predefined_log_file id=\"Tomcat Host Manager\" />\r\n      <predefined_log_file id=\"Tomcat Localhost Access\" />\r\n      <RunnerSettings RunnerId=\"AppServerDebuggerRunner\">\r\n        <option name=\"DEBUG_PORT\" value=\"64229\" />\r\n      </RunnerSettings>\r\n      <RunnerSettings RunnerId=\"Debug\">\r\n        <option name=\"DEBUG_PORT\" value=\"51482\" />\r\n      </RunnerSettings>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"AppServerDebuggerRunner\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Cover\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Debug\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Profile\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Run\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n        <option name=\"BuildArtifacts\" enabled=\"true\">\r\n          <artifact name=\"DB_assignment:war exploded\" />\r\n        </option>\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"TomcatSHABI\" type=\"#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory\" factoryName=\"Remote\" APPLICATION_SERVER_NAME=\"Tomcat 10.1.39\" ALTERNATIVE_JRE_ENABLED=\"false\">\r\n      <option name=\"LOCAL\" value=\"false\" />\r\n      <deployment />\r\n      <server-settings>\r\n        <data>\r\n          <option name=\"targets\">\r\n            <list>\r\n              <WatchedTargetModelImpl>\r\n                <option name=\"name\" value=\"CONTEXT_XML\" />\r\n                <option name=\"transportStagingTarget\">\r\n                  <TransportTarget>\r\n                    <option name=\"id\" value=\"8c1d0dc4-126a-4442-90b2-78bf6a4bb45a\" />\r\n                    <id>8c1d0dc4-126a-4442-90b2-78bf6a4bb45a</id>\r\n                  </TransportTarget>\r\n                </option>\r\n                <option name=\"watchedLocalPath\" value=\"\" />\r\n                <watched-path />\r\n                <name>CONTEXT_XML</name>\r\n                <transport-target>\r\n                  <TransportTarget>\r\n                    <option name=\"id\" value=\"8c1d0dc4-126a-4442-90b2-78bf6a4bb45a\" />\r\n                    <id>8c1d0dc4-126a-4442-90b2-78bf6a4bb45a</id>\r\n                  </TransportTarget>\r\n                </transport-target>\r\n              </WatchedTargetModelImpl>\r\n              <StagingTargetModelImpl>\r\n                <option name=\"name\" value=\"STAGING\" />\r\n                <option name=\"stagingRemotePath\" value=\"\" />\r\n                <option name=\"transportStagingTarget\">\r\n                  <TransportTarget>\r\n                    <option name=\"id\" value=\"bd315c20-6365-4217-8d02-ee05d1cf14d4\" />\r\n                    <id>bd315c20-6365-4217-8d02-ee05d1cf14d4</id>\r\n                  </TransportTarget>\r\n                </option>\r\n                <staging-path />\r\n                <name>STAGING</name>\r\n                <transport-target>\r\n                  <TransportTarget>\r\n                    <option name=\"id\" value=\"bd315c20-6365-4217-8d02-ee05d1cf14d4\" />\r\n                    <id>bd315c20-6365-4217-8d02-ee05d1cf14d4</id>\r\n                  </TransportTarget>\r\n                </transport-target>\r\n              </StagingTargetModelImpl>\r\n            </list>\r\n          </option>\r\n        </data>\r\n      </server-settings>\r\n      <predefined_log_file enabled=\"true\" id=\"Tomcat\" />\r\n      <predefined_log_file enabled=\"true\" id=\"TOMCAT_LOCALHOST_LOG_ID\" />\r\n      <RunnerSettings RunnerId=\"Debug\">\r\n        <option name=\"DEBUG_PORT\" value=\"58019\" />\r\n        <option name=\"LOCAL\" value=\"false\" />\r\n      </RunnerSettings>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <list>\r\n      <item itemvalue=\"Tomcat 服务器.Tomcat 10.1.39\" />\r\n      <item itemvalue=\"Tomcat 服务器.TomcatSHABI\" />\r\n    </list>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"应用程序级\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"默认任务\">\r\n      <changelist id=\"d02de210-1416-435c-ad06-f238c6357885\" name=\"更改\" comment=\"\" />\r\n      <created>1745602472992</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1745602472992</updated>\r\n      <workItem from=\"1745602474398\" duration=\"1871000\" />\r\n      <workItem from=\"1745694905566\" duration=\"1227000\" />\r\n      <workItem from=\"1745806418481\" duration=\"5000\" />\r\n      <workItem from=\"1745808831130\" duration=\"93000\" />\r\n      <workItem from=\"1745912189756\" duration=\"16699000\" />\r\n      <workItem from=\"1745938599503\" duration=\"23952000\" />\r\n      <workItem from=\"1745990668039\" duration=\"34165000\" />\r\n      <workItem from=\"1746047924674\" duration=\"5260000\" />\r\n      <workItem from=\"1746084442265\" duration=\"9796000\" />\r\n      <workItem from=\"1746096985778\" duration=\"17580000\" />\r\n      <workItem from=\"1746132127196\" duration=\"983000\" />\r\n      <workItem from=\"1746133134676\" duration=\"1409000\" />\r\n      <workItem from=\"1746134567720\" duration=\"14894000\" />\r\n      <workItem from=\"1746195072548\" duration=\"9482000\" />\r\n      <workItem from=\"1746211232795\" duration=\"8637000\" />\r\n      <workItem from=\"1746335210253\" duration=\"12888000\" />\r\n      <workItem from=\"1746353225970\" duration=\"1268000\" />\r\n      <workItem from=\"1746354512464\" duration=\"27957000\" />\r\n      <workItem from=\"1746435942670\" duration=\"30213000\" />\r\n      <workItem from=\"1746517374252\" duration=\"7284000\" />\r\n      <workItem from=\"1746532585397\" duration=\"2060000\" />\r\n      <workItem from=\"1746534669358\" duration=\"9098000\" />\r\n      <workItem from=\"1746548083668\" duration=\"377000\" />\r\n      <workItem from=\"1746799389202\" duration=\"361000\" />\r\n      <workItem from=\"1746799833808\" duration=\"549000\" />\r\n      <workItem from=\"1746802919610\" duration=\"881000\" />\r\n      <workItem from=\"1746804452203\" duration=\"1721000\" />\r\n      <workItem from=\"1746807016368\" duration=\"1210000\" />\r\n      <workItem from=\"1746810505643\" duration=\"1880000\" />\r\n      <workItem from=\"1746985199299\" duration=\"76000\" />\r\n      <workItem from=\"1747218531781\" duration=\"5331000\" />\r\n      <workItem from=\"1747226809093\" duration=\"9977000\" />\r\n      <workItem from=\"1747237426074\" duration=\"194000\" />\r\n      <workItem from=\"1747275727407\" duration=\"18203000\" />\r\n      <workItem from=\"1747297105812\" duration=\"5943000\" />\r\n      <workItem from=\"1747316028820\" duration=\"1206000\" />\r\n      <workItem from=\"1747410236112\" duration=\"959000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"servlet可以正常工作了！\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1745603465770</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1745603465770</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"servlet可以正常工作了！\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1745604338439</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1745604338439</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"完成了所有基础子页面的基础样式，同意了设计风格，，重置了登录界面\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1745963434936</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1745963434937</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"改了main和home的逻辑\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1745986951352</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1745986951352</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"66666666\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746017144075</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746017144075</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"美化了一些部件\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746036196712</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746036196712</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"先创建了一个csv，经过百折不挠的奋斗，他终于可以显示在overview里了\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746049209849</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746049209849</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"完成了伟大的搜索功能，虽然还不是太完备\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746050440505</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746050440505</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"做了很帅的home.css文件,\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746179280563</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746179280563</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"home\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746375933126</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746375933126</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"home\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746375955052</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746375955052</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"更新了项目结构树file\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746501027450</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746501027450</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"你们快来搞项目啊\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746538494014</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746538494014</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"你们快来搞项目啊\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746800362289</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746800362289</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"更新\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1747226243263</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1747226243263</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\"马哥坏\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1747405520379</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1747405520379</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00017\" summary=\"马哥坏\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1747405635309</created>\r\n      <option name=\"number\" value=\"00017\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1747405635309</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00018\" summary=\"马哥坏\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1747405682277</created>\r\n      <option name=\"number\" value=\"00018\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1747405682277</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"19\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"servlet可以正常工作了！\" />\r\n    <MESSAGE value=\"完成了所有基础子页面的基础样式，同意了设计风格，，重置了登录界面\" />\r\n    <MESSAGE value=\"改了main和home的逻辑\" />\r\n    <MESSAGE value=\"66666666\" />\r\n    <MESSAGE value=\"美化了一些部件\" />\r\n    <MESSAGE value=\"先创建了一个csv，经过百折不挠的奋斗，他终于可以显示在overview里了\" />\r\n    <MESSAGE value=\"完成了伟大的搜索功能，虽然还不是太完备\" />\r\n    <MESSAGE value=\"做了很帅的home.css文件,\" />\r\n    <MESSAGE value=\"home\" />\r\n    <MESSAGE value=\"毁了\" />\r\n    <MESSAGE value=\"更新了项目结构树file\" />\r\n    <MESSAGE value=\"你们快来搞项目啊\" />\r\n    <MESSAGE value=\"更新\" />\r\n    <MESSAGE value=\"马哥坏\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"马哥坏\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/main/webapp/assets/page/compare.jsp</url>\r\n          <line>84</line>\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 6607e907c1273314449e70321ff7f1182e8e3cb3)
++++ b/.idea/workspace.xml	(date 1747558107136)
+@@ -9,26 +9,26 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="d02de210-1416-435c-ad06-f238c6357885" name="更改" comment="马哥坏">
+-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++    <list default="true" id="d02de210-1416-435c-ad06-f238c6357885" name="更改" comment="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/webapp/assets/css/pages/overview/overview.css&#10;#&#9;src/main/webapp/assets/page/forum.jsp">
++      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/components/layout.css" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/MessageSenderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MessageSenderTest.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/model/sql/NonFoldablePhone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/sql/NonFoldablePhone.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/components/buttons.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/components/buttons.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/components/cards.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/components/cards.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/forum/forum.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/forum/forum.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/forum/search-btn.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/forum/search-btn.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/home/sections/cta.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/home/sections/cta.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/home/sections/section-base.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/home/sections/section-base.css" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/layout.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/tool.js" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/overview.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/overview.css" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/profile/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/profile/profile.css" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/style/variables-dark.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/style/variables-dark.css" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/style/variables-light.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/style/variables-light.css" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/utilities.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/utilities.css" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/overview.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/overview.js" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/theme-toggle.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/theme-toggle.js" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/compare.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/compare.jsp" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/forum.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/forum.jsp" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/home.jsp" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/overview.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/overview.jsp" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/profile.jsp" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/header.jsp" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/scripts.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/scripts.jsp" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/themeToggle.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/themeToggle.jsp" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -41,6 +41,7 @@
+         <option value="Jsp File" />
+         <option value="Class" />
+         <option value="HTML File" />
++        <option value="JavaScript File" />
+       </list>
+     </option>
+   </component>
+@@ -134,17 +135,17 @@
+       <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\java\view\pages" />
+     </key>
+     <key name="MoveFile.RECENT_KEYS">
++      <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\css\components" />
+       <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\page" />
+       <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\css\style" />
+       <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\css\pages\home" />
+       <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\css\pages" />
+-      <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\css\sections" />
+     </key>
+     <key name="CopyClassDialog.RECENTS_KEY">
+       <recent name="model.sql" />
+     </key>
+   </component>
+-  <component name="RunManager">
++  <component name="RunManager" selected="Tomcat 服务器.Tomcat 10.1.39">
+     <configuration default="true" type="TomeeConfiguration" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
+       <option name="LOCAL" value="false" />
+       <deployment />
+@@ -187,6 +188,7 @@
+       <server-settings>
+         <option name="BASE_DIRECTORY_NAME" value="5b83f360-1658-48c0-beb6-2a01bc70bc9e" />
+         <option name="HTTP_PORT" value="8081" />
++        <option name="JNDI_PORT" value="1098" />
+       </server-settings>
+       <predefined_log_file enabled="true" id="Tomcat" />
+       <predefined_log_file enabled="true" id="Tomcat Catalina" />
+@@ -541,7 +543,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1747405682277</updated>
+     </task>
+-    <option name="localTasksCounter" value="19" />
++    <task id="LOCAL-00019" summary="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/webapp/assets/css/pages/overview/overview.css&#10;#&#9;src/main/webapp/assets/page/forum.jsp">
++      <option name="closed" value="true" />
++      <created>1747492461223</created>
++      <option name="number" value="00019" />
++      <option name="presentableId" value="LOCAL-00019" />
++      <option name="project" value="LOCAL" />
++      <updated>1747492461223</updated>
++    </task>
++    <option name="localTasksCounter" value="20" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -562,14 +572,15 @@
+     <MESSAGE value="你们快来搞项目啊" />
+     <MESSAGE value="更新" />
+     <MESSAGE value="马哥坏" />
+-    <option name="LAST_COMMIT_MESSAGE" value="马哥坏" />
++    <MESSAGE value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/webapp/assets/css/pages/overview/overview.css&#10;#&#9;src/main/webapp/assets/page/forum.jsp" />
++    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/webapp/assets/css/pages/overview/overview.css&#10;#&#9;src/main/webapp/assets/page/forum.jsp" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
+       <breakpoints>
+         <line-breakpoint enabled="true" type="java-line">
+           <url>file://$PROJECT_DIR$/src/main/webapp/assets/page/compare.jsp</url>
+-          <line>84</line>
++          <line>78</line>
+           <option name="timeStamp" value="1" />
+         </line-breakpoint>
+       </breakpoints>
