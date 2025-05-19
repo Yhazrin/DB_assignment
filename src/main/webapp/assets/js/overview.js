@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "smartphone_sales_all_countries_1": [
             { key: "Country", label: "Country" },
             { key: "Brand", label: "Brand" },
-            { key: "Column_2015", label: "2015(millions)" },
+            { key: "Column_2015", label: "2015" },
             { key: "Column_2016", label: "2016" },
             { key: "Column_2017", label: "2017" },
             { key: "Column_2018", label: "2018" },

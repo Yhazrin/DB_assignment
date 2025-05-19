@@ -1,4 +1,5 @@
 @import url('../style/variables.css');
+@import url('login.css');
 
 *,
 *::before,
@@ -13,7 +14,6 @@ html, body {
     font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
     font-weight: 800;
-    color: var(--text-primary);
 }
 
 /*—— 容器 ——*/

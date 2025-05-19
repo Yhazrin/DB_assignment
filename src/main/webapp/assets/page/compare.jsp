@@ -7,9 +7,6 @@
     <meta charset="UTF-8"/>
     <title>Compare - Mobile Phone Data Center</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/header.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/theme-toggle.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/banner.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/compare.css">
 </head>
 <body>
