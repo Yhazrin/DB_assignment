@@ -18,7 +18,7 @@
 <div class="container">
     <div class="register-card">
         <h2>HELLO.</h2>
-        <form action="<%= ctx %>/register" method="post" class="register-form" autocomplete="off">
+        <form id="registerForm" class="register-form" autocomplete="off">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input id="username" type="text" name="username" placeholder="Choose a username" required>
@@ -37,6 +37,11 @@
             </div>
             <button type="submit" class="register-btn">REGISTER</button>
         </form>
+
+        <div id="registerMessage" style="margin-top:1rem;"></div>
+
+        <script src="${pageContext.request.contextPath}/assets/js/register.js"></script>
+
         <div class="footer">
             <p>Already have an account?
                 <a href="${pageContext.request.contextPath}/assets/page/login.jsp" class="section-btn">LOGIN</a>

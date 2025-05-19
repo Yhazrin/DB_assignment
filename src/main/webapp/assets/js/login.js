@@ -11,6 +11,19 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
+    // —— 新增：从 URL 拿 username/password，预填表单 ——
+    const params = new URLSearchParams(window.location.search);
+    const savedUser = params.get('username');
+    const savedPass = params.get('password');
+    if (savedUser) {
+        console.log('⭐ 预填 username:', savedUser);
+        document.getElementById('username').value = savedUser;
+    }
+    if (savedPass) {
+        console.log('⭐ 预填 password:', '[hidden]');
+        document.getElementById('password').value = savedPass;
+    }
+
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 

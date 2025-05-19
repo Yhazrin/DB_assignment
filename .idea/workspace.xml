@@ -10,25 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d02de210-1416-435c-ad06-f238c6357885" name="更改" comment="你们快来搞项目啊">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/register.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/background.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/register.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/components/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/components/header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/components/layout.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/components/layout.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/overview.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/overview.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/profile/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/profile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/style/variables-dark.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/style/variables-dark.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/style/variables-light.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/style/variables-light.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/profile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/overview.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/overview.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/scripts.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/scripts.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +26,7 @@
       <list>
         <option value="Jsp File" />
         <option value="Class" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -379,7 +366,7 @@
       <workItem from="1746985199299" duration="76000" />
       <workItem from="1747218531781" duration="4754000" />
       <workItem from="1747580233060" duration="6713000" />
-      <workItem from="1747592109186" duration="5057000" />
+      <workItem from="1747592109186" duration="7144000" />
     </task>
     <task id="LOCAL-00001" summary="servlet可以正常工作了！">
       <option name="closed" value="true" />
@@ -493,7 +480,23 @@
       <option name="project" value="LOCAL" />
       <updated>1746800362289</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="你们快来搞项目啊">
+      <option name="closed" value="true" />
+      <created>1747628182088</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1747628182088</updated>
+    </task>
+    <task id="LOCAL-00016" summary="你们快来搞项目啊">
+      <option name="closed" value="true" />
+      <created>1747628337383</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1747628337383</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
