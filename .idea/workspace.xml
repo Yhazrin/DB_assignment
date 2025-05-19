@@ -9,14 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d02de210-1416-435c-ad06-f238c6357885" name="更改" comment="你们快来搞项目啊">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="d02de210-1416-435c-ad06-f238c6357885" name="更改" comment="杨洋好">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/add_smartphone.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/add_smartphone.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/overview.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/overview.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/overview.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/overview.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/overview.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/overview.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/scripts.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/scripts.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/header.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,8 +24,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jsp File" />
         <option value="Class" />
+        <option value="Jsp File" />
         <option value="JavaScript File" />
       </list>
     </option>
@@ -153,7 +151,7 @@
       <server-settings>
         <option name="BASE_DIRECTORY_NAME" value="5b83f360-1658-48c0-beb6-2a01bc70bc9e" />
         <option name="HTTP_PORT" value="8081" />
-        <option name="JNDI_PORT" value="1098" />
+        <option name="JNDI_PORT" value="1097" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -375,7 +373,7 @@
       <workItem from="1747580233060" duration="6713000" />
       <workItem from="1747592109186" duration="7144000" />
       <workItem from="1747630358034" duration="3928000" />
-      <workItem from="1747652888597" duration="756000" />
+      <workItem from="1747652888597" duration="9709000" />
     </task>
     <task id="LOCAL-00001" summary="servlet可以正常工作了！">
       <option name="closed" value="true" />
@@ -505,7 +503,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747628337383</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="杨洋好">
+      <option name="closed" value="true" />
+      <created>1747653665862</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1747653665862</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -524,7 +530,8 @@
     <MESSAGE value="毁了" />
     <MESSAGE value="更新了项目结构树file" />
     <MESSAGE value="你们快来搞项目啊" />
-    <option name="LAST_COMMIT_MESSAGE" value="你们快来搞项目啊" />
+    <MESSAGE value="杨洋好" />
+    <option name="LAST_COMMIT_MESSAGE" value="杨洋好" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

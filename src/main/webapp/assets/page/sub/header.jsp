@@ -26,6 +26,8 @@
            class="${currentPage == 'forum' ? 'active' : ''}">Forum</a>
         <a href="${pageContext.request.contextPath}/assets/page/profile.jsp"
            class="${currentPage == 'profile' ? 'active' : ''}">Profile</a>
+        <a href="${pageContext.request.contextPath}/assets/page/add_smartphone.jsp"
+           class="${currentPage == 'addsmartphone' ? 'active' : ''}">Add</a>
     </div>
     <button class="theme-toggle-btn" type="button">
         <img id="icon-toggle"
