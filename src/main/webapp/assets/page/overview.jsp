@@ -75,6 +75,9 @@
         </tbody>
     </table>
 </main>
+<script src="${pageContext.request.contextPath}/assets/js/filter.js"></script>
+
+
 
 </body>
 </html>
