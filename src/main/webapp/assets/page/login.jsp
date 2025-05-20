@@ -14,44 +14,45 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/login.css">
 </head>
 <body>
-<jsp:include page="sub/header.jsp"/>
-<jsp:include page="sub/scripts.jsp"/>
-<div class="container">
-    <div class="login-card">
+    <jsp:include page="sub/header.jsp"/>
 
-        <h2>WELCOME.</h2>
+    <div class="container">
+        <div class="login-card">
 
-        <form id="loginForm" class="login-form" autocomplete="off">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input id="username"
-                       name="username"
-                       type="text"
-                       placeholder="Enter your username"
-                       required
-                       autofocus>
+            <h2>WELCOME.</h2>
+
+            <form id="loginForm" class="login-form" autocomplete="off">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input id="username"
+                           name="username"
+                           type="text"
+                           placeholder="Enter your username"
+                           required
+                           autofocus>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password"
+                           name="password"
+                           type="password"
+                           placeholder="Enter your password"
+                           required>
+                </div>
+                <button type="submit" class="login-btn">LOGIN</button>
+            </form>
+            <div id="loginError" style="color: #d32f2f; text-align:center; margin-top:10px;"></div>
+
+
+            <!-- 底部链接 -->
+            <div class="footer">
+                <p>Don't have an account?
+                    <a href="${pageContext.request.contextPath}/assets/page/register.jsp">REGISTER</a>
+                </p>
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input id="password"
-                       name="password"
-                       type="password"
-                       placeholder="Enter your password"
-                       required>
-            </div>
-            <button type="submit" class="login-btn">LOGIN</button>
-        </form>
-        <div id="loginError" style="color: #d32f2f; text-align:center; margin-top:10px;"></div>
-
-
-        <!-- 底部链接 -->
-        <div class="footer">
-            <p>Don't have an account?
-                <a href="${pageContext.request.contextPath}/assets/page/register.jsp">REGISTER</a>
-            </p>
         </div>
     </div>
-</div>
-
+    <script src="${pageContext.request.contextPath}/assets/js/login.js" defer></script>
+    <jsp:include page="sub/scripts.jsp"/>
 </body>
 </html>

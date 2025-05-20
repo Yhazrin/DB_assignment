@@ -1,0 +1,430 @@
+@import "../style/variables.css";
+@import "../components/layout.css";
+@import "../components/buttons.css";
+@import "../components/sidebar.css";
+@import "../components/cards.css";
+@import "forum/search-btn.css";
+@import url('../style/variables.css');
+
+
+.main-container {
+  display: flex;
+  position: absolute;
+  gap: 1rem;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+}
+
+/* —— 侧边栏 & 主内容 玻璃卡片样式 —— */
+/* —— 将 Sidebar 和 Main 区都改成 Login 卡片风格 —— */
+.forum-sidebar,
+.forum-main {
+  /* 背景色 */
+  background: var(--card-bg2);
+  /* 边框 */
+  border: 1px solid #e1e1e1;
+  /* 圆角 */
+  border-radius: var(--radius-xl);
+  /* 内边距 */
+  padding: 2rem;
+  /* 阴影 */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+
+  /* 布局（保持原来的 flex 列模式） */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* 过渡效果 */
+  transition: transform var(--transition-fast),
+  box-shadow var(--transition-fast);
+}
+
+
+
+.forum-sidebar {
+  width: 10%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.forum-sidebar .color-btn {
+  height: 5%;
+  border-radius: var(--radius-md);
+}
+.sidebar-section {
+
+  background: var(--gradient-profile);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: transform var(--transition-fast),
+
+  border-color var(--transition-fast); /* 新增边框过渡 */
+  background: rgba(255, 255, 255, 0.12);
+  border: 4px solid rgba(62, 62, 62, 0.18);
+  font-weight: 800;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.sidebar-section {
+  /* nothing */
+}
+
+/* 3. 让第二个 section 填满剩余空间并允许内部滚动 */
+.sidebar-section:nth-child(2) {
+  flex: 1 1 0;       /* 成为弹性伸缩项，占满剩余空间 */
+  overflow-y: auto;  /* 超出的内容内部滚动 */
+}
+
+/* （可选）美化滚动条 */
+.sidebar-section:nth-child(2)::-webkit-scrollbar {
+  width: 6px;
+}
+.sidebar-section:nth-child(2)::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.2);
+  border-radius: 3px;
+}
+
+.forum-main {
+  flex: 1;
+}
+
+/* Header section (breadcrumbs + filter) */
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--text-color);
+}
+
+.breadcrumb a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+/* Sort filter dropdown */
+.sort-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+/* Topic list container */
+.topic-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Single topic item as soft card */
+.topic-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(6px);
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+  text-decoration: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--divider);
+}
+
+.topic-item:hover {
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Left icon */
+.topic-icon {
+  font-size: 1.25rem;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Center content */
+.topic-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.topic-title a {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-color);
+  text-decoration: none;
+}
+.topic-title a:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+/* Metadata */
+.topic-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* Right reply info */
+.topic-last-reply {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.page-link {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  color: var(--text-color);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+.page-link:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+/* Back to top button */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: none;
+  padding: 0.75rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.back-to-top:hover {
+  transform: translateY(-3px);
+}
+
+
+/* Responsive: collapse sidebar on small screens */
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+  }
+
+  .forum-sidebar {
+    display: none;
+  }
+
+  .forum-main {
+    padding: 0.5rem;
+  }
+}
+
+/* forum-list.css — 简约版块列表分隔线样式 */
+
+/* 引入全局变量（根据项目实际路径调整） */
+
+/* —— 容器 —— */
+.forum-list-container {   /* 最大高度，可根据页面需要自行调整 */
+  overflow-y: auto;            /* 超出时显示垂直滚动条 */
+  padding: var(--spacing-sm) 0;/* 上下留白 */
+}
+
+/* 去除列表默认样式 */
+.category-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* 相邻列表项之间留一点空间 */
+.category-list li + li {
+  margin-top: var(--spacing-xs);
+}
+
+/* —— 每一项 —— */
+.category-list li a {
+  display: block;                              /* 整行可点击 */
+  padding: var(--spacing-sm) var(--spacing-md);/* 内边距 */
+  text-decoration: none;                       /* 去掉下划线 */
+  color: var(--text-color);                    /* 默认文字色 */
+  border-bottom: 1px solid var(--divider);     /* 细横线分隔 */
+  transition: color var(--transition-fast);    /* 悬停/高亮过渡 */
+}
+
+/* 最后一项去掉底部分隔线 */
+.category-list li:last-child a {
+  border-bottom: none;
+}
+
+/* 悬停或当前激活状态 */
+.category-list li a:hover,
+.category-list li a.active {
+  color: var(--forum-primary); /* 悬停/激活时文字高亮 */
+}
+
+/* ------------------ Modal 遮罩 + 居中（保持不变） ------------------ */
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal.hidden {
+  display: none;
+}
+
+/* ------------------ Modal 内容 卡片风格（磨砂玻璃） ------------------ */
+.modal-content {
+  /* 与登录卡片同样的背景 & 圆角 */
+  background: var(--card-bg2);
+  border: 1px solid #e1e1e1;
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  width: 90%;
+  max-width: 400px;
+
+  /* 磨砂效果 */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  /* 同登录卡片阴影 */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+
+  /* 文字颜色一致 */
+  color: var(--text-primary);
+}
+
+/* ------------------ 表单字段（复用 login-form 样式） ------------------ */
+#modalForm label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+#modalForm input,
+#modalForm textarea {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: var(--radius-md);
+  transition: border-color 0.2s;
+}
+#modalForm input:focus,
+#modalForm textarea:focus {
+  border-color: #888;
+  outline: none;
+}
+#modalForm input::placeholder,
+#modalForm textarea::placeholder {
+  color: #aaa;
+}
+#modalForm textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* ------------------ 底部按钮（主/次级风格） ------------------ */
+.modal-buttons {
+  margin-top: 1.5rem;
+  text-align: right;
+}
+.modal-buttons button {
+  padding: 0.75rem 1.5rem;
+  margin-left: 0.5rem;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+/* 次级按钮（取消） */
+#modalCancel {
+  background: transparent;
+  border: 1px solid #ccc;
+  color: var(--text-primary);
+}
+#modalCancel:hover {
+  background: #f5f5f5;
+}
+
+/* 主按钮（确定） */
+#modalOk {
+  background: var(--primary-color);
+  border: none;
+  color: #fff;
+}
+#modalOk:hover {
+  background: var(--secondary-color);
+}
+
+.topic-item { border:1px solid #ddd; padding:1rem; margin-bottom:1rem; }
+.topic-main { margin-bottom:0.5rem; }
+.topic-title { margin:0 0 .5rem; }
+.topic-content { margin:0; color:#555; }
+.topic-actions { display:flex; gap:.5rem; margin-bottom:.5rem; }
+.comments-section { border-top:1px solid #eee; padding-top:.5rem; }
+.comment-item { border-bottom:1px solid #f0f0f0; padding:.5rem 0; }
+.comment-item:last-child { border-bottom:none; }
+.comment-form { display:flex; gap:.5rem; margin-top:.5rem; }
+.comment-form input { flex:1; padding:.5rem; border:1px solid #ccc; border-radius:4px; }
+
+
+
+

@@ -1,6 +1,9 @@
+/* console.css — 完全复刻 login.css 的“昼夜切换卡片”风格 */
+
+/*———— 引入变量 ————*/
 @import url('../style/variables.css');
 
-/*—————— 全局重置 ——————*/
+/*———— 全局重置 ————*/
 *,
 *::before,
 *::after {
@@ -9,47 +12,42 @@
     padding: 0;
 }
 
-/*—————— 背景与全局 ——————*/
+/*———— 动态背景 & 全局 ————*/
 body {
     height: 100vh;
     margin: 0;
-    background-image:
-            linear-gradient(115deg, rgb(174, 204, 177), rgb(63, 102, 181)),
-            radial-gradient(90% 100% at calc(50% + var(--posX)) calc(0% + var(--posY)), rgb(200 200 200), rgb(84, 33, 139)),
-            radial-gradient(100% 100% at calc(80% - var(--posX)) calc(0% - var(--posY)), rgb(18, 220, 227), rgb(42, 198, 139)),
-            radial-gradient(150% 210% at calc(100% + var(--posX)) calc(0% + var(--posY)), rgb(255, 197, 194), rgb(99, 106, 230)),
-            radial-gradient(100% 100% at calc(100% - var(--posX)) calc(30% - var(--posY)), rgb(255 77 0), rgb(0 200 255)),
-            linear-gradient(60deg, rgb(255 0 0), rgb(120 86 255));
-    background-blend-mode: overlay, overlay, difference, difference, difference, normal;
+
 }
 
-/*—————— 容器布局 ——————*/
-.container {
+/*———— 容器布局 ————*/
+.console-container {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
+    background: var(--bg-primary);
 }
 
-/*—————— 登录卡片 ——————*/
-.login-card {
-    width: 20%;
+/*———— 卡片样式 ————*/
+.console-card {
+    width: 60%;
     max-width: 90%;
     background: var(--card-bg2);
     border: 1px solid #e1e1e1;
     border-radius: var(--radius-xl);
     padding: 2rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     text-align: center;
 }
-.login-card h2 {
+
+.console-card h2 {
     font-size: var(--font-size-xl);
     margin-bottom: 1rem;
     font-weight: 600;
     color: var(--text-primary);
 }
 
-/*—————— Google 登录按钮 ——————*/
+/*———— Google 按钮（如需要） ————*/
 .btn-google {
     display: flex;
     align-items: center;
@@ -73,7 +71,7 @@ body {
     font-size: 1.2rem;
 }
 
-/*—————— 分隔线 ——————*/
+/*———— 分隔线 ————*/
 .separator {
     display: flex;
     align-items: center;
@@ -95,18 +93,29 @@ body {
     margin-left: 0.5em;
 }
 
-/*—————— 表单样式 ——————*/
-.login-form .form-group {
-    margin-bottom: 1rem;
-    text-align: left;
+/*———— 表单样式 ————*/
+.console-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 两列等分 */
+    gap: 1rem 2rem;                       /* 行间距 1rem，列间距 2rem */
+    align-items: start;
 }
-.login-form label {
+
+.console-form .form-group {
+    margin-bottom: 0;
+}
+
+.console-form .full-span {
+    grid-column: 1 / -1; /* 跨越所有列 */
+}
+
+.console-form label {
     display: block;
     font-size: 0.9rem;
     margin-bottom: 0.25rem;
     color: var(--text-primary);
 }
-.login-form input {
+.console-form input {
     width: 100%;
     padding: 0.75rem;
     font-size: 1rem;
@@ -114,15 +123,15 @@ body {
     border-radius: var(--radius-md);
     transition: border-color 0.2s;
 }
-.login-form input:focus {
+.console-form input:focus {
     border-color: #888;
     outline: none;
 }
-.login-form input::placeholder {
+.console-form input::placeholder {
     color: #aaa;
 }
 
-/*—————— 同意条款 ——————*/
+/*———— 同意条款 ————*/
 .consent {
     display: flex;
     align-items: center;
@@ -133,13 +142,13 @@ body {
     margin-right: 0.5rem;
 }
 
-/*—————— 主提交按钮 ——————*/
-.login-btn {
+/*———— 主提交按钮 ————*/
+.console-btn {
     display: block;
     width: 100%;
     padding: 0.75rem;
     background: var(--primary-color);
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     color: #fff;
     font-size: 1rem;
     font-family: 'Montserrat', sans-serif;
@@ -148,24 +157,19 @@ body {
     cursor: pointer;
     transition: background 0.2s ease;
 }
-.login-btn:hover {
+.console-btn:hover {
     background: var(--secondary-color);
 }
 
-/*—————— 底部链接 ——————*/
-.login-card .footer {
+/*———— 底部链接 ————*/
+.console-card .footer {
     margin-top: 1rem;
     font-size: 0.9rem;
 }
-.login-card .footer a {
+.console-card .footer a {
     color: #007bff;
     text-decoration: none;
 }
-.login-card .footer a:hover {
+.console-card .footer a:hover {
     text-decoration: underline;
-}
-
-/*—————— 段落文字 ——————*/
-p {
-    color: var(--text-primary);
 }

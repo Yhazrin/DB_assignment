@@ -1,93 +1,65 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Forum - Mobile Phone Info System</title>
+  <meta charset="UTF-8"/>
+  <title>Forum - MobilePhoneSys</title>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/header.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/layout.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/banner.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/forum/forum.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/forum.css">
 </head>
-<body data-context-path="${pageContext.request.contextPath}" data-user-logged-in="${not empty sessionScope.user}">
-<!-- Navigation bar -->
-<jsp:include page="sub/header.jsp" />
-
-<!-- Main container -->
+<body>
+<jsp:include page="sub/header.jsp"/>
 <div class="main-container">
-  <!-- Sidebar -->
-  <aside class="forum-sidebar glass-card">
-    <div class="search-container">
-      <form class="sidebar-search">
-        <input type="text" placeholder="Search topics...">
-      </form>
+  <aside class="forum-sidebar">
+    <div class="sidebar-section">
+      <button id="newForumBtn" class="btn glass">New Forum</button>
     </div>
-    <button class="color-btn">New Topic</button>
-    <button class="color-btn">My Topics</button>
-    <button class="color-btn">Received Replies</button>
-    <div> class="phone-list glass-card"</div>
+    <div class="sidebar-section">
+      <div class="forum-list-container">
+        <ul class="category-list" id="forumList">
+          <!-- populated by forum.js -->
+        </ul>
+      </div>
+    </div>
   </aside>
+  <div class="forum-main">
 
-  <!-- Main content area -->
-  <main class="forum-main">
-    <div class="forum-content">
-      <!-- Title and sorting -->
-      <div class="content-header">
-        <div class="breadcrumb">
-          <a href="#">Home</a> &gt; <span>Forum</span>
-        </div>
-        <div class="sort-filter">
-          <label for="sort-select">Sort by:</label>
-          <select id="sort-select">
-            <option>Newest First</option>
-            <option>Most Replies</option>
-            <option>Most Views</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- Topic list -->
-      <ul class="topic-list">
-        <!-- Single topic item -->
-        <li class="topic-item interactive">
-          <div class="topic-icon"><i class="fas fa-comments"></i></div>
-          <div class="topic-main">
-            <h3 class="topic-title">
-              <a href="#">Forum Interface Setup Example and Best Practices</a>
-            </h3>
-            <div class="topic-meta">
-              <span class="stat views"><i class="fas fa-eye"></i> 342</span>
-              <span class="stat replies"><i class="fas fa-reply"></i> 27</span>
-              <span class="stat likes"><i class="fas fa-thumbs-up"></i> 58</span>
-            </div>
-          </div>
-          <div class="topic-last-reply">
-            <span class="reply-author">John</span><br>
-            <span class="reply-time">1 hour ago</span>
-          </div>
-        </li>
-        <!-- More topic items... -->
-      </ul>
-
-      <!-- Pagination -->
-      <div class="pagination">
-        <a href="#" class="page-link prev"><i class="fas fa-chevron-left"></i> Previous</a>
-        <a href="#" class="page-link current">1</a>
-        <a href="#" class="page-link">2</a>
-        <a href="#" class="page-link next">Next <i class="fas fa-chevron-right"></i></a>
-      </div>
+    <div class="content-header">
+      <h2 id="currentForumTitle">Select a Forum</h2>
+      <button id="newPostBtn" class="btn glass" disabled>New Post</button>
     </div>
 
-    <!-- Back to top -->
-    <button class="back-to-top"><i class="fas fa-arrow-up"></i></button>
-  </main>
+    <!-- Post list -->
+    <div class="topic-list" id="postList">
+      <!-- populated by forum.js -->
+    </div>
+
+    <!-- Shown when no posts exist in a forum -->
+    <div class="no-topics" id="noPosts" style="display:none;">
+      <i class="icon-info"></i>
+      <p>No posts yet. Be the first to post!</p>
+      <button id="newPostBtnEmpty" class="btn glass">New Post</button>
+    </div>
+
+  </div>
+</div>
+<!-- 中心输入弹窗 -->
+<div id="inputModal" class="modal hidden">
+  <div class="modal-content">
+    <h3 id="modalHeader">标题</h3>
+    <form id="modalForm">
+      <!-- JS 会动态插入 <label>+<input> 或 <textarea> -->
+    </form>
+    <div class="modal-buttons">
+      <button type="button" id="modalCancel">取消</button>
+      <button type="submit" form="modalForm" id="modalOk">确定</button>
+    </div>
+  </div>
 </div>
 
-<!-- Scripts -->
-<jsp:include page="sub/scripts.jsp" />
+
+<jsp:include page="sub/scripts.jsp"/>
 <script src="${pageContext.request.contextPath}/assets/js/forum.js"></script>
 </body>
 </html>
