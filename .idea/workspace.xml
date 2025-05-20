@@ -10,24 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d02de210-1416-435c-ad06-f238c6357885" name="更改" comment="你们快来搞项目啊">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/console.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/console.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/sql/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/sql/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/compare.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/compare.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/forum/forum.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/forum.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/forum.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/forum.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/add_smartphone.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/compare.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/compare.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/forum.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/forum.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/profile.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/scripts.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/scripts.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/overview.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/overview.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/console.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/console.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/overview.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/overview.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -510,7 +497,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747628337383</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="你们快来搞项目啊">
+      <option name="closed" value="true" />
+      <created>1747726000278</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1747726000278</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

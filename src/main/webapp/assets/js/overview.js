@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const thead = document.querySelector("#overview-table thead");
     const buttons = document.querySelectorAll(".color-btn");
     const infoText = document.getElementById("infoText");
-
     // 表头定义
     const tableHeaders = {
         "mobile_brands": [
@@ -134,6 +133,39 @@ document.addEventListener("DOMContentLoaded", function () {
             fetchData(params, currentTable);
         });
     });
+
+    document.getElementById("searchBtn")?.addEventListener("click", function (event) {
+        event.preventDefault(); // 阻止默认提交
+
+        const searchInput = document.getElementById("searchInput");
+        const inputValue = searchInput?.value?.trim();
+
+        if (!inputValue) {
+            alert("Please enter a phone No. or model.");
+            return;
+        }
+
+        const params = new URLSearchParams();
+        params.append("type", "readSQL");
+        params.append("table", "smartphones");
+
+        // 判断输入是否全是数字
+        if (/^\d+$/.test(inputValue)) {
+            // 全数字，作为 phoneNo 查询
+            params.append("phoneNo", inputValue);
+        } else {
+            // 含非数字字符，作为 model 查询
+            params.append("model", inputValue);
+        }
+
+        currentTable = "smartphones";
+        buttons.forEach(btn => btn.classList.remove("active"));
+        document.querySelector('[data-page="smartphones"]')?.classList.add("active");
+
+        fetchData(params, currentTable);
+    });
+
+
 
     // 区间过滤器（只作用于 smartphones 表）
     document.querySelectorAll(".range-filter .apply").forEach(button => {

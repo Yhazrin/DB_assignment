@@ -18,6 +18,7 @@
 
     <form class="console-form"
           method="post"
+          data-context-path="${pageContext.request.contextPath}"
           action="${pageContext.request.contextPath}/data?type=modifySQL&table=smartphones">
 
       <input type="hidden" name="type" value="modifySQL">
