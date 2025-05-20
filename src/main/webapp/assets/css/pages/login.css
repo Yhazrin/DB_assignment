@@ -13,14 +13,14 @@
 body {
     height: 100vh;
     margin: 0;
-    background-image:
-            linear-gradient(115deg, rgb(174, 204, 177), rgb(63, 102, 181)),
-            radial-gradient(90% 100% at calc(50% + var(--posX)) calc(0% + var(--posY)), rgb(200 200 200), rgb(84, 33, 139)),
-            radial-gradient(100% 100% at calc(80% - var(--posX)) calc(0% - var(--posY)), rgb(18, 220, 227), rgb(42, 198, 139)),
-            radial-gradient(150% 210% at calc(100% + var(--posX)) calc(0% + var(--posY)), rgb(255, 197, 194), rgb(99, 106, 230)),
-            radial-gradient(100% 100% at calc(100% - var(--posX)) calc(30% - var(--posY)), rgb(255 77 0), rgb(0 200 255)),
-            linear-gradient(60deg, rgb(255 0 0), rgb(120 86 255));
-    background-blend-mode: overlay, overlay, difference, difference, difference, normal;
+    /*background-image:*/
+    /*        linear-gradient(115deg, rgb(174, 204, 177), rgb(63, 102, 181)),*/
+    /*        radial-gradient(90% 100% at calc(50% + var(--posX)) calc(0% + var(--posY)), rgb(200 200 200), rgb(84, 33, 139)),*/
+    /*        radial-gradient(100% 100% at calc(80% - var(--posX)) calc(0% - var(--posY)), rgb(18, 220, 227), rgb(42, 198, 139)),*/
+    /*        radial-gradient(150% 210% at calc(100% + var(--posX)) calc(0% + var(--posY)), rgb(255, 197, 194), rgb(99, 106, 230)),*/
+    /*        radial-gradient(100% 100% at calc(100% - var(--posX)) calc(30% - var(--posY)), rgb(255 77 0), rgb(0 200 255)),*/
+    /*        linear-gradient(60deg, rgb(255 0 0), rgb(120 86 255));*/
+    /*background-blend-mode: overlay, overlay, difference, difference, difference, normal;*/
 }
 
 /*—————— 容器布局 ——————*/
@@ -29,6 +29,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    background-color: var(--bg-primary);
 }
 
 /*—————— 登录卡片 ——————*/
@@ -143,7 +144,7 @@ body {
     color: #fff;
     font-size: 1rem;
     font-family: 'Montserrat', sans-serif;
-    border: none;
+    border: 1px solid white;
     border-radius: var(--radius-md);
     cursor: pointer;
     transition: background 0.2s ease;

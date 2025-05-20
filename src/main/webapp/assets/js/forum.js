@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const forums = await res.json();
             forumListEl.innerHTML = forums.map(f => `
                 <li>
-                  <a href="#" data-id="${f.forumID}">
+                  <a href="#" data-id="${f.forumID}" class="forum-link">
                     ${f.title} <span class="count">(${f.postCount})</span>
                   </a>
                 </li>

@@ -13,7 +13,7 @@
 <div class="main-container">
   <aside class="forum-sidebar">
     <div class="sidebar-section">
-      <button id="newForumBtn" class="btn glass">New Forum</button>
+      <button id="newForumBtn" class="btn-new">New Forum</button>
     </div>
     <div class="sidebar-section">
       <div class="forum-list-container">

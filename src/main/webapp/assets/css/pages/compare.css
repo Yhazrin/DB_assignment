@@ -1,245 +1,170 @@
-/* compare.css — 针对 Compare JSP 结构的样式 */
+@import url('../style/variables.css');
+@import url('../components/buttons.css');
+@import url('../components/layout.css');
+@import url('../components/header.css');
+@import url('../style/variables.css');
 
-/* 全局引入：变量、布局、按钮、卡片等 */
-@import "../style/variables.css";
-@import "../utilities.css";
-@import "../components/layout.css";
-@import "../components/banner.css";
-@import "../components/buttons.css";
-@import "../components/header.css";
-
-
-/* Reset & 基本盒模型 */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+/* 全局背景跟 login 统一 */
+body {
+    background: var(--bg-primary, #f5f7fa);
+    color: var(--text-color, #222);
+    font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+    min-height: 100vh;
 }
 
-/* 全局字体与背景 */
-html, body {
-    width: 100%;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
-    font-weight: 800;
-    background: var(--bg-primary);
-    color: var(--text-primary);
-}
 
-/* 容器：水平居中，对齐页面顶部 */
-.container {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding: var(--spacing-lg) 0;
-}
-
-/* Compare 页面主卡片（复刻登录卡片样式） */
+/* 磨砂玻璃卡片，与login一致 */
 .compare-card {
-    width: 80%;
-    max-width: 1200px;
-    background: var(--card-bg2);
-    border: 1px solid #e1e1e1;
-    border-radius: var(--radius-xl);
-    padding: 2rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
-
-/* 卡片标题 */
-.compare-card h2 {
-    font-size: var(--font-size-xl);
-    margin-bottom: var(--spacing-md);
-    font-weight: 600;
-    color: var(--text-primary);
-}
-
-/* —— Compare 页面专有样式 —— */
-@import "../utilities.css";
-@import "../components/layout.css";
-@import "../components/banner.css";
-@import "../components/buttons.css";
-@import "../components/header.css";
-
-/* 顶部横幅 */
-.compare-card .banner {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.68);
+    border-radius: var(--radius-xl, 22px);
+    box-shadow: 0 4px 24px rgba(120,130,170,0.09);
+    padding: 2.5rem 2rem 2.2rem 2rem;
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    border: 1.5px solid #e2e5ef;
+    transition: box-shadow 0.25s, background 0.18s;
     text-align: center;
 }
 
-/* 控件区域 */
-.controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: var(--spacing-lg) 0;
-    background: var(--card-bg);
-    padding: var(--spacing-md) var(--spacing-lg);
-    border-radius: var(--radius-md);
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+.compare-card h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--text-primary, #252b3a);
+    letter-spacing: 0.02em;
 }
-.control-group {
+
+/* 顶部搜索栏，简洁对齐 */
+.compare-card > div[style*="margin-bottom"] {
     display: flex;
+    gap: 0.85rem;
+    justify-content: center;
     align-items: center;
-    gap: var(--spacing-md);
+    margin-bottom: 2.3rem !important;
 }
-.control-group label {
+
+.compare-card input[type="number"] {
+    border-radius: var(--radius-md, 13px);
+    border: 1.5px solid #e1e6ef;
+    padding: 0.74rem 1.2rem;
+    font-size: 1.05rem;
+    color: var(--text-color, #222);
+    background: rgba(248, 250, 255, 0.92);
+    box-shadow: none;
+    transition: border-color 0.22s, box-shadow 0.22s;
+    outline: none;
+}
+.compare-card input[type="number"]:focus {
+    border-color: var(--primary-color, #4b6cb7);
+    background: #fff;
+}
+
+/* 统一按钮风格 - 纯色、圆角、阴影 */
+.compare-card .btn,
+.compare-card button {
+    background: var(--primary-color, #4b6cb7);
+    color: #fff;
+    border-radius: var(--radius-md, 13px);
+    font-size: 1.06rem;
     font-weight: 600;
-    color: var(--text-color);
-    white-space: nowrap;
-    margin-right: 0.5rem;
+    padding: 0.72rem 1.6rem;
+    border: none;
+    box-shadow: 0 2px 8px rgba(120,130,170,0.09);
+    cursor: pointer;
+    transition: background 0.18s, box-shadow 0.18s, transform 0.14s;
+    margin-right: 0.12rem;
 }
-.controls select {
-    padding: var(--spacing-sm) var(--spacing-md);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-sm);
-    background: var(--card-bg);
-    color: var(--text-color);
-    transition: border-color var(--transition-normal);
-}
-.controls select:hover {
-    border-color: var(--primary-color);
+.compare-card .btn:hover,
+.compare-card button:hover {
+    background: var(--secondary-color, #5a9cf7);
+    box-shadow: 0 8px 30px rgba(90,140,220,0.10);
+    transform: translateY(-2px) scale(1.03);
 }
 
-/* Reset / Compare 按钮 */
-#reset-btn,
-#compare-btn {
-    margin-left: var(--spacing-md);
-}
-
-/* 机型选择区域 */
-.selectors {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-md);
-    margin: var(--spacing-lg) 0;
-    justify-content: flex-start;
-}
-
-/* 对比结果表格 */
+/* ————— 表格极简分割风格 ————— */
 .compare-table {
     width: 100%;
-    border-collapse: collapse;
-    margin-bottom: var(--spacing-lg);
+    border-collapse: separate;
+    border-spacing: 0 0.4rem;  /* 行间距 */
+    margin: 0.5rem 0 0 0;
+    background: transparent;
+    box-shadow: none;
 }
+
 .compare-table th,
 .compare-table td {
-    padding: var(--spacing-sm) var(--spacing-md);
-    border: 1px solid var(--divider);
-    text-align: center;
+    padding: 0.73rem 1.15rem;
+    background: none;
+    border: none;
+    font-size: 1.05rem;
+    color: var(--text-color, #23272f);
+    text-align: left;
+    font-family: inherit;
+    vertical-align: middle;
+    transition: background 0.18s;
 }
+
+/* 行分割线只显示于下方（非最后一行） */
+.compare-table tr:not(:last-child) {
+    border-bottom: 1.1px solid #e7e9f1;
+}
+
 .compare-table th {
-    background: var(--section-highlight);
-    color: var(--text-color);
+    font-weight: 700;
+    color: #3457b0;
+    background: none;
+    padding-bottom: 0.52rem;
+}
+
+/* 第一列（spec）文字稍重色 */
+.compare-table td.spec-label {
     font-weight: 600;
+    color: #4162ab;
+    background: none;
+    padding-right: 1.6rem;
 }
 
-/* 无数据提示 */
-.message {
-    text-align: center;
-    padding: var(--spacing-lg);
-    color: var(--text-secondary);
+.compare-table td.phone-info {
+    color: #222;
+    font-weight: 400;
+    background: none;
 }
 
-/* 操作条 */
-.action-bar {
-    display: flex;
-    justify-content: flex-end;
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-lg);
+/* 鼠标悬浮轻微变色 */
+.compare-table tr:hover td {
+    background: rgba(238,243,255,0.32);
 }
 
-/* 响应式：窄屏下将表格改为“卡片”式展示 */
-@media (max-width: 768px) {
-    .compare-table,
-    .compare-table th,
-    .compare-table td {
-        display: block;
-        width: 100%;
+/* 空数据提示 */
+#compareResult > div {
+    color: #b6bac8;
+    font-size: 1.09rem;
+    letter-spacing: 0.02em;
+    margin-top: 2rem;
+}
+
+/* 响应式适配 */
+@media (max-width: 900px) {
+    .main-container {
+        max-width: 98vw;
+        padding: 0 0.4rem;
     }
-    .compare-table th {
-        text-align: left;
+    .compare-card {
+        padding: 1.25rem 0.4rem;
     }
-    .compare-table td {
-        position: relative;
-        padding-left: 50%;
-        text-align: right;
-    }
-    .compare-table td::before {
-        content: attr(data-label) ": ";
-        position: absolute;
-        left: var(--spacing-sm);
-        font-weight: 600;
+    .compare-table th, .compare-table td {
+        padding: 0.47rem 0.44rem;
+        font-size: 0.96rem;
     }
 }
-
-/* 机型输入控件 */
-.model-selector {
-    position: relative;
-    flex: 1 1 200px;
-    max-width: 300px;
-}
-.model-input {
-    width: 100%;
-    padding: var(--spacing-sm) var(--spacing-md);
-    border: 1px solid var(--divider);
-    border-radius: var(--radius-sm);
-    background: var(--card-bg);
-    color: var(--text-color);
-    font-size: var(--font-size-md);
-    box-sizing: border-box;
-    transition: border-color var(--transition-normal);
-}
-.model-input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(var(--bg-inverse), 0.15);
+@media (max-width: 540px) {
+    .compare-table th, .compare-table td {
+        font-size: 0.91rem;
+        padding: 0.27rem 0.17rem;
+    }
+    .compare-card h2 {
+        font-size: 1.12rem;
+    }
 }
 
-/* 搜索结果下拉 */
-.search-results {
-    position: absolute;
-    top: calc(100% + var(--spacing-xs));
-    left: 0;
-    right: 0;
-    background: var(--card-bg);
-    border: 1px solid var(--divider);
-    border-radius: var(--radius-sm);
-    max-height: 200px;
-    overflow-y: auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: none;
-    z-index: 50;
-}
-.search-results.show {
-    display: block;
-}
-.search-result-item {
-    padding: var(--spacing-sm) var(--spacing-md);
-    cursor: pointer;
-    transition: background var(--transition-fast);
-}
-.search-result-item:hover {
-    background: rgba(var(--bg-inverse), 0.1);
-}
-
-/* 已选模型标签 */
-.selected-model {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: var(--card-bg);
-    padding: var(--spacing-sm) var(--spacing-md);
-    border: 1px solid var(--divider);
-    border-radius: var(--radius-sm);
-    margin-top: var(--spacing-xs);
-}
-.selected-model span {
-    font-size: var(--font-size-sm);
-}
-.selected-model .remove-btn {
-    margin-left: var(--spacing-sm);
-    cursor: pointer;
-    font-weight: bold;
-    line-height: 1;
-}

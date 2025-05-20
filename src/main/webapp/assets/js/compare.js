@@ -1,79 +1,107 @@
-/**
- * compare.js - 处理手机比较页面的初始化和事件绑定
- */
-document.addEventListener('DOMContentLoaded', function() {
-    // 如果 updateSelectors 函数存在，就调用它
-    if (typeof updateSelectors === 'function') {
-        updateSelectors();
-    }
-    
-    // 标记可交互的表格行
-    const interactiveRows = document.querySelectorAll('.compare-table tr[data-action]');
-    interactiveRows.forEach(row => {
-        row.classList.add('interactive');
-    });
-    
-    // 绑定打印按钮事件
-    const printBtn = document.getElementById('print-btn');
-    if (printBtn) {
-        printBtn.addEventListener('click', function() {
-            window.print();
-        });
-    }
-    
-    // 绑定分享按钮事件
-    const shareBtn = document.getElementById('share-btn');
-    if (shareBtn) {
-        shareBtn.addEventListener('click', function() {
-            // 获取当前URL用于分享
-            const shareUrl = window.location.href;
-            
-            // 检查是否支持分享API
-            if (navigator.share) {
-                navigator.share({
-                    title: '手机对比结果',
-                    text: '查看这些手机型号的对比结果',
-                    url: shareUrl
-                })
-                .catch(err => {
-                    console.error('分享失败:', err);
-                    // 如果分享API失败，回退到复制链接
-                    copyToClipboard(shareUrl);
-                });
-            } else {
-                // 不支持分享API时复制链接到剪贴板
-                copyToClipboard(shareUrl);
-            }
-        });
-    }
-    
-    // 绑定收藏按钮事件
-    const favBtn = document.getElementById('add-to-favorites');
-    if (favBtn) {
-        favBtn.addEventListener('click', function() {
-            // 这里将来可以实现保存到用户的收藏列表中
-            alert('该功能即将上线，敬请期待！');
-        });
-    }
-    
-    // 辅助函数：复制文本到剪贴板
-    function copyToClipboard(text) {
-        // 创建一个临时的textarea元素
-        const textarea = document.createElement('textarea');
-        textarea.value = text;
-        document.body.appendChild(textarea);
-        textarea.select();
-        
-        try {
-            // 执行复制命令
-            document.execCommand('copy');
-            alert('链接已复制到剪贴板！');
-        } catch (err) {
-            console.error('复制失败:', err);
-            alert('复制链接失败，请手动复制: ' + text);
+document.addEventListener("DOMContentLoaded", function() {
+    // Define the fields for the spec comparison
+    const specFields = [
+        { key: "No", label: "No" },
+        { key: "model", label: "Model" },
+        { key: "brand", label: "Brand" },
+        { key: "price_USD", label: "Price (USD)" },
+        { key: "sim", label: "SIM" },
+        { key: "processor_name", label: "Processor" },
+        { key: "ram", label: "RAM" },
+        { key: "Battery_Capacity", label: "Battery" },
+        { key: "Charging_Info", label: "Charging" },
+        { key: "Rear_Camera", label: "Rear Camera" },
+        { key: "Front_Camera", label: "Front Camera" },
+        { key: "card", label: "Card Slot" },
+        { key: "os", label: "OS" }
+    ];
+
+    let comparePhones = [];
+
+    function renderCompareTable() {
+        const container = document.getElementById("compareResult");
+        if (!container) {
+            console.error("[Table] Cannot find #compareResult!");
+            return;
         }
-        
-        // 清理DOM
-        document.body.removeChild(textarea);
+        if (comparePhones.length === 0) {
+            container.innerHTML = `<div style="color:#888;text-align:center;margin:24px 0;">No phones compared yet.</div>`;
+            console.log("[Table] No data: comparePhones is empty");
+            return;
+        }
+
+        let html = `<table class="compare-table"><tr><th>Spec</th>`;
+
+        comparePhones.forEach(phone => {
+            let phoneBrand = phone.brand !== undefined && phone.brand !== null ? phone.brand : "";
+            let phoneModel = phone.model !== undefined && phone.model !== null ? phone.model : "";
+            let phoneNo = phone.No !== undefined && phone.No !== null ? phone.No : "-";
+
+            html += `<th>${phoneBrand} ${phoneModel}<br>No.${phoneNo}</th>`;
+        });
+
+        html += `</tr>`;
+
+
+        html += `</tr>`;
+
+        for (let rowIdx = 0; rowIdx < specFields.length; rowIdx++) {
+            let f = specFields[rowIdx];
+            html += `<tr><td class="spec-label">${f.label}</td>`;
+            for (let colIdx = 0; colIdx < comparePhones.length; colIdx++) {
+                let phone = comparePhones[colIdx];
+                let value = phone[f.key] ?? "-";
+                html += `<td class="phone-info">${value}</td>`;
+                // CLEAR, guaranteed debug:
+                console.log(`[DEBUG] Table: row=${rowIdx} col=${colIdx} key=${f.key} value=`, value);
+            }
+            html += `</tr>`;
+        }
+        html += `</table>`;
+
+        container.innerHTML = html;
+        console.log("[Table] Rendered with", comparePhones.length, "phone(s)");
     }
+
+    // Bind Search button
+    document.getElementById("searchNoBtn").onclick = function() {
+        const input = document.getElementById("searchNoInput");
+        const no = input.value.trim();
+        if (!no) {
+            alert("Please enter a phone No.");
+            return;
+        }
+        // Prevent duplicate
+        if (comparePhones.some(ph => String(ph.No) === String(no))) {
+            alert("Already in compare list!");
+            return;
+        }
+        const url = `http://localhost:8080/ServerletFinal_war_exploded/data?type=readSQL&table=smartphones&phoneNo=${encodeURIComponent(no)}`;
+        console.log("[Fetch] GET", url);
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                console.log("[Fetch] Response:", data);
+                if (!Array.isArray(data) || data.length === 0) {
+                    alert("No phone found with No = " + no);
+                    return;
+                }
+                comparePhones.push(data[0]);
+                renderCompareTable();
+                input.value = "";
+            })
+            .catch(err => {
+                alert("Error fetching data: " + err);
+                console.error(err);
+            });
+    };
+
+    // Bind Reset button
+    document.getElementById("resetBtn").onclick = function() {
+        comparePhones = [];
+        renderCompareTable();
+    };
+
+    // Initial render
+    renderCompareTable();
 });
