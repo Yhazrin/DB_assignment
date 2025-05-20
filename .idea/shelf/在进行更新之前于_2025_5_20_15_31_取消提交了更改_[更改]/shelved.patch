@@ -1,0 +1,578 @@
+Index: src/main/webapp/assets/js/compare-init.js
+===================================================================
+diff --git a/src/main/webapp/assets/js/compare-init.js b/src/main/webapp/assets/js/compare-init.js
+deleted file mode 100644
+--- a/src/main/webapp/assets/js/compare-init.js	(revision 96c76060d83a45ba929057727dc1b61ba584e5e6)
++++ /dev/null	(revision 96c76060d83a45ba929057727dc1b61ba584e5e6)
+@@ -1,189 +0,0 @@
+-// compare-init.js
+-// Path: webapp/assets/js/compare-init.js
+-
+-document.addEventListener('DOMContentLoaded', function() {
+-    const ctx = window.__ctx || '';
+-    const numSelect = document.getElementById('numModels');
+-    const selectorsDiv = document.getElementById('deviceSelectors');
+-    const compareBtn = document.getElementById('compare-btn');
+-    const resetBtn = document.getElementById('reset-btn');
+-
+-    // Load phone data from server JSON API
+-    async function loadPhoneData() {
+-        const res = await fetch(`${ctx}/compare?json=true`);
+-        if (!res.ok) {
+-            throw new Error(`HTTP error! status: ${res.status}`);
+-        }
+-        return await res.json();
+-    }
+-
+-    // Initialize selectors and event handlers with loaded data
+-    function initialize(allPhoneData) {
+-        // Get selected ids from URL parameters
+-        function getSelectedIds() {
+-            const params = new URLSearchParams(window.location.search);
+-            return params.getAll('id');
+-        }
+-
+-        // Handle selecting an item
+-        function selectItem(p, inputEl, hiddenEl, resultsEl, wrap) {
+-            hiddenEl.value = p.id;
+-            inputEl.value = `${p.brand} ${p.name}`;
+-            resultsEl.classList.remove('show');
+-
+-            let selectedDiv = wrap.querySelector('.selected-model');
+-            if (!selectedDiv) {
+-                selectedDiv = document.createElement('div');
+-                selectedDiv.className = 'selected-model';
+-                wrap.appendChild(selectedDiv);
+-            }
+-            selectedDiv.innerHTML = `<span>${p.brand} ${p.name}</span><span class="remove-btn">&times;</span>`;
+-            selectedDiv.querySelector('.remove-btn').addEventListener('click', e => {
+-                e.stopPropagation();
+-                hiddenEl.value = '';
+-                selectedDiv.remove();
+-                inputEl.style.display = 'block';
+-                inputEl.value = '';
+-            });
+-            inputEl.style.display = 'none';
+-        }
+-
+-        // Show search results
+-        function showResults(term, input, hidden, resultsDiv, container) {
+-            resultsDiv.innerHTML = '';
+-            const items = [];
+-            if (!term) {
+-                items.push(...allPhoneData.slice(0, 10));
+-            } else {
+-                const searchTerms = term.toLowerCase().split(/\s+/);
+-                let matches = allPhoneData.filter(p =>
+-                    searchTerms.some(t => `${p.brand} ${p.name}`.toLowerCase().includes(t))
+-                );
+-                if (matches.length === 0) {
+-                    matches = allPhoneData.filter(p =>
+-                        term.split('').some(ch => `${p.brand} ${p.name}`.toLowerCase().includes(ch))
+-                    ).slice(0, 10);
+-                    if (matches.length > 0) {
+-                        resultsDiv.innerHTML = '<div class="loose-match-notice">No exact matches found, showing related results:</div>';
+-                    }
+-                }
+-                items.push(...matches);
+-            }
+-
+-            if (items.length === 0) {
+-                resultsDiv.innerHTML = `<div class="no-results">${term ? 'No matching results found' : 'No phone data available'}</div>`;
+-            } else {
+-                items.forEach(p => {
+-                    const item = document.createElement('div');
+-                    item.className = 'search-result-item';
+-                    item.textContent = `${p.brand} ${p.name}`;
+-                    item.addEventListener('click', () => selectItem(p, input, hidden, resultsDiv, container));
+-                    resultsDiv.appendChild(item);
+-                });
+-            }
+-
+-            resultsDiv.classList.add('show');
+-        }
+-
+-        // Generate selectors
+-        function updateSelectors() {
+-            const count = parseInt(numSelect.value, 10) || 3;
+-            selectorsDiv.innerHTML = '';
+-            selectorsDiv.style.display = 'flex';
+-            selectorsDiv.style.gap = 'var(--spacing-md)';
+-
+-            for (let i = 0; i < count; i++) {
+-                const container = document.createElement('div');
+-                container.className = 'model-selector';
+-
+-                const input = document.createElement('input');
+-                input.type = 'text';
+-                input.id = `modelInput${i}`;
+-                input.name = `modelInput${i}`;
+-                input.className = 'model-input';
+-                input.placeholder = `Enter phone model #${i + 1}`;
+-
+-                const hidden = document.createElement('input');
+-                hidden.type = 'hidden';
+-                hidden.name = 'id';
+-                hidden.className = 'selected-id';
+-
+-                const resultsDiv = document.createElement('div');
+-                resultsDiv.className = 'search-results';
+-
+-                // Events
+-                input.addEventListener('input', () => {
+-                    const term = input.value.trim();
+-                    if (!term) {
+-                        resultsDiv.classList.remove('show');
+-                        return;
+-                    }
+-                    showResults(term, input, hidden, resultsDiv, container);
+-                });
+-
+-                input.addEventListener('focus', () => showResults('', input, hidden, resultsDiv, container));
+-
+-                document.addEventListener('click', e => {
+-                    if (!container.contains(e.target)) {
+-                        resultsDiv.classList.remove('show');
+-                    }
+-                });
+-
+-                container.appendChild(input);
+-                container.appendChild(hidden);
+-                container.appendChild(resultsDiv);
+-                selectorsDiv.appendChild(container);
+-            }
+-
+-            populateFromUrl();
+-        }
+-
+-        // Pre-fill from URL
+-        function populateFromUrl() {
+-            const ids = getSelectedIds();
+-            const containers = document.querySelectorAll('.model-selector');
+-            ids.forEach((id, idx) => {
+-                if (idx < containers.length) {
+-                    const p = allPhoneData.find(x => String(x.id) === id);
+-                    if (p) {
+-                        const wrap = containers[idx];
+-                        const input = wrap.querySelector('.model-input');
+-                        const hidden = wrap.querySelector('.selected-id');
+-                        const results = wrap.querySelector('.search-results');
+-                        selectItem(p, input, hidden, results, wrap);
+-                    }
+-                }
+-            });
+-        }
+-
+-        // Compare action
+-        compareBtn.addEventListener('click', () => {
+-            const ids = Array.from(document.querySelectorAll('.selected-id'))
+-                .map(i => i.value).filter(Boolean);
+-            if (ids.length === 0) {
+-                alert('Please select at least one phone to compare');
+-                return;
+-            }
+-            const url = new URL(window.location.pathname, window.location.origin);
+-            ids.forEach(id => url.searchParams.append('id', id));
+-            window.location.href = url.toString();
+-        });
+-
+-        // Reset action
+-        resetBtn.addEventListener('click', () => {
+-            window.location.href = window.location.pathname;
+-        });
+-
+-        updateSelectors();
+-        numSelect.addEventListener('change', updateSelectors);
+-    }
+-
+-    // Load data and initialize
+-    loadPhoneData()
+-        .then(initialize)
+-        .catch(err => {
+-            console.error('加载数据失败：', err);
+-            document.getElementById('compareResults')
+-                .innerHTML = '<div class="error">Data load error, please refresh the page</div>';
+-        });
+-});
+Index: src/main/webapp/assets/js/compare.js
+===================================================================
+diff --git a/src/main/webapp/assets/js/compare.js b/src/main/webapp/assets/js/compare.js
+deleted file mode 100644
+--- a/src/main/webapp/assets/js/compare.js	(revision 96c76060d83a45ba929057727dc1b61ba584e5e6)
++++ /dev/null	(revision 96c76060d83a45ba929057727dc1b61ba584e5e6)
+@@ -1,79 +0,0 @@
+-/**
+- * compare.js - 处理手机比较页面的初始化和事件绑定
+- */
+-document.addEventListener('DOMContentLoaded', function() {
+-    // 如果 updateSelectors 函数存在，就调用它
+-    if (typeof updateSelectors === 'function') {
+-        updateSelectors();
+-    }
+-    
+-    // 标记可交互的表格行
+-    const interactiveRows = document.querySelectorAll('.compare-table tr[data-action]');
+-    interactiveRows.forEach(row => {
+-        row.classList.add('interactive');
+-    });
+-    
+-    // 绑定打印按钮事件
+-    const printBtn = document.getElementById('print-btn');
+-    if (printBtn) {
+-        printBtn.addEventListener('click', function() {
+-            window.print();
+-        });
+-    }
+-    
+-    // 绑定分享按钮事件
+-    const shareBtn = document.getElementById('share-btn');
+-    if (shareBtn) {
+-        shareBtn.addEventListener('click', function() {
+-            // 获取当前URL用于分享
+-            const shareUrl = window.location.href;
+-            
+-            // 检查是否支持分享API
+-            if (navigator.share) {
+-                navigator.share({
+-                    title: '手机对比结果',
+-                    text: '查看这些手机型号的对比结果',
+-                    url: shareUrl
+-                })
+-                .catch(err => {
+-                    console.error('分享失败:', err);
+-                    // 如果分享API失败，回退到复制链接
+-                    copyToClipboard(shareUrl);
+-                });
+-            } else {
+-                // 不支持分享API时复制链接到剪贴板
+-                copyToClipboard(shareUrl);
+-            }
+-        });
+-    }
+-    
+-    // 绑定收藏按钮事件
+-    const favBtn = document.getElementById('add-to-favorites');
+-    if (favBtn) {
+-        favBtn.addEventListener('click', function() {
+-            // 这里将来可以实现保存到用户的收藏列表中
+-            alert('该功能即将上线，敬请期待！');
+-        });
+-    }
+-    
+-    // 辅助函数：复制文本到剪贴板
+-    function copyToClipboard(text) {
+-        // 创建一个临时的textarea元素
+-        const textarea = document.createElement('textarea');
+-        textarea.value = text;
+-        document.body.appendChild(textarea);
+-        textarea.select();
+-        
+-        try {
+-            // 执行复制命令
+-            document.execCommand('copy');
+-            alert('链接已复制到剪贴板！');
+-        } catch (err) {
+-            console.error('复制失败:', err);
+-            alert('复制链接失败，请手动复制: ' + text);
+-        }
+-        
+-        // 清理DOM
+-        document.body.removeChild(textarea);
+-    }
+-});
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"MavenProjectsManager\">\r\n    <option name=\"originalFiles\">\r\n      <list>\r\n        <option value=\"$PROJECT_DIR$/pom.xml\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_24\" default=\"true\" project-jdk-name=\"openjdk-24\" project-jdk-type=\"JavaSDK\" />\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 96c76060d83a45ba929057727dc1b61ba584e5e6)
++++ b/.idea/misc.xml	(date 1747723370036)
+@@ -8,5 +8,5 @@
+       </list>
+     </option>
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_24" default="true" project-jdk-name="openjdk-24" project-jdk-type="JavaSDK" />
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_23" default="true" project-jdk-name="openjdk-24" project-jdk-type="JavaSDK" />
+ </project>
+\ No newline at end of file
+Index: src/main/webapp/WEB-INF/web.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><web-app xmlns=\"https://jakarta.ee/xml/ns/jakartaee\"\r\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n         xsi:schemaLocation=\"https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd\"\r\n         version=\"5.0\">\r\n    \r\n    <!-- CompareServlet配置 -->\r\n    <servlet>\r\n        <servlet-name>compareServlet</servlet-name>\r\n        <init-param>\r\n            <param-name>csvPath</param-name>\r\n            <param-value>/assets/data/50_Sample_Overview_Data.csv</param-value>\r\n        </init-param>\r\n        <load-on-startup>1</load-on-startup>\r\n    </servlet>\r\n    <servlet-mapping>\r\n        <servlet-name>compareServlet</servlet-name>\r\n        <url-pattern>/compare</url-pattern>\r\n    </servlet-mapping>\r\n    \r\n    <!-- OverviewServlet配置 -->\r\n    <servlet>\r\n        <servlet-name>overviewServlet</servlet-name>\r\n        <init-param>\r\n            <param-name>csvPath</param-name>\r\n            <param-value>/assets/data/50_Sample_Overview_Data.csv</param-value>\r\n        </init-param>\r\n        <load-on-startup>1</load-on-startup>\r\n    </servlet>\r\n    <servlet-mapping>\r\n        <servlet-name>overviewServlet</servlet-name>\r\n        <url-pattern>/overview</url-pattern>\r\n    </servlet-mapping>\r\n    \r\n    <!-- LogoutServlet配置 -->\r\n    <servlet>\r\n        <servlet-name>logoutServlet</servlet-name>\r\n    </servlet>\r\n    <servlet-mapping>\r\n        <servlet-name>logoutServlet</servlet-name>\r\n        <url-pattern>/logout</url-pattern>\r\n    </servlet-mapping>\r\n    \r\n    <!-- 欢迎页配置 -->\r\n    <welcome-file-list>\r\n        <welcome-file>assets/page/login.jsp</welcome-file>\r\n        <welcome-file>assets/page/home.jsp</welcome-file>\r\n    </welcome-file-list>\r\n    \r\n    <!-- 会话配置 -->\r\n    <session-config>\r\n        <session-timeout>30</session-timeout>\r\n    </session-config>\r\n    \r\n    <!-- 静态资源映射 -->\r\n    <servlet-mapping>\r\n        <servlet-name>default</servlet-name>\r\n        <url-pattern>*.css</url-pattern>\r\n    </servlet-mapping>\r\n    <servlet-mapping>\r\n        <servlet-name>default</servlet-name>\r\n        <url-pattern>*.js</url-pattern>\r\n    </servlet-mapping>\r\n    <servlet-mapping>\r\n        <servlet-name>default</servlet-name>\r\n        <url-pattern>*.png</url-pattern>\r\n    </servlet-mapping>\r\n    <servlet-mapping>\r\n        <servlet-name>default</servlet-name>\r\n        <url-pattern>*.jpg</url-pattern>\r\n    </servlet-mapping>\r\n    <servlet-mapping>\r\n        <servlet-name>default</servlet-name>\r\n        <url-pattern>*.gif</url-pattern>\r\n    </servlet-mapping>\r\n    <servlet-mapping>\r\n        <servlet-name>default</servlet-name>\r\n        <url-pattern>*.svg</url-pattern>\r\n    </servlet-mapping>\r\n    <servlet-mapping>\r\n        <servlet-name>default</servlet-name>\r\n        <url-pattern>*.mp4</url-pattern>\r\n    </servlet-mapping>\r\n\r\n    <!-- 其他配置 -->\r\n    \r\n</web-app>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/WEB-INF/web.xml b/src/main/webapp/WEB-INF/web.xml
+--- a/src/main/webapp/WEB-INF/web.xml	(revision 96c76060d83a45ba929057727dc1b61ba584e5e6)
++++ b/src/main/webapp/WEB-INF/web.xml	(date 1747723344819)
+@@ -2,7 +2,7 @@
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+          version="5.0">
+-    
++
+     <!-- CompareServlet配置 -->
+     <servlet>
+         <servlet-name>compareServlet</servlet-name>
+@@ -16,7 +16,8 @@
+         <servlet-name>compareServlet</servlet-name>
+         <url-pattern>/compare</url-pattern>
+     </servlet-mapping>
+-    
++
++
+     <!-- OverviewServlet配置 -->
+     <servlet>
+         <servlet-name>overviewServlet</servlet-name>
+@@ -30,7 +31,7 @@
+         <servlet-name>overviewServlet</servlet-name>
+         <url-pattern>/overview</url-pattern>
+     </servlet-mapping>
+-    
++
+     <!-- LogoutServlet配置 -->
+     <servlet>
+         <servlet-name>logoutServlet</servlet-name>
+@@ -39,7 +40,7 @@
+         <servlet-name>logoutServlet</servlet-name>
+         <url-pattern>/logout</url-pattern>
+     </servlet-mapping>
+-    
++
+     <!-- 欢迎页配置 -->
+     <welcome-file-list>
+         <welcome-file>assets/page/login.jsp</welcome-file>
+Index: .idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/mysql.osA4Bg.meta
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#n:mysql\r\n!<md> [0, 0, null, null, -2147483648, -2147483648]\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/mysql.osA4Bg.meta b/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/mysql.osA4Bg.meta
+--- a/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/mysql.osA4Bg.meta	(revision 96c76060d83a45ba929057727dc1b61ba584e5e6)
++++ b/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/mysql.osA4Bg.meta	(date 1747723364836)
+@@ -1,2 +1,2 @@
+ #n:mysql
+-!<md> [0, 0, null, null, -2147483648, -2147483648]
++!<md> [null, 0, null, null, -2147483648, -2147483648]
+Index: .idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/information_schema.FNRwLQ.meta
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#n:information_schema\r\n!<md> [0, 0, null, null, -2147483648, -2147483648]\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/information_schema.FNRwLQ.meta b/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/information_schema.FNRwLQ.meta
+--- a/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/information_schema.FNRwLQ.meta	(revision 96c76060d83a45ba929057727dc1b61ba584e5e6)
++++ b/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/information_schema.FNRwLQ.meta	(date 1747723364842)
+@@ -1,2 +1,2 @@
+ #n:information_schema
+-!<md> [0, 0, null, null, -2147483648, -2147483648]
++!<md> [null, 0, null, null, -2147483648, -2147483648]
+Index: .idea/dataSources.local.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"dataSourceStorageLocal\" created-in=\"IU-251.25410.129\">\r\n    <data-source name=\"@localhost\" uuid=\"af934667-cbcd-4136-98ab-36c135e3cc2b\">\r\n      <database-info product=\"MySQL\" version=\"8.0.41\" jdbc-version=\"4.2\" driver-name=\"MySQL Connector/J\" driver-version=\"mysql-connector-j-8.2.0 (Revision: 06a1f724497fd81c6a659131fda822c9e5085b6c)\" dbms=\"MYSQL\" exact-version=\"8.0.41\" exact-driver-version=\"8.2\">\r\n        <extra-name-characters>#@</extra-name-characters>\r\n        <identifier-quote-string>`</identifier-quote-string>\r\n      </database-info>\r\n      <case-sensitivity plain-identifiers=\"lower\" quoted-identifiers=\"lower\" />\r\n      <secret-storage>master_key</secret-storage>\r\n      <user-name>root</user-name>\r\n      <schema-mapping>\r\n        <introspection-scope>\r\n          <node kind=\"schema\" negative=\"1\" />\r\n        </introspection-scope>\r\n      </schema-mapping>\r\n      <load-sources>user_and_system_sources</load-sources>\r\n    </data-source>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dataSources.local.xml b/.idea/dataSources.local.xml
+--- a/.idea/dataSources.local.xml	(revision 96c76060d83a45ba929057727dc1b61ba584e5e6)
++++ b/.idea/dataSources.local.xml	(date 1747723457479)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="dataSourceStorageLocal" created-in="IU-251.25410.129">
++  <component name="dataSourceStorageLocal" created-in="IU-243.26053.27">
+     <data-source name="@localhost" uuid="af934667-cbcd-4136-98ab-36c135e3cc2b">
+       <database-info product="MySQL" version="8.0.41" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-j-8.2.0 (Revision: 06a1f724497fd81c6a659131fda822c9e5085b6c)" dbms="MYSQL" exact-version="8.0.41" exact-driver-version="8.2">
+         <extra-name-characters>#@</extra-name-characters>
+Index: .idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/performance_schema.kIw0nw.meta
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#n:performance_schema\r\n!<md> [0, 0, null, null, -2147483648, -2147483648]\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/performance_schema.kIw0nw.meta b/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/performance_schema.kIw0nw.meta
+--- a/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/performance_schema.kIw0nw.meta	(revision 96c76060d83a45ba929057727dc1b61ba584e5e6)
++++ b/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/performance_schema.kIw0nw.meta	(date 1747723365713)
+@@ -1,2 +1,2 @@
+ #n:performance_schema
+-!<md> [0, 0, null, null, -2147483648, -2147483648]
++!<md> [null, 0, null, null, -2147483648, -2147483648]
+Index: .idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/sys.zb4BAA.meta
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#n:sys\r\n!<md> [0, 0, null, null, -2147483648, -2147483648]\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/sys.zb4BAA.meta b/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/sys.zb4BAA.meta
+--- a/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/sys.zb4BAA.meta	(revision 96c76060d83a45ba929057727dc1b61ba584e5e6)
++++ b/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/sys.zb4BAA.meta	(date 1747723365720)
+@@ -1,2 +1,2 @@
+ #n:sys
+-!<md> [0, 0, null, null, -2147483648, -2147483648]
++!<md> [null, 0, null, null, -2147483648, -2147483648]
+Index: src/main/webapp/assets/css/pages/compare.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/* compare.css — 针对 Compare JSP 结构的样式 */\r\n\r\n/* 全局引入：变量、布局、按钮、卡片等 */\r\n@import \"../style/variables.css\";\r\n@import \"../utilities.css\";\r\n@import \"../components/layout.css\";\r\n@import \"../components/banner.css\";\r\n@import \"../components/buttons.css\";\r\n@import \"../components/header.css\";\r\n\r\n\r\n/* Reset & 基本盒模型 */\r\n*,\r\n*::before,\r\n*::after {\r\n    box-sizing: border-box;\r\n    margin: 0;\r\n    padding: 0;\r\n}\r\n\r\n/* 全局字体与背景 */\r\nhtml, body {\r\n    width: 100%;\r\n    font-family: 'Montserrat', sans-serif;\r\n    font-size: 1rem;\r\n    font-weight: 800;\r\n    background: var(--bg-primary);\r\n    color: var(--text-primary);\r\n}\r\n\r\n/* 容器：水平居中，对齐页面顶部 */\r\n.container {\r\n    display: flex;\r\n    align-items: flex-start;\r\n    justify-content: center;\r\n    padding: var(--spacing-lg) 0;\r\n}\r\n\r\n/* Compare 页面主卡片（复刻登录卡片样式） */\r\n.compare-card {\r\n    width: 80%;\r\n    max-width: 1200px;\r\n    background: var(--card-bg2);\r\n    border: 1px solid #e1e1e1;\r\n    border-radius: var(--radius-xl);\r\n    padding: 2rem;\r\n    box-shadow: 0 4px 12px rgba(0,0,0,0.05);\r\n}\r\n\r\n/* 卡片标题 */\r\n.compare-card h2 {\r\n    font-size: var(--font-size-xl);\r\n    margin-bottom: var(--spacing-md);\r\n    font-weight: 600;\r\n    color: var(--text-primary);\r\n}\r\n\r\n/* —— Compare 页面专有样式 —— */\r\n@import \"../utilities.css\";\r\n@import \"../components/layout.css\";\r\n@import \"../components/banner.css\";\r\n@import \"../components/buttons.css\";\r\n@import \"../components/header.css\";\r\n\r\n/* 顶部横幅 */\r\n.compare-card .banner {\r\n    text-align: center;\r\n}\r\n\r\n/* 控件区域 */\r\n.controls {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    margin: var(--spacing-lg) 0;\r\n    background: var(--card-bg);\r\n    padding: var(--spacing-md) var(--spacing-lg);\r\n    border-radius: var(--radius-md);\r\n    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);\r\n}\r\n.control-group {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: var(--spacing-md);\r\n}\r\n.control-group label {\r\n    font-weight: 600;\r\n    color: var(--text-color);\r\n    white-space: nowrap;\r\n    margin-right: 0.5rem;\r\n}\r\n.controls select {\r\n    padding: var(--spacing-sm) var(--spacing-md);\r\n    border: 1px solid var(--border-color);\r\n    border-radius: var(--radius-sm);\r\n    background: var(--card-bg);\r\n    color: var(--text-color);\r\n    transition: border-color var(--transition-normal);\r\n}\r\n.controls select:hover {\r\n    border-color: var(--primary-color);\r\n}\r\n\r\n/* Reset / Compare 按钮 */\r\n#reset-btn,\r\n#compare-btn {\r\n    margin-left: var(--spacing-md);\r\n}\r\n\r\n/* 机型选择区域 */\r\n.selectors {\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    gap: var(--spacing-md);\r\n    margin: var(--spacing-lg) 0;\r\n    justify-content: flex-start;\r\n}\r\n\r\n/* 对比结果表格 */\r\n.compare-table {\r\n    width: 100%;\r\n    border-collapse: collapse;\r\n    margin-bottom: var(--spacing-lg);\r\n}\r\n.compare-table th,\r\n.compare-table td {\r\n    padding: var(--spacing-sm) var(--spacing-md);\r\n    border: 1px solid var(--divider);\r\n    text-align: center;\r\n}\r\n.compare-table th {\r\n    background: var(--section-highlight);\r\n    color: var(--text-color);\r\n    font-weight: 600;\r\n}\r\n\r\n/* 无数据提示 */\r\n.message {\r\n    text-align: center;\r\n    padding: var(--spacing-lg);\r\n    color: var(--text-secondary);\r\n}\r\n\r\n/* 操作条 */\r\n.action-bar {\r\n    display: flex;\r\n    justify-content: flex-end;\r\n    gap: var(--spacing-md);\r\n    margin-top: var(--spacing-lg);\r\n}\r\n\r\n/* 响应式：窄屏下将表格改为“卡片”式展示 */\r\n@media (max-width: 768px) {\r\n    .compare-table,\r\n    .compare-table th,\r\n    .compare-table td {\r\n        display: block;\r\n        width: 100%;\r\n    }\r\n    .compare-table th {\r\n        text-align: left;\r\n    }\r\n    .compare-table td {\r\n        position: relative;\r\n        padding-left: 50%;\r\n        text-align: right;\r\n    }\r\n    .compare-table td::before {\r\n        content: attr(data-label) \": \";\r\n        position: absolute;\r\n        left: var(--spacing-sm);\r\n        font-weight: 600;\r\n    }\r\n}\r\n\r\n/* 机型输入控件 */\r\n.model-selector {\r\n    position: relative;\r\n    flex: 1 1 200px;\r\n    max-width: 300px;\r\n}\r\n.model-input {\r\n    width: 100%;\r\n    padding: var(--spacing-sm) var(--spacing-md);\r\n    border: 1px solid var(--divider);\r\n    border-radius: var(--radius-sm);\r\n    background: var(--card-bg);\r\n    color: var(--text-color);\r\n    font-size: var(--font-size-md);\r\n    box-sizing: border-box;\r\n    transition: border-color var(--transition-normal);\r\n}\r\n.model-input:focus {\r\n    outline: none;\r\n    border-color: var(--primary-color);\r\n    box-shadow: 0 0 0 3px rgba(var(--bg-inverse), 0.15);\r\n}\r\n\r\n/* 搜索结果下拉 */\r\n.search-results {\r\n    position: absolute;\r\n    top: calc(100% + var(--spacing-xs));\r\n    left: 0;\r\n    right: 0;\r\n    background: var(--card-bg);\r\n    border: 1px solid var(--divider);\r\n    border-radius: var(--radius-sm);\r\n    max-height: 200px;\r\n    overflow-y: auto;\r\n    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\r\n    display: none;\r\n    z-index: 50;\r\n}\r\n.search-results.show {\r\n    display: block;\r\n}\r\n.search-result-item {\r\n    padding: var(--spacing-sm) var(--spacing-md);\r\n    cursor: pointer;\r\n    transition: background var(--transition-fast);\r\n}\r\n.search-result-item:hover {\r\n    background: rgba(var(--bg-inverse), 0.1);\r\n}\r\n\r\n/* 已选模型标签 */\r\n.selected-model {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n    background: var(--card-bg);\r\n    padding: var(--spacing-sm) var(--spacing-md);\r\n    border: 1px solid var(--divider);\r\n    border-radius: var(--radius-sm);\r\n    margin-top: var(--spacing-xs);\r\n}\r\n.selected-model span {\r\n    font-size: var(--font-size-sm);\r\n}\r\n.selected-model .remove-btn {\r\n    margin-left: var(--spacing-sm);\r\n    cursor: pointer;\r\n    font-weight: bold;\r\n    line-height: 1;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/assets/css/pages/compare.css b/src/main/webapp/assets/css/pages/compare.css
+--- a/src/main/webapp/assets/css/pages/compare.css	(revision 96c76060d83a45ba929057727dc1b61ba584e5e6)
++++ b/src/main/webapp/assets/css/pages/compare.css	(date 1747723363535)
+@@ -128,18 +128,7 @@
+     border: 1px solid var(--divider);
+     text-align: center;
+ }
+-.compare-table th {
+-    background: var(--section-highlight);
+-    color: var(--text-color);
+-    font-weight: 600;
+-}
+ 
+-/* 无数据提示 */
+-.message {
+-    text-align: center;
+-    padding: var(--spacing-lg);
+-    color: var(--text-secondary);
+-}
+ 
+ /* 操作条 */
+ .action-bar {
+@@ -223,6 +212,33 @@
+     background: rgba(var(--bg-inverse), 0.1);
+ }
+ 
++.compare-table {
++    border-collapse: collapse;
++    width: 100%;
++    max-width: 600px;
++    margin-top: 10px;
++    background-color: #fff;
++    box-shadow: 0 0 8px rgba(0,0,0,0.1);
++    font-family: Arial, sans-serif;
++}
++
++.compare-table td {
++    border: 1px solid #ccc;
++    padding: 8px 12px;
++    vertical-align: middle;
++}
++
++.compare-table tr:nth-child(odd) {
++    background-color: #fafafa;
++}
++
++.compare-table td:first-child {
++    font-weight: bold;
++    background-color: #e9ecef;
++    width: 160px;
++    user-select: none;
++}
++
+ /* 已选模型标签 */
+ .selected-model {
+     display: flex;
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ArtifactsWorkspaceSettings\">\r\n    <artifacts-to-build>\r\n      <artifact name=\"DB_assignment:war exploded\" />\r\n    </artifacts-to-build>\r\n  </component>\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"d02de210-1416-435c-ad06-f238c6357885\" name=\"更改\" comment=\"你们快来搞项目啊\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/css/pages/console.css\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/page/console.jsp\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/dataSources.local.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/dataSources.local.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/misc.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/model/sql/User.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/model/sql/User.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/css/pages/compare.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/css/pages/compare.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/css/pages/forum/forum.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/css/pages/forum.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/css/pages/login.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/css/pages/login.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/js/forum.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/js/forum.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/js/profile.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/js/profile.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/page/add_smartphone.jsp\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/page/compare.jsp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/page/compare.jsp\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/page/forum.jsp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/page/forum.jsp\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/page/login.jsp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/page/login.jsp\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/page/profile.jsp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/page/profile.jsp\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/page/sub/header.jsp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/page/sub/header.jsp\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/page/sub/scripts.jsp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/page/sub/scripts.jsp\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Jsp File\" />\r\n        <option value=\"Class\" />\r\n        <option value=\"JavaScript File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;Yhazrin&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/Yhazrin/DB_assignment.git&quot;,\r\n    &quot;accountId&quot;: &quot;6fa8cc7e-931f-416e-a8f9-5aa04614595e&quot;\r\n  }\r\n}</component>\r\n  <component name=\"KubernetesApiPersistence\">{}</component>\r\n  <component name=\"KubernetesApiProvider\">{\r\n  &quot;isMigrated&quot;: true\r\n}</component>\r\n  <component name=\"LogFilters\">\r\n    <option name=\"FILTER_ERRORS\" value=\"false\" />\r\n    <option name=\"FILTER_WARNINGS\" value=\"false\" />\r\n    <option name=\"FILTER_INFO\" value=\"true\" />\r\n    <option name=\"FILTER_DEBUG\" value=\"true\" />\r\n    <option name=\"CUSTOM_FILTER\" />\r\n  </component>\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"mavenHomeTypeForPersistence\" value=\"WRAPPER\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 3\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2wEMqlUb4sKktor846VuiCpSJbu\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <OptionsSetting value=\"false\" id=\"Update\" />\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;Maven.DB_assignment [clean].executor&quot;: &quot;Run&quot;,\r\n    &quot;Maven.DB_assignment [package].executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,\r\n    &quot;TomEE 服务器.TomcatDASHABI.executor&quot;: &quot;Run&quot;,\r\n    &quot;Tomcat Server.Tomcat 10.1.39.executor&quot;: &quot;Run&quot;,\r\n    &quot;Tomcat 服务器.Tomcat 10.1.39.executor&quot;: &quot;Run&quot;,\r\n    &quot;Tomcat 服务器.TomcatSHABI.executor&quot;: &quot;Run&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;master&quot;,\r\n    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/20544/Desktop/SE/SEP/Assignment/DB_assignment&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.42847174&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  },\r\n  &quot;keyToStringList&quot;: {\r\n    &quot;DatabaseDriversLRU&quot;: [\r\n      &quot;mysql&quot;\r\n    ]\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\20544\\Desktop\\SE\\SEP\\Assignment\\DB_assignment\\src\\main\\webapp\\assets\\css\\pages\" />\r\n      <recent name=\"C:\\Users\\20544\\Desktop\\SE\\SEP\\Assignment\\DB_assignment\\src\\main\\webapp\\assets\\css\\sections\" />\r\n      <recent name=\"C:\\Users\\20544\\Desktop\\SE\\SEP\\Assignment\\DB_assignment\\src\\main\\webapp\\assets\\css\\components\" />\r\n      <recent name=\"C:\\Users\\20544\\Desktop\\SE\\SEP\\Assignment\\DB_assignment\\src\\main\\webapp\\assets\\videos\" />\r\n      <recent name=\"C:\\Users\\20544\\Desktop\\SE\\SEP\\Assignment\\DB_assignment\\src\\main\\webapp\\assets\\images\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Tomcat 服务器.Tomcat 10.1.39\">\r\n    <configuration default=\"true\" type=\"TomeeConfiguration\" factoryName=\"Remote\" ALTERNATIVE_JRE_ENABLED=\"false\">\r\n      <option name=\"LOCAL\" value=\"false\" />\r\n      <deployment />\r\n      <server-settings>\r\n        <data>\r\n          <option name=\"transportHostId\" value=\"\" />\r\n          <host-id />\r\n        </data>\r\n      </server-settings>\r\n      <predefined_log_file enabled=\"true\" id=\"Tomcat\" />\r\n      <predefined_log_file enabled=\"true\" id=\"TOMCAT_LOCALHOST_LOG_ID\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory\" factoryName=\"Remote\" ALTERNATIVE_JRE_ENABLED=\"false\">\r\n      <option name=\"LOCAL\" value=\"false\" />\r\n      <deployment />\r\n      <server-settings>\r\n        <data>\r\n          <option name=\"transportHostId\" value=\"\" />\r\n          <host-id />\r\n        </data>\r\n      </server-settings>\r\n      <predefined_log_file enabled=\"true\" id=\"Tomcat\" />\r\n      <predefined_log_file enabled=\"true\" id=\"TOMCAT_LOCALHOST_LOG_ID\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Tomcat 10.1.39\" type=\"#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory\" factoryName=\"Local\" APPLICATION_SERVER_NAME=\"Tomcat 10.1.39\" ALTERNATIVE_JRE_ENABLED=\"false\" nameIsGenerated=\"true\">\r\n      <option name=\"UPDATING_POLICY\" value=\"restart-server\" />\r\n      <deployment>\r\n        <artifact name=\"DB_assignment:war exploded\">\r\n          <settings>\r\n            <option name=\"CONTEXT_PATH\" value=\"/DB_assignment_war_exploded\" />\r\n          </settings>\r\n        </artifact>\r\n      </deployment>\r\n      <server-settings>\r\n        <option name=\"BASE_DIRECTORY_NAME\" value=\"5b83f360-1658-48c0-beb6-2a01bc70bc9e\" />\r\n        <option name=\"HTTP_PORT\" value=\"8081\" />\r\n        <option name=\"JNDI_PORT\" value=\"1098\" />\r\n      </server-settings>\r\n      <predefined_log_file enabled=\"true\" id=\"Tomcat\" />\r\n      <predefined_log_file enabled=\"true\" id=\"Tomcat Catalina\" />\r\n      <predefined_log_file id=\"Tomcat Manager\" />\r\n      <predefined_log_file id=\"Tomcat Host Manager\" />\r\n      <predefined_log_file id=\"Tomcat Localhost Access\" />\r\n      <RunnerSettings RunnerId=\"AppServerDebuggerRunner\">\r\n        <option name=\"DEBUG_PORT\" value=\"64229\" />\r\n      </RunnerSettings>\r\n      <RunnerSettings RunnerId=\"Debug\">\r\n        <option name=\"DEBUG_PORT\" value=\"51482\" />\r\n      </RunnerSettings>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"AppServerDebuggerRunner\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Cover\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Debug\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Profile\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Run\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n        <option name=\"BuildArtifacts\" enabled=\"true\">\r\n          <artifact name=\"DB_assignment:war exploded\" />\r\n        </option>\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"TomcatSHABI\" type=\"#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory\" factoryName=\"Remote\" APPLICATION_SERVER_NAME=\"Tomcat 10.1.39\" ALTERNATIVE_JRE_ENABLED=\"false\">\r\n      <option name=\"LOCAL\" value=\"false\" />\r\n      <deployment />\r\n      <server-settings>\r\n        <data>\r\n          <option name=\"targets\">\r\n            <list>\r\n              <WatchedTargetModelImpl>\r\n                <option name=\"name\" value=\"CONTEXT_XML\" />\r\n                <option name=\"transportStagingTarget\">\r\n                  <TransportTarget>\r\n                    <option name=\"id\" value=\"8c1d0dc4-126a-4442-90b2-78bf6a4bb45a\" />\r\n                    <id>8c1d0dc4-126a-4442-90b2-78bf6a4bb45a</id>\r\n                  </TransportTarget>\r\n                </option>\r\n                <option name=\"watchedLocalPath\" value=\"\" />\r\n                <watched-path />\r\n                <name>CONTEXT_XML</name>\r\n                <transport-target>\r\n                  <TransportTarget>\r\n                    <option name=\"id\" value=\"8c1d0dc4-126a-4442-90b2-78bf6a4bb45a\" />\r\n                    <id>8c1d0dc4-126a-4442-90b2-78bf6a4bb45a</id>\r\n                  </TransportTarget>\r\n                </transport-target>\r\n              </WatchedTargetModelImpl>\r\n              <StagingTargetModelImpl>\r\n                <option name=\"name\" value=\"STAGING\" />\r\n                <option name=\"stagingRemotePath\" value=\"\" />\r\n                <option name=\"transportStagingTarget\">\r\n                  <TransportTarget>\r\n                    <option name=\"id\" value=\"bd315c20-6365-4217-8d02-ee05d1cf14d4\" />\r\n                    <id>bd315c20-6365-4217-8d02-ee05d1cf14d4</id>\r\n                  </TransportTarget>\r\n                </option>\r\n                <staging-path />\r\n                <name>STAGING</name>\r\n                <transport-target>\r\n                  <TransportTarget>\r\n                    <option name=\"id\" value=\"bd315c20-6365-4217-8d02-ee05d1cf14d4\" />\r\n                    <id>bd315c20-6365-4217-8d02-ee05d1cf14d4</id>\r\n                  </TransportTarget>\r\n                </transport-target>\r\n              </StagingTargetModelImpl>\r\n            </list>\r\n          </option>\r\n        </data>\r\n      </server-settings>\r\n      <predefined_log_file enabled=\"true\" id=\"Tomcat\" />\r\n      <predefined_log_file enabled=\"true\" id=\"TOMCAT_LOCALHOST_LOG_ID\" />\r\n      <RunnerSettings RunnerId=\"Debug\">\r\n        <option name=\"DEBUG_PORT\" value=\"58019\" />\r\n        <option name=\"LOCAL\" value=\"false\" />\r\n      </RunnerSettings>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <list>\r\n      <item itemvalue=\"Tomcat 服务器.Tomcat 10.1.39\" />\r\n      <item itemvalue=\"Tomcat 服务器.TomcatSHABI\" />\r\n    </list>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"应用程序级\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"默认任务\">\r\n      <changelist id=\"d02de210-1416-435c-ad06-f238c6357885\" name=\"更改\" comment=\"\" />\r\n      <created>1745602472992</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1745602472992</updated>\r\n      <workItem from=\"1745602474398\" duration=\"1871000\" />\r\n      <workItem from=\"1745694905566\" duration=\"1227000\" />\r\n      <workItem from=\"1745806418481\" duration=\"5000\" />\r\n      <workItem from=\"1745808831130\" duration=\"93000\" />\r\n      <workItem from=\"1745912189756\" duration=\"16699000\" />\r\n      <workItem from=\"1745938599503\" duration=\"23952000\" />\r\n      <workItem from=\"1745990668039\" duration=\"34165000\" />\r\n      <workItem from=\"1746047924674\" duration=\"5260000\" />\r\n      <workItem from=\"1746084442265\" duration=\"9796000\" />\r\n      <workItem from=\"1746096985778\" duration=\"17580000\" />\r\n      <workItem from=\"1746132127196\" duration=\"983000\" />\r\n      <workItem from=\"1746133134676\" duration=\"1409000\" />\r\n      <workItem from=\"1746134567720\" duration=\"14894000\" />\r\n      <workItem from=\"1746195072548\" duration=\"9482000\" />\r\n      <workItem from=\"1746211232795\" duration=\"8637000\" />\r\n      <workItem from=\"1746335210253\" duration=\"12888000\" />\r\n      <workItem from=\"1746353225970\" duration=\"1268000\" />\r\n      <workItem from=\"1746354512464\" duration=\"27957000\" />\r\n      <workItem from=\"1746435942670\" duration=\"30213000\" />\r\n      <workItem from=\"1746517374252\" duration=\"7284000\" />\r\n      <workItem from=\"1746532585397\" duration=\"2060000\" />\r\n      <workItem from=\"1746534669358\" duration=\"9098000\" />\r\n      <workItem from=\"1746548083668\" duration=\"377000\" />\r\n      <workItem from=\"1746799389202\" duration=\"361000\" />\r\n      <workItem from=\"1746799833808\" duration=\"549000\" />\r\n      <workItem from=\"1746802919610\" duration=\"881000\" />\r\n      <workItem from=\"1746804452203\" duration=\"1721000\" />\r\n      <workItem from=\"1746807016368\" duration=\"1210000\" />\r\n      <workItem from=\"1746810505643\" duration=\"1880000\" />\r\n      <workItem from=\"1746985199299\" duration=\"76000\" />\r\n      <workItem from=\"1747218531781\" duration=\"4754000\" />\r\n      <workItem from=\"1747580233060\" duration=\"6713000\" />\r\n      <workItem from=\"1747592109186\" duration=\"7144000\" />\r\n      <workItem from=\"1747671835198\" duration=\"11434000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"servlet可以正常工作了！\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1745603465770</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1745603465770</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"servlet可以正常工作了！\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1745604338439</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1745604338439</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"完成了所有基础子页面的基础样式，同意了设计风格，，重置了登录界面\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1745963434936</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1745963434937</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"改了main和home的逻辑\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1745986951352</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1745986951352</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"66666666\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746017144075</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746017144075</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"美化了一些部件\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746036196712</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746036196712</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"先创建了一个csv，经过百折不挠的奋斗，他终于可以显示在overview里了\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746049209849</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746049209849</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"完成了伟大的搜索功能，虽然还不是太完备\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746050440505</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746050440505</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"做了很帅的home.css文件,\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746179280563</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746179280563</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"home\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746375933126</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746375933126</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"home\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746375955052</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746375955052</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"更新了项目结构树file\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746501027450</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746501027450</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"你们快来搞项目啊\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746538494014</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746538494014</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"你们快来搞项目啊\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746800362289</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746800362289</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"你们快来搞项目啊\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1747628182088</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1747628182088</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\"你们快来搞项目啊\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1747628337383</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1747628337383</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"17\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"servlet可以正常工作了！\" />\r\n    <MESSAGE value=\"完成了所有基础子页面的基础样式，同意了设计风格，，重置了登录界面\" />\r\n    <MESSAGE value=\"改了main和home的逻辑\" />\r\n    <MESSAGE value=\"66666666\" />\r\n    <MESSAGE value=\"美化了一些部件\" />\r\n    <MESSAGE value=\"先创建了一个csv，经过百折不挠的奋斗，他终于可以显示在overview里了\" />\r\n    <MESSAGE value=\"完成了伟大的搜索功能，虽然还不是太完备\" />\r\n    <MESSAGE value=\"做了很帅的home.css文件,\" />\r\n    <MESSAGE value=\"home\" />\r\n    <MESSAGE value=\"毁了\" />\r\n    <MESSAGE value=\"更新了项目结构树file\" />\r\n    <MESSAGE value=\"你们快来搞项目啊\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"你们快来搞项目啊\" />\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 96c76060d83a45ba929057727dc1b61ba584e5e6)
++++ b/.idea/workspace.xml	(date 1747725773941)
+@@ -10,24 +10,17 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="d02de210-1416-435c-ad06-f238c6357885" name="更改" comment="你们快来搞项目啊">
+-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/console.css" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/console.jsp" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/mysql.osA4Bg.meta" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/sys.zb4BAA.meta" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/model/sql/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/sql/User.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/compare.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/compare.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/forum/forum.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/forum.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/login.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/forum.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/forum.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/profile.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/add_smartphone.jsp" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/compare.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/compare.jsp" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/forum.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/forum.jsp" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/login.jsp" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/profile.jsp" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/header.jsp" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/scripts.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/scripts.jsp" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/compare-init.js" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/compare.js" beforeDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -133,21 +126,6 @@
+   </component>
+   <component name="RunManager" selected="Tomcat 服务器.Tomcat 10.1.39">
+     <configuration default="true" type="TomeeConfiguration" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
+-      <option name="LOCAL" value="false" />
+-      <deployment />
+-      <server-settings>
+-        <data>
+-          <option name="transportHostId" value="" />
+-          <host-id />
+-        </data>
+-      </server-settings>
+-      <predefined_log_file enabled="true" id="Tomcat" />
+-      <predefined_log_file enabled="true" id="TOMCAT_LOCALHOST_LOG_ID" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
+       <option name="LOCAL" value="false" />
+       <deployment />
+       <server-settings>
+@@ -163,6 +141,7 @@
+       </method>
+     </configuration>
+     <configuration name="Tomcat 10.1.39" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.39" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
++      <option name="BROWSER_ID" value="37cae5b9-e8b2-4949-9172-aafa37fbc09c" />
+       <option name="UPDATING_POLICY" value="restart-server" />
+       <deployment>
+         <artifact name="DB_assignment:war exploded">
+@@ -322,6 +301,21 @@
+         <option name="DEBUG_PORT" value="58019" />
+         <option name="LOCAL" value="false" />
+       </RunnerSettings>
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
++      <option name="LOCAL" value="false" />
++      <deployment />
++      <server-settings>
++        <data>
++          <option name="transportHostId" value="" />
++          <host-id />
++        </data>
++      </server-settings>
++      <predefined_log_file enabled="true" id="Tomcat" />
++      <predefined_log_file enabled="true" id="TOMCAT_LOCALHOST_LOG_ID" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>

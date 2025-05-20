@@ -118,7 +118,7 @@
       <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\images" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 10.1.39">
+  <component name="RunManager" selected="Tomcat 服务器.Tomcat 10.1.39">
     <configuration default="true" type="TomeeConfiguration" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
       <option name="LOCAL" value="false" />
       <deployment />
@@ -314,8 +314,8 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Tomcat Server.Tomcat 10.1.39" />
-      <item itemvalue="Tomcat Server.TomcatSHABI" />
+      <item itemvalue="Tomcat 服务器.Tomcat 10.1.39" />
+      <item itemvalue="Tomcat 服务器.TomcatSHABI" />
     </list>
   </component>
   <component name="SharedIndexes">
