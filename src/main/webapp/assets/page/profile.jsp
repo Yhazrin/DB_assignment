@@ -1,106 +1,78 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-  // Determine which section to show: info, devices, or activity
-  String currentSection = request.getParameter("section");
-  if (currentSection == null || !(currentSection.equals("devices") || currentSection.equals("activity"))) {
-    currentSection = "info";
-  }
-%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>User Profile</title>
-  <!-- Theme variables -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/profile.css">
 </head>
-<body>
-<!-- Global header -->
+<body data-context-path="${pageContext.request.contextPath}">
 <jsp:include page="sub/header.jsp" />
 
-<!-- Main layout container: sidebar + content -->
 <div class="main-container">
-
   <aside class="profile-sidebar glass-card">
-    <div class="sidebar-section user-card">
+    <!-- 如果后端暂时不返回头像和等级，可以隐藏这些 -->
+    <!--
+    <div class="sidebar-section user-card" id="userCard">
       <div class="avatar-wrapper">
-        <img src="${user.avatarUrl}" alt="Avatar">
+        <img id="avatarImg" src="" alt="Avatar">
       </div>
-      <p class="user-nickname">name: ${user.nickname}</p>
-      <p class="user-level">Level: ${user.level}</p>
+      <p class="user-nickname">Name: <span id="nickname"></span></p>
+      <p class="user-level">Level: <span id="level"></span></p>
     </div>
-
-    <!-- Social Stats -->
-    <div class="sidebar-section social-stats">
-      <div class="stat-item">Posts: <strong>${user.postCount}</strong></div>
-      <div class="stat-item">Likes: <strong>${user.likes}</strong></div>
-      <div class="stat-item">Followers: <strong>${user.followers}</strong></div>
+    <div class="sidebar-section social-stats" id="socialStats">
+      <div class="stat-item">Posts: <strong id="postCount"></strong></div>
+      <div class="stat-item">Likes: <strong id="likesCount"></strong></div>
+      <div class="stat-item">Followers: <strong id="followersCount"></strong></div>
     </div>
+    -->
 
-    <!-- Navigation -->
     <div class="sidebar-section sidebar-nav">
-      <a href="?section=info" class="nav-item ${currentSection == 'info' ? 'active' : ''}">Information</a>
-      <a href="?section=devices" class="nav-item ${currentSection == 'devices' ? 'active' : ''}">Devices</a>
-      <a href="?section=activity" class="nav-item ${currentSection == 'activity' ? 'active' : ''}">Activity</a>
+      <a href="#" data-section="info" class="nav-item active">Information</a>
+      <!-- 其余版块先留着，但进去会是空的 -->
+      <a href="#" data-section="devices" class="nav-item">Devices</a>
+      <a href="#" data-section="activity" class="nav-item">Activity</a>
     </div>
 
     <div class="sidebar-section">
-      <a href="${pageContext.request.contextPath}/assets/page/login.jsp" class="nav-item danger">Logout</a>
-
+      <button id="logoutBtn" class="nav-item danger">Logout</button>
     </div>
   </aside>
 
-  <!-- Main Content -->
   <main class="profile-main">
-    <div class="profile-content glass-card ">
+    <div class="profile-content glass-card">
       <div class="content-header">
         <div class="breadcrumb">
           <a href="${pageContext.request.contextPath}/">Home</a> &gt; <span>Profile</span>
         </div>
       </div>
 
-      <!-- Sections -->
-      <section id="info" class="content-section ${currentSection == 'info' ? 'active' : ''}">
+      <!-- 信息区 -->
+      <section id="info" class="content-section active">
         <h2 class="section-title">Basic Information</h2>
         <div class="info-grid">
-          <div class="info-item">Name: ${user.realName}</div>
-          <div class="info-item">Email: ${user.email}</div>
-          <div class="info-item">Member Since: ${user.registerDate}</div>
+          <div class="info-item">Name: <span id="userName"></span></div>
+          <div class="info-item">Email: <span id="email"></span></div>
+          <div class="info-item">Member Since: <span id="registerDate">—</span></div>
         </div>
       </section>
 
-      <section id="devices" class="content-section ${currentSection == 'devices' ? 'active' : ''}">
+      <!-- 设备区（后端未返回，暂为空） -->
+      <section id="devices" class="content-section">
         <h2 class="section-title">Device Management</h2>
-        <div class="device-grid">
-          <c:forEach var="dev" items="${user.devices}">
-            <div class="device-card">
-              <img src="${dev.icon}" alt="${dev.name}">
-              <h3>${dev.name}</h3>
-              <p>${dev.description}</p>
-              <a href="editDevice?id=${dev.id}" class="device-btn">Edit</a>
-            </div>
-          </c:forEach>
-        </div>
+        <p>暂无数据</p>
       </section>
 
-      <section id="activity" class="content-section ${currentSection == 'activity' ? 'active' : ''}">
+      <!-- 活动区（后端未返回，暂为空） -->
+      <section id="activity" class="content-section">
         <h2 class="section-title">Activity Log</h2>
-        <div class="activity-feed">
-          <c:forEach var="act" items="${user.activities}">
-            <div class="activity-item">
-              <p>${act.message}</p>
-              <div class="activity-date">${act.time}</div>
-            </div>
-          </c:forEach>
-        </div>
+        <p>暂无数据</p>
       </section>
-
     </div>
   </main>
-
 </div>
+
 <jsp:include page="sub/scripts.jsp"/>
-<script src="${pageContext.request.contextPath}/assets/js/background.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/profile.js"></script>
 </body>
 </html>

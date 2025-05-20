@@ -28,15 +28,15 @@
            class="${currentPage == 'forum' ? 'active' : ''}">Forum</a>
         <a href="${pageContext.request.contextPath}/assets/page/profile.jsp"
            class="${currentPage == 'profile' ? 'active' : ''}">Profile</a>
-        <a href="${pageContext.request.contextPath}/assets/page/add_smartphone.jsp"
-           class="${currentPage == 'addsmartphone' ? 'active' : ''}">Add</a>
+        <a href="${pageContext.request.contextPath}/assets/page/console.jsp"
+           class="${currentPage == 'addsmartphone' ? 'active' : ''}">Console</a>
 
         <!-- 把登录/欢迎也当成 nav-link -->
         <c:choose>
             <c:when test="${empty sessionScope.username}">
                 <a href="${pageContext.request.contextPath}/assets/page/login.jsp"
                    class="${currentPage == 'login' ? 'active' : ''}">
-                    Log In
+                    LogIn
                 </a>
             </c:when>
             <c:otherwise>
