@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const url = `${BASE_URL}?type=readSQL&table=forums`;
         console.log('🌐 发起获取版块请求', url);
         try {
-            const res = await fetch(url);
+            const res = await fetch(url, { credentials: 'include' });
             const forums = await res.json();
             forumListEl.innerHTML = forums.map(f => `
                 <li>
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const url = `${BASE_URL}?type=readSQL&table=posts&forumID=${forumID}`;
         console.log('🌐 发起获取帖子请求', url);
         try {
-            const res = await fetch(url);
+            const res = await fetch(url, { credentials: 'include' });
             const posts = await res.json();
             if (!posts.length) {
                 postListEl.innerHTML = '';
@@ -106,9 +106,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 postListEl.innerHTML = posts.map(p => `
     <div class="topic-item interactive" data-id="${p.id}">
       <div class="topic-main">
+      <div class="topic-header">
         <h3 class="topic-title">${p.title}</h3>
+        <div class="topic-meta">by <span class="author">${p.authorName || "?"}</span></div>
+      </div>
         <p class="topic-content">${p.content}</p>
       </div>
+
       <div class="topic-actions">
         <button class="btn like-btn">👍 <span class="like-count">${p.likes||0}</span></button>
         <button class="btn comment-toggle-btn">💬 <span class="comment-count">${(p.commentID||'').split(',').filter(x=>x).length}</span></button>
@@ -153,11 +157,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const url = `${BASE_URL}?type=modifySQL&table=comments`;
                 const body = new URLSearchParams({
                     content: text,
-                    author: '当前用户名',  // 从 Session 或全局变量取
                     postID: card.dataset.id
                 }).toString();
                 const res = await fetch(url, {
                     method:'POST',
+                    credentials: 'include',          // ← 关键
                     headers:{'Content-Type':'application/x-www-form-urlencoded'},
                     body
                 });
@@ -172,6 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+
     }
 
     // —— 5. 加载评论 ——
@@ -185,11 +190,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 listEl.innerHTML = '<p class="no-comments">暂无评论</p>';
             } else {
                 listEl.innerHTML = comments.map(c => `
-      <div class="comment-item">
-        <strong>${c.authorID}</strong>
-        <span class="comment-time">${new Date(c.createTime).toLocaleString()}</span>
-        <p>${c.content}</p>
-      </div>
+                  <div class="comment-item">
+                    <strong>${c.authorName || c.author}</strong>
+                    <span class="comment-time">${new Date(c.createTime).toLocaleString()}</span>
+                    <p>${c.content}</p>
+                  </div>
       `).join('');
             }
         } catch {
@@ -209,6 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const res  = await fetch(url, {
                 method:'POST',
+
                 headers:{'Content-Type':'application/x-www-form-urlencoded'},
                 body
             });
@@ -257,4 +263,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // —— 初始化 ——
     loadForums();
+
 });

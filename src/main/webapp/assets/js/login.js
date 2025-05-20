@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch(url, {
                 method: 'POST',
+                credentials: "include",      // ← 一定要加上
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body
             });
