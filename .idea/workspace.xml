@@ -9,13 +9,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d02de210-1416-435c-ad06-f238c6357885" name="更改" comment="更新">
+    <list default="true" id="d02de210-1416-435c-ad06-f238c6357885" name="更改" comment="你们快来搞项目啊">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/console.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/console.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/forum.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/forum.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/style/variables-dark.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/style/variables-dark.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/style/variables-light.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/style/variables-light.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/sql/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/sql/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/compare.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/compare.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/forum/forum.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/forum.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/login.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/forum.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/forum.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/add_smartphone.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/compare.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/compare.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/forum.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/forum.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/profile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/scripts.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/scripts.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,40 +88,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Maven.DB_assignment [clean].executor": "Run",
-    "Maven.DB_assignment [package].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "TomEE 服务器.TomcatDASHABI.executor": "Run",
-    "Tomcat Server.Tomcat 10.1.39.executor": "Run",
-    "Tomcat 服务器.Tomcat 10.1.39.executor": "Run",
-    "Tomcat 服务器.TomcatSHABI.executor": "Run",
-    "git-widget-placeholder": "master",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/20544/Desktop/SE/SEP/Assignment/DB_assignment",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "模块",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.42847174",
-    "settings.editor.selected.configurable": "editing.templates",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Maven.DB_assignment [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.DB_assignment [package].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;TomEE 服务器.TomcatDASHABI.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat Server.Tomcat 10.1.39.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat 服务器.Tomcat 10.1.39.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat 服务器.TomcatSHABI.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/20544/Desktop/SE/SEP/Assignment/DB_assignment&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.42847174&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\css\pages" />
@@ -119,23 +131,8 @@
       <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\images" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat 服务器.Tomcat 10.1.39">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 10.1.39">
     <configuration default="true" type="TomeeConfiguration" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="LOCAL" value="false" />
-      <deployment />
-      <server-settings>
-        <data>
-          <option name="transportHostId" value="" />
-          <host-id />
-        </data>
-      </server-settings>
-      <predefined_log_file enabled="true" id="Tomcat" />
-      <predefined_log_file enabled="true" id="TOMCAT_LOCALHOST_LOG_ID" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
       <option name="LOCAL" value="false" />
       <deployment />
       <server-settings>
@@ -314,9 +311,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="LOCAL" value="false" />
+      <deployment />
+      <server-settings>
+        <data>
+          <option name="transportHostId" value="" />
+          <host-id />
+        </data>
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="TOMCAT_LOCALHOST_LOG_ID" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="Tomcat 服务器.Tomcat 10.1.39" />
-      <item itemvalue="Tomcat 服务器.TomcatSHABI" />
+      <item itemvalue="Tomcat Server.Tomcat 10.1.39" />
+      <item itemvalue="Tomcat Server.TomcatSHABI" />
     </list>
   </component>
   <component name="SharedIndexes">
@@ -368,7 +380,7 @@
       <workItem from="1747218531781" duration="4754000" />
       <workItem from="1747580233060" duration="6713000" />
       <workItem from="1747592109186" duration="7144000" />
-      <workItem from="1747671835198" duration="25758000" />
+      <workItem from="1747671835198" duration="11434000" />
     </task>
     <task id="LOCAL-00001" summary="servlet可以正常工作了！">
       <option name="closed" value="true" />
@@ -498,15 +510,7 @@
       <option name="project" value="LOCAL" />
       <updated>1747628337383</updated>
     </task>
-    <task id="LOCAL-00017" summary="更新">
-      <option name="closed" value="true" />
-      <created>1747710647002</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1747710647002</updated>
-    </task>
-    <option name="localTasksCounter" value="18" />
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -536,8 +540,7 @@
     <MESSAGE value="毁了" />
     <MESSAGE value="更新了项目结构树file" />
     <MESSAGE value="你们快来搞项目啊" />
-    <MESSAGE value="更新" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新" />
+    <option name="LAST_COMMIT_MESSAGE" value="你们快来搞项目啊" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
