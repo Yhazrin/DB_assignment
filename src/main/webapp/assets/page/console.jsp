@@ -1,6 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+  String mode = request.getParameter("mode");
+  if (mode == null) mode = "add";
+  if (mode.equals("update")) mode = "update"; // 加这一句
+  if(mode.equals("delete")) mode = "delete";
 
+
+%>
 
 
 <!DOCTYPE html>
@@ -75,3 +82,11 @@
 
 </body>
 </html>
+
+<% if ("delete".equals(mode)) { %>
+<script src="${pageContext.request.contextPath}/assets/js/delete_smartphone.js"></script>
+<% } else if ("add".equals(mode)) { %>
+<script src="${pageContext.request.contextPath}/assets/js/add_smartphone.js"></script>
+<% } else { %>
+<script src="${pageContext.request.contextPath}/assets/js/update_smartphone.js"></script>
+<% } %>

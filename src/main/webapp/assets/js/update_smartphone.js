@@ -36,7 +36,7 @@ document.addEventListener("submit", async (e) => {
             alert("✅ 更新成功！");
             setTimeout(() => {
                 window.location.href =
-                    'http://localhost:8081/DB_assignment_war_exploded/assets/page/overview.jsp';
+                    'http://localhost:8080/DB_assignment_war_exploded/assets/page/overview.jsp';
             }, 800);
         } else if (result.result === "fail") {
             alert("⚠️ 失败：" + result.message);
