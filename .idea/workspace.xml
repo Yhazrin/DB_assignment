@@ -10,16 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d02de210-1416-435c-ad06-f238c6357885" name="更改" comment="更新">
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/compare.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/compare.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/forum.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/forum.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/compare-init.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/compare.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/compare.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/forum.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/forum.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/compare.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/compare.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/forum.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/forum.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -374,7 +367,7 @@
       <workItem from="1747592109186" duration="7144000" />
       <workItem from="1747671835198" duration="29277000" />
       <workItem from="1747729345654" duration="10333000" />
-      <workItem from="1747740125992" duration="299000" />
+      <workItem from="1747740125992" duration="1108000" />
     </task>
     <task id="LOCAL-00001" summary="servlet可以正常工作了！">
       <option name="closed" value="true" />
@@ -528,7 +521,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747725946179</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="更新">
+      <option name="closed" value="true" />
+      <created>1747740486539</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1747740486539</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
