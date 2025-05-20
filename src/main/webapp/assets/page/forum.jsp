@@ -18,7 +18,6 @@
     <div class="sidebar-section">
       <div class="forum-list-container">
         <ul class="category-list" id="forumList">
-          <!-- populated by forum.js -->
         </ul>
       </div>
     </div>
@@ -27,7 +26,7 @@
 
     <div class="content-header">
       <h2 id="currentForumTitle">Select a Forum</h2>
-      <button id="newPostBtn" class="btn glass" disabled>New Post</button>
+      <button id="newPostBtn" class="color-btn" disabled>New Post</button>
     </div>
 
     <!-- Post list -->
@@ -39,25 +38,23 @@
     <div class="no-topics" id="noPosts" style="display:none;">
       <i class="icon-info"></i>
       <p>No posts yet. Be the first to post!</p>
-      <button id="newPostBtnEmpty" class="btn glass">New Post</button>
     </div>
 
   </div>
 </div>
-<!-- 中心输入弹窗 -->
+<!-- Central input modal -->
 <div id="inputModal" class="modal hidden">
   <div class="modal-content">
-    <h3 id="modalHeader">标题</h3>
+    <h3 id="modalHeader">Title</h3>
     <form id="modalForm">
-      <!-- JS 会动态插入 <label>+<input> 或 <textarea> -->
+      <!-- JS dynamically inserts <label>+<input> or <textarea> -->
     </form>
     <div class="modal-buttons">
-      <button type="button" id="modalCancel">取消</button>
-      <button type="submit" form="modalForm" id="modalOk">确定</button>
+      <button type="button" id="modalCancel">Cancel</button>
+      <button type="submit" form="modalForm" id="modalOk">Confirm</button>
     </div>
   </div>
 </div>
-
 
 <jsp:include page="sub/scripts.jsp"/>
 <script src="${pageContext.request.contextPath}/assets/js/forum.js"></script>

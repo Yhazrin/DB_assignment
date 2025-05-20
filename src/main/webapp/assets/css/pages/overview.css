@@ -1,9 +1,12 @@
 @import "../components/buttons.css";
 @import "../style/variables.css";
 @import "../utilities.css";
+@import "../style/variables.css";
 @import "../components/layout.css";
 @import "../components/banner.css";
 @import "../components/buttons.css";
+
+
 
 .search-type-buttons {
     display: flex;
@@ -15,18 +18,29 @@
     gap: var(--spacing-md);
 }
 
-
-
 .filter-toolbar {
     display: flex;
-    align-items: center;
     flex-wrap: wrap; /* 如果你希望在屏幕小的时候自动换行 */
     gap: 10px;
     justify-content: flex-start; /* 所有子项默认左对齐 */
     position: relative;
+    margin-top: var(--spacing-md);
+    align-items: stretch;              /* 子项高度跟随最高的那一个 */
+
 }
 
-/* ...（按钮和range-filter的样式同前）... */
+.filter-toolbar {
+    /* 基础间隔，按你的变量或固定值调整 */
+}
+
+.filter-toolbar > * {
+    display: flex;
+    align-items: center;
+}
+
+.search-baba {
+
+}
 
 
 /* 搜索栏 */
@@ -43,10 +57,17 @@
     margin-bottom: 0.5rem;
 }
 
+.search-baba {
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    width: 100%;
+}
+
 
 .search-input {
-    width: 100%;
     height: 50px;
+    width: 90%;
     background: var(--bg-grey);
     border: none;                /* 由 .search-bar 统一边框 */
     border-radius: 12px;
@@ -62,16 +83,28 @@
     box-sizing: border-box;
 }
 
-
-.search-input::placeholder {
-    color: #aaa;
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
+.search-btn {
+    flex: 1;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--primary-color);
+    background: var(--gradient-compare);
+    color: white;
+    font-weight: 600;
+    font-size: 1.06rem;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1;
+    transition: all 0.22s;
+    box-shadow: 0 3px 18px rgba(61,124,244,0.05);
 }
 
-.search-input:focus::placeholder {
-    opacity: 0.5;
+.search-btn:hover {
+    background: #2a4274; /* 更改背景颜色 */
+    box-shadow: 0 5px 28px rgba(61,124,244,0.2); /* 更改阴影效果 */
+    border: 3px solid #1a857c;
+
 }
+
 
 
 /* 搜索结果计数 */
@@ -261,16 +294,4 @@
     100% {
         transform: translateX(-100%);
     }
-}
-
-.filter-toolbar {
-    margin-top: var(--spacing-md);
-    display: flex;
-    align-items: stretch;              /* 子项高度跟随最高的那一个 */
-    gap: var(--spacing-md, 1rem);      /* 基础间隔，按你的变量或固定值调整 */
-}
-
-.filter-toolbar > * {
-    display: flex;
-    align-items: center;
 }

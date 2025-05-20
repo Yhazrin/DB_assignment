@@ -12,11 +12,8 @@ body {
     min-height: 100vh;
 }
 
-
-/* 磨砂玻璃卡片，与login一致 */
 .compare-card {
-    width: 100%;
-    background: rgba(255, 255, 255, 0.68);
+    background: rgba(255, 255, 255, 0.15);
     border-radius: var(--radius-xl, 22px);
     box-shadow: 0 4px 24px rgba(120,130,170,0.09);
     padding: 2.5rem 2rem 2.2rem 2rem;
@@ -25,14 +22,6 @@ body {
     border: 1.5px solid #e2e5ef;
     transition: box-shadow 0.25s, background 0.18s;
     text-align: center;
-}
-
-.compare-card h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-    color: var(--text-primary, #252b3a);
-    letter-spacing: 0.02em;
 }
 
 /* 顶部搜索栏，简洁对齐 */
@@ -45,19 +34,19 @@ body {
 }
 
 .compare-card input[type="number"] {
-    border-radius: var(--radius-md, 13px);
-    border: 1.5px solid #e1e6ef;
+    border-radius: var(--radius-md);
+    border: 3px solid #e1e6ef;
     padding: 0.74rem 1.2rem;
     font-size: 1.05rem;
-    color: var(--text-color, #222);
-    background: rgba(248, 250, 255, 0.92);
+    color: var(--text-color);
+    background: rgba(248, 250, 255, 0.66);
     box-shadow: none;
     transition: border-color 0.22s, box-shadow 0.22s;
     outline: none;
 }
 .compare-card input[type="number"]:focus {
     border-color: var(--primary-color, #4b6cb7);
-    background: #fff;
+    background: rgba(255, 255, 255, 0.55);
 }
 
 /* 统一按钮风格 - 纯色、圆角、阴影 */
@@ -94,10 +83,10 @@ body {
 
 .compare-table th,
 .compare-table td {
-    padding: 0.73rem 1.15rem;
+    padding: 0.73rem 1.5rem;
     background: none;
     border: none;
-    font-size: 1.05rem;
+    font-size: 2rem;
     color: var(--text-color, #23272f);
     text-align: left;
     font-family: inherit;
@@ -105,29 +94,31 @@ body {
     transition: background 0.18s;
 }
 
-/* 行分割线只显示于下方（非最后一行） */
-.compare-table tr:not(:last-child) {
-    border-bottom: 1.1px solid #e7e9f1;
+.compare-table tbody tr:not(:last-child) td {
+    border-bottom: 1px solid rgba(226, 229, 244, 0.84);
 }
 
 .compare-table th {
     font-weight: 700;
-    color: #3457b0;
+    color: #46e1c9;
     background: none;
     padding-bottom: 0.52rem;
+    font-size: 1.5rem;
 }
 
 /* 第一列（spec）文字稍重色 */
 .compare-table td.spec-label {
     font-weight: 600;
-    color: #4162ab;
+    color: #5e90ff;
     background: none;
     padding-right: 1.6rem;
+    height: 8rem;
 }
 
 .compare-table td.phone-info {
-    color: #222;
+    color: var(--text-color);
     font-weight: 400;
+    font-size: 1.25rem;
     background: none;
 }
 

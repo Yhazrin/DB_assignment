@@ -29,7 +29,7 @@
     color: var(--text-primary);
 }
 
-/* —— Inputs, Selects, Textareas —— */
+
 .form-group input,
 .form-group select,
 .form-group textarea {

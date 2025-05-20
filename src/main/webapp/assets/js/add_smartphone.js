@@ -4,20 +4,15 @@ document.addEventListener("submit", async (e) => {
 
     e.preventDefault();
 
-    const fixedBaseUrl = form.getAttribute("action");
+    // 直接拿 action 作为URL，参数放body即可
+    const postUrl = form.getAttribute("action");
     const formData = new FormData(form);
 
-    const url = new URL(fixedBaseUrl);
-    for (const [key, value] of formData.entries()) {
-        if (key !== 'type' && key !== 'table') {
-            url.searchParams.append(key, value);
-        }
-    }
-
+    // 保证 POST 参数全在 bodyParams，url不用再拼参数
     const bodyParams = new URLSearchParams(formData);
 
     try {
-        const resp = await fetch(url.toString(), {
+        const resp = await fetch(postUrl, {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
@@ -35,8 +30,8 @@ document.addEventListener("submit", async (e) => {
         if (result.result === "success") {
             alert("✅ 成功！");
             setTimeout(() => {
-                window.location.href =
-                    'http://localhost:8081/DB_assignment_war_exploded/assets/page/overview.jsp';
+                // 跳转到 overview.jsp。路径根据实际调整
+                window.location.href = "overview.jsp";
             }, 800);
         } else if (result.result === "fail") {
             alert("⚠️ 失败：" + result.message);
@@ -49,4 +44,3 @@ document.addEventListener("submit", async (e) => {
         alert("❌ 网络或服务器错误：" + err.message);
     }
 });
-

@@ -48,7 +48,7 @@ button {
 }
 
 .forum-sidebar {
-  width: 10%;
+  width: 12%;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -58,10 +58,10 @@ button {
 
 .forum-sidebar .color-btn {
   height: 5%;
+  font-size: 1rem;
   border-radius: var(--radius-md);
 }
 .sidebar-section {
-
   background: var(--gradient-profile);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -75,14 +75,10 @@ button {
   border-color var(--transition-fast); /* 新增边框过渡 */
   background: rgba(255, 255, 255, 0.12);
   border: 4px solid rgba(62, 62, 62, 0.18);
-  font-weight: 800;
+  font-weight: var(--font-weight-medium);
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
-}
-
-.sidebar-section {
-  /* nothing */
 }
 
 /* 3. 让第二个 section 填满剩余空间并允许内部滚动 */
@@ -106,10 +102,9 @@ button {
 
 /* Header section (breadcrumbs + filter) */
 .content-header {
+  margin-left: 2rem;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
 }
 
 .breadcrumb {
@@ -283,6 +278,9 @@ button {
   background: var(--secondary-color);
 }
 
+#newPostBtn {
+  padding: 1rem;
+}
 
 
 .topic-icon {

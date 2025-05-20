@@ -21,6 +21,7 @@
     /* Font weights */
     --font-weight-light: 300;
     --font-weight-regular: 400;
+    --font-weight-medium: 600;
     --font-weight-bold: 700;
 
     /* Border radius */
@@ -48,7 +49,7 @@
     --section-height-default: 60vh;
     --section-height-compact: auto;
 
-    --header-bg: rgb(0, 0, 0);  /* 夜间导航背景 */
+    --header-bg: rgba(0, 0, 0, 0.74);  /* 夜间导航背景 */
     --header-text: #ffffff;/* 夜间导航文字 */
     --headerhome-bg: rgba(0, 0, 0, 0.6);  /* 夜间导航背景 */
     --headerhome-text: #ffffff;/* 夜间导航文字 */
@@ -69,7 +70,7 @@
     --secondary-color: #31d3c0;
 
     --card-bg: #ffffff;
-    --card-bg2: rgba(232, 232, 232, 0.85);
+    --card-bg2: rgba(234, 234, 234, 0.85);
     --card-profile: #97efca;
     --card-border: rgba(0, 0, 0, 0.08);
     --list-bg: #73a4a5;

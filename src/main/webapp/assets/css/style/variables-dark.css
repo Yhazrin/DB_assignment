@@ -44,7 +44,7 @@ body.dark-theme {
     --section-height-default: 60vh;
     --section-height-compact: auto;
 
-    --header-bg: rgb(255, 255, 255);  /* 夜间导航背景 */
+    --header-bg: rgba(255, 255, 255, 0.75);  /* 夜间导航背景 */
     --header-text: #000000;/* 夜间导航文字 */
     --headerhome-bg: rgba(0, 0, 0, 0.6);  /* 夜间导航背景 */
     --headerhome-text: #ffffff;/* 夜间导航文字 */
@@ -63,11 +63,11 @@ body.dark-theme {
     --text-color: var(--text-primary);
 
     /* 主色、次色 */
-    --primary-color:   #3a3a60;
+    --primary-color: #8484b2;
     --secondary-color: #4b4b80;
 
     --card-bg: #000000;
-    --card-bg2: rgba(49, 49, 49, 0.85);
+    --card-bg2: rgba(255, 255, 255, 0.2);
     --divider: #515151;
     --card-border : rgba(255, 255, 255, 0.04);
 

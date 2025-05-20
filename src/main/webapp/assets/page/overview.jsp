@@ -15,8 +15,10 @@
 <jsp:include page="sub/scripts.jsp"/>
 <main class="main-container">
     <section class="search-bar">
-        <input type="text" id="searchInput" class="search-input" placeholder="Enter keywords to filter data..." />
-        <button id="searchBtn" class="color-btn">Search</button>
+        <section class="search-baba">
+            <input type="text" id="searchInput" class="search-input" placeholder="Enter No. or Model name to filter data..." />
+            <button id="searchBtn" class="search-btn">Search</button>
+        </section>
         <section class="filter-toolbar">
             <button id="btnBrand" class="color-btn" data-page="mobile_brands">Brand</button>
             <button id="btnModel" class="color-btn" data-page="smartphones">Model</button>
