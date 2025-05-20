@@ -173,3 +173,28 @@ body {
 .console-card .footer a:hover {
     text-decoration: underline;
 }
+
+
+.console-toolbar-vertical {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; /* 或 space-between */
+    align-items: flex-start;
+    height: 300px; /* 根据需要设置容器高度 */
+    margin: 20px;
+}
+
+.console-toolbar-vertical .console-btn {
+    width: 120px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 6px;
+    background-color: #2c7be5;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.console-toolbar-vertical .console-btn:hover {
+    background-color: #1a66d1;
+}

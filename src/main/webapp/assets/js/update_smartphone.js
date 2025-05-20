@@ -1,6 +1,6 @@
 document.addEventListener("submit", async (e) => {
     const form = e.target;
-    if (!form.matches("form.console-form")) return; // 只处理目标表单
+    if (!form.matches("form.console-form")) return;
 
     e.preventDefault();
 
@@ -26,14 +26,14 @@ document.addEventListener("submit", async (e) => {
         });
 
         if (!resp.ok) {
-            alert(`❌ 提交失败，状态码：${resp.status}`);
+            alert(`❌ 失败，状态码：${resp.status}`);
             return;
         }
 
         const result = await resp.json();
 
         if (result.result === "success") {
-            alert("✅ 成功！");
+            alert("✅ 更新成功！");
             setTimeout(() => {
                 window.location.href =
                     'http://localhost:8081/DB_assignment_war_exploded/assets/page/overview.jsp';
@@ -49,4 +49,3 @@ document.addEventListener("submit", async (e) => {
         alert("❌ 网络或服务器错误：" + err.message);
     }
 });
-

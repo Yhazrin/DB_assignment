@@ -128,18 +128,7 @@ html, body {
     border: 1px solid var(--divider);
     text-align: center;
 }
-.compare-table th {
-    background: var(--section-highlight);
-    color: var(--text-color);
-    font-weight: 600;
-}
 
-/* 无数据提示 */
-.message {
-    text-align: center;
-    padding: var(--spacing-lg);
-    color: var(--text-secondary);
-}
 
 /* 操作条 */
 .action-bar {
@@ -221,6 +210,33 @@ html, body {
 }
 .search-result-item:hover {
     background: rgba(var(--bg-inverse), 0.1);
+}
+
+.compare-table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    font-family: Arial, sans-serif;
+}
+
+.compare-table td {
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    vertical-align: middle;
+}
+
+.compare-table tr:nth-child(odd) {
+    background-color: #fafafa;
+}
+
+.compare-table td:first-child {
+    font-weight: bold;
+    background-color: #e9ecef;
+    width: 160px;
+    user-select: none;
 }
 
 /* 已选模型标签 */
