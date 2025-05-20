@@ -1,0 +1,1149 @@
+Index: src/main/webapp/WEB-INF/web.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><web-app xmlns=\"https://jakarta.ee/xml/ns/jakartaee\"\r\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n         xsi:schemaLocation=\"https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd\"\r\n         version=\"5.0\">\r\n    \r\n    <!-- CompareServlet配置 -->\r\n    <servlet>\r\n        <servlet-name>compareServlet</servlet-name>\r\n        <init-param>\r\n            <param-name>csvPath</param-name>\r\n            <param-value>/assets/data/50_Sample_Overview_Data.csv</param-value>\r\n        </init-param>\r\n        <load-on-startup>1</load-on-startup>\r\n    </servlet>\r\n    <servlet-mapping>\r\n        <servlet-name>compareServlet</servlet-name>\r\n        <url-pattern>/compare</url-pattern>\r\n    </servlet-mapping>\r\n    \r\n    <!-- OverviewServlet配置 -->\r\n    <servlet>\r\n        <servlet-name>overviewServlet</servlet-name>\r\n        <init-param>\r\n            <param-name>csvPath</param-name>\r\n            <param-value>/assets/data/50_Sample_Overview_Data.csv</param-value>\r\n        </init-param>\r\n        <load-on-startup>1</load-on-startup>\r\n    </servlet>\r\n    <servlet-mapping>\r\n        <servlet-name>overviewServlet</servlet-name>\r\n        <url-pattern>/overview</url-pattern>\r\n    </servlet-mapping>\r\n    \r\n    <!-- LogoutServlet配置 -->\r\n    <servlet>\r\n        <servlet-name>logoutServlet</servlet-name>\r\n    </servlet>\r\n    <servlet-mapping>\r\n        <servlet-name>logoutServlet</servlet-name>\r\n        <url-pattern>/logout</url-pattern>\r\n    </servlet-mapping>\r\n    \r\n    <!-- 欢迎页配置 -->\r\n    <welcome-file-list>\r\n        <welcome-file>assets/page/login.jsp</welcome-file>\r\n        <welcome-file>assets/page/home.jsp</welcome-file>\r\n    </welcome-file-list>\r\n    \r\n    <!-- 会话配置 -->\r\n    <session-config>\r\n        <session-timeout>30</session-timeout>\r\n    </session-config>\r\n    \r\n    <!-- 静态资源映射 -->\r\n    <servlet-mapping>\r\n        <servlet-name>default</servlet-name>\r\n        <url-pattern>*.css</url-pattern>\r\n    </servlet-mapping>\r\n    <servlet-mapping>\r\n        <servlet-name>default</servlet-name>\r\n        <url-pattern>*.js</url-pattern>\r\n    </servlet-mapping>\r\n    <servlet-mapping>\r\n        <servlet-name>default</servlet-name>\r\n        <url-pattern>*.png</url-pattern>\r\n    </servlet-mapping>\r\n    <servlet-mapping>\r\n        <servlet-name>default</servlet-name>\r\n        <url-pattern>*.jpg</url-pattern>\r\n    </servlet-mapping>\r\n    <servlet-mapping>\r\n        <servlet-name>default</servlet-name>\r\n        <url-pattern>*.gif</url-pattern>\r\n    </servlet-mapping>\r\n    <servlet-mapping>\r\n        <servlet-name>default</servlet-name>\r\n        <url-pattern>*.svg</url-pattern>\r\n    </servlet-mapping>\r\n    <servlet-mapping>\r\n        <servlet-name>default</servlet-name>\r\n        <url-pattern>*.mp4</url-pattern>\r\n    </servlet-mapping>\r\n\r\n    <!-- 其他配置 -->\r\n    \r\n</web-app>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/WEB-INF/web.xml b/src/main/webapp/WEB-INF/web.xml
+--- a/src/main/webapp/WEB-INF/web.xml	(revision 06002ab67979cb181d20e9472d2e24a0f3667af2)
++++ b/src/main/webapp/WEB-INF/web.xml	(date 1747712662523)
+@@ -2,7 +2,7 @@
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+          version="5.0">
+-    
++
+     <!-- CompareServlet配置 -->
+     <servlet>
+         <servlet-name>compareServlet</servlet-name>
+@@ -16,7 +16,8 @@
+         <servlet-name>compareServlet</servlet-name>
+         <url-pattern>/compare</url-pattern>
+     </servlet-mapping>
+-    
++
++
+     <!-- OverviewServlet配置 -->
+     <servlet>
+         <servlet-name>overviewServlet</servlet-name>
+@@ -30,7 +31,7 @@
+         <servlet-name>overviewServlet</servlet-name>
+         <url-pattern>/overview</url-pattern>
+     </servlet-mapping>
+-    
++
+     <!-- LogoutServlet配置 -->
+     <servlet>
+         <servlet-name>logoutServlet</servlet-name>
+@@ -39,7 +40,7 @@
+         <servlet-name>logoutServlet</servlet-name>
+         <url-pattern>/logout</url-pattern>
+     </servlet-mapping>
+-    
++
+     <!-- 欢迎页配置 -->
+     <welcome-file-list>
+         <welcome-file>assets/page/login.jsp</welcome-file>
+Index: src/main/webapp/assets/page/compare.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><%@ page contentType=\"text/html;charset=UTF-8\" language=\"java\" %>\r\n<%@ taglib prefix=\"c\" uri=\"http://java.sun.com/jsp/jstl/core\"%>\r\n<%@ taglib prefix=\"fmt\" uri=\"http://java.sun.com/jsp/jstl/fmt\"%>\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n    <meta charset=\"UTF-8\"/>\r\n    <title>Compare - Mobile Phone Data Center</title>\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\r\n    <link rel=\"stylesheet\" href=\"${pageContext.request.contextPath}/assets/css/components/header.css\">\r\n    <link rel=\"stylesheet\" href=\"${pageContext.request.contextPath}/assets/css/components/theme-toggle.css\">\r\n    <link rel=\"stylesheet\" href=\"${pageContext.request.contextPath}/assets/css/components/banner.css\">\r\n    <link rel=\"stylesheet\" href=\"${pageContext.request.contextPath}/assets/css/pages/compare.css\">\r\n</head>\r\n<body>\r\n<jsp:include page=\"sub/header.jsp\"/>\r\n\r\n<div class=\"main-container\">\r\n    <div class=\"controls\">\r\n        <div class=\"control-group\">\r\n            <label for=\"numModels\">Compare count:</label>\r\n            <select id=\"numModels\">\r\n                <option value=\"2\">2 models</option>\r\n                <option value=\"3\" selected>3 models</option>\r\n                <option value=\"4\">4 models</option>\r\n                <option value=\"5\">5 models</option>\r\n            </select>\r\n        </div>\r\n        <div class=\"control-group\">\r\n            <button id=\"reset-btn\" class=\"btn color-btn\">Reset</button>\r\n            <button id=\"compare-btn\" class=\"btn color-btn\">Start Comparison</button>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"selectors\" id=\"deviceSelectors\">\r\n    </div>\r\n    \r\n    <div id=\"compareResults\">\r\n        <c:choose>\r\n            <c:when test=\"${not empty selectedPhones}\">\r\n                <table class=\"compare-table\">\r\n                    <tr>\r\n                        <th>Specification</th>\r\n                        <c:forEach var=\"phone\" items=\"${selectedPhones}\">\r\n                            <th>${phone.brand} ${phone.name}</th>\r\n                        </c:forEach>\r\n                    </tr>\r\n                    <c:forEach var=\"specEntry\" items=\"${specs}\">\r\n                        <tr>\r\n                            <td class=\"spec-label\">${specEntry.value.name}</td>\r\n                            <c:forEach var=\"phone\" items=\"${selectedPhones}\">\r\n                                <td>\r\n                                    <c:choose>\r\n                                        <c:when test=\"${specEntry.key == 'releaseDate'}\">\r\n                                            <fmt:formatDate value=\"${phone.releaseDate}\" pattern=\"yyyy-MM-dd\"/>\r\n                                        </c:when>\r\n                                        <c:when test=\"${specEntry.key == 'price'}\">\r\n                                            $${phone.price}\r\n                                        </c:when>\r\n                                        <c:otherwise>\r\n                                            ${phone[specEntry.key]}\r\n                                        </c:otherwise>\r\n                                    </c:choose>\r\n                                </td>\r\n                            </c:forEach>\r\n                        </tr>\r\n                    </c:forEach>\r\n                </table>\r\n            </c:when>\r\n            <c:otherwise>\r\n                <div class=\"message\">请选择要对比的手机型号后点击“开始对比”</div>\r\n            </c:otherwise>\r\n        </c:choose>\r\n    </div>\r\n\r\n    <div class=\"action-bar\">\r\n        <button id=\"print-btn\" class=\"btn color-btn\">Print Results</button>\r\n        <button id=\"share-btn\" class=\"btn color-btn\">Share Comparison</button>\r\n        <button id=\"add-to-favorites\" class=\"btn color-btn\">Save to Favorites</button>\r\n    </div>\r\n</div>\r\n\r\n<jsp:include page=\"sub/scripts.jsp\"/>\r\n\r\n<!-- 动态生成手机数据 -->\r\n<script id=\"phoneDataScript\">\r\n    const allPhoneData = [\r\n        <c:forEach var=\"phone\" items=\"${allPhones}\" varStatus=\"st\">\r\n        {\r\n            id: ${st.index},\r\n            name: \"${phone.name}\",\r\n            brand: \"${phone.brand}\",\r\n            releaseDate: \"<fmt:formatDate value='${phone.releaseDate}' pattern='yyyy-MM-dd' />\",\r\n            processor: \"${phone.processor}\",\r\n            display: \"${phone.display}\",\r\n            camera: \"${phone.camera}\",\r\n            material: \"${phone.material}\",\r\n            price: ${phone.price}\r\n        }<c:if test=\"${!st.last}\">,</c:if>\r\n        </c:forEach>\r\n    ];\r\n</script>\r\n\r\n<!-- 引入对比页面的脚本 -->\r\n<script src=\"${pageContext.request.contextPath}/assets/js/compare-init.js\"></script>\r\n<script src=\"${pageContext.request.contextPath}/assets/js/compare.js\"></script>\r\n</body>\r\n</html>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/assets/page/compare.jsp b/src/main/webapp/assets/page/compare.jsp
+--- a/src/main/webapp/assets/page/compare.jsp	(revision 06002ab67979cb181d20e9472d2e24a0f3667af2)
++++ b/src/main/webapp/assets/page/compare.jsp	(date 1747723156883)
+@@ -1,108 +1,197 @@
+ <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8"/>
+-    <title>Compare - Mobile Phone Data Center</title>
++    <title>Search - Mobile Phone Data Center</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/header.css">
+     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/theme-toggle.css">
+     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/banner.css">
+     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/compare.css">
++    <style>
++        .phone-details-table {
++            width: 100%;
++            border-collapse: collapse;
++            margin-top: 15px;
++            font-family: Arial, sans-serif;
++        }
++        .phone-details-table th {
++            background-color: #f2f2f2;
++            padding: 12px;
++            text-align: left;
++            border: 1px solid #ddd;
++        }
++        .phone-details-table td {
++            padding: 10px 12px;
++            border: 1px solid #ddd;
++        }
++        .phone-details-table td:first-child {
++            text-align: right;
++            font-weight: bold;
++            width: 30%;
++        }
++        .phone-details-table tr:nth-child(even) {
++            background-color: #f9f9f9;
++        }
++        .loading {
++            color: #666;
++            font-style: italic;
++        }
++        .error {
++            color: #d9534f;
++        }
++        .search-by-no {
++            max-width: 800px;
++            margin: 20px auto;
++            padding: 20px;
++            background: #fff;
++            border-radius: 8px;
++            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
++        }
++        #searchNoInput {
++            padding: 8px;
++            width: 200px;
++            margin-right: 10px;
++        }
++        .btn {
++            padding: 8px 16px;
++            cursor: pointer;
++        }
++        .color-btn {
++            background-color: #4CAF50;
++            color: white;
++            border: none;
++            border-radius: 4px;
++        }
++    </style>
+ </head>
+ <body>
++
+ <jsp:include page="sub/header.jsp"/>
+ 
+ <div class="main-container">
+-    <div class="controls">
+-        <div class="control-group">
+-            <label for="numModels">Compare count:</label>
+-            <select id="numModels">
+-                <option value="2">2 models</option>
+-                <option value="3" selected>3 models</option>
+-                <option value="4">4 models</option>
+-                <option value="5">5 models</option>
+-            </select>
+-        </div>
+-        <div class="control-group">
+-            <button id="reset-btn" class="btn color-btn">Reset</button>
+-            <button id="compare-btn" class="btn color-btn">Start Comparison</button>
+-        </div>
++    <div class="search-by-no">
++        <h3>Find Phone by No</h3>
++        <input type="number" id="searchNoInput" min="1" placeholder="Enter Phone No"/>
++        <button id="searchNoBtn" class="btn color-btn">Search</button>
++        <div id="statusMsg" style="margin-top: 10px; font-weight: bold;"></div>
++
++        <div id="searchResult" style="margin-top: 20px;"></div>
+     </div>
+-
+-    <div class="selectors" id="deviceSelectors">
+-    </div>
+-    
+-    <div id="compareResults">
+-        <c:choose>
+-            <c:when test="${not empty selectedPhones}">
+-                <table class="compare-table">
+-                    <tr>
+-                        <th>Specification</th>
+-                        <c:forEach var="phone" items="${selectedPhones}">
+-                            <th>${phone.brand} ${phone.name}</th>
+-                        </c:forEach>
+-                    </tr>
+-                    <c:forEach var="specEntry" items="${specs}">
+-                        <tr>
+-                            <td class="spec-label">${specEntry.value.name}</td>
+-                            <c:forEach var="phone" items="${selectedPhones}">
+-                                <td>
+-                                    <c:choose>
+-                                        <c:when test="${specEntry.key == 'releaseDate'}">
+-                                            <fmt:formatDate value="${phone.releaseDate}" pattern="yyyy-MM-dd"/>
+-                                        </c:when>
+-                                        <c:when test="${specEntry.key == 'price'}">
+-                                            $${phone.price}
+-                                        </c:when>
+-                                        <c:otherwise>
+-                                            ${phone[specEntry.key]}
+-                                        </c:otherwise>
+-                                    </c:choose>
+-                                </td>
+-                            </c:forEach>
+-                        </tr>
+-                    </c:forEach>
+-                </table>
+-            </c:when>
+-            <c:otherwise>
+-                <div class="message">请选择要对比的手机型号后点击“开始对比”</div>
+-            </c:otherwise>
+-        </c:choose>
+-    </div>
++</div>
++
++<script>
++    document.addEventListener("DOMContentLoaded", function () {
++        const searchNoInput = document.getElementById("searchNoInput");
++        const searchNoBtn = document.getElementById("searchNoBtn");
++        const searchResultDiv = document.getElementById("searchResult");
++
++        // 按照后端返回的字段顺序定义字段数组
++        const specFields = [
++            { key: "price_USD", label: "Price (USD)" },
++            { key: "No", label: "No" },
++            { key: "os", label: "Operating System" },
++            { key: "sim", label: "SIM" },
++            { key: "Charging_Info", label: "Charging Info" },
++            { key: "processor_name", label: "Processor" },
++            { key: "Battery_Capacity", label: "Battery Capacity" },
++            { key: "model", label: "Model" },
++            { key: "Front_Camera", label: "Front Camera" },
++            { key: "brand", label: "Brand" },
++            { key: "Rear_Camera", label: "Rear Camera" },
++            { key: "card", label: "Card Slot" },
++            { key: "ram", label: "RAM" }
++        ];
++
++        searchNoBtn.addEventListener("click", () => {
++            const no = searchNoInput.value.trim();
++            if (!no) {
++                alert("Please enter a phone No.");
++                return;
++            }
++
++            searchResultDiv.innerHTML = '<div class="loading">Loading phone details...</div>';
++
++            const endpoint = "http://localhost:8080/ServerletFinal_war_exploded/data?type=readSQL&table=smartphones&phoneNo=" + encodeURIComponent(no);
++
++            fetch(endpoint)
++                .then(response => {
++                    if (!response.ok) {
++                        throw new Error(`Request failed with status: ${response.status}`);
++                    }
++                    return response.json();
++                })
++                .then(data => {
++                    console.log("API响应数据:", data);
++
++                    if (!Array.isArray(data)) {
++                        searchResultDiv.innerHTML = `<p class="error">返回的数据不是数组</p>`;
++                        console.error("返回的数据不是数组:", data);
++                        return;
++                    }
++
++                    if (data.length === 0) {
++                        searchResultDiv.innerHTML = `<p class="error">没有找到对应手机，No = ${no}</p>`;
++                        console.warn("空数组，没有匹配项");
++                        return;
++                    }
++
++                    const phone = data[0];
++                    console.log("phone 对象:", phone);
++
++                    // 这里是你要加的调试代码
++                    let testStr = "";
++                    specFields.forEach(f => {
++                        testStr += `${f.label} = ${phone[f.key]}\n`;
++                    });
++                    console.log("调试：phone 对象是", phone);
++                    alert(testStr);
++
++                    if (!phone.hasOwnProperty("No")) {
++                        searchResultDiv.innerHTML = `<p class="error">返回的对象中没有No字段</p>`;
++                        console.error("phone对象缺少No字段", phone);
++                        return;
++                    }
++
++                    if (phone.No === null || phone.No === "") {
++                        searchResultDiv.innerHTML = `<p class="error">No字段为空</p>`;
++                        console.warn("No字段为空", phone);
++                        return;
++                    }
++
++                    let html = `<h4>Details for phone No ${phone.No}</h4>
++                                <table class="phone-details-table">
++                                    <thead>
++                                        <tr>
++                                            <th>Specification</th>
++                                            <th>Value</th>
++                                        </tr>
++                                    </thead>
++                                    <tbody>`;
+ 
+-    <div class="action-bar">
+-        <button id="print-btn" class="btn color-btn">Print Results</button>
+-        <button id="share-btn" class="btn color-btn">Share Comparison</button>
+-        <button id="add-to-favorites" class="btn color-btn">Save to Favorites</button>
+-    </div>
+-</div>
++                    specFields.forEach(field => {
++                        let val = phone[field.key];
++                        if (val === undefined || val === null || val === "") {
++                            val = "-";
++                        }
++                        html += `<tr>
++                            <td><strong>${field.label}</strong></td>
++                            <td>${val}</td>
++                        </tr>`;
++                    });
+ 
+-<jsp:include page="sub/scripts.jsp"/>
+-
+-<!-- 动态生成手机数据 -->
+-<script id="phoneDataScript">
+-    const allPhoneData = [
+-        <c:forEach var="phone" items="${allPhones}" varStatus="st">
+-        {
+-            id: ${st.index},
+-            name: "${phone.name}",
+-            brand: "${phone.brand}",
+-            releaseDate: "<fmt:formatDate value='${phone.releaseDate}' pattern='yyyy-MM-dd' />",
+-            processor: "${phone.processor}",
+-            display: "${phone.display}",
+-            camera: "${phone.camera}",
+-            material: "${phone.material}",
+-            price: ${phone.price}
+-        }<c:if test="${!st.last}">,</c:if>
+-        </c:forEach>
+-    ];
++                    html += `</tbody></table>`;
++                    searchResultDiv.innerHTML = html;
++                })
++                .catch(error => {
++                    console.error("Fetch error:", error);
++                    searchResultDiv.innerHTML = `<p class="error">Error loading data: ${error.message}</p>`;
++                });
++        });
++    });
+ </script>
+ 
+-<!-- 引入对比页面的脚本 -->
+-<script src="${pageContext.request.contextPath}/assets/js/compare-init.js"></script>
+-<script src="${pageContext.request.contextPath}/assets/js/compare.js"></script>
++
+ </body>
+ </html>
+Index: src/main/webapp/assets/page/forum.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><%@ page language=\"java\" contentType=\"text/html; charset=UTF-8\" pageEncoding=\"UTF-8\"%>\r\n<%@ taglib prefix=\"c\" uri=\"http://java.sun.com/jsp/jstl/core\" %>\r\n<%@ taglib prefix=\"fmt\" uri=\"http://java.sun.com/jsp/jstl/fmt\" %>\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n  <meta charset=\"UTF-8\">\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n  <title>Forum - Mobile Phone Info System</title>\r\n  <link rel=\"stylesheet\" href=\"${pageContext.request.contextPath}/assets/css/components/header.css\">\r\n  <link rel=\"stylesheet\" href=\"${pageContext.request.contextPath}/assets/css/components/layout.css\">\r\n  <link rel=\"stylesheet\" href=\"${pageContext.request.contextPath}/assets/css/components/banner.css\">\r\n  <link rel=\"stylesheet\" href=\"${pageContext.request.contextPath}/assets/css/pages/forum/forum.css\">\r\n</head>\r\n<body data-context-path=\"${pageContext.request.contextPath}\" data-user-logged-in=\"${not empty sessionScope.user}\">\r\n<!-- Navigation bar -->\r\n<jsp:include page=\"sub/header.jsp\" />\r\n\r\n<!-- Main container -->\r\n<div class=\"main-container\">\r\n  <!-- Sidebar -->\r\n  <aside class=\"forum-sidebar glass-card\">\r\n    <div class=\"search-container\">\r\n      <form class=\"sidebar-search\">\r\n        <input type=\"text\" placeholder=\"Search topics...\">\r\n      </form>\r\n    </div>\r\n    <button class=\"color-btn\">New Topic</button>\r\n    <button class=\"color-btn\">My Topics</button>\r\n    <button class=\"color-btn\">Received Replies</button>\r\n    <div> class=\"phone-list glass-card\"</div>\r\n  </aside>\r\n\r\n  <!-- Main content area -->\r\n  <main class=\"forum-main\">\r\n    <div class=\"forum-content\">\r\n      <!-- Title and sorting -->\r\n      <div class=\"content-header\">\r\n        <div class=\"breadcrumb\">\r\n          <a href=\"#\">Home</a> &gt; <span>Forum</span>\r\n        </div>\r\n        <div class=\"sort-filter\">\r\n          <label for=\"sort-select\">Sort by:</label>\r\n          <select id=\"sort-select\">\r\n            <option>Newest First</option>\r\n            <option>Most Replies</option>\r\n            <option>Most Views</option>\r\n          </select>\r\n        </div>\r\n      </div>\r\n\r\n      <!-- Topic list -->\r\n      <ul class=\"topic-list\">\r\n        <!-- Single topic item -->\r\n        <li class=\"topic-item interactive\">\r\n          <div class=\"topic-icon\"><i class=\"fas fa-comments\"></i></div>\r\n          <div class=\"topic-main\">\r\n            <h3 class=\"topic-title\">\r\n              <a href=\"#\">Forum Interface Setup Example and Best Practices</a>\r\n            </h3>\r\n            <div class=\"topic-meta\">\r\n              <span class=\"stat views\"><i class=\"fas fa-eye\"></i> 342</span>\r\n              <span class=\"stat replies\"><i class=\"fas fa-reply\"></i> 27</span>\r\n              <span class=\"stat likes\"><i class=\"fas fa-thumbs-up\"></i> 58</span>\r\n            </div>\r\n          </div>\r\n          <div class=\"topic-last-reply\">\r\n            <span class=\"reply-author\">John</span><br>\r\n            <span class=\"reply-time\">1 hour ago</span>\r\n          </div>\r\n        </li>\r\n        <!-- More topic items... -->\r\n      </ul>\r\n\r\n      <!-- Pagination -->\r\n      <div class=\"pagination\">\r\n        <a href=\"#\" class=\"page-link prev\"><i class=\"fas fa-chevron-left\"></i> Previous</a>\r\n        <a href=\"#\" class=\"page-link current\">1</a>\r\n        <a href=\"#\" class=\"page-link\">2</a>\r\n        <a href=\"#\" class=\"page-link next\">Next <i class=\"fas fa-chevron-right\"></i></a>\r\n      </div>\r\n    </div>\r\n\r\n    <!-- Back to top -->\r\n    <button class=\"back-to-top\"><i class=\"fas fa-arrow-up\"></i></button>\r\n  </main>\r\n</div>\r\n\r\n<!-- Scripts -->\r\n<jsp:include page=\"sub/scripts.jsp\" />\r\n<script src=\"${pageContext.request.contextPath}/assets/js/forum.js\"></script>\r\n</body>\r\n</html>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/assets/page/forum.jsp b/src/main/webapp/assets/page/forum.jsp
+--- a/src/main/webapp/assets/page/forum.jsp	(revision 06002ab67979cb181d20e9472d2e24a0f3667af2)
++++ b/src/main/webapp/assets/page/forum.jsp	(date 1747663057327)
+@@ -56,8 +56,9 @@
+           <div class="topic-icon"><i class="fas fa-comments"></i></div>
+           <div class="topic-main">
+             <h3 class="topic-title">
+-              <a href="#">Forum Interface Setup Example and Best Practices</a>
++              <a href="sub/posts.jsp">Forum Interface Setup Example and Best Practices</a>
+             </h3>
++
+             <div class="topic-meta">
+               <span class="stat views"><i class="fas fa-eye"></i> 342</span>
+               <span class="stat replies"><i class="fas fa-reply"></i> 27</span>
+Index: src/main/webapp/assets/js/overview.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>document.addEventListener(\"DOMContentLoaded\", function () {\r\n    const tbody = document.querySelector(\"#overview-table tbody\");\r\n    const thead = document.querySelector(\"#overview-table thead\");\r\n    const buttons = document.querySelectorAll(\".color-btn\");\r\n\r\n    // 定义不同表对应的表头字段和列名（按顺序）\r\n    const tableHeaders = {\r\n        \"mobile_brands\": [\r\n            { key: \"Name\", label: \"Name\" },\r\n            { key: \"Website\", label: \"Website\" },\r\n            { key: \"Country\", label: \"Country\" }\r\n        ],\r\n        \"smartphones\": [\r\n            { key: \"No\", label: \"No\" },\r\n            { key: \"model\", label: \"Model\" },\r\n            { key: \"brand\", label: \"Brand\" },\r\n            { key: \"price_USD\", label: \"Price (USD)\" },\r\n            { key: \"sim\", label: \"SIM\" },\r\n            { key: \"processor_name\", label: \"Processor\" },\r\n            { key: \"ram\", label: \"RAM\" },\r\n            { key: \"Battery_Capacity\", label: \"Battery\" },\r\n            { key: \"Charging_Info\", label: \"Charging\" },\r\n            { key: \"Rear_Camera\", label: \"Rear Camera\" },\r\n            { key: \"Front_Camera\", label: \"Front Camera\" },\r\n            { key: \"card\", label: \"Card Slot\" },\r\n            { key: \"os\", label: \"OS\" }\r\n        ],\r\n        \"component\": [\r\n            { key: \"No\", label: \"No\" },\r\n            { key: \"name\", label: \"Name\" },\r\n            { key: \"core\", label: \"Core\" },\r\n            { key: \"frequency\", label: \"Frequency\" },\r\n            { key: \"supplier\", label: \"Supplier\" }\r\n        ],\r\n        \"supplier\": [\r\n            { key: \"No\", label: \"No\" },\r\n            { key: \"name\", label: \"Name\" },\r\n            { key: \"web\", label: \"Website\" },\r\n            { key: \"country\", label: \"Country\" }\r\n        ],\r\n        \"smartphone_sales_all_countries_1\": [\r\n            { key: \"Country\", label: \"Country\" },\r\n            { key: \"Brand\", label: \"Brand\" },\r\n            { key: \"Column_2015\", label: \"2015(millions)\" },\r\n            { key: \"Column_2016\", label: \"2016\" },\r\n            { key: \"Column_2017\", label: \"2017\" },\r\n            { key: \"Column_2018\", label: \"2018\" },\r\n            { key: \"Column_2019\", label: \"2019\" },\r\n            { key: \"Column_2020\", label: \"2020\" },\r\n            { key: \"Column_2021\", label: \"2021\" },\r\n            { key: \"Column_2022\", label: \"2022\" },\r\n            { key: \"Column_2023\", label: \"2023\" },\r\n            { key: \"Column_2024\", label: \"2024\" }\r\n        ]\r\n    };\r\n\r\n    const infoText = document.getElementById(\"infoText\");\r\n\r\n    const tableDescriptions = {\r\n        \"mobile_brands\": \"Brand table: showing the name of the mobile phone brand, the official website address and the country it belongs to.\",\r\n        \"smartphones\": \"Mobilephone information table: including parameters such as model, brand, price, configuration and battery.\",\r\n        \"component\": \"Component table: showing the core, frequency and supplier information of various hardware components.\",\r\n        \"supplier\": \"Supplier table: including supplier names, official websites and countries.\",\r\n        \"smartphone_sales_all_countries_1\": \"Sales table (unit: million): presenting the annual sales situation from 2015 to 2024 by country and brand.\"\r\n    };\r\n\r\n\r\n    function renderTableHeader(tableName) {\r\n        const headers = tableHeaders[tableName];\r\n        if (!headers) return;\r\n\r\n        // 清空原有表头\r\n        thead.innerHTML = \"\";\r\n        const tr = document.createElement(\"tr\");\r\n\r\n        headers.forEach(h => {\r\n            const th = document.createElement(\"th\");\r\n            th.textContent = h.label;\r\n            tr.appendChild(th);\r\n        });\r\n\r\n        thead.appendChild(tr);\r\n    }\r\n\r\n    function loadData(tableName) {\r\n        tbody.innerHTML = \"<tr><td colspan='15'>LOADING...</td></tr>\";\r\n\r\n        renderTableHeader(tableName);\r\n\r\n        const endpoint = `http://localhost:8080/ServerletFinal_war_exploded/data?type=readSQL&table=${tableName}`;\r\n\r\n        fetch(endpoint)\r\n            .then(response => {\r\n                if (!response.ok) throw new Error(\"请求失败：\" + response.status);\r\n                return response.json();\r\n            })\r\n            .then(data => {\r\n                if (!Array.isArray(data)) throw new Error(\"数据格式错误\");\r\n                tbody.innerHTML = \"\";\r\n\r\n                const headers = tableHeaders[tableName];\r\n                if (!headers) {\r\n                    tbody.innerHTML = \"<tr><td colspan='15'>无表头定义</td></tr>\";\r\n                    return;\r\n                }\r\n\r\n                data.forEach(row => {\r\n                    const tr = document.createElement(\"tr\");\r\n                    headers.forEach(h => {\r\n                        const td = document.createElement(\"td\");\r\n                        td.textContent = row[h.key] !== undefined ? row[h.key] : \"-\";\r\n                        tr.appendChild(td);\r\n                    });\r\n                    tbody.appendChild(tr);\r\n                });\r\n\r\n                // ✅ 更新信息提示区域\r\n                infoText.textContent = tableDescriptions[tableName] || \"当前显示：未知表格内容。\";\r\n            })\r\n            .catch(error => {\r\n                console.error(\"加载失败：\", error);\r\n                tbody.innerHTML = `<tr><td colspan='15' style='color:red;'>加载失败：${error.message}</td></tr>`;\r\n                infoText.textContent = \"加载失败，请检查网络连接或表名。\";\r\n            });\r\n    }\r\n\r\n\r\n    buttons.forEach(button => {\r\n        button.addEventListener(\"click\", () => {\r\n            buttons.forEach(btn => btn.classList.remove(\"active\"));\r\n            button.classList.add(\"active\");\r\n\r\n            const tableName = button.getAttribute(\"data-page\");\r\n            loadData(tableName);\r\n        });\r\n    });\r\n\r\n    loadData(\"smartphones\"); // 默认加载智能手机数据\r\n});\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/assets/js/overview.js b/src/main/webapp/assets/js/overview.js
+--- a/src/main/webapp/assets/js/overview.js	(revision 06002ab67979cb181d20e9472d2e24a0f3667af2)
++++ b/src/main/webapp/assets/js/overview.js	(date 1747670216154)
+@@ -137,3 +137,6 @@
+ 
+     loadData("smartphones"); // 默认加载智能手机数据
+ });
++
++
++
+Index: src/main/webapp/assets/css/pages/compare.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/* compare.css — 针对 Compare JSP 结构的样式 */\r\n\r\n/* 全局引入：变量、布局、按钮、卡片等 */\r\n@import \"../style/variables.css\";\r\n@import \"../utilities.css\";\r\n@import \"../components/layout.css\";\r\n@import \"../components/banner.css\";\r\n@import \"../components/buttons.css\";\r\n\r\n/* 顶部横幅 */\r\n.main-container .banner {\r\n    text-align: center;\r\n}\r\n\r\n/* 控件区域 */\r\n.controls {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    margin: var(--spacing-lg) 0;\r\n    background: var(--card-bg);\r\n    padding: var(--spacing-md) var(--spacing-lg);\r\n    border-radius: var(--radius-md);\r\n    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);\r\n}\r\n.control-group {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: var(--spacing-md);\r\n}\r\n.control-group label {\r\n    font-weight: 600;\r\n    color: var(--text-color);\r\n    white-space: nowrap;\r\n    margin-right: 0.5rem;\r\n}\r\n.controls select {\r\n    padding: var(--spacing-sm) var(--spacing-md);\r\n    border: 1px solid var(--border-color);\r\n    border-radius: var(--radius-sm);\r\n    background: var(--card-bg);\r\n    color: var(--text-color);\r\n    transition: border-color var(--transition-normal);\r\n}\r\n.controls select:hover {\r\n    border-color: var(--primary-color);\r\n}\r\n\r\n/* Reset / Compare 按钮 */\r\n#reset-btn,\r\n#compare-btn {\r\n    margin-left: var(--spacing-md);\r\n}\r\n\r\n/* 选择器（动态生成插入的按钮组）*/\r\n.selectors {\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    gap: var(--spacing-md);\r\n    margin-bottom: var(--spacing-lg);\r\n}\r\n\r\n/* 对比结果表格 */\r\n.compare-table {\r\n    width: 100%;\r\n    border-collapse: collapse;\r\n    margin-bottom: var(--spacing-lg);\r\n}\r\n.compare-table th,\r\n.compare-table td {\r\n    padding: var(--spacing-sm) var(--spacing-md);\r\n    border: 1px solid var(--divider);\r\n    text-align: center;\r\n}\r\n.compare-table th {\r\n    background: var(--section-highlight);\r\n    color: var(--text-color);\r\n    font-weight: 600;\r\n}\r\n\r\n/* 无数据提示 */\r\n.message {\r\n    text-align: center;\r\n    padding: var(--spacing-lg);\r\n    color: var(--text-secondary);\r\n}\r\n\r\n/* 操作条 */\r\n.action-bar {\r\n    display: flex;\r\n    justify-content: flex-end;\r\n    gap: var(--spacing-md);\r\n    margin-top: var(--spacing-lg);\r\n}\r\n\r\n/* 响应式：窄屏下表格折叠为卡片式展示 */\r\n@media (max-width: 768px) {\r\n    .compare-table,\r\n    .compare-table th,\r\n    .compare-table td {\r\n        display: block;\r\n        width: 100%;\r\n    }\r\n    .compare-table th {\r\n        text-align: left;\r\n    }\r\n    .compare-table td {\r\n        position: relative;\r\n        padding-left: 50%;\r\n        text-align: right;\r\n    }\r\n    .compare-table td::before {\r\n        content: attr(data-label) \": \";\r\n        position: absolute;\r\n        left: var(--spacing-sm);\r\n        font-weight: 600;\r\n    }\r\n}\r\n\r\n/* —— 比较页面机型选择区域 —— */\r\n.selectors {\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    gap: var(--spacing-md);\r\n    margin: var(--spacing-lg) 0;\r\n    justify-content: flex-start;  /* 横向并排 */\r\n}\r\n\r\n.model-selector {\r\n    position: relative;\r\n    flex: 1 1 200px;              /* 最小 200px，剩余空间平分 */\r\n    max-width: 300px;             /* 可选：限制最大宽度 */\r\n}\r\n\r\n.model-input {\r\n    width: 100%;\r\n    padding: var(--spacing-sm) var(--spacing-md);\r\n    border: 1px solid var(--divider);\r\n    border-radius: var(--radius-sm);\r\n    background: var(--card-bg);\r\n    color: var(--text-color);\r\n    font-size: var(--font-size-md);\r\n    box-sizing: border-box;\r\n    transition: border-color var(--transition-normal);\r\n}\r\n\r\n.model-input:focus {\r\n    outline: none;\r\n    border-color: var(--primary-color);\r\n    box-shadow: 0 0 0 3px rgba( var(--bg-inverse), 0.15 );\r\n}\r\n\r\n.search-results {\r\n    position: absolute;\r\n    top: calc(100% + var(--spacing-xs));\r\n    left: 0;\r\n    right: 0;\r\n    background: var(--card-bg);\r\n    border: 1px solid var(--divider);\r\n    border-radius: var(--radius-sm);\r\n    max-height: 200px;\r\n    overflow-y: auto;\r\n    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\r\n    display: none;\r\n    z-index: 50;\r\n}\r\n\r\n.search-results.show {\r\n    display: block;\r\n}\r\n\r\n.search-result-item {\r\n    padding: var(--spacing-sm) var(--spacing-md);\r\n    cursor: pointer;\r\n    transition: background var(--transition-fast);\r\n}\r\n\r\n.search-result-item:hover {\r\n    background: rgba( var(--bg-inverse), 0.1 );\r\n}\r\n\r\n.selected-model {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n    background: var(--card-bg);\r\n    padding: var(--spacing-sm) var(--spacing-md);\r\n    border: 1px solid var(--divider);\r\n    border-radius: var(--radius-sm);\r\n    margin-top: var(--spacing-xs);\r\n}\r\n\r\n.selected-model span {\r\n    font-size: var(--font-size-sm);\r\n}\r\n\r\n.selected-model .remove-btn {\r\n    margin-left: var(--spacing-sm);\r\n    cursor: pointer;\r\n    font-weight: bold;\r\n    line-height: 1;\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/assets/css/pages/compare.css b/src/main/webapp/assets/css/pages/compare.css
+--- a/src/main/webapp/assets/css/pages/compare.css	(revision 06002ab67979cb181d20e9472d2e24a0f3667af2)
++++ b/src/main/webapp/assets/css/pages/compare.css	(date 1747712766887)
+@@ -72,18 +72,7 @@
+     border: 1px solid var(--divider);
+     text-align: center;
+ }
+-.compare-table th {
+-    background: var(--section-highlight);
+-    color: var(--text-color);
+-    font-weight: 600;
+-}
+ 
+-/* 无数据提示 */
+-.message {
+-    text-align: center;
+-    padding: var(--spacing-lg);
+-    color: var(--text-secondary);
+-}
+ 
+ /* 操作条 */
+ .action-bar {
+@@ -201,3 +190,30 @@
+     line-height: 1;
+ }
+ 
++.compare-table {
++    border-collapse: collapse;
++    width: 100%;
++    max-width: 600px;
++    margin-top: 10px;
++    background-color: #fff;
++    box-shadow: 0 0 8px rgba(0,0,0,0.1);
++    font-family: Arial, sans-serif;
++}
++
++.compare-table td {
++    border: 1px solid #ccc;
++    padding: 8px 12px;
++    vertical-align: middle;
++}
++
++.compare-table tr:nth-child(odd) {
++    background-color: #fafafa;
++}
++
++.compare-table td:first-child {
++    font-weight: bold;
++    background-color: #e9ecef;
++    width: 160px;
++    user-select: none;
++}
++
+Index: src/main/webapp/assets/js/compare-init.js
+===================================================================
+diff --git a/src/main/webapp/assets/js/compare-init.js b/src/main/webapp/assets/js/compare-init.js
+deleted file mode 100644
+--- a/src/main/webapp/assets/js/compare-init.js	(revision 06002ab67979cb181d20e9472d2e24a0f3667af2)
++++ /dev/null	(revision 06002ab67979cb181d20e9472d2e24a0f3667af2)
+@@ -1,189 +0,0 @@
+-// compare-init.js
+-// Path: webapp/assets/js/compare-init.js
+-
+-document.addEventListener('DOMContentLoaded', function() {
+-    const ctx = window.__ctx || '';
+-    const numSelect = document.getElementById('numModels');
+-    const selectorsDiv = document.getElementById('deviceSelectors');
+-    const compareBtn = document.getElementById('compare-btn');
+-    const resetBtn = document.getElementById('reset-btn');
+-
+-    // Load phone data from server JSON API
+-    async function loadPhoneData() {
+-        const res = await fetch(`${ctx}/compare?json=true`);
+-        if (!res.ok) {
+-            throw new Error(`HTTP error! status: ${res.status}`);
+-        }
+-        return await res.json();
+-    }
+-
+-    // Initialize selectors and event handlers with loaded data
+-    function initialize(allPhoneData) {
+-        // Get selected ids from URL parameters
+-        function getSelectedIds() {
+-            const params = new URLSearchParams(window.location.search);
+-            return params.getAll('id');
+-        }
+-
+-        // Handle selecting an item
+-        function selectItem(p, inputEl, hiddenEl, resultsEl, wrap) {
+-            hiddenEl.value = p.id;
+-            inputEl.value = `${p.brand} ${p.name}`;
+-            resultsEl.classList.remove('show');
+-
+-            let selectedDiv = wrap.querySelector('.selected-model');
+-            if (!selectedDiv) {
+-                selectedDiv = document.createElement('div');
+-                selectedDiv.className = 'selected-model';
+-                wrap.appendChild(selectedDiv);
+-            }
+-            selectedDiv.innerHTML = `<span>${p.brand} ${p.name}</span><span class="remove-btn">&times;</span>`;
+-            selectedDiv.querySelector('.remove-btn').addEventListener('click', e => {
+-                e.stopPropagation();
+-                hiddenEl.value = '';
+-                selectedDiv.remove();
+-                inputEl.style.display = 'block';
+-                inputEl.value = '';
+-            });
+-            inputEl.style.display = 'none';
+-        }
+-
+-        // Show search results
+-        function showResults(term, input, hidden, resultsDiv, container) {
+-            resultsDiv.innerHTML = '';
+-            const items = [];
+-            if (!term) {
+-                items.push(...allPhoneData.slice(0, 10));
+-            } else {
+-                const searchTerms = term.toLowerCase().split(/\s+/);
+-                let matches = allPhoneData.filter(p =>
+-                    searchTerms.some(t => `${p.brand} ${p.name}`.toLowerCase().includes(t))
+-                );
+-                if (matches.length === 0) {
+-                    matches = allPhoneData.filter(p =>
+-                        term.split('').some(ch => `${p.brand} ${p.name}`.toLowerCase().includes(ch))
+-                    ).slice(0, 10);
+-                    if (matches.length > 0) {
+-                        resultsDiv.innerHTML = '<div class="loose-match-notice">No exact matches found, showing related results:</div>';
+-                    }
+-                }
+-                items.push(...matches);
+-            }
+-
+-            if (items.length === 0) {
+-                resultsDiv.innerHTML = `<div class="no-results">${term ? 'No matching results found' : 'No phone data available'}</div>`;
+-            } else {
+-                items.forEach(p => {
+-                    const item = document.createElement('div');
+-                    item.className = 'search-result-item';
+-                    item.textContent = `${p.brand} ${p.name}`;
+-                    item.addEventListener('click', () => selectItem(p, input, hidden, resultsDiv, container));
+-                    resultsDiv.appendChild(item);
+-                });
+-            }
+-
+-            resultsDiv.classList.add('show');
+-        }
+-
+-        // Generate selectors
+-        function updateSelectors() {
+-            const count = parseInt(numSelect.value, 10) || 3;
+-            selectorsDiv.innerHTML = '';
+-            selectorsDiv.style.display = 'flex';
+-            selectorsDiv.style.gap = 'var(--spacing-md)';
+-
+-            for (let i = 0; i < count; i++) {
+-                const container = document.createElement('div');
+-                container.className = 'model-selector';
+-
+-                const input = document.createElement('input');
+-                input.type = 'text';
+-                input.id = `modelInput${i}`;
+-                input.name = `modelInput${i}`;
+-                input.className = 'model-input';
+-                input.placeholder = `Enter phone model #${i + 1}`;
+-
+-                const hidden = document.createElement('input');
+-                hidden.type = 'hidden';
+-                hidden.name = 'id';
+-                hidden.className = 'selected-id';
+-
+-                const resultsDiv = document.createElement('div');
+-                resultsDiv.className = 'search-results';
+-
+-                // Events
+-                input.addEventListener('input', () => {
+-                    const term = input.value.trim();
+-                    if (!term) {
+-                        resultsDiv.classList.remove('show');
+-                        return;
+-                    }
+-                    showResults(term, input, hidden, resultsDiv, container);
+-                });
+-
+-                input.addEventListener('focus', () => showResults('', input, hidden, resultsDiv, container));
+-
+-                document.addEventListener('click', e => {
+-                    if (!container.contains(e.target)) {
+-                        resultsDiv.classList.remove('show');
+-                    }
+-                });
+-
+-                container.appendChild(input);
+-                container.appendChild(hidden);
+-                container.appendChild(resultsDiv);
+-                selectorsDiv.appendChild(container);
+-            }
+-
+-            populateFromUrl();
+-        }
+-
+-        // Pre-fill from URL
+-        function populateFromUrl() {
+-            const ids = getSelectedIds();
+-            const containers = document.querySelectorAll('.model-selector');
+-            ids.forEach((id, idx) => {
+-                if (idx < containers.length) {
+-                    const p = allPhoneData.find(x => String(x.id) === id);
+-                    if (p) {
+-                        const wrap = containers[idx];
+-                        const input = wrap.querySelector('.model-input');
+-                        const hidden = wrap.querySelector('.selected-id');
+-                        const results = wrap.querySelector('.search-results');
+-                        selectItem(p, input, hidden, results, wrap);
+-                    }
+-                }
+-            });
+-        }
+-
+-        // Compare action
+-        compareBtn.addEventListener('click', () => {
+-            const ids = Array.from(document.querySelectorAll('.selected-id'))
+-                .map(i => i.value).filter(Boolean);
+-            if (ids.length === 0) {
+-                alert('Please select at least one phone to compare');
+-                return;
+-            }
+-            const url = new URL(window.location.pathname, window.location.origin);
+-            ids.forEach(id => url.searchParams.append('id', id));
+-            window.location.href = url.toString();
+-        });
+-
+-        // Reset action
+-        resetBtn.addEventListener('click', () => {
+-            window.location.href = window.location.pathname;
+-        });
+-
+-        updateSelectors();
+-        numSelect.addEventListener('change', updateSelectors);
+-    }
+-
+-    // Load data and initialize
+-    loadPhoneData()
+-        .then(initialize)
+-        .catch(err => {
+-            console.error('加载数据失败：', err);
+-            document.getElementById('compareResults')
+-                .innerHTML = '<div class="error">Data load error, please refresh the page</div>';
+-        });
+-});
+Index: src/main/webapp/assets/js/compare.js
+===================================================================
+diff --git a/src/main/webapp/assets/js/compare.js b/src/main/webapp/assets/js/compare.js
+deleted file mode 100644
+--- a/src/main/webapp/assets/js/compare.js	(revision 06002ab67979cb181d20e9472d2e24a0f3667af2)
++++ /dev/null	(revision 06002ab67979cb181d20e9472d2e24a0f3667af2)
+@@ -1,79 +0,0 @@
+-/**
+- * compare.js - 处理手机比较页面的初始化和事件绑定
+- */
+-document.addEventListener('DOMContentLoaded', function() {
+-    // 如果 updateSelectors 函数存在，就调用它
+-    if (typeof updateSelectors === 'function') {
+-        updateSelectors();
+-    }
+-    
+-    // 标记可交互的表格行
+-    const interactiveRows = document.querySelectorAll('.compare-table tr[data-action]');
+-    interactiveRows.forEach(row => {
+-        row.classList.add('interactive');
+-    });
+-    
+-    // 绑定打印按钮事件
+-    const printBtn = document.getElementById('print-btn');
+-    if (printBtn) {
+-        printBtn.addEventListener('click', function() {
+-            window.print();
+-        });
+-    }
+-    
+-    // 绑定分享按钮事件
+-    const shareBtn = document.getElementById('share-btn');
+-    if (shareBtn) {
+-        shareBtn.addEventListener('click', function() {
+-            // 获取当前URL用于分享
+-            const shareUrl = window.location.href;
+-            
+-            // 检查是否支持分享API
+-            if (navigator.share) {
+-                navigator.share({
+-                    title: '手机对比结果',
+-                    text: '查看这些手机型号的对比结果',
+-                    url: shareUrl
+-                })
+-                .catch(err => {
+-                    console.error('分享失败:', err);
+-                    // 如果分享API失败，回退到复制链接
+-                    copyToClipboard(shareUrl);
+-                });
+-            } else {
+-                // 不支持分享API时复制链接到剪贴板
+-                copyToClipboard(shareUrl);
+-            }
+-        });
+-    }
+-    
+-    // 绑定收藏按钮事件
+-    const favBtn = document.getElementById('add-to-favorites');
+-    if (favBtn) {
+-        favBtn.addEventListener('click', function() {
+-            // 这里将来可以实现保存到用户的收藏列表中
+-            alert('该功能即将上线，敬请期待！');
+-        });
+-    }
+-    
+-    // 辅助函数：复制文本到剪贴板
+-    function copyToClipboard(text) {
+-        // 创建一个临时的textarea元素
+-        const textarea = document.createElement('textarea');
+-        textarea.value = text;
+-        document.body.appendChild(textarea);
+-        textarea.select();
+-        
+-        try {
+-            // 执行复制命令
+-            document.execCommand('copy');
+-            alert('链接已复制到剪贴板！');
+-        } catch (err) {
+-            console.error('复制失败:', err);
+-            alert('复制链接失败，请手动复制: ' + text);
+-        }
+-        
+-        // 清理DOM
+-        document.body.removeChild(textarea);
+-    }
+-});
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"MavenProjectsManager\">\r\n    <option name=\"originalFiles\">\r\n      <list>\r\n        <option value=\"$PROJECT_DIR$/pom.xml\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_X\" default=\"true\" project-jdk-name=\"openjdk-24\" project-jdk-type=\"JavaSDK\" />\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 06002ab67979cb181d20e9472d2e24a0f3667af2)
++++ b/.idea/misc.xml	(date 1747653916787)
+@@ -8,5 +8,5 @@
+       </list>
+     </option>
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="openjdk-24" project-jdk-type="JavaSDK" />
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_23" default="true" project-jdk-name="openjdk-24" project-jdk-type="JavaSDK" />
+ </project>
+\ No newline at end of file
+Index: .idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/mysql.osA4Bg.meta
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#n:mysql\r\n!<md> [0, 0, null, null, -2147483648, -2147483648]\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/mysql.osA4Bg.meta b/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/mysql.osA4Bg.meta
+--- a/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/mysql.osA4Bg.meta	(revision 06002ab67979cb181d20e9472d2e24a0f3667af2)
++++ b/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/mysql.osA4Bg.meta	(date 1747653914670)
+@@ -1,2 +1,2 @@
+ #n:mysql
+-!<md> [0, 0, null, null, -2147483648, -2147483648]
++!<md> [null, 0, null, null, -2147483648, -2147483648]
+Index: .idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/information_schema.FNRwLQ.meta
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#n:information_schema\r\n!<md> [0, 0, null, null, -2147483648, -2147483648]\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/information_schema.FNRwLQ.meta b/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/information_schema.FNRwLQ.meta
+--- a/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/information_schema.FNRwLQ.meta	(revision 06002ab67979cb181d20e9472d2e24a0f3667af2)
++++ b/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/information_schema.FNRwLQ.meta	(date 1747653914661)
+@@ -1,2 +1,2 @@
+ #n:information_schema
+-!<md> [0, 0, null, null, -2147483648, -2147483648]
++!<md> [null, 0, null, null, -2147483648, -2147483648]
+Index: .idea/dataSources.local.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"dataSourceStorageLocal\" created-in=\"IU-242.21829.142\">\r\n    <data-source name=\"@localhost\" uuid=\"af934667-cbcd-4136-98ab-36c135e3cc2b\">\r\n      <database-info product=\"MySQL\" version=\"8.0.41\" jdbc-version=\"4.2\" driver-name=\"MySQL Connector/J\" driver-version=\"mysql-connector-j-8.2.0 (Revision: 06a1f724497fd81c6a659131fda822c9e5085b6c)\" dbms=\"MYSQL\" exact-version=\"8.0.41\" exact-driver-version=\"8.2\">\r\n        <extra-name-characters>#@</extra-name-characters>\r\n        <identifier-quote-string>`</identifier-quote-string>\r\n      </database-info>\r\n      <case-sensitivity plain-identifiers=\"lower\" quoted-identifiers=\"lower\" />\r\n      <secret-storage>master_key</secret-storage>\r\n      <user-name>root</user-name>\r\n      <schema-mapping>\r\n        <introspection-scope>\r\n          <node kind=\"schema\" negative=\"1\" />\r\n        </introspection-scope>\r\n      </schema-mapping>\r\n      <load-sources>user_and_system_sources</load-sources>\r\n    </data-source>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dataSources.local.xml b/.idea/dataSources.local.xml
+--- a/.idea/dataSources.local.xml	(revision 06002ab67979cb181d20e9472d2e24a0f3667af2)
++++ b/.idea/dataSources.local.xml	(date 1747653965345)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="dataSourceStorageLocal" created-in="IU-242.21829.142">
++  <component name="dataSourceStorageLocal" created-in="IU-243.26053.27">
+     <data-source name="@localhost" uuid="af934667-cbcd-4136-98ab-36c135e3cc2b">
+       <database-info product="MySQL" version="8.0.41" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-j-8.2.0 (Revision: 06a1f724497fd81c6a659131fda822c9e5085b6c)" dbms="MYSQL" exact-version="8.0.41" exact-driver-version="8.2">
+         <extra-name-characters>#@</extra-name-characters>
+@@ -11,7 +11,10 @@
+       <user-name>root</user-name>
+       <schema-mapping>
+         <introspection-scope>
+-          <node kind="schema" negative="1" />
++          <node kind="schema">
++            <name qname="@" />
++            <name qname="infosys" />
++          </node>
+         </introspection-scope>
+       </schema-mapping>
+       <load-sources>user_and_system_sources</load-sources>
+Index: .idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/performance_schema.kIw0nw.meta
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#n:performance_schema\r\n!<md> [0, 0, null, null, -2147483648, -2147483648]\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/performance_schema.kIw0nw.meta b/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/performance_schema.kIw0nw.meta
+--- a/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/performance_schema.kIw0nw.meta	(revision 06002ab67979cb181d20e9472d2e24a0f3667af2)
++++ b/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/performance_schema.kIw0nw.meta	(date 1747653914673)
+@@ -1,2 +1,2 @@
+ #n:performance_schema
+-!<md> [0, 0, null, null, -2147483648, -2147483648]
++!<md> [null, 0, null, null, -2147483648, -2147483648]
+Index: .idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/sys.zb4BAA.meta
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#n:sys\r\n!<md> [0, 0, null, null, -2147483648, -2147483648]\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/sys.zb4BAA.meta b/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/sys.zb4BAA.meta
+--- a/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/sys.zb4BAA.meta	(revision 06002ab67979cb181d20e9472d2e24a0f3667af2)
++++ b/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/sys.zb4BAA.meta	(date 1747653914679)
+@@ -1,2 +1,2 @@
+ #n:sys
+-!<md> [0, 0, null, null, -2147483648, -2147483648]
++!<md> [null, 0, null, null, -2147483648, -2147483648]
+Index: .idea/webContexts.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"WebContextManager\">\r\n    <option name=\"state\">\r\n      <map>\r\n        <entry key=\"file://$PROJECT_DIR$/src/main/webapp/assets/page/forum.jsp\" value=\"file://$PROJECT_DIR$/src/main/webapp/assets/page\" />\r\n        <entry key=\"file://$PROJECT_DIR$/src/main/webapp/assets/page/home.jsp\" value=\"file://$PROJECT_DIR$/src/main/webapp/assets/page\" />\r\n        <entry key=\"file://$PROJECT_DIR$/src/main/webapp/assets/page/overview.jsp\" value=\"file://$PROJECT_DIR$/src/main/webapp/assets/page\" />\r\n        <entry key=\"file://$PROJECT_DIR$/src/main/webapp/assets/page/profile.jsp\" value=\"file://$PROJECT_DIR$/src/main/webapp/assets/page\" />\r\n        <entry key=\"file://$PROJECT_DIR$/src/main/webapp/compare.jsp\" value=\"file://$PROJECT_DIR$/src/main/webapp\" />\r\n        <entry key=\"file://$PROJECT_DIR$/src/main/webapp/home.jsp\" value=\"file://$PROJECT_DIR$/src/main/webapp\" />\r\n        <entry key=\"file://$PROJECT_DIR$/src/main/webapp/login.jsp\" value=\"file://$PROJECT_DIR$/src/main/webapp\" />\r\n        <entry key=\"file://$PROJECT_DIR$/src/main/webapp/main.jsp\" value=\"file://$PROJECT_DIR$/src/main/webapp\" />\r\n        <entry key=\"file://$PROJECT_DIR$/src/main/webapp/overview.jsp\" value=\"file://$PROJECT_DIR$/src/main/webapp\" />\r\n        <entry key=\"file://$PROJECT_DIR$/src/main/webapp/profile.jsp\" value=\"file://$PROJECT_DIR$/src/main/webapp\" />\r\n        <entry key=\"file://$PROJECT_DIR$/src/main/webapp/sub/themeToggle.jsp\" value=\"file://$PROJECT_DIR$/src/main/webapp/sub\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/webContexts.xml b/.idea/webContexts.xml
+--- a/.idea/webContexts.xml	(revision 06002ab67979cb181d20e9472d2e24a0f3667af2)
++++ b/.idea/webContexts.xml	(date 1747715676667)
+@@ -3,6 +3,7 @@
+   <component name="WebContextManager">
+     <option name="state">
+       <map>
++        <entry key="file://$PROJECT_DIR$/src/main/webapp/assets/page/compare.jsp" value="file://$PROJECT_DIR$/src/main/webapp/assets/page" />
+         <entry key="file://$PROJECT_DIR$/src/main/webapp/assets/page/forum.jsp" value="file://$PROJECT_DIR$/src/main/webapp/assets/page" />
+         <entry key="file://$PROJECT_DIR$/src/main/webapp/assets/page/home.jsp" value="file://$PROJECT_DIR$/src/main/webapp/assets/page" />
+         <entry key="file://$PROJECT_DIR$/src/main/webapp/assets/page/overview.jsp" value="file://$PROJECT_DIR$/src/main/webapp/assets/page" />
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ArtifactsWorkspaceSettings\">\r\n    <artifacts-to-build>\r\n      <artifact name=\"DB_assignment:war\" />\r\n    </artifacts-to-build>\r\n  </component>\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"d02de210-1416-435c-ad06-f238c6357885\" name=\"更改\" comment=\"你们快来搞项目啊\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/dataSources.local.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/dataSources.local.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/misc.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/css/pages/overview.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/css/pages/overview.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/js/overview.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/js/overview.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/page/overview.jsp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/page/overview.jsp\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/assets/page/sub/scripts.jsp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/assets/page/sub/scripts.jsp\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Jsp File\" />\r\n        <option value=\"Class\" />\r\n        <option value=\"JavaScript File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;Yhazrin&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\"><![CDATA[{\r\n  \"selectedUrlAndAccountId\": {\r\n    \"url\": \"https://github.com/Yhazrin/DB_assignment.git\",\r\n    \"accountId\": \"c5c1bf82-99b0-47bc-955e-b53d4122e797\"\r\n  }\r\n}]]></component>\r\n  <component name=\"KubernetesApiPersistence\">{}</component>\r\n  <component name=\"KubernetesApiProvider\">{\r\n  &quot;isMigrated&quot;: true\r\n}</component>\r\n  <component name=\"LogFilters\">\r\n    <option name=\"FILTER_ERRORS\" value=\"false\" />\r\n    <option name=\"FILTER_WARNINGS\" value=\"false\" />\r\n    <option name=\"FILTER_INFO\" value=\"true\" />\r\n    <option name=\"FILTER_DEBUG\" value=\"true\" />\r\n    <option name=\"CUSTOM_FILTER\" />\r\n  </component>\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"mavenHomeTypeForPersistence\" value=\"WRAPPER\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 3\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2wEMqlUb4sKktor846VuiCpSJbu\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <OptionsSetting value=\"false\" id=\"Update\" />\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;Maven.DB_assignment [clean].executor&quot;: &quot;Run&quot;,\r\n    &quot;Maven.DB_assignment [package].executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,\r\n    &quot;TomEE 服务器.TomcatDASHABI.executor&quot;: &quot;Run&quot;,\r\n    &quot;Tomcat Server.Tomcat 10.1.39.executor&quot;: &quot;Run&quot;,\r\n    &quot;Tomcat 服务器.Tomcat 10.1.39.executor&quot;: &quot;Run&quot;,\r\n    &quot;Tomcat 服务器.TomcatSHABI.executor&quot;: &quot;Run&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;master&quot;,\r\n    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/20544/Desktop/SE/SEP/Assignment/DB_assignment&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.42847174&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  },\r\n  &quot;keyToStringList&quot;: {\r\n    &quot;DatabaseDriversLRU&quot;: [\r\n      &quot;mysql&quot;\r\n    ]\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\20544\\Desktop\\SE\\SEP\\Assignment\\DB_assignment\\src\\main\\webapp\\assets\\css\\pages\" />\r\n      <recent name=\"C:\\Users\\20544\\Desktop\\SE\\SEP\\Assignment\\DB_assignment\\src\\main\\webapp\\assets\\css\\sections\" />\r\n      <recent name=\"C:\\Users\\20544\\Desktop\\SE\\SEP\\Assignment\\DB_assignment\\src\\main\\webapp\\assets\\css\\components\" />\r\n      <recent name=\"C:\\Users\\20544\\Desktop\\SE\\SEP\\Assignment\\DB_assignment\\src\\main\\webapp\\assets\\videos\" />\r\n      <recent name=\"C:\\Users\\20544\\Desktop\\SE\\SEP\\Assignment\\DB_assignment\\src\\main\\webapp\\assets\\images\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Tomcat Server.Tomcat 10.1.39\">\r\n    <configuration default=\"true\" type=\"TomeeConfiguration\" factoryName=\"Remote\" ALTERNATIVE_JRE_ENABLED=\"false\">\r\n      <option name=\"LOCAL\" value=\"false\" />\r\n      <deployment />\r\n      <server-settings>\r\n        <data>\r\n          <option name=\"transportHostId\" value=\"\" />\r\n          <host-id />\r\n        </data>\r\n      </server-settings>\r\n      <predefined_log_file enabled=\"true\" id=\"Tomcat\" />\r\n      <predefined_log_file enabled=\"true\" id=\"TOMCAT_LOCALHOST_LOG_ID\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Tomcat 10.1.39\" type=\"#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory\" factoryName=\"Local\" APPLICATION_SERVER_NAME=\"Tomcat 10.1.39\" ALTERNATIVE_JRE_ENABLED=\"false\" nameIsGenerated=\"true\">\r\n      <option name=\"UPDATING_POLICY\" value=\"restart-server\" />\r\n      <deployment>\r\n        <artifact name=\"DB_assignment:war exploded\">\r\n          <settings>\r\n            <option name=\"CONTEXT_PATH\" value=\"/DB_assignment_war_exploded\" />\r\n          </settings>\r\n        </artifact>\r\n        <artifact name=\"DB_assignment:war\">\r\n          <settings>\r\n            <option name=\"CONTEXT_PATH\" value=\"/DB_assignment_war\" />\r\n          </settings>\r\n        </artifact>\r\n      </deployment>\r\n      <server-settings>\r\n        <option name=\"BASE_DIRECTORY_NAME\" value=\"5b83f360-1658-48c0-beb6-2a01bc70bc9e\" />\r\n        <option name=\"HTTP_PORT\" value=\"8081\" />\r\n        <option name=\"JNDI_PORT\" value=\"1098\" />\r\n      </server-settings>\r\n      <predefined_log_file enabled=\"true\" id=\"Tomcat\" />\r\n      <predefined_log_file enabled=\"true\" id=\"Tomcat Catalina\" />\r\n      <predefined_log_file id=\"Tomcat Manager\" />\r\n      <predefined_log_file id=\"Tomcat Host Manager\" />\r\n      <predefined_log_file id=\"Tomcat Localhost Access\" />\r\n      <RunnerSettings RunnerId=\"AppServerDebuggerRunner\">\r\n        <option name=\"DEBUG_PORT\" value=\"64229\" />\r\n      </RunnerSettings>\r\n      <RunnerSettings RunnerId=\"Debug\">\r\n        <option name=\"DEBUG_PORT\" value=\"51482\" />\r\n      </RunnerSettings>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"AppServerDebuggerRunner\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Cover\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Debug\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Profile\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Run\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n        <option name=\"BuildArtifacts\" enabled=\"true\">\r\n          <artifact name=\"DB_assignment:war\" />\r\n        </option>\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"TomcatSHABI\" type=\"#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory\" factoryName=\"Remote\" APPLICATION_SERVER_NAME=\"Tomcat 10.1.39\" ALTERNATIVE_JRE_ENABLED=\"false\">\r\n      <option name=\"LOCAL\" value=\"false\" />\r\n      <deployment />\r\n      <server-settings>\r\n        <data>\r\n          <option name=\"targets\">\r\n            <list>\r\n              <WatchedTargetModelImpl>\r\n                <option name=\"name\" value=\"CONTEXT_XML\" />\r\n                <option name=\"transportStagingTarget\">\r\n                  <TransportTarget>\r\n                    <option name=\"id\" value=\"8c1d0dc4-126a-4442-90b2-78bf6a4bb45a\" />\r\n                    <id>8c1d0dc4-126a-4442-90b2-78bf6a4bb45a</id>\r\n                  </TransportTarget>\r\n                </option>\r\n                <option name=\"watchedLocalPath\" value=\"\" />\r\n                <watched-path />\r\n                <name>CONTEXT_XML</name>\r\n                <transport-target>\r\n                  <TransportTarget>\r\n                    <option name=\"id\" value=\"8c1d0dc4-126a-4442-90b2-78bf6a4bb45a\" />\r\n                    <id>8c1d0dc4-126a-4442-90b2-78bf6a4bb45a</id>\r\n                  </TransportTarget>\r\n                </transport-target>\r\n              </WatchedTargetModelImpl>\r\n              <StagingTargetModelImpl>\r\n                <option name=\"name\" value=\"STAGING\" />\r\n                <option name=\"stagingRemotePath\" value=\"\" />\r\n                <option name=\"transportStagingTarget\">\r\n                  <TransportTarget>\r\n                    <option name=\"id\" value=\"bd315c20-6365-4217-8d02-ee05d1cf14d4\" />\r\n                    <id>bd315c20-6365-4217-8d02-ee05d1cf14d4</id>\r\n                  </TransportTarget>\r\n                </option>\r\n                <staging-path />\r\n                <name>STAGING</name>\r\n                <transport-target>\r\n                  <TransportTarget>\r\n                    <option name=\"id\" value=\"bd315c20-6365-4217-8d02-ee05d1cf14d4\" />\r\n                    <id>bd315c20-6365-4217-8d02-ee05d1cf14d4</id>\r\n                  </TransportTarget>\r\n                </transport-target>\r\n              </StagingTargetModelImpl>\r\n            </list>\r\n          </option>\r\n        </data>\r\n      </server-settings>\r\n      <predefined_log_file enabled=\"true\" id=\"Tomcat\" />\r\n      <predefined_log_file enabled=\"true\" id=\"TOMCAT_LOCALHOST_LOG_ID\" />\r\n      <RunnerSettings RunnerId=\"Debug\">\r\n        <option name=\"DEBUG_PORT\" value=\"58019\" />\r\n        <option name=\"LOCAL\" value=\"false\" />\r\n      </RunnerSettings>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory\" factoryName=\"Remote\" ALTERNATIVE_JRE_ENABLED=\"false\">\r\n      <option name=\"LOCAL\" value=\"false\" />\r\n      <deployment />\r\n      <server-settings>\r\n        <data>\r\n          <option name=\"transportHostId\" value=\"\" />\r\n          <host-id />\r\n        </data>\r\n      </server-settings>\r\n      <predefined_log_file enabled=\"true\" id=\"Tomcat\" />\r\n      <predefined_log_file enabled=\"true\" id=\"TOMCAT_LOCALHOST_LOG_ID\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <list>\r\n      <item itemvalue=\"Tomcat Server.Tomcat 10.1.39\" />\r\n      <item itemvalue=\"Tomcat Server.TomcatSHABI\" />\r\n    </list>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"应用程序级\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"默认任务\">\r\n      <changelist id=\"d02de210-1416-435c-ad06-f238c6357885\" name=\"更改\" comment=\"\" />\r\n      <created>1745602472992</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1745602472992</updated>\r\n      <workItem from=\"1745602474398\" duration=\"1871000\" />\r\n      <workItem from=\"1745694905566\" duration=\"1227000\" />\r\n      <workItem from=\"1745806418481\" duration=\"5000\" />\r\n      <workItem from=\"1745808831130\" duration=\"93000\" />\r\n      <workItem from=\"1745912189756\" duration=\"16699000\" />\r\n      <workItem from=\"1745938599503\" duration=\"23952000\" />\r\n      <workItem from=\"1745990668039\" duration=\"34165000\" />\r\n      <workItem from=\"1746047924674\" duration=\"5260000\" />\r\n      <workItem from=\"1746084442265\" duration=\"9796000\" />\r\n      <workItem from=\"1746096985778\" duration=\"17580000\" />\r\n      <workItem from=\"1746132127196\" duration=\"983000\" />\r\n      <workItem from=\"1746133134676\" duration=\"1409000\" />\r\n      <workItem from=\"1746134567720\" duration=\"14894000\" />\r\n      <workItem from=\"1746195072548\" duration=\"9482000\" />\r\n      <workItem from=\"1746211232795\" duration=\"8637000\" />\r\n      <workItem from=\"1746335210253\" duration=\"12888000\" />\r\n      <workItem from=\"1746353225970\" duration=\"1268000\" />\r\n      <workItem from=\"1746354512464\" duration=\"27957000\" />\r\n      <workItem from=\"1746435942670\" duration=\"30213000\" />\r\n      <workItem from=\"1746517374252\" duration=\"7284000\" />\r\n      <workItem from=\"1746532585397\" duration=\"2060000\" />\r\n      <workItem from=\"1746534669358\" duration=\"9098000\" />\r\n      <workItem from=\"1746548083668\" duration=\"377000\" />\r\n      <workItem from=\"1746799389202\" duration=\"361000\" />\r\n      <workItem from=\"1746799833808\" duration=\"549000\" />\r\n      <workItem from=\"1746802919610\" duration=\"881000\" />\r\n      <workItem from=\"1746804452203\" duration=\"1721000\" />\r\n      <workItem from=\"1746807016368\" duration=\"1210000\" />\r\n      <workItem from=\"1746810505643\" duration=\"1880000\" />\r\n      <workItem from=\"1746985199299\" duration=\"76000\" />\r\n      <workItem from=\"1747218531781\" duration=\"4754000\" />\r\n      <workItem from=\"1747580233060\" duration=\"6713000\" />\r\n      <workItem from=\"1747592109186\" duration=\"7144000\" />\r\n      <workItem from=\"1747630358034\" duration=\"3928000\" />\r\n      <workItem from=\"1747652888597\" duration=\"756000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"servlet可以正常工作了！\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1745603465770</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1745603465770</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"servlet可以正常工作了！\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1745604338439</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1745604338439</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"完成了所有基础子页面的基础样式，同意了设计风格，，重置了登录界面\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1745963434936</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1745963434937</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"改了main和home的逻辑\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1745986951352</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1745986951352</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"66666666\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746017144075</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746017144075</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"美化了一些部件\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746036196712</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746036196712</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"先创建了一个csv，经过百折不挠的奋斗，他终于可以显示在overview里了\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746049209849</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746049209849</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"完成了伟大的搜索功能，虽然还不是太完备\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746050440505</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746050440505</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"做了很帅的home.css文件,\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746179280563</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746179280563</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"home\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746375933126</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746375933126</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"home\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746375955052</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746375955052</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"更新了项目结构树file\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746501027450</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746501027450</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"你们快来搞项目啊\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746538494014</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746538494014</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"你们快来搞项目啊\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746800362289</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746800362289</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"你们快来搞项目啊\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1747628182088</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1747628182088</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\"你们快来搞项目啊\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1747628337383</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1747628337383</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"17\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"servlet可以正常工作了！\" />\r\n    <MESSAGE value=\"完成了所有基础子页面的基础样式，同意了设计风格，，重置了登录界面\" />\r\n    <MESSAGE value=\"改了main和home的逻辑\" />\r\n    <MESSAGE value=\"66666666\" />\r\n    <MESSAGE value=\"美化了一些部件\" />\r\n    <MESSAGE value=\"先创建了一个csv，经过百折不挠的奋斗，他终于可以显示在overview里了\" />\r\n    <MESSAGE value=\"完成了伟大的搜索功能，虽然还不是太完备\" />\r\n    <MESSAGE value=\"做了很帅的home.css文件,\" />\r\n    <MESSAGE value=\"home\" />\r\n    <MESSAGE value=\"毁了\" />\r\n    <MESSAGE value=\"更新了项目结构树file\" />\r\n    <MESSAGE value=\"你们快来搞项目啊\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"你们快来搞项目啊\" />\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 06002ab67979cb181d20e9472d2e24a0f3667af2)
++++ b/.idea/workspace.xml	(date 1747723110020)
+@@ -2,21 +2,29 @@
+ <project version="4">
+   <component name="ArtifactsWorkspaceSettings">
+     <artifacts-to-build>
+-      <artifact name="DB_assignment:war" />
++      <artifact name="DB_assignment:war exploded" />
+     </artifacts-to-build>
+   </component>
+   <component name="AutoImportSettings">
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="d02de210-1416-435c-ad06-f238c6357885" name="更改" comment="你们快来搞项目啊">
++    <list default="true" id="d02de210-1416-435c-ad06-f238c6357885" name="更改" comment="马哥坏">
+       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/mysql.osA4Bg.meta" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/af934667-cbcd-4136-98ab-36c135e3cc2b/storage_v2/_src_/schema/sys.zb4BAA.meta" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/overview.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/overview.css" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/compare.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/pages/compare.css" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/compare-init.js" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/compare.js" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/overview.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/overview.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/overview.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/overview.jsp" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/scripts.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/sub/scripts.jsp" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/compare.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/compare.jsp" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/page/forum.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/page/forum.jsp" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -26,8 +34,9 @@
+   <component name="FileTemplateManagerImpl">
+     <option name="RECENT_TEMPLATES">
+       <list>
+-        <option value="Jsp File" />
+         <option value="Class" />
++        <option value="HTML File" />
++        <option value="Jsp File" />
+         <option value="JavaScript File" />
+       </list>
+     </option>
+@@ -41,12 +50,15 @@
+     &quot;assignee&quot;: &quot;Yhazrin&quot;
+   }
+ }</component>
+-  <component name="GithubPullRequestsUISettings"><![CDATA[{
+-  "selectedUrlAndAccountId": {
+-    "url": "https://github.com/Yhazrin/DB_assignment.git",
+-    "accountId": "c5c1bf82-99b0-47bc-955e-b53d4122e797"
++  <component name="GithubPullRequestsUISettings">{
++  &quot;selectedUrlAndAccountId&quot;: {
++    &quot;url&quot;: &quot;https://github.com/Yhazrin/DB_assignment.git&quot;,
++    &quot;accountId&quot;: &quot;32029469-983b-45ac-b446-36588808c724&quot;
+   }
+-}]]></component>
++}</component>
++  <component name="HighlightingSettingsPerFile">
++    <setting file="file://$PROJECT_DIR$/src/main/java/MessageSenderTest.java" root0="FORCE_HIGHLIGHTING" />
++  </component>
+   <component name="KubernetesApiPersistence">{}</component>
+   <component name="KubernetesApiProvider">{
+   &quot;isMigrated&quot;: true
+@@ -77,50 +89,59 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+-    &quot;Maven.DB_assignment [clean].executor&quot;: &quot;Run&quot;,
+-    &quot;Maven.DB_assignment [package].executor&quot;: &quot;Run&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+-    &quot;TomEE 服务器.TomcatDASHABI.executor&quot;: &quot;Run&quot;,
+-    &quot;Tomcat Server.Tomcat 10.1.39.executor&quot;: &quot;Run&quot;,
+-    &quot;Tomcat 服务器.Tomcat 10.1.39.executor&quot;: &quot;Run&quot;,
+-    &quot;Tomcat 服务器.TomcatSHABI.executor&quot;: &quot;Run&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;C:/Users/20544/Desktop/SE/SEP/Assignment/DB_assignment&quot;,
+-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
+-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+-    &quot;project.structure.side.proportion&quot;: &quot;0.42847174&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
++    "DefaultHtmlFileTemplate": "HTML File",
++    "Maven.DB_assignment [clean].executor": "Run",
++    "Maven.DB_assignment [package].executor": "Run",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "RunOnceActivity.git.unshallow": "true",
++    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
++    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
++    "TomEE 服务器.TomcatDASHABI.executor": "Run",
++    "Tomcat 服务器.Tomcat 10.1.39.executor": "Run",
++    "Tomcat 服务器.TomcatSHABI.executor": "Run",
++    "git-widget-placeholder": "master",
++    "junie.onboarding.icon.badge.shown": "true",
++    "kotlin-language-version-configured": "true",
++    "last_opened_file_path": "D:/DB_assignment/src/main/java",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_package_manager_path": "npm",
++    "project.structure.last.edited": "模块",
++    "project.structure.proportion": "0.0",
++    "project.structure.side.proportion": "0.42847174",
++    "settings.editor.selected.configurable": "preferences.lookFeel",
++    "vue.rearranger.settings.migration": "true",
++    "应用程序.MessageSenderTest.executor": "Run"
+   },
+-  &quot;keyToStringList&quot;: {
+-    &quot;DatabaseDriversLRU&quot;: [
+-      &quot;mysql&quot;
++  "keyToStringList": {
++    "DatabaseDriversLRU": [
++      "mysql"
+     ]
+   }
+-}</component>
++}]]></component>
+   <component name="RecentsManager">
++    <key name="CopyFile.RECENT_KEYS">
++      <recent name="D:\DB_assignment\src\main\java" />
++      <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\java\view" />
++      <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\java\view\pages" />
++    </key>
+     <key name="MoveFile.RECENT_KEYS">
++      <recent name="D:\DB_assignment\src\main\webapp\assets\page\sub" />
++      <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\page" />
++      <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\css\style" />
++      <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\css\pages\home" />
+       <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\css\pages" />
+-      <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\css\sections" />
+-      <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\css\components" />
+-      <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\videos" />
+-      <recent name="C:\Users\20544\Desktop\SE\SEP\Assignment\DB_assignment\src\main\webapp\assets\images" />
++    </key>
++    <key name="CopyClassDialog.RECENTS_KEY">
++      <recent name="model.sql" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Tomcat Server.Tomcat 10.1.39">
++  <component name="RunManager" selected="Tomcat 服务器.Tomcat 10.1.39">
+     <configuration default="true" type="TomeeConfiguration" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
+       <option name="LOCAL" value="false" />
+       <deployment />
+@@ -137,6 +158,7 @@
+       </method>
+     </configuration>
+     <configuration name="Tomcat 10.1.39" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.39" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
++      <option name="BROWSER_ID" value="37cae5b9-e8b2-4949-9172-aafa37fbc09c" />
+       <option name="UPDATING_POLICY" value="restart-server" />
+       <deployment>
+         <artifact name="DB_assignment:war exploded">
+@@ -144,16 +166,11 @@
+             <option name="CONTEXT_PATH" value="/DB_assignment_war_exploded" />
+           </settings>
+         </artifact>
+-        <artifact name="DB_assignment:war">
+-          <settings>
+-            <option name="CONTEXT_PATH" value="/DB_assignment_war" />
+-          </settings>
+-        </artifact>
+       </deployment>
+       <server-settings>
+         <option name="BASE_DIRECTORY_NAME" value="5b83f360-1658-48c0-beb6-2a01bc70bc9e" />
+         <option name="HTTP_PORT" value="8081" />
+-        <option name="JNDI_PORT" value="1098" />
++        <option name="JNDI_PORT" value="109" />
+       </server-settings>
+       <predefined_log_file enabled="true" id="Tomcat" />
+       <predefined_log_file enabled="true" id="Tomcat Catalina" />
+@@ -244,7 +261,7 @@
+       <method v="2">
+         <option name="Make" enabled="true" />
+         <option name="BuildArtifacts" enabled="true">
+-          <artifact name="DB_assignment:war" />
++          <artifact name="DB_assignment:war exploded" />
+         </option>
+       </method>
+     </configuration>
+@@ -321,15 +338,15 @@
+       </method>
+     </configuration>
+     <list>
+-      <item itemvalue="Tomcat Server.Tomcat 10.1.39" />
+-      <item itemvalue="Tomcat Server.TomcatSHABI" />
++      <item itemvalue="Tomcat 服务器.Tomcat 10.1.39" />
++      <item itemvalue="Tomcat 服务器.TomcatSHABI" />
+     </list>
+   </component>
+   <component name="SharedIndexes">
+     <attachedChunks>
+       <set>
+-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
+-        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
++        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
++        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
+       </set>
+     </attachedChunks>
+   </component>
+@@ -371,11 +388,14 @@
+       <workItem from="1746807016368" duration="1210000" />
+       <workItem from="1746810505643" duration="1880000" />
+       <workItem from="1746985199299" duration="76000" />
+-      <workItem from="1747218531781" duration="4754000" />
+-      <workItem from="1747580233060" duration="6713000" />
+-      <workItem from="1747592109186" duration="7144000" />
+-      <workItem from="1747630358034" duration="3928000" />
+-      <workItem from="1747652888597" duration="756000" />
++      <workItem from="1747218531781" duration="5331000" />
++      <workItem from="1747226809093" duration="9977000" />
++      <workItem from="1747237426074" duration="194000" />
++      <workItem from="1747275727407" duration="18203000" />
++      <workItem from="1747297105812" duration="5943000" />
++      <workItem from="1747316028820" duration="1206000" />
++      <workItem from="1747410236112" duration="959000" />
++      <workItem from="1747707927696" duration="13364000" />
+     </task>
+     <task id="LOCAL-00001" summary="servlet可以正常工作了！">
+       <option name="closed" value="true" />
+@@ -489,23 +509,39 @@
+       <option name="project" value="LOCAL" />
+       <updated>1746800362289</updated>
+     </task>
+-    <task id="LOCAL-00015" summary="你们快来搞项目啊">
++    <task id="LOCAL-00015" summary="更新">
+       <option name="closed" value="true" />
+-      <created>1747628182088</created>
++      <created>1747226243263</created>
+       <option name="number" value="00015" />
+       <option name="presentableId" value="LOCAL-00015" />
+       <option name="project" value="LOCAL" />
+-      <updated>1747628182088</updated>
++      <updated>1747226243263</updated>
+     </task>
+-    <task id="LOCAL-00016" summary="你们快来搞项目啊">
++    <task id="LOCAL-00016" summary="马哥坏">
+       <option name="closed" value="true" />
+-      <created>1747628337383</created>
++      <created>1747405520379</created>
+       <option name="number" value="00016" />
+       <option name="presentableId" value="LOCAL-00016" />
+       <option name="project" value="LOCAL" />
+-      <updated>1747628337383</updated>
++      <updated>1747405520379</updated>
+     </task>
+-    <option name="localTasksCounter" value="17" />
++    <task id="LOCAL-00017" summary="马哥坏">
++      <option name="closed" value="true" />
++      <created>1747405635309</created>
++      <option name="number" value="00017" />
++      <option name="presentableId" value="LOCAL-00017" />
++      <option name="project" value="LOCAL" />
++      <updated>1747405635309</updated>
++    </task>
++    <task id="LOCAL-00018" summary="马哥坏">
++      <option name="closed" value="true" />
++      <created>1747405682277</created>
++      <option name="number" value="00018" />
++      <option name="presentableId" value="LOCAL-00018" />
++      <option name="project" value="LOCAL" />
++      <updated>1747405682277</updated>
++    </task>
++    <option name="localTasksCounter" value="19" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -524,7 +560,9 @@
+     <MESSAGE value="毁了" />
+     <MESSAGE value="更新了项目结构树file" />
+     <MESSAGE value="你们快来搞项目啊" />
+-    <option name="LAST_COMMIT_MESSAGE" value="你们快来搞项目啊" />
++    <MESSAGE value="更新" />
++    <MESSAGE value="马哥坏" />
++    <option name="LAST_COMMIT_MESSAGE" value="马哥坏" />
+   </component>
+   <component name="XSLT-Support.FileAssociations.UIState">
+     <expand />

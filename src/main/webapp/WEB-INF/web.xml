@@ -2,7 +2,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
          version="5.0">
-    
+
     <!-- CompareServlet配置 -->
     <servlet>
         <servlet-name>compareServlet</servlet-name>
@@ -16,7 +16,8 @@
         <servlet-name>compareServlet</servlet-name>
         <url-pattern>/compare</url-pattern>
     </servlet-mapping>
-    
+
+
     <!-- OverviewServlet配置 -->
     <servlet>
         <servlet-name>overviewServlet</servlet-name>
@@ -30,7 +31,7 @@
         <servlet-name>overviewServlet</servlet-name>
         <url-pattern>/overview</url-pattern>
     </servlet-mapping>
-    
+
     <!-- LogoutServlet配置 -->
     <servlet>
         <servlet-name>logoutServlet</servlet-name>
@@ -39,7 +40,7 @@
         <servlet-name>logoutServlet</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
-    
+
     <!-- 欢迎页配置 -->
     <welcome-file-list>
         <welcome-file>assets/page/login.jsp</welcome-file>
