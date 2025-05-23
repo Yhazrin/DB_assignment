@@ -1,16 +1,16 @@
 /**
- * home.js - 处理首页的动画和滚动效果
+ * home.js - Handle animations and scroll effects on the homepage
  */
 document.addEventListener('DOMContentLoaded', function() {
-    // 动画效果
+    // Animation effects
     const elements = document.querySelectorAll('.section-overview, .section-compare, .section-forum, .section-profile, .tech-section, .testimonials');
 
-    // 首先让所有元素在初始时可见
+    // Initially make all elements visible
     elements.forEach(el => {
         el.classList.add('animate');
     });
-    
-    // 创建交叉观察器来处理基于滚动的动画
+
+    // Create an intersection observer to handle scroll-based animations
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -19,23 +19,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, { threshold: 0.1 });
 
-    // 为需要滚动动画的元素添加观察器
+    // Add observer to elements with scroll animation
     const scrollElements = document.querySelectorAll('.animate-on-scroll');
     scrollElements.forEach(el => {
         observer.observe(el);
     });
-    
-    // 只对交互元素添加悬停效果类
 
-    
-    // 平滑滚动到锚点链接
+    // Smooth scrolling to anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
-            
+
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
-            
+
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
                 targetElement.scrollIntoView({
@@ -45,11 +42,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
-    // 视频播放控制
+
+    // Video playback control
     const heroVideo = document.querySelector('.hero-video-card video');
     if (heroVideo) {
-        // 确保视频在可见区域时才播放，节省资源
+        // Ensure the video plays only when visible, to save resources
         const videoObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {

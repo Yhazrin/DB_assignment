@@ -1,9 +1,9 @@
 // src/main/webapp/assets/js/forum.js
 
-console.log('🔄 forum.js 加载完成');
+console.log('🔄 forum.js loaded');
 
 document.addEventListener('DOMContentLoaded', () => {
-    // —— Modal 相关 DOM 引用 ——（保持不变）
+    // Modal related DOM references
     const inputModal   = document.getElementById('inputModal');
     const modalHeader  = document.getElementById('modalHeader');
     const modalForm    = document.getElementById('modalForm');
@@ -50,17 +50,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const newForumBtn    = document.getElementById('newForumBtn');
 
     if (!forumListEl || !postListEl || !currentTitleEl || !noPostsEl || !newPostBtn || !newForumBtn) {
-        console.error('⚠️ 缺少必须的 DOM 元素');
+        console.error('⚠️ Page elements not found');
         return;
     }
 
     const BASE_URL = 'http://localhost:8080/ServerletFinal_war_exploded/data';
     let currentForumID = null;
 
-    // —— 1. 加载所有版块 ——
+    // Load all forums
     async function loadForums() {
         const url = `${BASE_URL}?type=readSQL&table=forums`;
-        console.log('🌐 发起获取版块请求', url);
+        console.log('🌐 requesting forums', url);
         try {
             const res = await fetch(url, { credentials: 'include' });
             const forums = await res.json();
@@ -73,12 +73,12 @@ document.addEventListener('DOMContentLoaded', () => {
             `).join('');
             attachForumClicks();
         } catch (err) {
-            console.error('🔥 获取版块失败：', err);
-            forumListEl.innerHTML = `<li>加载版块失败，请刷新</li>`;
+            console.error('🔥 loadForums failed:', err);
+            forumListEl.innerHTML = `<li>Failed to load forums, please refresh</li>`;
         }
     }
 
-    // —— 2. 点击版块 ——
+    // Attach click events to forums
     function attachForumClicks() {
         forumListEl.querySelectorAll('a[data-id]').forEach(a => {
             a.addEventListener('click', async e => {
@@ -91,10 +91,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // —— 3. 加载该版块的帖子 ——
     async function loadPosts(forumID) {
         const url = `${BASE_URL}?type=readSQL&table=posts&forumID=${forumID}`;
-        console.log('🌐 发起获取帖子请求', url);
+        console.log('🌐 requesting posts', url);
         try {
             const res = await fetch(url, { credentials: 'include' });
             const posts = await res.json();
@@ -120,8 +119,8 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="comments-section" style="display:none">
         <div class="comments-list"></div>
         <form class="comment-form">
-          <input type="text" name="comment" placeholder="写下你的评论…" required>
-          <button type="submit" class="btn">发布</button>
+          <input type="text" name="comment" placeholder="Write your comment..." required>
+          <button type="submit" class="btn">Post</button>
         </form>
       </div>
     </div>
@@ -129,12 +128,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 attachActionClicks();
             }
         } catch (err) {
-            console.error('🔥 获取帖子失败：', err);
-            postListEl.innerHTML = `<div class="message">加载帖子失败，请重试</div>`;
+            console.error('🔥 Failed to fetch posts:', err);
+            postListEl.innerHTML = `<div class="message">Failed to load posts, please retry</div>`;
         }
     }
 
-    // —— 4. 绑定点赞/评论切换/发表评论 ——
+    // Attach click events for likes, comment toggles, and posting comments
     function attachActionClicks() {
         postListEl.querySelectorAll('.topic-item').forEach(card => {
             const toggleBtn       = card.querySelector('.comment-toggle-btn');
@@ -161,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }).toString();
                 const res = await fetch(url, {
                     method:'POST',
-                    credentials: 'include',          // ← 关键
+                    credentials: 'include',
                     headers:{'Content-Type':'application/x-www-form-urlencoded'},
                     body
                 });
@@ -179,15 +178,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
-    // —— 5. 加载评论 ——
+    // Load comments for a specific post
     async function loadCommentsForCard(card, postId) {
         const listEl = card.querySelector('.comments-list');
-        listEl.innerHTML = '加载中…';
+        listEl.innerHTML = 'loading...';
         try {
             const res = await fetch(`${BASE_URL}?type=readSQL&table=comments&postID=${postId}`);
             const comments = await res.json();
             if (!comments.length) {
-                listEl.innerHTML = '<p class="no-comments">暂无评论</p>';
+                listEl.innerHTML = '<p class="no-comments">no comments yet</p>';
             } else {
                 listEl.innerHTML = comments.map(c => `
                   <div class="comment-item">
@@ -198,23 +197,22 @@ document.addEventListener('DOMContentLoaded', () => {
       `).join('');
             }
         } catch {
-            listEl.innerHTML = '<p class="no-comments">加载评论失败</p>';
+            listEl.innerHTML = '<p class="no-comments">load comments failed</p>';
         }
     }
 
-    // —— 6. 新建版块 ——
+    // Create a new forum
     newForumBtn.addEventListener('click', async () => {
         const data = await openModal([
-            { name: 'title',       label: '版块标题：', type: 'text',     placeholder: '请输入版块标题' },
-            { name: 'description', label: '版块简介：', type: 'textarea', placeholder: '请输入版块简介' }
-        ], '新建论坛版块');
+            { name: 'title',       label: 'forum title:', type: 'text',     placeholder: 'please enter forum title' },
+            { name: 'description', label: 'forum description:', type: 'textarea', placeholder: 'please enter forum description' }
+        ], 'create new forum');
         if (!data) return;
         const url  = `${BASE_URL}?type=modifySQL&table=forums`;
         const body = new URLSearchParams(data).toString();
         try {
             const res  = await fetch(url, {
                 method:'POST',
-
                 headers:{'Content-Type':'application/x-www-form-urlencoded'},
                 body
             });
@@ -222,19 +220,18 @@ document.addEventListener('DOMContentLoaded', () => {
             if (json.result === 'success') loadForums();
             else alert(json.error || json.message);
         } catch (err) {
-            console.error('🔥 新建版块失败：', err);
+            console.error('🔥 create forum failed:', err);
         }
     });
 
-    // —— 7. 发新帖 ——
+    // Post a new topic
     newPostBtn.addEventListener('click', async () => {
         if (!currentForumID) return;
 
-        // 只要标题／内容
         const data = await openModal([
-            { name:'title',   label:'帖子标题：', type:'text'    },
-            { name:'content', label:'帖子内容：', type:'textarea'}
-        ], '发布新帖子');
+            { name:'title',   label:'post title:', type:'text'    },
+            { name:'content', label:'post content:', type:'textarea'}
+        ], 'post new topic');
         if (!data) return;
 
         data.forumID = currentForumID;
@@ -244,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const res  = await fetch(url, {
                 method: 'POST',
-                credentials: 'include',          // ← 关键
+                credentials: 'include',
                 headers: {'Content-Type':'application/x-www-form-urlencoded'},
                 body
             });
@@ -255,13 +252,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert(json.error || json.message);
             }
         } catch (err) {
-            console.error('🔥 发帖失败：', err);
+            console.error('🔥 post new topic failed:', err);
         }
     });
 
-
-
-    // —— 初始化 ——
+    // Initialize the forum
     loadForums();
 
 });

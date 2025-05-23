@@ -6,7 +6,7 @@ document.addEventListener("click", async (e) => {
     const form = btn.closest("form.console-form");
     if (form) {
         e.preventDefault();
-        const postUrl = form.action;  // -- 直接用 action --
+        const postUrl = form.action;
         const bodyParams = new URLSearchParams(new FormData(form));
 
         try {
@@ -20,13 +20,13 @@ document.addEventListener("click", async (e) => {
             const result = await resp.json();
 
             if (result.result === "success") {
-                alert("✅ 删除成功！");
+                alert("✅ Delete success！");
                 btn.closest("tr")?.remove();
             } else {
-                alert("⚠️ 删除失败：" + (result.message || "未知错误"));
+                alert("⚠️ delete failed: " + (result.message || "unknown error"));
             }
         } catch (err) {
-            alert("❌ 网络或服务器错误：" + err.message);
+            alert("❌ Network error: " + err.message);
         }
     }
 });

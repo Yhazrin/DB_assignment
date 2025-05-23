@@ -5,35 +5,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageDiv = document.getElementById('registerMessage');
 
     if (!form || !messageDiv) {
-        console.error('缺少 registerForm 或 registerMessage 元素');
+        console.error('⚠️ Missing registerForm or registerMessage element');
         return;
     }
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        // 重置提示
+        // Clear previous messages
         messageDiv.textContent = '';
         messageDiv.style.color = '';
 
-        const username        = form.username.value.trim();
-        const email           = form.email.value.trim();
-        const password        = form.password.value.trim();
+        const username = form.username.value.trim();
+        const email = form.email.value.trim();
+        const password = form.password.value.trim();
         const confirmPassword = form.confirmPassword.value.trim();
 
         if (!username || !email || !password || !confirmPassword) {
-            messageDiv.textContent = '请填写所有字段';
+            messageDiv.textContent = 'Please fill in all fields';
             messageDiv.style.color = 'red';
             return;
         }
 
         if (password !== confirmPassword) {
-            messageDiv.textContent = '两次输入的密码不一致';
+            messageDiv.textContent = 'Passwords do not match';
             messageDiv.style.color = 'red';
             return;
         }
 
         try {
-            console.log('准备提交注册', { username, email, password });
+            console.log('📝 Preparing to submit registration', { username, email, password });
             const response = await fetch(
                 'http://localhost:8080/ServerletFinal_war_exploded/data?type=modifySQL&table=users',
                 {
@@ -49,15 +49,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             );
 
-            console.log('注册请求状态', response.status);
+            console.log('🌐 Registration request status', response.status);
             const data = await response.json();
-            console.log('后端返回', data);
+            console.log('💡 Backend returned JSON:', data);
 
             if (data.result === 'success') {
-                messageDiv.textContent = data.message || '注册成功，1.5秒后跳转到登录页…';
+                messageDiv.textContent = data.message || 'Registration successful! Redirecting to login page in 1.5 seconds…';
                 messageDiv.style.color = 'green';
 
-                // —— 修改：带上用户名和密码作为查询参数 ——
+                // Redirect to login page with username and password as query parameters
                 setTimeout(() => {
                     const params = new URLSearchParams({
                         username: username,
@@ -69,12 +69,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 1500);
 
             } else {
-                messageDiv.textContent = data.message || '注册失败，请重试';
+                messageDiv.textContent = data.message || 'Registration failed, please try again';
                 messageDiv.style.color = 'red';
             }
         } catch (err) {
-            console.error('注册请求出错', err);
-            messageDiv.textContent = '网络或服务器错误，请稍后再试';
+            console.error('🔥 Registration request error:', err);
+            messageDiv.textContent = 'Network or server error, please try again later';
             messageDiv.style.color = 'red';
         }
     });

@@ -1,7 +1,7 @@
 // src/main/webapp/assets/js/overview.js
 
 document.addEventListener("DOMContentLoaded", () => {
-    // —— DOM 元素 ——
+    // DOM elements
     const table         = document.getElementById("overview-table");
     const thead         = table.querySelector("thead");
     const tbody         = table.querySelector("tbody");
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const rangeFilters  = document.querySelectorAll(".range-filter .apply");
     const modelFilter   = document.getElementById("search-model");
 
-    // —— 表头定义 ——
+    // Table headers definition
     const tableHeaders = {
         mobile_brands: [
             { key: "Name",    label: "Name" },
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ]
     };
 
-    // —— 表格描述 ——
+    // Table descriptions
     const tableDescriptions = {
         mobile_brands: "Brand table: showing the name of the mobile phone brand, the official website address and the country it belongs to.",
         smartphones:  "Mobilephone information table: including parameters such as model, brand, price, configuration and battery.",
@@ -72,10 +72,10 @@ document.addEventListener("DOMContentLoaded", () => {
         smartphone_sales_all_countries_1: "Sales table (unit: million): presenting the annual sales situation from 2015 to 2024 by country and brand."
     };
 
-    // —— 当前表名 ——
+    // Current table name
     let currentTable = "smartphones";
 
-    // —— 渲染表头 ——
+    // Render table header
     function renderTableHeader(tableName) {
         const headers = tableHeaders[tableName];
         if (!headers) return;
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
         thead.appendChild(tr);
     }
 
-    // —— 渲染表体 ——
+    // Render table body with data
     function renderResults(data, tableName) {
         const headers = tableHeaders[tableName];
         tbody.innerHTML = "";
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // —— 获取并解析 JSON ——
+    // Fetch and parse JSON data
     async function fetchData(params, tableName) {
         renderTableHeader(tableName);
         tbody.innerHTML = `<tr><td colspan="${tableHeaders[tableName].length}">LOADING...</td></tr>`;
@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const data = await resp.json();
 
-            // —— 后端自定义错误 ——
+            // Handle backend custom errors
             if (data.ferror) {
                 tbody.innerHTML = `<tr><td colspan="${tableHeaders[tableName].length}" style="color:red;">
           ${data.ferror}
@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            // —— 数据格式校验 ——
+            // Validate data format
             if (!Array.isArray(data)) {
                 tbody.innerHTML = `<tr><td colspan="${tableHeaders[tableName].length}" style="color:red;">
           Unexpected response format.
@@ -149,19 +149,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            // —— 正常渲染 ——
+            // Render data normally
             renderResults(data, tableName);
             infoText.textContent = tableDescriptions[tableName] || "Data loaded.";
         } catch (err) {
-            console.error("加载失败：", err);
+            console.error("Loading failed:", err);
             tbody.innerHTML = `<tr><td colspan="${tableHeaders[tableName].length}" style="color:red;">
-        加载失败：${err.message}
+        Loading failed: ${err.message}
       </td></tr>`;
-            infoText.textContent = "加载失败，请检查网络或后端返回内容。";
+            infoText.textContent = "Loading failed, please check your network or backend response.";
         }
     }
 
-    // —— 切换表格按钮 ——
+    // Switch table buttons
     buttons.forEach(btn => {
         btn.addEventListener("click", () => {
             buttons.forEach(b => b.classList.remove("active"));
@@ -174,7 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // —— 搜索功能 ——
+    // Search functionality
     searchBtn?.addEventListener("click", e => {
         e.preventDefault();
         const val = searchInput.value.trim();
@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
         fetchData(params, currentTable);
     });
 
-    // —— 区间过滤 ——
+    // Range filtering
     rangeFilters.forEach(btn => {
         btn.addEventListener("click", e => {
             e.preventDefault();
@@ -230,7 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // —— 初始加载 ——
+    // Initial data fetch
     const initParams = new URLSearchParams();
     initParams.append("type", "readSQL");
     initParams.append("table", currentTable);

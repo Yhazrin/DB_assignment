@@ -24,7 +24,7 @@
             <button id="btnBrand" class="color-btn" data-page="mobile_brands">Brand</button>
             <button id="btnModel" class="color-btn" data-page="smartphones">Model</button>
             <button id="btnComponent" class="color-btn" data-page="component">Component</button>
-            <button id="btnSales" class="color-btn" data-page="smartphone_sales_all_countries_1">Sales</button>
+            <button id="btnSales" class="color-btn" data-page="smartphone_sales_all_countries">Sales</button>
             <button id="btnVendor" class="color-btn" data-page="supplier">Supplier</button>
 
 

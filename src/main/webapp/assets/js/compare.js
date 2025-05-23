@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 let phone = comparePhones[colIdx];
                 let value = phone[f.key] ?? "-";
                 html += `<td class="phone-info">${value}</td>`;
-                // CLEAR, guaranteed debug:
+                // DEBUG: Log the current table cell data
                 console.log(`[DEBUG] Table: row=${rowIdx} col=${colIdx} key=${f.key} value=`, value);
             }
             html += `</tr>`;
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function() {
             alert("Please enter a phone No.");
             return;
         }
-        // Prevent duplicate
+        // Prevent duplicate entries
         if (comparePhones.some(ph => String(ph.No) === String(no))) {
             alert("Already in compare list!");
             return;
@@ -102,6 +102,6 @@ document.addEventListener("DOMContentLoaded", function() {
         renderCompareTable();
     };
 
-    // Initial render
+    // Initial render of the comparison table
     renderCompareTable();
 });
