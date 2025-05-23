@@ -8,7 +8,6 @@ public class User {
     private String username;    // 用户名
     private String password;    // 密码（实际应加密存储）
     private String email;       // 邮箱
-    private String isAdmin;       // 手机号
     private List<MobilePhone> favorites;
 
     // 无参构造

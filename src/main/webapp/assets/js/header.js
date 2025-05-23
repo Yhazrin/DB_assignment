@@ -16,4 +16,5 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = `${CONTEXT}/assets/page/profile.jsp`;
         });
     }
+
 });

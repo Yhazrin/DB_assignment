@@ -13,7 +13,17 @@
     request.setAttribute("currentPage", currentPage);
 %>
 
-<script>window.CONTEXT_PATH = "${pageContext.request.contextPath}";</script>
+<script>
+    // 全局上下文和管理员标志
+    window.CONTEXT_PATH = "${pageContext.request.contextPath}";
+    // 注意 JSP EL 会自动把 Boolean 转成 "true"/"false"
+    window.IS_ADMIN    = "${sessionScope.isAdmin}";
+</script>
+<script>
+    window.CONTEXT_PATH = "${pageContext.request.contextPath}";
+    window.IS_ADMIN    = "${sessionScope.isAdmin}";
+    console.log("调试 ⇒ window.IS_ADMIN =", window.IS_ADMIN);
+</script>
 
 <nav class="navbar">
     <div class="logo">MobilePhoneSys</div>
@@ -28,8 +38,13 @@
            class="${currentPage == 'forum' ? 'active' : ''}">Forum</a>
         <a href="${pageContext.request.contextPath}/assets/page/profile.jsp"
            class="${currentPage == 'profile' ? 'active' : ''}">Profile</a>
-        <a href="${pageContext.request.contextPath}/assets/page/console.jsp"
-           class="${currentPage == 'addsmartphone' ? 'active' : ''}">Console</a>
+
+        <c:if test="${sessionScope.username == 'admin'}">
+            <a href="${pageContext.request.contextPath}/assets/page/console.jsp"
+               class="${currentPage=='console'?'active':''}">
+                Console
+            </a>
+        </c:if>
 
         <!-- 把登录/欢迎也当成 nav-link -->
         <c:choose>

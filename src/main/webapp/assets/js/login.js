@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // —— 新增：从 URL 拿 username/password，预填表单 ——
+    // —— 从 URL 拿 username/password，预填表单 ——
     const params = new URLSearchParams(window.location.search);
     const savedUser = params.get('username');
     const savedPass = params.get('password');
@@ -42,16 +42,21 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // 构造 URL 和 body
-        const url = 'http://localhost:8080/ServerletFinal_war_exploded/data?type=login';
-        const body = new URLSearchParams({ username, password }).toString();
+        // —— 修改：将 type 和 table 一并放入 body ——
+        const url = 'http://localhost:8080/ServerletFinal_war_exploded/data';
+        const body = new URLSearchParams({
+            type:     'login',
+            table:    'users',
+            username,
+            password
+        }).toString();
 
         console.log('🌐 发起登录请求', { url, body });
 
         try {
             const response = await fetch(url, {
                 method: 'POST',
-                credentials: "include",      // ← 一定要加上
+                credentials: 'include',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body
             });
@@ -61,6 +66,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             console.log('💡 后端返回 JSON:', data);
 
+            // —— 优先处理后端返回的参数缺失或其他自定义错误字段 ——
+            if (data.ferror) {
+                console.warn('❌ 参数缺失或格式错误:', data.ferror);
+                messageDiv.textContent = data.ferror;
+                messageDiv.style.color = 'red';
+                return;
+            }
+
             if (data.result === 'success') {
                 messageDiv.textContent = data.message || 'Login successful!';
                 messageDiv.style.color = 'green';
@@ -69,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     window.location.href =
                         'http://localhost:8081/DB_assignment_war_exploded/assets/page/home.jsp';
-                }, 1500);
+                }, 10000);
 
             } else {
                 console.warn('❌ 登录失败:', data.message);

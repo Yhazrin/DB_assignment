@@ -8,7 +8,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- scripts.jsp — 全站通用脚本 -->
 <script src="${pageContext.request.contextPath}/assets/js/theme-toggle.js" defer></script>
-<script src="${pageContext.request.contextPath}/assets/js/overview.js" defer></script>
 <script src="${pageContext.request.contextPath}/assets/js/tool.js" defer></script>
 <script src="${pageContext.request.contextPath}/assets/js/background.js" defer></script>
 

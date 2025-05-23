@@ -1,23 +1,16 @@
+// update_smartphone.js
 document.addEventListener("submit", async (e) => {
     const form = e.target;
     if (!form.matches("form.console-form")) return;
 
     e.preventDefault();
 
-    const fixedBaseUrl = form.getAttribute("action");
-    const formData = new FormData(form);
-
-    const url = new URL(fixedBaseUrl);
-    for (const [key, value] of formData.entries()) {
-        if (key !== 'type' && key !== 'table') {
-            url.searchParams.append(key, value);
-        }
-    }
-
-    const bodyParams = new URLSearchParams(formData);
+    // **同样** 直接拿 form.action
+    const postUrl = form.action;
+    const bodyParams = new URLSearchParams(new FormData(form));
 
     try {
-        const resp = await fetch(url.toString(), {
+        const resp = await fetch(postUrl, {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
@@ -26,24 +19,18 @@ document.addEventListener("submit", async (e) => {
         });
 
         if (!resp.ok) {
-            alert(`❌ 失败，状态码：${resp.status}`);
+            alert(`❌ 更新失败，状态码：${resp.status}`);
             return;
         }
-
         const result = await resp.json();
 
         if (result.result === "success") {
             alert("✅ 更新成功！");
             setTimeout(() => {
-                window.location.href =
-                    'http://localhost:8081/DB_assignment_war_exploded/assets/page/overview.jsp';
+                window.location.href = `${window.CONTEXT_PATH}/assets/page/overview.jsp`;
             }, 800);
-        } else if (result.result === "fail") {
-            alert("⚠️ 失败：" + result.message);
-        } else if (result.error) {
-            alert("❌ 错误：" + result.error);
         } else {
-            alert("❓ 未知响应：" + JSON.stringify(result));
+            alert("⚠️ 更新失败：" + (result.message || "未知错误"));
         }
     } catch (err) {
         alert("❌ 网络或服务器错误：" + err.message);

@@ -1,46 +1,55 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const tbody = document.querySelector("#overview-table tbody");
-    const thead = document.querySelector("#overview-table thead");
-    const buttons = document.querySelectorAll(".color-btn");
-    const infoText = document.getElementById("infoText");
-    // 表头定义
+// src/main/webapp/assets/js/overview.js
+
+document.addEventListener("DOMContentLoaded", () => {
+    // —— DOM 元素 ——
+    const table         = document.getElementById("overview-table");
+    const thead         = table.querySelector("thead");
+    const tbody         = table.querySelector("tbody");
+    const buttons       = document.querySelectorAll(".color-btn");
+    const infoText      = document.getElementById("infoText");
+    const searchBtn     = document.getElementById("searchBtn");
+    const searchInput   = document.getElementById("searchInput");
+    const rangeFilters  = document.querySelectorAll(".range-filter .apply");
+    const modelFilter   = document.getElementById("search-model");
+
+    // —— 表头定义 ——
     const tableHeaders = {
-        "mobile_brands": [
-            { key: "Name", label: "Name" },
+        mobile_brands: [
+            { key: "Name",    label: "Name" },
             { key: "Website", label: "Website" },
             { key: "Country", label: "Country" }
         ],
-        "smartphones": [
-            { key: "No", label: "No" },
-            { key: "model", label: "Model" },
-            { key: "brand", label: "Brand" },
-            { key: "price_USD", label: "Price (USD)" },
-            { key: "sim", label: "SIM" },
-            { key: "processor_name", label: "Processor" },
-            { key: "ram", label: "RAM" },
+        smartphones: [
+            { key: "No",               label: "No" },
+            { key: "model",            label: "Model" },
+            { key: "brand",            label: "Brand" },
+            { key: "price_USD",        label: "Price (USD)" },
+            { key: "sim",              label: "SIM" },
+            { key: "processor_name",   label: "Processor" },
+            { key: "ram",              label: "RAM" },
             { key: "Battery_Capacity", label: "Battery" },
-            { key: "Charging_Info", label: "Charging" },
-            { key: "Rear_Camera", label: "Rear Camera" },
-            { key: "Front_Camera", label: "Front Camera" },
-            { key: "card", label: "Card Slot" },
-            { key: "os", label: "OS" }
+            { key: "Charging_Info",    label: "Charging" },
+            { key: "Rear_Camera",      label: "Rear Camera" },
+            { key: "Front_Camera",     label: "Front Camera" },
+            { key: "card",             label: "Card Slot" },
+            { key: "os",               label: "OS" }
         ],
-        "component": [
-            { key: "No", label: "No" },
-            { key: "name", label: "Name" },
-            { key: "core", label: "Core" },
+        component: [
+            { key: "No",        label: "No" },
+            { key: "name",      label: "Name" },
+            { key: "core",      label: "Core" },
             { key: "frequency", label: "Frequency" },
-            { key: "supplier", label: "Supplier" }
+            { key: "supplier",  label: "Supplier" }
         ],
-        "supplier": [
-            { key: "No", label: "No" },
-            { key: "name", label: "Name" },
-            { key: "web", label: "Website" },
+        supplier: [
+            { key: "No",      label: "No" },
+            { key: "name",    label: "Name" },
+            { key: "web",     label: "Website" },
             { key: "country", label: "Country" }
         ],
-        "smartphone_sales_all_countries_1": [
-            { key: "Country", label: "Country" },
-            { key: "Brand", label: "Brand" },
+        smartphone_sales_all_countries_1: [
+            { key: "Country",     label: "Country" },
+            { key: "Brand",       label: "Brand" },
             { key: "Column_2015", label: "2015" },
             { key: "Column_2016", label: "2016" },
             { key: "Column_2017", label: "2017" },
@@ -54,79 +63,110 @@ document.addEventListener("DOMContentLoaded", function () {
         ]
     };
 
+    // —— 表格描述 ——
     const tableDescriptions = {
-        "mobile_brands": "Brand table: showing the name of the mobile phone brand, the official website address and the country it belongs to.",
-        "smartphones": "Mobilephone information table: including parameters such as model, brand, price, configuration and battery.",
-        "component": "Component table: showing the core, frequency and supplier information of various hardware components.",
-        "supplier": "Supplier table: including supplier names, official websites and countries.",
-        "smartphone_sales_all_countries_1": "Sales table (unit: million): presenting the annual sales situation from 2015 to 2024 by country and brand."
+        mobile_brands: "Brand table: showing the name of the mobile phone brand, the official website address and the country it belongs to.",
+        smartphones:  "Mobilephone information table: including parameters such as model, brand, price, configuration and battery.",
+        component:    "Component table: showing the core, frequency and supplier information of various hardware components.",
+        supplier:     "Supplier table: including supplier names, official websites and countries.",
+        smartphone_sales_all_countries_1: "Sales table (unit: million): presenting the annual sales situation from 2015 to 2024 by country and brand."
     };
 
-    let currentTable = "smartphones"; // 当前表格名
+    // —— 当前表名 ——
+    let currentTable = "smartphones";
 
+    // —— 渲染表头 ——
     function renderTableHeader(tableName) {
         const headers = tableHeaders[tableName];
         if (!headers) return;
-
         thead.innerHTML = "";
         const tr = document.createElement("tr");
-
         headers.forEach(h => {
             const th = document.createElement("th");
             th.textContent = h.label;
             tr.appendChild(th);
         });
-
         thead.appendChild(tr);
     }
 
+    // —— 渲染表体 ——
     function renderResults(data, tableName) {
         const headers = tableHeaders[tableName];
-        if (!headers) return;
-
         tbody.innerHTML = "";
-        data.forEach((row, index) => {
+        data.forEach((row, idx) => {
             const tr = document.createElement("tr");
             headers.forEach(h => {
                 const td = document.createElement("td");
-                // 若字段是 No 且缺失，则补 index+1
-                td.textContent = h.key === "No" && row[h.key] == null ? index + 1 : (row[h.key] ?? "-");
+                if (h.key === "No" && (row[h.key] == null || row[h.key] === "")) {
+                    td.textContent = idx + 1;
+                } else {
+                    td.textContent = row[h.key] ?? "-";
+                }
                 tr.appendChild(td);
             });
             tbody.appendChild(tr);
         });
     }
 
+    // —— 获取并解析 JSON ——
     async function fetchData(params, tableName) {
-        tbody.innerHTML = "<tr><td colspan='15'>LOADING...</td></tr>";
         renderTableHeader(tableName);
-        infoText.textContent = "Loading data for " + tableName + "...";
+        tbody.innerHTML = `<tr><td colspan="${tableHeaders[tableName].length}">LOADING...</td></tr>`;
+        infoText.textContent = `Loading data for "${tableName}"...`;
 
         try {
-            const url = `http://localhost:8080/ServerletFinal_war_exploded/data?${params.toString()}`;
-            const resp = await fetch(url);
+            const resp = await fetch("http://localhost:8080/ServerletFinal_war_exploded/data", {
+                method:      "POST",
+                credentials: "include",
+                headers:     { "Content-Type": "application/x-www-form-urlencoded" },
+                body:        params.toString()
+            });
+
             const data = await resp.json();
 
-            if (Array.isArray(data)) {
-                renderResults(data, tableName);
-                infoText.textContent = tableDescriptions[tableName] || "Data loaded.";
-            } else {
-                throw new Error("数据格式错误");
+            // —— 后端自定义错误 ——
+            if (data.ferror) {
+                tbody.innerHTML = `<tr><td colspan="${tableHeaders[tableName].length}" style="color:red;">
+          ${data.ferror}
+        </td></tr>`;
+                infoText.textContent = data.ferror;
+                return;
             }
+            if (data.error) {
+                tbody.innerHTML = `<tr><td colspan="${tableHeaders[tableName].length}" style="color:red;">
+          ${data.error}
+        </td></tr>`;
+                infoText.textContent = data.error;
+                return;
+            }
+
+            // —— 数据格式校验 ——
+            if (!Array.isArray(data)) {
+                tbody.innerHTML = `<tr><td colspan="${tableHeaders[tableName].length}" style="color:red;">
+          Unexpected response format.
+        </td></tr>`;
+                infoText.textContent = "Unexpected response format.";
+                return;
+            }
+
+            // —— 正常渲染 ——
+            renderResults(data, tableName);
+            infoText.textContent = tableDescriptions[tableName] || "Data loaded.";
         } catch (err) {
             console.error("加载失败：", err);
-            tbody.innerHTML = `<tr><td colspan='15' style='color:red;'>加载失败：${err.message}</td></tr>`;
-            infoText.textContent = "加载失败，请检查网络连接或表名。";
+            tbody.innerHTML = `<tr><td colspan="${tableHeaders[tableName].length}" style="color:red;">
+        加载失败：${err.message}
+      </td></tr>`;
+            infoText.textContent = "加载失败，请检查网络或后端返回内容。";
         }
     }
 
-    // 按钮切换表格
-    buttons.forEach(button => {
-        button.addEventListener("click", () => {
-            buttons.forEach(btn => btn.classList.remove("active"));
-            button.classList.add("active");
-
-            currentTable = button.getAttribute("data-page");
+    // —— 切换表格按钮 ——
+    buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            buttons.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            currentTable = btn.dataset.page;
             const params = new URLSearchParams();
             params.append("type", "readSQL");
             params.append("table", currentTable);
@@ -134,87 +174,63 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    document.getElementById("searchBtn")?.addEventListener("click", function (event) {
-        event.preventDefault(); // 阻止默认提交
-
-        const searchInput = document.getElementById("searchInput");
-        const inputValue = searchInput?.value?.trim();
-
-        if (!inputValue) {
+    // —— 搜索功能 ——
+    searchBtn?.addEventListener("click", e => {
+        e.preventDefault();
+        const val = searchInput.value.trim();
+        if (!val) {
             alert("Please enter a phone No. or model.");
             return;
         }
-
         const params = new URLSearchParams();
         params.append("type", "readSQL");
         params.append("table", "smartphones");
-
-        // 判断输入是否全是数字
-        if (/^\d+$/.test(inputValue)) {
-            // 全数字，作为 phoneNo 查询
-            params.append("phoneNo", inputValue);
+        if (/^\d+$/.test(val)) {
+            params.append("phoneNo", val);
         } else {
-            // 含非数字字符，作为 model 查询
-            params.append("model", inputValue);
+            params.append("model", val);
         }
-
+        buttons.forEach(b => b.classList.remove("active"));
+        document.querySelector('[data-page="smartphones"]').classList.add("active");
         currentTable = "smartphones";
-        buttons.forEach(btn => btn.classList.remove("active"));
-        document.querySelector('[data-page="smartphones"]')?.classList.add("active");
-
         fetchData(params, currentTable);
     });
 
-
-
-    // 区间过滤器（只作用于 smartphones 表）
-    document.querySelectorAll(".range-filter .apply").forEach(button => {
-        button.addEventListener("click", (event) => {
-            event.preventDefault();
+    // —— 区间过滤 ——
+    rangeFilters.forEach(btn => {
+        btn.addEventListener("click", e => {
+            e.preventDefault();
+            const div   = btn.closest(".range-filter");
+            const field = div.dataset.field;
+            const min   = div.querySelector(".min").value;
+            const max   = div.querySelector(".max").value;
 
             const params = new URLSearchParams();
             params.append("type", "readSQL");
             params.append("table", "smartphones");
 
-            const filterDiv = button.closest(".range-filter");
-            const field = filterDiv.dataset.field;
-            const min = filterDiv.querySelector(".min").value;
-            const max = filterDiv.querySelector(".max").value;
-
             if (field === "price") {
-                if (min) {
-                    params.append("key", "price_USD>=");
-                    params.append("value", min);
-                }
-                if (max) {
-                    params.append("key", "price_USD<=");
-                    params.append("value", max);
-                }
+                if (min) params.append("key", "price_USD>="), params.append("value", min);
+                if (max) params.append("key", "price_USD<="), params.append("value", max);
             } else if (field === "battery") {
-                if (min) {
-                    params.append("key", "Battery_Capacity>=");
-                    params.append("value", min);
-                }
-                if (max) {
-                    params.append("key", "Battery_Capacity<=");
-                    params.append("value", max);
-                }
+                if (min) params.append("key", "Battery_Capacity>="), params.append("value", min);
+                if (max) params.append("key", "Battery_Capacity<="), params.append("value", max);
             }
 
-            const modelValue = document.querySelector("#search-model")?.value;
-            if (modelValue) {
+            const m = modelFilter.value.trim();
+            if (m) {
                 params.append("key", "model");
-                params.append("value", modelValue);
+                params.append("value", m);
             }
 
-            currentTable = "smartphones"; // 强制切回手机表
-            buttons.forEach(btn => btn.classList.remove("active"));
-            document.querySelector('[data-page="smartphones"]')?.classList.add("active");
+            buttons.forEach(b => b.classList.remove("active"));
+            document.querySelector('[data-page="smartphones"]').classList.add("active");
+            currentTable = "smartphones";
             fetchData(params, currentTable);
         });
     });
 
-    // 默认加载
+    // —— 初始加载 ——
     const initParams = new URLSearchParams();
     initParams.append("type", "readSQL");
     initParams.append("table", currentTable);

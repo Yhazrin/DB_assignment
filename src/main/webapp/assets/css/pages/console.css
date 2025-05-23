@@ -1,7 +1,9 @@
-/* console.css — 完全复刻 login.css 的“昼夜切换卡片”风格 */
-
-/*———— 引入变量 ————*/
 @import url('../style/variables.css');
+@import url('../components/buttons.css');
+@import url('../components/layout.css');
+@import url('../components/header.css');
+
+
 
 /*———— 全局重置 ————*/
 *,
@@ -12,20 +14,23 @@
     padding: 0;
 }
 
-/*———— 动态背景 & 全局 ————*/
-body {
-    height: 100vh;
-    margin: 0;
+.console-buttons {
+    display: flex;
+    justify-content: center; /* 子元素水平居中 */
+    align-items: center;
+    width: 60%;
+    gap: 2rem;
+    margin: 0 auto;
 
 }
 
-/*———— 容器布局 ————*/
-.console-container {
+#formContainer {
     display: flex;
-    align-items: center;
+    margin-top: 100px;
     justify-content: center;
-    height: 100vh;
-    background: var(--bg-primary);
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 /*———— 卡片样式 ————*/

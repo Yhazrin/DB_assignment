@@ -9,6 +9,7 @@
     <title>Overview - MobilePhoneSys</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/overview.css">
+    <script src="${pageContext.request.contextPath}/assets/js/overview.js" defer></script>
 </head>
 <body>
 <jsp:include page="sub/header.jsp"/>
