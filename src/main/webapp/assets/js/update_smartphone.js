@@ -6,7 +6,7 @@ document.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     // **同样** 直接拿 form.action
-    const postUrl = form.action;
+    const postUrl ="http://localhost:8080/ServerletFinal_war_exploded/";
     const bodyParams = new URLSearchParams(new FormData(form));
 
     try {

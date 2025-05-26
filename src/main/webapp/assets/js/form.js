@@ -18,7 +18,7 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         // 从 JSP 注入的全局变量里取 contextPath
-        const ctx = window.CONTEXT_PATH || '';
+        const ctx = "http://localhost:8080/ServerletFinal_war_exploded/" || '';
 
         // 绑定上方三个按钮
         const modes = ['add','delete','update'];
@@ -43,7 +43,7 @@
         form.className = 'console-form';
         form.method    = 'post';
         // **务必** 确保写对 "smartphones"
-        form.action    = `${ctx}/data?type=modifySQL&table=smartphones&action=${mode}`;
+        form.action    = `"http://localhost:8080/ServerletFinal_war_exploded/data?type=modifySQL&table=smartphones&action=${mode}`;
 
         // delete 模式只要 model，否则渲染全部字段
         const toRender = mode==='delete'

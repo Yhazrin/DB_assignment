@@ -6,7 +6,7 @@ document.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     // 直接用 JSP 里写好的 action
-    const postUrl = form.action;
+    const postUrl = "http://localhost:8080/ServerletFinal_war_exploded/";
 
     // 把表单数据收集到 body
     const bodyParams = new URLSearchParams(new FormData(form));

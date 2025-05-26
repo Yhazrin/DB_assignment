@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     window.location.href =
                         'http://localhost:8081/DB_assignment_war_exploded/assets/page/home.jsp';
-                }, 10000);
+                }, 3000);
 
             } else {
                 console.warn('❌ Login failed:', data.message);

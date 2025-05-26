@@ -3,8 +3,6 @@
 @import url('../components/layout.css');
 @import url('../components/header.css');
 
-
-
 /*———— 全局重置 ————*/
 *,
 *::before,
@@ -14,29 +12,92 @@
     padding: 0;
 }
 
+/*———— 顶部按钮区域样式优化 ————*/
 .console-buttons {
+    margin-top: 100px;
     display: flex;
-    justify-content: center; /* 子元素水平居中 */
+    justify-content: center;
     align-items: center;
-    width: 60%;
-    gap: 2rem;
-    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 1.2rem 2rem;
+    padding: 10px 0;
+    position: relative;
+    z-index: 5;
+}
 
+.console-buttons .btn {
+    min-width: 120px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    background: var(--primary-color, #3d7cf4);
+    color: #fff;
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.console-buttons .btn:hover {
+    background: var(--secondary-color, #2ecc71);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 #formContainer {
-    display: flex;
-    margin-top: 100px;
+    width: 50%;
+    max-width: 1000px;
+    margin: 100px auto;
+    display: flex; /* 确保 #formContainer 也是一个 flex 容器 */
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 2rem;
 }
 
+/*———— 表单排列为两列 ————*/
+.console-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 确保始终是两列 */
+    gap: 1.5rem 2rem;
+    width: 100%;
+    max-width: 1000px;
+    padding: 0 1rem;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.console-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.console-form label {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+.console-form input {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: var(--radius-md);
+    transition: border-color 0.2s;
+}
+
+.console-form input:focus {
+    border-color: #888;
+    outline: none;
+}
+
+.console-form input::placeholder {
+    color: #aaa;
+}
+
 /*———— 卡片样式 ————*/
 .console-card {
-    width: 60%;
-    max-width: 90%;
+    width: 100%;
     background: var(--card-bg2);
     border: 1px solid #e1e1e1;
     border-radius: var(--radius-xl);
@@ -52,154 +113,10 @@
     color: var(--text-primary);
 }
 
-/*———— Google 按钮（如需要） ————*/
-.btn-google {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: var(--radius-xl);
-    background: #fff;
-    color: #555;
-    font-size: 1rem;
-    text-decoration: none;
-    margin-bottom: 1rem;
-    transition: background 0.2s ease;
-}
-.btn-google:hover {
-    background: #f5f5f5;
-}
-.btn-google i {
-    margin-right: 0.5rem;
-    font-size: 1.2rem;
-}
-
-/*———— 分隔线 ————*/
-.separator {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin: 1rem 0;
-    color: #999;
-}
-.separator::before,
-.separator::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: #e1e1e1;
-}
-.separator::before {
-    margin-right: 0.5em;
-}
-.separator::after {
-    margin-left: 0.5em;
-}
-
-/*———— 表单样式 ————*/
-.console-form {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 两列等分 */
-    gap: 1rem 2rem;                       /* 行间距 1rem，列间距 2rem */
-    align-items: start;
-}
-
-.console-form .form-group {
-    margin-bottom: 0;
-}
-
-.console-form .full-span {
-    grid-column: 1 / -1; /* 跨越所有列 */
-}
-
-.console-form label {
-    display: block;
-    font-size: 0.9rem;
-    margin-bottom: 0.25rem;
-    color: var(--text-primary);
-}
-.console-form input {
-    width: 100%;
-    padding: 0.75rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: var(--radius-md);
-    transition: border-color 0.2s;
-}
-.console-form input:focus {
-    border-color: #888;
-    outline: none;
-}
-.console-form input::placeholder {
-    color: #aaa;
-}
-
-/*———— 同意条款 ————*/
-.consent {
-    display: flex;
-    align-items: center;
-    font-size: 0.85rem;
-    margin-bottom: 1rem;
-}
-.consent input {
-    margin-right: 0.5rem;
-}
-
-/*———— 主提交按钮 ————*/
-.console-btn {
-    display: block;
-    width: 100%;
-    padding: 0.75rem;
-    background: var(--primary-color);
-    margin-top: 1.5rem;
-    color: #fff;
-    font-size: 1rem;
-    font-family: 'Montserrat', sans-serif;
-    border: none;
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    transition: background 0.2s ease;
-}
-.console-btn:hover {
-    background: var(--secondary-color);
-}
-
-/*———— 底部链接 ————*/
-.console-card .footer {
-    margin-top: 1rem;
-    font-size: 0.9rem;
-}
-.console-card .footer a {
-    color: #007bff;
-    text-decoration: none;
-}
-.console-card .footer a:hover {
-    text-decoration: underline;
-}
-
-
-.console-toolbar-vertical {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around; /* 或 space-between */
-    align-items: flex-start;
-    height: 300px; /* 根据需要设置容器高度 */
-    margin: 20px;
-}
-
-.console-toolbar-vertical .console-btn {
-    width: 120px;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 6px;
-    background-color: #2c7be5;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-.console-toolbar-vertical .console-btn:hover {
-    background-color: #1a66d1;
+/* 媒体查询调整样式 */
+@media (max-width: 768px) {
+    .console-form {
+        grid-template-columns: 1fr; /* 在较小屏幕上变为一列 */
+        padding: 0 1rem;
+    }
 }

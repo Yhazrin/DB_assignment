@@ -2,9 +2,10 @@
 <dataSource name="@localhost">
   <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.53">
     <root id="1">
+      <DefaultCasing>lower/lower</DefaultCasing>
       <DefaultEngine>InnoDB</DefaultEngine>
       <DefaultTmpEngine>InnoDB</DefaultTmpEngine>
-      <ServerVersion>9.2.0</ServerVersion>
+      <ServerVersion>8.0.41</ServerVersion>
     </root>
     <collation id="2" parent="1" name="armscii8_general_ci">
       <Charset>armscii8</Charset>
@@ -909,6 +910,8 @@
       <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="289" parent="1" name="employee">
+      <AutoIntrospectionLevel>3</AutoIntrospectionLevel>
+      <LastIntrospectionLevel>3</LastIntrospectionLevel>
       <LastIntrospectionLocalTimestamp>2025-05-18.17:56:10</LastIntrospectionLocalTimestamp>
       <CollationName>latin1_swedish_ci</CollationName>
     </schema>
@@ -916,690 +919,1306 @@
       <CollationName>utf8mb3_general_ci</CollationName>
     </schema>
     <schema id="291" parent="1" name="infosys">
+      <AutoIntrospectionLevel>3</AutoIntrospectionLevel>
+      <LastIntrospectionLevel>3</LastIntrospectionLevel>
       <LastIntrospectionLocalTimestamp>2025-04-30.21:21:01</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="292" parent="1" name="mobile_db">
       <CollationName>utf8mb4_general_ci</CollationName>
     </schema>
-    <schema id="293" parent="1" name="mysql">
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
-    </schema>
-    <schema id="294" parent="1" name="performance_schema">
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
-    </schema>
-    <schema id="295" parent="1" name="sakila">
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
-    </schema>
-    <schema id="296" parent="1" name="sys">
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
-    </schema>
-    <schema id="297" parent="1" name="world">
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
-    </schema>
-    <schema id="298" parent="1" name="mobilephone">
+    <schema id="293" parent="1" name="mobilephone">
       <CollationName>utf8mb4_unicode_ci</CollationName>
     </schema>
-    <schema id="299" parent="1" name="myforum114514">
-      <LastIntrospectionLocalTimestamp>2025-05-20.07:24:07</LastIntrospectionLocalTimestamp>
+    <schema id="294" parent="1" name="mobilephonesys">
+      <AutoIntrospectionLevel>3</AutoIntrospectionLevel>
+      <LastIntrospectionLevel>3</LastIntrospectionLevel>
+      <LastIntrospectionLocalTimestamp>2025-05-23.14:19:55</LastIntrospectionLocalTimestamp>
+      <CollationName>utf8mb4_unicode_ci</CollationName>
+    </schema>
+    <schema id="295" parent="1" name="myforum114514">
+      <AutoIntrospectionLevel>3</AutoIntrospectionLevel>
+      <LastIntrospectionLevel>3</LastIntrospectionLevel>
+      <LastIntrospectionLocalTimestamp>2025-05-18.17:59:11</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <user id="300" parent="1" name="1">
+    <schema id="296" parent="1" name="mysql">
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <schema id="297" parent="1" name="performance_schema">
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <schema id="298" parent="1" name="sakila">
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <schema id="299" parent="1" name="sys">
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <schema id="300" parent="1" name="world">
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <user id="301" parent="1" name="1">
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <user id="301" parent="1" name="info_user">
+    <user id="302" parent="1" name="info_user">
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <user id="302" parent="1" name="mysql.infoschema">
+    <user id="303" parent="1" name="mysql.infoschema">
       <CanLogin>0</CanLogin>
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <user id="303" parent="1" name="mysql.session">
+    <user id="304" parent="1" name="mysql.session">
       <CanLogin>0</CanLogin>
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <user id="304" parent="1" name="mysql.sys">
+    <user id="305" parent="1" name="mysql.sys">
       <CanLogin>0</CanLogin>
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <user id="305" parent="1" name="root">
+    <user id="306" parent="1" name="root">
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <table id="306" parent="289" name="department">
+    <table id="307" parent="289" name="department">
+      <DetailsLevel>3</DetailsLevel>
       <Engine>InnoDB</Engine>
       <CollationName>latin1_swedish_ci</CollationName>
     </table>
-    <table id="307" parent="289" name="employee">
+    <table id="308" parent="289" name="employee">
+      <DetailsLevel>3</DetailsLevel>
       <Engine>InnoDB</Engine>
       <CollationName>latin1_swedish_ci</CollationName>
     </table>
-    <table id="308" parent="289" name="user">
+    <table id="309" parent="289" name="user">
+      <DetailsLevel>3</DetailsLevel>
       <Engine>InnoDB</Engine>
       <CollationName>latin1_swedish_ci</CollationName>
     </table>
-    <table id="309" parent="291" name="posts">
+    <table id="310" parent="291" name="posts">
+      <DetailsLevel>3</DetailsLevel>
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="310" parent="291" name="users">
+    <table id="311" parent="291" name="users">
+      <DetailsLevel>3</DetailsLevel>
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="311" parent="299" name="comments">
+    <table id="312" parent="294" name="comments">
+      <DetailsLevel>3</DetailsLevel>
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="312" parent="299" name="component">
+    <table id="313" parent="294" name="component">
+      <DetailsLevel>3</DetailsLevel>
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_unicode_ci</CollationName>
+    </table>
+    <table id="314" parent="294" name="country_info">
+      <DetailsLevel>3</DetailsLevel>
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_unicode_ci</CollationName>
+    </table>
+    <table id="315" parent="294" name="foldable_phone">
+      <DetailsLevel>3</DetailsLevel>
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_unicode_ci</CollationName>
+    </table>
+    <table id="316" parent="294" name="forums">
+      <DetailsLevel>3</DetailsLevel>
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_unicode_ci</CollationName>
+    </table>
+    <table id="317" parent="294" name="mobile_brands">
+      <DetailsLevel>3</DetailsLevel>
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_unicode_ci</CollationName>
+    </table>
+    <table id="318" parent="294" name="non_foldable_phone">
+      <DetailsLevel>3</DetailsLevel>
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_unicode_ci</CollationName>
+    </table>
+    <table id="319" parent="294" name="posts">
+      <DetailsLevel>3</DetailsLevel>
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="313" parent="299" name="country_info">
+    <table id="320" parent="294" name="smartphone_sales_all_countries">
+      <DetailsLevel>3</DetailsLevel>
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_unicode_ci</CollationName>
+    </table>
+    <table id="321" parent="294" name="smartphones">
+      <DetailsLevel>3</DetailsLevel>
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_unicode_ci</CollationName>
+    </table>
+    <table id="322" parent="294" name="supplier">
+      <DetailsLevel>3</DetailsLevel>
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_unicode_ci</CollationName>
+    </table>
+    <table id="323" parent="294" name="users">
+      <DetailsLevel>3</DetailsLevel>
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="314" parent="299" name="foldable_phone">
+    <table id="324" parent="295" name="comments">
+      <DetailsLevel>3</DetailsLevel>
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="315" parent="299" name="forums">
+    <table id="325" parent="295" name="component">
+      <DetailsLevel>3</DetailsLevel>
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="316" parent="299" name="mobile_brands">
+    <table id="326" parent="295" name="country_info">
+      <DetailsLevel>3</DetailsLevel>
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="317" parent="299" name="non_foldable_phone">
+    <table id="327" parent="295" name="foldable_phone">
+      <DetailsLevel>3</DetailsLevel>
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="318" parent="299" name="posts">
+    <table id="328" parent="295" name="forums">
+      <DetailsLevel>3</DetailsLevel>
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="319" parent="299" name="smartphone_sales_all_countries_1">
+    <table id="329" parent="295" name="mobile_brands">
+      <DetailsLevel>3</DetailsLevel>
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="320" parent="299" name="smartphones">
+    <table id="330" parent="295" name="non_foldable_phone">
+      <DetailsLevel>3</DetailsLevel>
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="321" parent="299" name="supplier">
+    <table id="331" parent="295" name="posts">
+      <DetailsLevel>3</DetailsLevel>
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="322" parent="299" name="users">
+    <table id="332" parent="295" name="smartphone_sales_all_countries_1">
+      <DetailsLevel>3</DetailsLevel>
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <column id="323" parent="306" name="deptno">
+    <table id="333" parent="295" name="smartphones">
+      <DetailsLevel>3</DetailsLevel>
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="334" parent="295" name="supplier">
+      <DetailsLevel>3</DetailsLevel>
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="335" parent="295" name="users">
+      <DetailsLevel>3</DetailsLevel>
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <column id="336" parent="307" name="deptno">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="324" parent="306" name="deptname">
+    <column id="337" parent="307" name="deptname">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(20)|0s</StoredType>
     </column>
-    <column id="325" parent="306" name="office">
+    <column id="338" parent="307" name="office">
       <Position>3</Position>
       <StoredType>varchar(30)|0s</StoredType>
     </column>
-    <column id="326" parent="306" name="division">
+    <column id="339" parent="307" name="division">
       <Position>4</Position>
       <StoredType>char(3)|0s</StoredType>
     </column>
-    <column id="327" parent="306" name="managerno">
+    <column id="340" parent="307" name="managerno">
       <Position>5</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <index id="328" parent="306" name="PRIMARY">
+    <index id="341" parent="307" name="PRIMARY">
       <ColNames>deptno</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="329" parent="306" name="PRIMARY">
+    <key id="342" parent="307" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="330" parent="307" name="empno">
+    <column id="343" parent="308" name="empno">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="331" parent="307" name="firstname">
+    <column id="344" parent="308" name="firstname">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="332" parent="307" name="familyname">
+    <column id="345" parent="308" name="familyname">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="333" parent="307" name="job">
+    <column id="346" parent="308" name="job">
       <Position>4</Position>
       <StoredType>varchar(40)|0s</StoredType>
     </column>
-    <column id="334" parent="307" name="salary">
+    <column id="347" parent="308" name="salary">
       <Position>5</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="335" parent="307" name="deptno">
+    <column id="348" parent="308" name="deptno">
       <Position>6</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <index id="336" parent="307" name="PRIMARY">
+    <index id="349" parent="308" name="PRIMARY">
       <ColNames>empno</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="337" parent="307" name="PRIMARY">
+    <key id="350" parent="308" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="338" parent="308" name="username">
+    <column id="351" parent="309" name="username">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="339" parent="308" name="password">
+    <column id="352" parent="309" name="password">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="340" parent="308" name="email">
+    <column id="353" parent="309" name="email">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <index id="341" parent="308" name="PRIMARY">
+    <index id="354" parent="309" name="PRIMARY">
       <ColNames>username</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="342" parent="308" name="email">
+    <index id="355" parent="309" name="email">
       <ColNames>email</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="343" parent="308" name="PRIMARY">
+    <key id="356" parent="309" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="344" parent="308" name="email">
+    <key id="357" parent="309" name="email">
       <UnderlyingIndexName>email</UnderlyingIndexName>
     </key>
-    <column id="345" parent="309" name="id">
+    <column id="358" parent="310" name="id">
       <AutoIncrement>1</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="346" parent="309" name="username">
+    <column id="359" parent="310" name="username">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="347" parent="309" name="content">
+    <column id="360" parent="310" name="content">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>text|0s</StoredType>
     </column>
-    <column id="348" parent="309" name="created_at">
+    <column id="361" parent="310" name="created_at">
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <Position>4</Position>
       <StoredType>timestamp|0s</StoredType>
     </column>
-    <index id="349" parent="309" name="PRIMARY">
+    <index id="362" parent="310" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="350" parent="309" name="PRIMARY">
+    <key id="363" parent="310" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="351" parent="310" name="id">
+    <column id="364" parent="311" name="id">
       <AutoIncrement>2</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="352" parent="310" name="username">
+    <column id="365" parent="311" name="username">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="353" parent="310" name="password">
+    <column id="366" parent="311" name="password">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <index id="354" parent="310" name="PRIMARY">
+    <index id="367" parent="311" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="355" parent="310" name="username">
+    <index id="368" parent="311" name="username">
       <ColNames>username</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="356" parent="310" name="PRIMARY">
+    <key id="369" parent="311" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="357" parent="310" name="username">
+    <key id="370" parent="311" name="username">
       <UnderlyingIndexName>username</UnderlyingIndexName>
     </key>
-    <column id="358" parent="311" name="id">
+    <column id="371" parent="312" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="359" parent="311" name="isSub">
+    <column id="372" parent="312" name="isSub">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>tinyint(1)|0s</StoredType>
     </column>
-    <column id="360" parent="311" name="parentID">
+    <column id="373" parent="312" name="parentID">
       <Position>3</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="361" parent="311" name="content">
+    <column id="374" parent="312" name="content">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>text|0s</StoredType>
     </column>
-    <column id="362" parent="311" name="authorID">
+    <column id="375" parent="312" name="authorID">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>varchar(36)|0s</StoredType>
     </column>
-    <column id="363" parent="311" name="createTime">
+    <column id="376" parent="312" name="createTime">
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StoredType>timestamp|0s</StoredType>
     </column>
-    <column id="364" parent="311" name="postID">
+    <column id="377" parent="312" name="postID">
       <NotNull>1</NotNull>
       <Position>7</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <foreign-key id="365" parent="311" name="comments_ibfk_2">
+    <foreign-key id="378" parent="312" name="comments_ibfk_2">
       <ColNames>parentID</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>comments</RefTableName>
     </foreign-key>
-    <foreign-key id="366" parent="311" name="comments_ibfk_1">
+    <foreign-key id="379" parent="312" name="comments_ibfk_1">
       <ColNames>authorID</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>users</RefTableName>
     </foreign-key>
-    <foreign-key id="367" parent="311" name="comments_ibfk_3">
+    <foreign-key id="380" parent="312" name="comments_ibfk_3">
       <ColNames>postID</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>posts</RefTableName>
     </foreign-key>
-    <index id="368" parent="311" name="PRIMARY">
+    <index id="381" parent="312" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="369" parent="311" name="parentID">
+    <index id="382" parent="312" name="parentID">
       <ColNames>parentID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="370" parent="311" name="authorID">
+    <index id="383" parent="312" name="authorID">
       <ColNames>authorID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="371" parent="311" name="postID">
+    <index id="384" parent="312" name="postID">
       <ColNames>postID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="372" parent="311" name="PRIMARY">
+    <key id="385" parent="312" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="373" parent="312" name="No">
+    <column id="386" parent="313" name="No">
       <Position>1</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="374" parent="312" name="name">
+    <column id="387" parent="313" name="name">
+      <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(23)|0s</StoredType>
       <CollationName>utf8mb3_general_ci</CollationName>
     </column>
-    <column id="375" parent="312" name="core">
+    <column id="388" parent="313" name="core">
       <Position>3</Position>
       <StoredType>varchar(9)|0s</StoredType>
       <CollationName>utf8mb3_general_ci</CollationName>
     </column>
-    <column id="376" parent="312" name="frequency">
+    <column id="389" parent="313" name="frequency">
       <Position>4</Position>
       <StoredType>varchar(18)|0s</StoredType>
       <CollationName>utf8mb3_general_ci</CollationName>
     </column>
-    <column id="377" parent="312" name="supplier">
+    <column id="390" parent="313" name="supplier">
       <Position>5</Position>
       <StoredType>varchar(10)|0s</StoredType>
       <CollationName>utf8mb3_general_ci</CollationName>
     </column>
-    <column id="378" parent="313" name="country_name">
+    <foreign-key id="391" parent="313" name="component_ibfk_1">
+      <ColNames>supplier</ColNames>
+      <RefColNames>name</RefColNames>
+      <RefTableName>supplier</RefTableName>
+    </foreign-key>
+    <index id="392" parent="313" name="PRIMARY">
+      <ColNames>name</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="393" parent="313" name="supplier">
+      <ColNames>supplier</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="394" parent="313" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="395" parent="314" name="country_name">
+      <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(100)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </column>
-    <column id="379" parent="313" name="continent">
+    <column id="396" parent="314" name="continent">
       <Position>2</Position>
       <StoredType>varchar(100)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </column>
-    <column id="380" parent="314" name="No">
+    <index id="397" parent="314" name="PRIMARY">
+      <ColNames>country_name</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="398" parent="314" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="399" parent="315" name="No">
       <Position>1</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="381" parent="314" name="model">
+    <column id="400" parent="315" name="model">
       <Position>2</Position>
       <StoredType>varchar(45)|0s</StoredType>
       <CollationName>utf8mb3_general_ci</CollationName>
     </column>
-    <column id="382" parent="314" name="style">
+    <column id="401" parent="315" name="style">
       <Position>3</Position>
       <StoredType>varchar(4)|0s</StoredType>
       <CollationName>utf8mb3_general_ci</CollationName>
     </column>
-    <column id="383" parent="315" name="forumID">
+    <column id="402" parent="316" name="forumID">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(50)|0s</StoredType>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </column>
-    <column id="384" parent="315" name="title">
+    <column id="403" parent="316" name="title">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(100)|0s</StoredType>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </column>
-    <column id="385" parent="315" name="description">
+    <column id="404" parent="316" name="description">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>text|0s</StoredType>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </column>
-    <column id="386" parent="315" name="postID">
+    <column id="405" parent="316" name="postID">
       <Position>4</Position>
       <StoredType>varchar(50)|0s</StoredType>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </column>
-    <foreign-key id="387" parent="315" name="forums_ibfk_1">
+    <foreign-key id="406" parent="316" name="forums_ibfk_1">
       <ColNames>postID</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>posts</RefTableName>
     </foreign-key>
-    <index id="388" parent="315" name="PRIMARY">
+    <index id="407" parent="316" name="PRIMARY">
       <ColNames>forumID</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="389" parent="315" name="postID">
+    <index id="408" parent="316" name="postID">
       <ColNames>postID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="390" parent="315" name="PRIMARY">
+    <key id="409" parent="316" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="391" parent="316" name="Name">
+    <column id="410" parent="317" name="Name">
+      <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
       <CollationName>utf8mb3_general_ci</CollationName>
     </column>
-    <column id="392" parent="316" name="Website">
+    <column id="411" parent="317" name="Website">
       <Position>2</Position>
       <StoredType>varchar(32)|0s</StoredType>
       <CollationName>utf8mb3_general_ci</CollationName>
     </column>
-    <column id="393" parent="316" name="Country">
+    <column id="412" parent="317" name="Country">
       <Position>3</Position>
       <StoredType>varchar(11)|0s</StoredType>
       <CollationName>utf8mb3_general_ci</CollationName>
     </column>
-    <column id="394" parent="317" name="No">
-      <Position>1</Position>
-      <StoredType>int|0s</StoredType>
-    </column>
-    <column id="395" parent="317" name="model">
-      <Position>2</Position>
-      <StoredType>varchar(50)|0s</StoredType>
-      <CollationName>utf8mb3_general_ci</CollationName>
-    </column>
-    <column id="396" parent="317" name="screen">
-      <Position>3</Position>
-      <StoredType>varchar(8)|0s</StoredType>
-      <CollationName>utf8mb3_general_ci</CollationName>
-    </column>
-    <column id="397" parent="318" name="id">
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-      <StoredType>varchar(50)|0s</StoredType>
-    </column>
-    <column id="398" parent="318" name="title">
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-      <StoredType>varchar(255)|0s</StoredType>
-    </column>
-    <column id="399" parent="318" name="content">
-      <NotNull>1</NotNull>
-      <Position>3</Position>
-      <StoredType>text|0s</StoredType>
-    </column>
-    <column id="400" parent="318" name="author">
-      <NotNull>1</NotNull>
-      <Position>4</Position>
-      <StoredType>varchar(36)|0s</StoredType>
-    </column>
-    <column id="401" parent="318" name="createTime">
-      <NotNull>1</NotNull>
-      <Position>5</Position>
-      <StoredType>timestamp|0s</StoredType>
-    </column>
-    <column id="402" parent="318" name="forumID">
-      <NotNull>1</NotNull>
-      <Position>6</Position>
-      <StoredType>varchar(50)|0s</StoredType>
-    </column>
-    <column id="403" parent="318" name="commentID">
-      <Position>7</Position>
-      <StoredType>varchar(50)|0s</StoredType>
-    </column>
-    <foreign-key id="404" parent="318" name="posts_ibfk_1">
-      <ColNames>author</ColNames>
-      <RefColNames>id</RefColNames>
-      <RefTableName>users</RefTableName>
+    <foreign-key id="413" parent="317" name="mobile_brands_ibfk_1">
+      <ColNames>Country</ColNames>
+      <RefColNames>country_name</RefColNames>
+      <RefTableName>country_info</RefTableName>
     </foreign-key>
-    <index id="405" parent="318" name="PRIMARY">
-      <ColNames>id</ColNames>
+    <index id="414" parent="317" name="PRIMARY">
+      <ColNames>Name</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="406" parent="318" name="author">
-      <ColNames>author</ColNames>
+    <index id="415" parent="317" name="Country">
+      <ColNames>Country</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="407" parent="318" name="PRIMARY">
+    <key id="416" parent="317" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="408" parent="319" name="Country">
-      <Position>1</Position>
-      <StoredType>varchar(20)|0s</StoredType>
-      <CollationName>utf8mb3_general_ci</CollationName>
-    </column>
-    <column id="409" parent="319" name="Brand">
-      <Position>2</Position>
-      <StoredType>varchar(18)|0s</StoredType>
-      <CollationName>utf8mb3_general_ci</CollationName>
-    </column>
-    <column id="410" parent="319" name="Column_2015">
-      <Position>3</Position>
-      <StoredType>varchar(4)|0s</StoredType>
-      <CollationName>utf8mb3_general_ci</CollationName>
-    </column>
-    <column id="411" parent="319" name="Column_2016">
-      <Position>4</Position>
-      <StoredType>decimal(4,2 digit)|0s</StoredType>
-    </column>
-    <column id="412" parent="319" name="Column_2017">
-      <Position>5</Position>
-      <StoredType>decimal(4,2 digit)|0s</StoredType>
-    </column>
-    <column id="413" parent="319" name="Column_2018">
-      <Position>6</Position>
-      <StoredType>decimal(5,2 digit)|0s</StoredType>
-    </column>
-    <column id="414" parent="319" name="Column_2019">
-      <Position>7</Position>
-      <StoredType>decimal(5,2 digit)|0s</StoredType>
-    </column>
-    <column id="415" parent="319" name="Column_2020">
-      <Position>8</Position>
-      <StoredType>decimal(5,2 digit)|0s</StoredType>
-    </column>
-    <column id="416" parent="319" name="Column_2021">
-      <Position>9</Position>
-      <StoredType>decimal(4,2 digit)|0s</StoredType>
-    </column>
-    <column id="417" parent="319" name="Column_2022">
-      <Position>10</Position>
-      <StoredType>decimal(4,2 digit)|0s</StoredType>
-    </column>
-    <column id="418" parent="319" name="Column_2023">
-      <Position>11</Position>
-      <StoredType>decimal(4,2 digit)|0s</StoredType>
-    </column>
-    <column id="419" parent="319" name="Column_2024">
-      <Position>12</Position>
-      <StoredType>decimal(4,2 digit)|0s</StoredType>
-    </column>
-    <column id="420" parent="320" name="No">
+    <column id="417" parent="318" name="No">
       <Position>1</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="421" parent="320" name="model">
+    <column id="418" parent="318" name="model">
       <Position>2</Position>
       <StoredType>varchar(50)|0s</StoredType>
       <CollationName>utf8mb3_general_ci</CollationName>
     </column>
-    <column id="422" parent="320" name="brand">
+    <column id="419" parent="318" name="screen">
       <Position>3</Position>
-      <StoredType>varchar(10)|0s</StoredType>
-      <CollationName>utf8mb3_general_ci</CollationName>
-    </column>
-    <column id="423" parent="320" name="price_USD">
-      <Position>4</Position>
       <StoredType>varchar(8)|0s</StoredType>
       <CollationName>utf8mb3_general_ci</CollationName>
     </column>
-    <column id="424" parent="320" name="sim">
-      <Position>5</Position>
-      <StoredType>varchar(51)|0s</StoredType>
-      <CollationName>utf8mb3_general_ci</CollationName>
-    </column>
-    <column id="425" parent="320" name="processor_name">
-      <Position>6</Position>
-      <StoredType>varchar(23)|0s</StoredType>
-      <CollationName>utf8mb3_general_ci</CollationName>
-    </column>
-    <column id="426" parent="320" name="ram">
-      <Position>7</Position>
-      <StoredType>varchar(25)|0s</StoredType>
-      <CollationName>utf8mb3_general_ci</CollationName>
-    </column>
-    <column id="427" parent="320" name="Battery_Capacity">
-      <Position>8</Position>
-      <StoredType>varchar(16)|0s</StoredType>
-      <CollationName>utf8mb3_general_ci</CollationName>
-    </column>
-    <column id="428" parent="320" name="Charging_Info">
-      <Position>9</Position>
-      <StoredType>varchar(19)|0s</StoredType>
-      <CollationName>utf8mb3_general_ci</CollationName>
-    </column>
-    <column id="429" parent="320" name="Rear_Camera">
-      <Position>10</Position>
-      <StoredType>varchar(34)|0s</StoredType>
-      <CollationName>utf8mb3_general_ci</CollationName>
-    </column>
-    <column id="430" parent="320" name="Front_Camera">
-      <Position>11</Position>
-      <StoredType>varchar(31)|0s</StoredType>
-      <CollationName>utf8mb3_general_ci</CollationName>
-    </column>
-    <column id="431" parent="320" name="card">
-      <Position>12</Position>
-      <StoredType>varchar(66)|0s</StoredType>
-      <CollationName>utf8mb3_general_ci</CollationName>
-    </column>
-    <column id="432" parent="320" name="os">
-      <Position>13</Position>
-      <StoredType>varchar(28)|0s</StoredType>
-      <CollationName>utf8mb3_general_ci</CollationName>
-    </column>
-    <column id="433" parent="321" name="No">
-      <Position>1</Position>
-      <StoredType>int|0s</StoredType>
-    </column>
-    <column id="434" parent="321" name="name">
-      <Position>2</Position>
-      <StoredType>varchar(10)|0s</StoredType>
-      <CollationName>utf8mb3_general_ci</CollationName>
-    </column>
-    <column id="435" parent="321" name="web">
-      <Position>3</Position>
-      <StoredType>varchar(26)|0s</StoredType>
-      <CollationName>utf8mb3_general_ci</CollationName>
-    </column>
-    <column id="436" parent="321" name="country">
-      <Position>4</Position>
-      <StoredType>varchar(13)|0s</StoredType>
-      <CollationName>utf8mb3_general_ci</CollationName>
-    </column>
-    <column id="437" parent="322" name="id">
+    <column id="420" parent="319" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StoredType>varchar(36)|0s</StoredType>
+      <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="438" parent="322" name="username">
+    <column id="421" parent="319" name="title">
+      <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="439" parent="322" name="password">
+    <column id="422" parent="319" name="content">
+      <NotNull>1</NotNull>
       <Position>3</Position>
-      <StoredType>varchar(255)|0s</StoredType>
+      <StoredType>text|0s</StoredType>
     </column>
-    <column id="440" parent="322" name="email">
+    <column id="423" parent="319" name="author">
+      <NotNull>1</NotNull>
       <Position>4</Position>
-      <StoredType>varchar(255)|0s</StoredType>
+      <StoredType>varchar(36)|0s</StoredType>
     </column>
-    <index id="441" parent="322" name="PRIMARY">
+    <column id="424" parent="319" name="createTime">
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StoredType>timestamp|0s</StoredType>
+    </column>
+    <column id="425" parent="319" name="forumID">
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+    </column>
+    <column id="426" parent="319" name="commentID">
+      <Position>7</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+    </column>
+    <foreign-key id="427" parent="319" name="posts_ibfk_1">
+      <ColNames>author</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>users</RefTableName>
+    </foreign-key>
+    <index id="428" parent="319" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="442" parent="322" name="PRIMARY">
+    <index id="429" parent="319" name="author">
+      <ColNames>author</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="430" parent="319" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="431" parent="320" name="Country">
+      <Position>1</Position>
+      <StoredType>varchar(20)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="432" parent="320" name="Brand">
+      <Position>2</Position>
+      <StoredType>varchar(9)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="433" parent="320" name="Column_2015">
+      <Position>3</Position>
+      <StoredType>varchar(4)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="434" parent="320" name="Column_2016">
+      <Position>4</Position>
+      <StoredType>decimal(4,2 digit)|0s</StoredType>
+    </column>
+    <column id="435" parent="320" name="Column_2017">
+      <Position>5</Position>
+      <StoredType>decimal(4,2 digit)|0s</StoredType>
+    </column>
+    <column id="436" parent="320" name="Column_2018">
+      <Position>6</Position>
+      <StoredType>decimal(5,2 digit)|0s</StoredType>
+    </column>
+    <column id="437" parent="320" name="Column_2019">
+      <Position>7</Position>
+      <StoredType>decimal(5,2 digit)|0s</StoredType>
+    </column>
+    <column id="438" parent="320" name="Column_2020">
+      <Position>8</Position>
+      <StoredType>decimal(5,2 digit)|0s</StoredType>
+    </column>
+    <column id="439" parent="320" name="Column_2021">
+      <Position>9</Position>
+      <StoredType>decimal(4,2 digit)|0s</StoredType>
+    </column>
+    <column id="440" parent="320" name="Column_2022">
+      <Position>10</Position>
+      <StoredType>decimal(4,2 digit)|0s</StoredType>
+    </column>
+    <column id="441" parent="320" name="Column_2023">
+      <Position>11</Position>
+      <StoredType>decimal(4,2 digit)|0s</StoredType>
+    </column>
+    <column id="442" parent="320" name="Column_2024">
+      <Position>12</Position>
+      <StoredType>decimal(4,2 digit)|0s</StoredType>
+    </column>
+    <foreign-key id="443" parent="320" name="smartphone_sales_all_countries_ibfk_1">
+      <ColNames>Brand</ColNames>
+      <RefColNames>Name</RefColNames>
+      <RefTableName>mobile_brands</RefTableName>
+    </foreign-key>
+    <index id="444" parent="320" name="Brand">
+      <ColNames>Brand</ColNames>
+      <Type>btree</Type>
+    </index>
+    <column id="445" parent="321" name="No">
+      <Position>1</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="446" parent="321" name="model">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="447" parent="321" name="brand">
+      <Position>3</Position>
+      <StoredType>varchar(10)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="448" parent="321" name="price_USD">
+      <Position>4</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="449" parent="321" name="sim">
+      <Position>5</Position>
+      <StoredType>varchar(51)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="450" parent="321" name="processor_name">
+      <Position>6</Position>
+      <StoredType>varchar(23)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="451" parent="321" name="ram">
+      <Position>7</Position>
+      <StoredType>varchar(25)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="452" parent="321" name="Battery_Capacity">
+      <Position>8</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="453" parent="321" name="Charging_Info">
+      <Position>9</Position>
+      <StoredType>varchar(19)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="454" parent="321" name="Rear_Camera">
+      <Position>10</Position>
+      <StoredType>varchar(34)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="455" parent="321" name="Front_Camera">
+      <Position>11</Position>
+      <StoredType>varchar(31)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="456" parent="321" name="card">
+      <Position>12</Position>
+      <StoredType>varchar(66)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="457" parent="321" name="os">
+      <Position>13</Position>
+      <StoredType>varchar(28)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <foreign-key id="458" parent="321" name="smartphones_ibfk_1">
+      <ColNames>brand</ColNames>
+      <RefColNames>Name</RefColNames>
+      <RefTableName>mobile_brands</RefTableName>
+    </foreign-key>
+    <foreign-key id="459" parent="321" name="smartphones_ibfk_2">
+      <ColNames>processor_name</ColNames>
+      <RefColNames>name</RefColNames>
+      <RefTableName>component</RefTableName>
+    </foreign-key>
+    <index id="460" parent="321" name="PRIMARY">
+      <ColNames>model</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="461" parent="321" name="brand">
+      <ColNames>brand</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="462" parent="321" name="processor_name">
+      <ColNames>processor_name</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="463" parent="321" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="464" parent="322" name="No">
+      <Position>1</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="465" parent="322" name="name">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>varchar(10)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="466" parent="322" name="web">
+      <Position>3</Position>
+      <StoredType>varchar(26)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="467" parent="322" name="country">
+      <Position>4</Position>
+      <StoredType>varchar(100)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <foreign-key id="468" parent="322" name="supplier_ibfk_1">
+      <ColNames>country</ColNames>
+      <RefColNames>country_name</RefColNames>
+      <RefTableName>country_info</RefTableName>
+    </foreign-key>
+    <index id="469" parent="322" name="PRIMARY">
+      <ColNames>name</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="470" parent="322" name="country">
+      <ColNames>country</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="471" parent="322" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="472" parent="323" name="id">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>varchar(36)|0s</StoredType>
+    </column>
+    <column id="473" parent="323" name="username">
+      <Position>2</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <column id="474" parent="323" name="password">
+      <Position>3</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <column id="475" parent="323" name="email">
+      <Position>4</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <column id="476" parent="323" name="isAdmin">
+      <Position>5</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <column id="477" parent="323" name="favouriteModel">
+      <Position>6</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <column id="478" parent="323" name="ownPostId">
+      <Position>7</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <column id="479" parent="323" name="ownCommentId">
+      <Position>8</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <index id="480" parent="323" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="481" parent="323" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="482" parent="324" name="id">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+    </column>
+    <column id="483" parent="324" name="isSub">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>tinyint(1)|0s</StoredType>
+    </column>
+    <column id="484" parent="324" name="parentID">
+      <Position>3</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+    </column>
+    <column id="485" parent="324" name="content">
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StoredType>text|0s</StoredType>
+    </column>
+    <column id="486" parent="324" name="authorID">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StoredType>varchar(36)|0s</StoredType>
+    </column>
+    <column id="487" parent="324" name="createTime">
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+      <StoredType>timestamp|0s</StoredType>
+    </column>
+    <column id="488" parent="324" name="postID">
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+    </column>
+    <foreign-key id="489" parent="324" name="comments_ibfk_2">
+      <ColNames>parentID</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>comments</RefTableName>
+    </foreign-key>
+    <foreign-key id="490" parent="324" name="comments_ibfk_1">
+      <ColNames>authorID</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>users</RefTableName>
+    </foreign-key>
+    <foreign-key id="491" parent="324" name="comments_ibfk_3">
+      <ColNames>postID</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>posts</RefTableName>
+    </foreign-key>
+    <index id="492" parent="324" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="493" parent="324" name="parentID">
+      <ColNames>parentID</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="494" parent="324" name="authorID">
+      <ColNames>authorID</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="495" parent="324" name="postID">
+      <ColNames>postID</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="496" parent="324" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="497" parent="325" name="No">
+      <Position>1</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="498" parent="325" name="name">
+      <Position>2</Position>
+      <StoredType>varchar(23)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="499" parent="325" name="core">
+      <Position>3</Position>
+      <StoredType>varchar(9)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="500" parent="325" name="frequency">
+      <Position>4</Position>
+      <StoredType>varchar(18)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="501" parent="325" name="supplier">
+      <Position>5</Position>
+      <StoredType>varchar(10)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="502" parent="326" name="country_name">
+      <Position>1</Position>
+      <StoredType>varchar(100)|0s</StoredType>
+    </column>
+    <column id="503" parent="326" name="continent">
+      <Position>2</Position>
+      <StoredType>varchar(100)|0s</StoredType>
+    </column>
+    <column id="504" parent="327" name="No">
+      <Position>1</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="505" parent="327" name="model">
+      <Position>2</Position>
+      <StoredType>varchar(45)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="506" parent="327" name="style">
+      <Position>3</Position>
+      <StoredType>varchar(4)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="507" parent="328" name="forumID">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+    </column>
+    <column id="508" parent="328" name="title">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>varchar(100)|0s</StoredType>
+    </column>
+    <column id="509" parent="328" name="description">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>text|0s</StoredType>
+    </column>
+    <column id="510" parent="328" name="postID">
+      <Position>4</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+    </column>
+    <foreign-key id="511" parent="328" name="forums_ibfk_1">
+      <ColNames>postID</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>posts</RefTableName>
+    </foreign-key>
+    <index id="512" parent="328" name="PRIMARY">
+      <ColNames>forumID</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="513" parent="328" name="postID">
+      <ColNames>postID</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="514" parent="328" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="515" parent="329" name="Name">
+      <Position>1</Position>
+      <StoredType>varchar(10)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="516" parent="329" name="Website">
+      <Position>2</Position>
+      <StoredType>varchar(32)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="517" parent="329" name="Country">
+      <Position>3</Position>
+      <StoredType>varchar(11)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="518" parent="330" name="No">
+      <Position>1</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="519" parent="330" name="model">
+      <Position>2</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="520" parent="330" name="screen">
+      <Position>3</Position>
+      <StoredType>varchar(8)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="521" parent="331" name="id">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+    </column>
+    <column id="522" parent="331" name="title">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <column id="523" parent="331" name="content">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>text|0s</StoredType>
+    </column>
+    <column id="524" parent="331" name="author">
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StoredType>varchar(36)|0s</StoredType>
+    </column>
+    <column id="525" parent="331" name="createTime">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StoredType>timestamp|0s</StoredType>
+    </column>
+    <column id="526" parent="331" name="forumID">
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+    </column>
+    <column id="527" parent="331" name="commentID">
+      <Position>7</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+    </column>
+    <foreign-key id="528" parent="331" name="posts_ibfk_1">
+      <ColNames>author</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>users</RefTableName>
+    </foreign-key>
+    <index id="529" parent="331" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="530" parent="331" name="author">
+      <ColNames>author</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="531" parent="331" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="532" parent="332" name="Country">
+      <Position>1</Position>
+      <StoredType>varchar(20)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="533" parent="332" name="Brand">
+      <Position>2</Position>
+      <StoredType>varchar(18)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="534" parent="332" name="Column_2015">
+      <Position>3</Position>
+      <StoredType>varchar(4)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="535" parent="332" name="Column_2016">
+      <Position>4</Position>
+      <StoredType>decimal(4,2 digit)|0s</StoredType>
+    </column>
+    <column id="536" parent="332" name="Column_2017">
+      <Position>5</Position>
+      <StoredType>decimal(4,2 digit)|0s</StoredType>
+    </column>
+    <column id="537" parent="332" name="Column_2018">
+      <Position>6</Position>
+      <StoredType>decimal(5,2 digit)|0s</StoredType>
+    </column>
+    <column id="538" parent="332" name="Column_2019">
+      <Position>7</Position>
+      <StoredType>decimal(5,2 digit)|0s</StoredType>
+    </column>
+    <column id="539" parent="332" name="Column_2020">
+      <Position>8</Position>
+      <StoredType>decimal(5,2 digit)|0s</StoredType>
+    </column>
+    <column id="540" parent="332" name="Column_2021">
+      <Position>9</Position>
+      <StoredType>decimal(4,2 digit)|0s</StoredType>
+    </column>
+    <column id="541" parent="332" name="Column_2022">
+      <Position>10</Position>
+      <StoredType>decimal(4,2 digit)|0s</StoredType>
+    </column>
+    <column id="542" parent="332" name="Column_2023">
+      <Position>11</Position>
+      <StoredType>decimal(4,2 digit)|0s</StoredType>
+    </column>
+    <column id="543" parent="332" name="Column_2024">
+      <Position>12</Position>
+      <StoredType>decimal(4,2 digit)|0s</StoredType>
+    </column>
+    <column id="544" parent="333" name="No">
+      <Position>1</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="545" parent="333" name="model">
+      <Position>2</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="546" parent="333" name="brand">
+      <Position>3</Position>
+      <StoredType>varchar(10)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="547" parent="333" name="price_USD">
+      <Position>4</Position>
+      <StoredType>varchar(8)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="548" parent="333" name="sim">
+      <Position>5</Position>
+      <StoredType>varchar(51)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="549" parent="333" name="processor_name">
+      <Position>6</Position>
+      <StoredType>varchar(23)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="550" parent="333" name="ram">
+      <Position>7</Position>
+      <StoredType>varchar(25)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="551" parent="333" name="Battery_Capacity">
+      <Position>8</Position>
+      <StoredType>varchar(16)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="552" parent="333" name="Charging_Info">
+      <Position>9</Position>
+      <StoredType>varchar(19)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="553" parent="333" name="Rear_Camera">
+      <Position>10</Position>
+      <StoredType>varchar(34)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="554" parent="333" name="Front_Camera">
+      <Position>11</Position>
+      <StoredType>varchar(31)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="555" parent="333" name="card">
+      <Position>12</Position>
+      <StoredType>varchar(66)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="556" parent="333" name="os">
+      <Position>13</Position>
+      <StoredType>varchar(28)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="557" parent="334" name="No">
+      <Position>1</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="558" parent="334" name="name">
+      <Position>2</Position>
+      <StoredType>varchar(10)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="559" parent="334" name="web">
+      <Position>3</Position>
+      <StoredType>varchar(26)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="560" parent="334" name="country">
+      <Position>4</Position>
+      <StoredType>varchar(13)|0s</StoredType>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </column>
+    <column id="561" parent="335" name="id">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>varchar(36)|0s</StoredType>
+    </column>
+    <column id="562" parent="335" name="username">
+      <Position>2</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <column id="563" parent="335" name="password">
+      <Position>3</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <column id="564" parent="335" name="email">
+      <Position>4</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <index id="565" parent="335" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="566" parent="335" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

@@ -4,7 +4,6 @@
 @import "../components/sidebar.css";
 @import "../components/cards.css";
 @import "forum/search-btn.css";
-@import url('../style/variables.css');
 
 
 .main-container {

@@ -110,7 +110,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Fetch and parse JSON data
     async function fetchData(params, tableName) {
+        if (!tableHeaders[tableName]) {
+            tbody.innerHTML = `<tr><td style="color:red;">前端未定义该表头: ${tableName}</td></tr>`;
+            infoText.textContent = `前端未定义该表头: ${tableName}`;
+            return;
+        }
         renderTableHeader(tableName);
+        tbody.innerHTML = `<tr><td colspan="${tableHeaders[tableName].length}">LOADING...</td></tr>`;
+        infoText.textContent = `Loading data for "${tableName}"...`;
         tbody.innerHTML = `<tr><td colspan="${tableHeaders[tableName].length}">LOADING...</td></tr>`;
         infoText.textContent = `Loading data for "${tableName}"...`;
 
@@ -174,7 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Search functionality
+// 搜索功能
     searchBtn?.addEventListener("click", e => {
         e.preventDefault();
         const val = searchInput.value.trim();
@@ -191,12 +198,13 @@ document.addEventListener("DOMContentLoaded", () => {
             params.append("model", val);
         }
         buttons.forEach(b => b.classList.remove("active"));
-        document.querySelector('[data-page="smartphones"]').classList.add("active");
+        const btnSmartphones = document.querySelector('[data-page="smartphones"]');
+        if (btnSmartphones) btnSmartphones.classList.add("active"); // 判空！
         currentTable = "smartphones";
         fetchData(params, currentTable);
     });
 
-    // Range filtering
+// search-model 功能
     rangeFilters.forEach(btn => {
         btn.addEventListener("click", e => {
             e.preventDefault();
@@ -224,7 +232,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             buttons.forEach(b => b.classList.remove("active"));
-            document.querySelector('[data-page="smartphones"]').classList.add("active");
+            const btnSmartphones = document.querySelector('[data-page="smartphones"]');
+            if (btnSmartphones) btnSmartphones.classList.add("active"); // 判空！
             currentTable = "smartphones";
             fetchData(params, currentTable);
         });

@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const welcomeBtn = document.getElementById('welcomeBtn');
     if (welcomeBtn) {
         welcomeBtn.addEventListener('click', () => {
-            window.location.href = `${CONTEXT}/assets/page/profile.jsp`;
+            window.location.href = `${CONTEXT}/assets/page/console.jsp`;
         });
     }
 
