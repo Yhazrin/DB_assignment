@@ -10,7 +10,7 @@
 <jsp:include page="sub/header.jsp" /> <!-- Include the header page -->
 
 <div class="main-container">
-  <aside class="profile-sidebar glass-card">
+  <aside class="profile-sidebar">
     <div class="sidebar-section sidebar-nav">
       <a href="#" data-section="info" class="nav-item active">Information</a> <!-- Information section link -->
       <a href="#" data-section="devices" class="nav-item">Devices</a> <!-- Devices section link -->
@@ -23,7 +23,7 @@
   </aside>
 
   <main class="profile-main">
-    <div class="profile-content glass-card">
+    <div class="profile-content">
       <div class="content-header">
         <div class="breadcrumb">
           <a href="${pageContext.request.contextPath}/">Home</a> &gt; <span>Profile</span> <!-- Breadcrumb navigation -->
@@ -52,6 +52,19 @@
         <p>no data</p> <!-- Placeholder text for empty section -->
       </section>
     </div>
+    <!-- 基本信息区 … -->
+
+    <!-- ===== 发表的帖子 ===== -->
+    <section id="postsSection">
+      <h3 class="section-title">My Posts</h3>
+      <ul id="postsList" class="activity-feed"></ul>
+    </section>
+
+    <!-- ===== 评论 ===== -->
+    <section id="commentsSection">
+      <h3 class="section-title">My Comments</h3>
+      <ul id="commentsList" class="activity-feed"></ul>
+    </section>
   </main>
 </div>
 
